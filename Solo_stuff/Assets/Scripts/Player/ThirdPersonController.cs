@@ -21,6 +21,9 @@ public class ThirdPersonController : MonoBehaviour
     float _angle;
     float _turnSmoothVelocity;
 
+    [Header("Animation Variables")]
+    [SerializeField] Animator _animator;
+
 
     private void Start() {
         _controller = GetComponent<CharacterController>();
