@@ -528,11 +528,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cameraTransform: {fileID: 1873792132}
-  _speed: 4
+  _walkSpeed: 7
+  _runSpeed: 11
+  _accelDuration: 0.5
+  _decelDuration: 0.25
   _turnSmoothTime: 0.1
+  _speed: 4
+  _isRunning: 0
   _moveDirection: {x: 0, y: 0, z: 0}
   _targetAngle: 0
-  _animator: {fileID: 0}
+  _animator: {fileID: 5866666021475833894}
 --- !u!1 &323707002
 GameObject:
   m_ObjectHideFlags: 0
