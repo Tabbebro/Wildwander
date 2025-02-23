@@ -1,6 +1,8 @@
 using System.Collections;
 using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Interactions;
 using UnityEngine.UIElements;
 
 public class ThirdPersonController : MonoBehaviour
@@ -13,6 +15,7 @@ public class ThirdPersonController : MonoBehaviour
     [SerializeField] Transform _cameraTransform;
     [SerializeField] float _walkSpeed = 5.0f;
     [SerializeField] float _runSpeed = 8.0f;
+    [SerializeField] float _dodgeSpeed = 10.0f;
     [SerializeField] float _accelDuration = 1.0f;
     [SerializeField] float _decelDuration = 1.0f;
     [SerializeField] float _turnSmoothTime = 0.1f;
@@ -20,6 +23,9 @@ public class ThirdPersonController : MonoBehaviour
     // ReadOnly Variables
     [ReadOnly][SerializeField] float _speed;
     [ReadOnly][SerializeField] bool _isRunning = false;
+    [ReadOnly][SerializeField] bool _isMoving = false;
+    [ReadOnly][SerializeField] bool _isDodgin = false;
+
     [ReadOnly][SerializeField] Vector3 _moveDirection; 
     [ReadOnly][SerializeField] float _targetAngle;
     
@@ -35,22 +41,46 @@ public class ThirdPersonController : MonoBehaviour
 
     private void Start() {
         _controller = GetComponent<CharacterController>();
+    }
+
+    #region On-Stuff
+    private void OnEnable() {
         Inputs = new();
-        Inputs.Enable();
+        Inputs.Player.Enable();
         _speed = _walkSpeed;
 
+        Inputs.Player.Run.performed += Run;
+
+        Inputs.Player.Dodge.performed += StartDodge;
     }
+
+    private void OnDisable() {
+
+        Inputs.Player.Run.performed -= Run;
+
+        Inputs.Player.Dodge.performed -= StartDodge;
+
+        Inputs.Player.Disable();
+    }
+
+    private void OnDestroy() {
+
+        Inputs.Dispose();
+    }
+    #endregion
 
     private void Update() {
         Movement();
+        CheckDodgeSpeed();
         Animations();
     }
 
     void Movement() {
 
-        if (!Inputs.Player.Move.IsPressed()) { return;}
+        if (!Inputs.Player.Move.IsPressed()) { _isMoving = false;  return;}
 
-        Run();
+        _isMoving = true;
+
 
         _moveInput = Inputs.Player.Move.ReadValue<Vector2>();
 
@@ -67,8 +97,8 @@ public class ThirdPersonController : MonoBehaviour
         _controller.Move(_moveDirection.normalized * _speed * Time.deltaTime);
     }
 
-    void Run() {
-        if (Inputs.Player.Run.IsPressed() && !_isRunning) {
+    void Run(InputAction.CallbackContext context) {
+        if (!_isRunning && _isMoving) {
             _isRunning = true;
             StartCoroutine(Running());
         }
@@ -95,11 +125,30 @@ public class ThirdPersonController : MonoBehaviour
         _speed = _walkSpeed;
     }
 
+    void StartDodge(InputAction.CallbackContext context) {
+        _animator.SetTrigger("Dodge");
+    }
+
+    public void SetDodgeBool(bool value) {
+        _isDodgin = value;
+    }
+
+    void CheckDodgeSpeed() {
+        if (!_isDodgin) {
+            if (_speed == _dodgeSpeed) {
+                _speed = _walkSpeed;
+            }
+            return; 
+        }
+
+        _speed = _dodgeSpeed;
+    }
+
 
     void Animations() {
 
         // Player Movement Animation
-        if (Inputs.Player.Move.IsPressed()) {
+        if (_isMoving) {
             _animator.SetBool("IsMoving", true);
 
         }
@@ -116,22 +165,4 @@ public class ThirdPersonController : MonoBehaviour
         }
     }
 
-    #region On-Stuff
-    private void OnEnable() {
-
-        if(Inputs != null) {
-            Inputs.Player.Enable();
-        }
-    }
-
-    private void OnDisable() {
-
-        Inputs.Player.Disable();
-    }
-
-    private void OnDestroy() {
-
-        Inputs.Dispose();
-    }
-    #endregion
 }
