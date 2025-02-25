@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class WorldSaveGameManager : MonoBehaviour
 {
     public static WorldSaveGameManager Instance;
+    public GameObject PlayerPrefab;
 
     [SerializeField] int worldSceneIndex = 1;
 
@@ -23,7 +24,7 @@ public class WorldSaveGameManager : MonoBehaviour
 
     public IEnumerator LoadNewGame() {
         AsyncOperation loadOperation = SceneManager.LoadSceneAsync(worldSceneIndex);
-
+        
         yield return null;
     }
 
