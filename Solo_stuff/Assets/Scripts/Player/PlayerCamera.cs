@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerCamera : MonoBehaviour
 {
     public static PlayerCamera Instance;
-    public PlayerManager _player;
+    public PlayerManager Player;
     public Camera CameraObject;
     [SerializeField] Transform _cameraPivotTransform;
 
@@ -41,7 +41,7 @@ public class PlayerCamera : MonoBehaviour
 
 
     public void HandleAllCameraActions() {
-        if (_player != null) {
+        if (Player != null) {
             HandleFollowTarget();
             HandleRotations();
             HandleCollision();
@@ -49,17 +49,17 @@ public class PlayerCamera : MonoBehaviour
     }
 
     void HandleFollowTarget() {
-        Vector3 targetCameraPosition = Vector3.SmoothDamp(transform.position, _player.transform.position, ref _cameraVelocity, _cameraSmoothSpeed * Time.deltaTime);
+        Vector3 targetCameraPosition = Vector3.SmoothDamp(transform.position, Player.transform.position, ref _cameraVelocity, _cameraSmoothSpeed * Time.deltaTime);
         transform.position = targetCameraPosition;
     }
 
     void HandleRotations() {
 
         // Rotate Left & Right
-        _leftAndRightLookAngle += (PlayerInputManager.Instance._cameraHorizontalInput * _leftAndRightRotationSpeed) * Time.deltaTime;
+        _leftAndRightLookAngle += (PlayerInputManager.Instance.CameraHorizontalInput * _leftAndRightRotationSpeed) * Time.deltaTime;
 
         // Rotate Up & Down
-        _upAndDownLookAngle -= (PlayerInputManager.Instance._cameraVerticalInput * _upAndDownRotationSpeed) * Time.deltaTime;
+        _upAndDownLookAngle -= (PlayerInputManager.Instance.CameraVerticalInput * _upAndDownRotationSpeed) * Time.deltaTime;
         _upAndDownLookAngle = Mathf.Clamp(_upAndDownLookAngle, _minimumPivot, _maximumPivot);
 
         Vector3 cameraRotation = Vector3.zero;

@@ -4,20 +4,24 @@ using UnityEngine.SceneManagement;
 public class PlayerInputManager : MonoBehaviour
 {
     public static PlayerInputManager Instance;
+    public PlayerManager Player;
 
     Inputs _inputs;
 
     [Header("Player Movement Input")]
     [ReadOnly][SerializeField] Vector2 _movementInput;
-    [ReadOnly] public float _horizontalInput;
-    [ReadOnly] public float _verticalInput;
-    [ReadOnly] public float _moveAmount;
+    [ReadOnly] public float HorizontalInput;
+    [ReadOnly] public float VerticalInput;
+    [ReadOnly] public float MoveAmount;
 
 
     [Header("Camera Movement Input")]
     [ReadOnly][SerializeField] Vector2 _cameraInput;
-    [ReadOnly] public float _cameraHorizontalInput;
-    [ReadOnly] public float _cameraVerticalInput;
+    [ReadOnly] public float CameraHorizontalInput;
+    [ReadOnly] public float CameraVerticalInput;
+
+    [Header("Player Action Input")]
+    [SerializeField] bool _dodgeInput = false;
 
     private void Awake() {
         if (Instance == null) {
@@ -52,10 +56,12 @@ public class PlayerInputManager : MonoBehaviour
 
             _inputs.PlayerMovement.Movement.performed += i => _movementInput = i.ReadValue<Vector2>();
             _inputs.PlayerCamera.Movement.performed += i => _cameraInput = i.ReadValue<Vector2>();
+            _inputs.PlayerActions.Dodge.performed += i => _dodgeInput = true;
         }
 
         _inputs.PlayerMovement.Enable();
         _inputs.PlayerCamera.Enable();
+        _inputs.PlayerActions.Enable();
     }
 
     private void OnDestroy() {
@@ -67,37 +73,61 @@ public class PlayerInputManager : MonoBehaviour
             if (focus) {
                 _inputs.PlayerMovement.Enable();
                 _inputs.PlayerCamera.Enable();
+                _inputs.PlayerActions.Enable();
             }
             else {
                 _inputs.PlayerMovement.Disable();
                 _inputs.PlayerCamera.Disable();
+                _inputs.PlayerActions.Disable();
             }
         }
     }
 
     private void Update() {
+        HandleAllInputs();
+    }
+
+    void HandleAllInputs() {
         HandlePlayerMovementInput();
         HandleCameraMovementInput();
+        HandleDodgeInput();
     }
+
+    // Movement
 
     void HandlePlayerMovementInput() {
 
-        _horizontalInput = _movementInput.x;
-        _verticalInput = _movementInput.y;
+        HorizontalInput = _movementInput.x;
+        VerticalInput = _movementInput.y;
 
-        _moveAmount = Mathf.Clamp01(Mathf.Abs(_horizontalInput) + Mathf.Abs(_verticalInput));
+        MoveAmount = Mathf.Clamp01(Mathf.Abs(HorizontalInput) + Mathf.Abs(VerticalInput));
 
         // clamp movement
-        if (_moveAmount <= 0.5f && _moveAmount > 0) {
-            _moveAmount = 0.5f;
+        if (MoveAmount <= 0.5f && MoveAmount > 0) {
+            MoveAmount = 0.5f;
         }
-        else if (_moveAmount > 0.5f && _moveAmount <= 1) {
-            _moveAmount = 1;
+        else if (MoveAmount > 0.5f && MoveAmount <= 1) {
+            MoveAmount = 1;
         }
+
+        if(Player == null) { return; }
+
+        // Only pass vertical because horizontal is only for lock on
+        Player._playerAnimatorManager.UpdateAnimatorMovementParameters(0, MoveAmount);
     }
 
     void HandleCameraMovementInput() {
-        _cameraHorizontalInput = _cameraInput.x;
-        _cameraVerticalInput = _cameraInput.y;
+        CameraHorizontalInput = _cameraInput.x;
+        CameraVerticalInput = _cameraInput.y;
+    }
+
+    // Actions
+
+    void HandleDodgeInput() {
+        if (_dodgeInput) {
+            _dodgeInput = false;
+
+            Player._playerMovementManager.AttemptToPerformDodge();
+        }
     }
 }

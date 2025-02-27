@@ -7,11 +7,15 @@ public class PlayerMovementManager : CharacterMovementManager
     [ReadOnly] public float _horizontalMovement;
     [ReadOnly] public float _moveAmount;
 
+    [Header("Movement Settings")]
     Vector3 _moveDirection;
     Vector3 _targetRotationDirection;
     [SerializeField] float _walkingSpeed = 2;
     [SerializeField] float _runningSpeed = 5;
     [SerializeField] float _rotationSpeed = 15;
+
+    [Header("Dodge")]
+    Vector3 _rollDirection;
     
 
     protected override void Awake() {
@@ -21,16 +25,19 @@ public class PlayerMovementManager : CharacterMovementManager
     }
 
     private void GetVerticalAndHorizontalInputs() {
-        _verticalMovement = PlayerInputManager.Instance._verticalInput;
-        _horizontalMovement = PlayerInputManager.Instance._horizontalInput;
+        _verticalMovement = PlayerInputManager.Instance.VerticalInput;
+        _horizontalMovement = PlayerInputManager.Instance.HorizontalInput;
     }
 
     public void HandleAllMovement() {
-        HandleMovement();
-        HandleRotation();
+
+            HandleMovement();
+            HandleRotation();
     }
 
     void HandleMovement() {
+        // Flag check
+        if (!_player.canMove) { return; }
 
         GetVerticalAndHorizontalInputs();
 
@@ -40,18 +47,19 @@ public class PlayerMovementManager : CharacterMovementManager
         _moveDirection.Normalize();
         _moveDirection.y = 0;
 
-        if (PlayerInputManager.Instance._moveAmount > 0.5f) {
+        if (PlayerInputManager.Instance.MoveAmount > 0.5f) {
 
             _player._characterController.Move(_moveDirection * _runningSpeed * Time.deltaTime);
         }
-        else if (PlayerInputManager.Instance._moveAmount <= 0.5f) {
+        else if (PlayerInputManager.Instance.MoveAmount <= 0.5f) {
 
             _player._characterController.Move(_moveDirection * _walkingSpeed * Time.deltaTime);
-
         }
     }
 
     void HandleRotation() {
+        // Flag check
+        if (!_player.canRotate) { return; }
 
         _targetRotationDirection = Vector3.zero;
         _targetRotationDirection = PlayerCamera.Instance.CameraObject.transform.forward * _verticalMovement;
@@ -67,5 +75,30 @@ public class PlayerMovementManager : CharacterMovementManager
         Quaternion targetRotation = Quaternion.Slerp(transform.rotation, newRotation, _rotationSpeed * Time.deltaTime);
         transform.rotation = targetRotation;
 
+    }
+
+    public void AttemptToPerformDodge() {
+
+        if(_player.isPerformingAction) { return; }
+
+        // Rolling
+        if (PlayerInputManager.Instance.MoveAmount > 0) {
+
+            _rollDirection = PlayerCamera.Instance.CameraObject.transform.forward * PlayerInputManager.Instance.VerticalInput;
+            _rollDirection += PlayerCamera.Instance.CameraObject.transform.right * PlayerInputManager.Instance.HorizontalInput;
+
+            _rollDirection.y = 0;
+            _rollDirection.Normalize();
+        
+            Quaternion playerRotation = Quaternion.LookRotation(_rollDirection);
+            _player.transform.rotation = playerRotation;
+
+            _player._playerAnimatorManager.PlayTargetActionAnimation("Roll_Forward_01", true);
+        }
+        // Backstep
+        else {
+
+            _player._playerAnimatorManager.PlayTargetActionAnimation("Back_Step_01", true);
+        }
     }
 }

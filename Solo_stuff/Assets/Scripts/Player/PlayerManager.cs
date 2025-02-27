@@ -2,20 +2,23 @@ using UnityEngine;
 
 public class PlayerManager : CharacterManager
 {
-    PlayerMovementManager _movement;
+    [HideInInspector] public PlayerAnimatorManager _playerAnimatorManager;
+    [HideInInspector] public PlayerMovementManager _playerMovementManager;
 
     protected override void Awake() {
         base.Awake();
 
-        _movement = GetComponent<PlayerMovementManager>();
+        _playerMovementManager = GetComponent<PlayerMovementManager>();
+        _playerAnimatorManager = GetComponent<PlayerAnimatorManager>();
 
-        PlayerCamera.Instance._player = this;
+        PlayerInputManager.Instance.Player = this;
+        PlayerCamera.Instance.Player = this;
     }
 
     protected override void Update() {
         base.Update();
 
-        _movement.HandleAllMovement();
+        _playerMovementManager.HandleAllMovement();
     }
 
     protected override void LateUpdate() {
