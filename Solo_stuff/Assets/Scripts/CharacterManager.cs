@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 public class CharacterManager : MonoBehaviour
 {
@@ -11,6 +12,10 @@ public class CharacterManager : MonoBehaviour
     public bool canRotate = true;
     public bool canMove = true;
 
+    [Header("Impact Variables")]
+    Vector3 _impact = Vector3.zero;
+    float _mass = 3;
+
     protected virtual void Awake() {
         DontDestroyOnLoad(this);
 
@@ -19,10 +24,12 @@ public class CharacterManager : MonoBehaviour
     }
 
     protected virtual void Update() {
-        
+
     }
 
     protected virtual void LateUpdate() {
         
     }
+
+
 }

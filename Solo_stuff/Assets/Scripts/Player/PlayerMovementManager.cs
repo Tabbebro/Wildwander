@@ -48,7 +48,6 @@ public class PlayerMovementManager : CharacterMovementManager
         _moveDirection.y = 0;
 
         if (PlayerInputManager.Instance.MoveAmount > 0.5f) {
-
             _player._characterController.Move(_moveDirection * _runningSpeed * Time.deltaTime);
         }
         else if (PlayerInputManager.Instance.MoveAmount <= 0.5f) {
@@ -99,6 +98,19 @@ public class PlayerMovementManager : CharacterMovementManager
         else {
 
             _player._playerAnimatorManager.PlayTargetActionAnimation("Back_Step_01", true);
+        }
+    }
+
+    public float GetSpeed() {
+        if (PlayerInputManager.Instance.MoveAmount > 0.5f) {
+            return _runningSpeed;
+        }
+        else if (PlayerInputManager.Instance.MoveAmount <= 0.5f) {
+
+            return _walkingSpeed;
+        }
+        else {
+            return 0;
         }
     }
 }

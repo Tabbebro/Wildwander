@@ -22,7 +22,7 @@ public class CharacterAnimatorManager : MonoBehaviour
         ) {
 
         _character.applyRootMotion = applyRootMotion;
-        _character._animator.CrossFade(targetAnimation, 0.1f);
+        _character._animator.CrossFade(targetAnimation, 0.2f);
 
         _character.isPerformingAction = isPerformingAnimation;
         _character.canRotate = canRotate;

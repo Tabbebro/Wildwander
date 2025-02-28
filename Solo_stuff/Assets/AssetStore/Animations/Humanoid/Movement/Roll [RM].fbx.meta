@@ -42,7 +42,7 @@ ModelImporter:
       takeName: Untitled
       internalID: 3094330708855449807
       firstFrame: 0
-      lastFrame: 39
+      lastFrame: 20.1
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -954,7 +954,7 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     globalScale: 1
-    rootMotionBoneName: Rig/B-root
+    rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
