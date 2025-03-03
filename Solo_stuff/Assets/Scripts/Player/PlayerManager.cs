@@ -5,6 +5,10 @@ public class PlayerManager : CharacterManager
     [HideInInspector] public PlayerAnimatorManager _playerAnimatorManager;
     [HideInInspector] public PlayerMovementManager _playerMovementManager;
 
+    // Flags
+    [Header("Flags (Player Manager)")]
+    public bool isSprinting = false;
+
     protected override void Awake() {
         base.Awake();
 

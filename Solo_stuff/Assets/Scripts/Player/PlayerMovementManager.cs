@@ -12,6 +12,7 @@ public class PlayerMovementManager : CharacterMovementManager
     Vector3 _targetRotationDirection;
     [SerializeField] float _walkingSpeed = 2;
     [SerializeField] float _runningSpeed = 5;
+    [SerializeField] float _sprinttingSpeed = 8;
     [SerializeField] float _rotationSpeed = 15;
 
     [Header("Dodge")]
@@ -27,6 +28,7 @@ public class PlayerMovementManager : CharacterMovementManager
     private void GetVerticalAndHorizontalInputs() {
         _verticalMovement = PlayerInputManager.Instance.VerticalInput;
         _horizontalMovement = PlayerInputManager.Instance.HorizontalInput;
+        _moveAmount = PlayerInputManager.Instance.MoveAmount;
     }
 
     public void HandleAllMovement() {
@@ -47,13 +49,21 @@ public class PlayerMovementManager : CharacterMovementManager
         _moveDirection.Normalize();
         _moveDirection.y = 0;
 
-        if (PlayerInputManager.Instance.MoveAmount > 0.5f) {
-            _player._characterController.Move(_moveDirection * _runningSpeed * Time.deltaTime);
+        // Sprinting
+        if (_player.isSprinting) {
+            _player._characterController.Move(_moveDirection * _sprinttingSpeed * Time.deltaTime);
         }
-        else if (PlayerInputManager.Instance.MoveAmount <= 0.5f) {
+        // Walking
+        else {
+            if (PlayerInputManager.Instance.MoveAmount > 0.5f) {
+                _player._characterController.Move(_moveDirection * _runningSpeed * Time.deltaTime);
+            }
+            else if (PlayerInputManager.Instance.MoveAmount <= 0.5f) {
 
-            _player._characterController.Move(_moveDirection * _walkingSpeed * Time.deltaTime);
+                _player._characterController.Move(_moveDirection * _walkingSpeed * Time.deltaTime);
+            }
         }
+
     }
 
     void HandleRotation() {
@@ -101,16 +111,20 @@ public class PlayerMovementManager : CharacterMovementManager
         }
     }
 
-    public float GetSpeed() {
-        if (PlayerInputManager.Instance.MoveAmount > 0.5f) {
-            return _runningSpeed;
+    public void HandleSprint() {
+        // If performing action set to false
+        if (_player.isPerformingAction) {
+            _player.isSprinting = false;
         }
-        else if (PlayerInputManager.Instance.MoveAmount <= 0.5f) {
 
-            return _walkingSpeed;
+        // If moving set to true
+        if (_moveAmount >= 0.5f) {
+            _player.isSprinting = true;
         }
+        // If stationary / moving too slow set to false
         else {
-            return 0;
+            _player.isSprinting = false;
         }
+
     }
 }

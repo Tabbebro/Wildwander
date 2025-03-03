@@ -1419,6 +1419,7 @@ MonoBehaviour:
   canMove: 1
   _playerAnimatorManager: {fileID: 0}
   _playerMovementManager: {fileID: 0}
+  isSprinting: 0
 --- !u!114 &2956767300954857412
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1436,7 +1437,8 @@ MonoBehaviour:
   _moveAmount: 0
   _walkingSpeed: 2
   _runningSpeed: 8
-  _rotationSpeed: 15
+  _sprinttingSpeed: 12
+  _rotationSpeed: 30
 --- !u!114 &4130408762295923674
 MonoBehaviour:
   m_ObjectHideFlags: 0

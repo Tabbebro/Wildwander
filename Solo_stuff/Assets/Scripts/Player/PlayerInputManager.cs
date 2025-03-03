@@ -22,6 +22,7 @@ public class PlayerInputManager : MonoBehaviour
 
     [Header("Player Action Input")]
     [SerializeField] bool _dodgeInput = false;
+    [SerializeField] bool _sprintInput = false;
 
     private void Awake() {
         if (Instance == null) {
@@ -54,9 +55,14 @@ public class PlayerInputManager : MonoBehaviour
         if (_inputs == null) {
             _inputs = new();
 
+            // Player & Camera Movement
             _inputs.PlayerMovement.Movement.performed += i => _movementInput = i.ReadValue<Vector2>();
             _inputs.PlayerCamera.Movement.performed += i => _cameraInput = i.ReadValue<Vector2>();
+            // Dodge
             _inputs.PlayerActions.Dodge.performed += i => _dodgeInput = true;
+            // Sprint
+            _inputs.PlayerActions.Sprint.performed += i => _sprintInput = true;
+            _inputs.PlayerActions.Sprint.canceled += i => _sprintInput = false;
         }
 
         _inputs.PlayerMovement.Enable();
@@ -91,6 +97,7 @@ public class PlayerInputManager : MonoBehaviour
         HandlePlayerMovementInput();
         HandleCameraMovementInput();
         HandleDodgeInput();
+        HandleSprintInput();
     }
 
     // Movement
@@ -113,7 +120,7 @@ public class PlayerInputManager : MonoBehaviour
         if(Player == null) { return; }
 
         // Only pass vertical because horizontal is only for lock on
-        Player._playerAnimatorManager.UpdateAnimatorMovementParameters(0, MoveAmount);
+        Player._playerAnimatorManager.UpdateAnimatorMovementParameters(0, MoveAmount, Player.isSprinting);
     }
 
     void HandleCameraMovementInput() {
@@ -128,6 +135,15 @@ public class PlayerInputManager : MonoBehaviour
             _dodgeInput = false;
 
             Player._playerMovementManager.AttemptToPerformDodge();
+        }
+    }
+
+    void HandleSprintInput() {
+        if (_sprintInput) {
+            Player._playerMovementManager.HandleSprint();
+        }
+        else {
+            Player.isSprinting = false;
         }
     }
 }
