@@ -38,7 +38,6 @@ public class PlayerInputManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         SceneManager.activeSceneChanged += OnSceneChange;
-        
         Instance.enabled = false;
     }
 

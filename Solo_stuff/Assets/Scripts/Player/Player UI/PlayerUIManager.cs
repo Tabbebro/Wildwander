@@ -1,10 +1,15 @@
 using UnityEngine;
+using Unity.Netcode;
 
 public class PlayerUIManager : MonoBehaviour
 {
     public static PlayerUIManager Instance;
 
+    [Header("NETWORK JOIN")]
+    [SerializeField] bool _startGameAsClient;
+
     [HideInInspector] public PlayerUIHudManager PlayerUIHudManager;
+
 
     private void Awake() {
         if (Instance == null) {
@@ -15,6 +20,13 @@ public class PlayerUIManager : MonoBehaviour
         }
 
         PlayerUIHudManager = GetComponentInChildren<PlayerUIHudManager>();
+    }
+    private void Update() {
+        if (_startGameAsClient) {
+            _startGameAsClient = false;
+            NetworkManager.Singleton.Shutdown();
+            NetworkManager.Singleton.StartClient();
+        }
     }
 
     private void Start() {
