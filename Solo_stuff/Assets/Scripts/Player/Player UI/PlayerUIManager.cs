@@ -4,6 +4,8 @@ public class PlayerUIManager : MonoBehaviour
 {
     public static PlayerUIManager Instance;
 
+    [HideInInspector] public PlayerUIHudManager PlayerUIHudManager;
+
     private void Awake() {
         if (Instance == null) {
             Instance = this;
@@ -11,6 +13,8 @@ public class PlayerUIManager : MonoBehaviour
         else { 
             Destroy(gameObject);
         }
+
+        PlayerUIHudManager = GetComponentInChildren<PlayerUIHudManager>();
     }
 
     private void Start() {

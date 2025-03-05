@@ -1328,6 +1328,7 @@ GameObject:
   - component: {fileID: 4130408762295923674}
   - component: {fileID: 613237461335639856}
   - component: {fileID: -429732661137189510}
+  - component: {fileID: -8267923244536723280}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1413,13 +1414,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _characterController: {fileID: 0}
   _animator: {fileID: 0}
+  IsPlayer: 1
   isPerformingAction: 0
   applyRootMotion: 0
   canRotate: 1
   canMove: 1
+  isSprinting: 0
+  Endurance: 10
+  MaxStamina: 0
+  _staminaRegenerationDelay: 2
   _playerAnimatorManager: {fileID: 0}
   _playerMovementManager: {fileID: 0}
-  isSprinting: 0
+  _playerStatsManager: {fileID: 0}
 --- !u!114 &2956767300954857412
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1439,6 +1445,7 @@ MonoBehaviour:
   _runningSpeed: 8
   _sprinttingSpeed: 12
   _rotationSpeed: 30
+  _sprintingStaminaCost: 2
 --- !u!114 &4130408762295923674
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1560,6 +1567,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-8267923244536723280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5002884483716068296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 886b74ce1f4effe47a6e93c334cdad57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5074777042681385163
 GameObject:
   m_ObjectHideFlags: 0

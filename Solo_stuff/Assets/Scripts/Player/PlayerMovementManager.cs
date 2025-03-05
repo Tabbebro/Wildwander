@@ -14,9 +14,11 @@ public class PlayerMovementManager : CharacterMovementManager
     [SerializeField] float _runningSpeed = 5;
     [SerializeField] float _sprinttingSpeed = 8;
     [SerializeField] float _rotationSpeed = 15;
+    [SerializeField] int _sprintingStaminaCost = 2;
 
     [Header("Dodge")]
     Vector3 _rollDirection;
+    [SerializeField] float _dodgeStaminaCost = 25;
     
 
     protected override void Awake() {
@@ -88,7 +90,9 @@ public class PlayerMovementManager : CharacterMovementManager
 
     public void AttemptToPerformDodge() {
 
-        if(_player.isPerformingAction) { return; }
+        // Check if performing another action or if has stamina
+        if(_player.isPerformingAction || _player.CurrentStamina <= 0) { return; }
+
 
         // Rolling
         if (PlayerInputManager.Instance.MoveAmount > 0) {
@@ -109,12 +113,20 @@ public class PlayerMovementManager : CharacterMovementManager
 
             _player._playerAnimatorManager.PlayTargetActionAnimation("Back_Step_01", true);
         }
+
+        _player.SetCurrentStamina(_player.CurrentStamina - _dodgeStaminaCost);
     }
 
     public void HandleSprint() {
         // If performing action set to false
         if (_player.isPerformingAction) {
             _player.isSprinting = false;
+        }
+
+        // Check for stamina
+        if (_player.CurrentStamina <= 0) {
+            _player.isSprinting = false;
+            return;
         }
 
         // If moving set to true
@@ -124,6 +136,11 @@ public class PlayerMovementManager : CharacterMovementManager
         // If stationary / moving too slow set to false
         else {
             _player.isSprinting = false;
+        }
+
+        if (_player.isSprinting) {
+            //_player.CurrentStamina -= _sprintingStaminaCost * Time.deltaTime;
+            _player.SetCurrentStamina(_player.CurrentStamina - _sprintingStaminaCost * Time.deltaTime);
         }
 
     }
