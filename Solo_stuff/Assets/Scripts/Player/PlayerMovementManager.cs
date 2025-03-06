@@ -27,7 +27,24 @@ public class PlayerMovementManager : CharacterMovementManager
         _player = GetComponent<PlayerManager>();
     }
 
-    private void GetVerticalAndHorizontalInputs() {
+    protected override void Update() {
+        base.Update();
+
+        if (_player.IsOwner) {
+            _player._characterNetworkManager.VerticalMovement.Value = _verticalMovement;
+            _player._characterNetworkManager.HorizontalMovement.Value = _horizontalMovement;
+            _player._characterNetworkManager.MoveAmount.Value = _moveAmount;
+        }
+        else {
+            _moveAmount = _player._characterNetworkManager.MoveAmount.Value;
+            _horizontalMovement = _player._characterNetworkManager.HorizontalMovement.Value;
+            _verticalMovement = _player._characterNetworkManager.VerticalMovement.Value;
+
+            _player._playerAnimatorManager.UpdateAnimatorMovementParameters(0, _moveAmount, _player.isSprinting);
+        }
+    }
+
+    private void GetMovementValues() {
         _verticalMovement = PlayerInputManager.Instance.VerticalInput;
         _horizontalMovement = PlayerInputManager.Instance.HorizontalInput;
         _moveAmount = PlayerInputManager.Instance.MoveAmount;
@@ -43,7 +60,7 @@ public class PlayerMovementManager : CharacterMovementManager
         // Flag check
         if (!_player.canMove) { return; }
 
-        GetVerticalAndHorizontalInputs();
+        GetMovementValues();
 
         // Move direction based on cameras perspective & inputs
         _moveDirection = PlayerCamera.Instance.transform.forward * _verticalMovement;

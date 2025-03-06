@@ -15,9 +15,6 @@ public class PlayerManager : CharacterManager
         _playerAnimatorManager = GetComponent<PlayerAnimatorManager>();
         _playerStatsManager = GetComponent<PlayerStatsManager>();
 
-        // Give Reference to other scripts
-        PlayerInputManager.Instance.Player = this;
-        PlayerCamera.Instance.Player = this;
 
         // Player Stamina Calculations
         MaxStamina = _playerStatsManager.CalculateStaminaBasedOnLevel(Endurance);
@@ -38,9 +35,22 @@ public class PlayerManager : CharacterManager
     }
 
     protected override void LateUpdate() {
+
+        if(!IsOwner) { return; }
+
         base.LateUpdate();
 
         PlayerCamera.Instance.HandleAllCameraActions();
+    }
+
+    public override void OnNetworkSpawn() {
+        base.OnNetworkSpawn();
+        if(IsOwner) { 
+            
+            // Give Reference to other scripts
+            PlayerInputManager.Instance.Player = this;
+            PlayerCamera.Instance.Player = this;        
+        }
     }
 
     public override void SetCurrentStamina(float newStamina) {

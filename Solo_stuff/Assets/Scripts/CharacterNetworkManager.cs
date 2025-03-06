@@ -9,4 +9,10 @@ public class CharacterNetworkManager : NetworkBehaviour
     public Vector3 NetworkPositionVelocity;
     public float NetworkPositionSmoothTime = 0.1f;
     public float NetworkRotationSmoothTime = 0.1f;
+
+    [Header("Animator")]
+    public NetworkVariable<float> HorizontalMovement = new NetworkVariable<float>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    public NetworkVariable<float> VerticalMovement = new NetworkVariable<float>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    public NetworkVariable<float> MoveAmount = new NetworkVariable<float>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+
 }

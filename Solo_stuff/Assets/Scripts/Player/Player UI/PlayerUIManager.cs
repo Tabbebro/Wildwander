@@ -6,7 +6,7 @@ public class PlayerUIManager : MonoBehaviour
     public static PlayerUIManager Instance;
 
     [Header("NETWORK JOIN")]
-    [SerializeField] bool _startGameAsClient;
+    [SerializeField] public bool _startGameAsClient;
 
     [HideInInspector] public PlayerUIHudManager PlayerUIHudManager;
 
@@ -31,5 +31,9 @@ public class PlayerUIManager : MonoBehaviour
 
     private void Start() {
         DontDestroyOnLoad(gameObject);
+    }
+
+    public void JoinGameAsClient() {
+        _startGameAsClient = true;
     }
 }

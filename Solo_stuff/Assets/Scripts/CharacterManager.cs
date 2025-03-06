@@ -6,7 +6,7 @@ public class CharacterManager : NetworkBehaviour
     [HideInInspector] public CharacterController _characterController;
     [HideInInspector] public Animator _animator;
 
-    CharacterNetworkManager _characterNetworkManager;
+    [HideInInspector] public CharacterNetworkManager _characterNetworkManager;
 
     [Header("Is Player?")]
     public bool IsPlayer = false;
