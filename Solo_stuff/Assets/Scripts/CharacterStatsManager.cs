@@ -27,7 +27,7 @@ public class CharacterStatsManager : MonoBehaviour
     public virtual void RegenerateStamina() {
 
         // Don't regenerate when sprinting or performing action
-        if (_character.isSprinting || _character.isPerformingAction) {
+        if (_character._characterNetworkManager.IsSprinting.Value || _character.isPerformingAction) {
             return;
         }
 

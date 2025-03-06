@@ -40,7 +40,7 @@ public class PlayerMovementManager : CharacterMovementManager
             _horizontalMovement = _player._characterNetworkManager.HorizontalMovement.Value;
             _verticalMovement = _player._characterNetworkManager.VerticalMovement.Value;
 
-            _player._playerAnimatorManager.UpdateAnimatorMovementParameters(0, _moveAmount, _player.isSprinting);
+            _player._playerAnimatorManager.UpdateAnimatorMovementParameters(0, _moveAmount, _player._playerNetworkManager.IsSprinting.Value);
         }
     }
 
@@ -69,7 +69,7 @@ public class PlayerMovementManager : CharacterMovementManager
         _moveDirection.y = 0;
 
         // Sprinting
-        if (_player.isSprinting) {
+        if (_player._playerNetworkManager.IsSprinting.Value) {
             _player._characterController.Move(_moveDirection * _sprinttingSpeed * Time.deltaTime);
         }
         // Walking
@@ -137,25 +137,25 @@ public class PlayerMovementManager : CharacterMovementManager
     public void HandleSprint() {
         // If performing action set to false
         if (_player.isPerformingAction) {
-            _player.isSprinting = false;
+            _player._playerNetworkManager.IsSprinting.Value = false;
         }
 
         // Check for stamina
         if (_player.CurrentStamina <= 0) {
-            _player.isSprinting = false;
+            _player._playerNetworkManager.IsSprinting.Value = false;
             return;
         }
 
         // If moving set to true
         if (_moveAmount >= 0.5f) {
-            _player.isSprinting = true;
+            _player._playerNetworkManager.IsSprinting.Value = true;
         }
         // If stationary / moving too slow set to false
         else {
-            _player.isSprinting = false;
+            _player._playerNetworkManager.IsSprinting.Value = false;
         }
 
-        if (_player.isSprinting) {
+        if (_player._playerNetworkManager.IsSprinting.Value) {
             //_player.CurrentStamina -= _sprintingStaminaCost * Time.deltaTime;
             _player.SetCurrentStamina(_player.CurrentStamina - _sprintingStaminaCost * Time.deltaTime);
         }

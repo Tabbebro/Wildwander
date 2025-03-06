@@ -1,4 +1,5 @@
 using UnityEngine;
+using Unity.Netcode;
 
 public class CharacterAnimatorManager : MonoBehaviour
 {
@@ -42,5 +43,7 @@ public class CharacterAnimatorManager : MonoBehaviour
         _character.isPerformingAction = isPerformingAnimation;
         _character.canRotate = canRotate;
         _character.canMove = canMove;
+
+        _character._characterNetworkManager.NotifyServerOfActionAnimationServerRpc(NetworkManager.Singleton.LocalClientId, targetAnimation, applyRootMotion);
     }
 }

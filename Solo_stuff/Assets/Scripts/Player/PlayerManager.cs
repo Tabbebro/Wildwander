@@ -5,6 +5,7 @@ public class PlayerManager : CharacterManager
     [HideInInspector] public PlayerAnimatorManager _playerAnimatorManager;
     [HideInInspector] public PlayerMovementManager _playerMovementManager;
     [HideInInspector] public PlayerStatsManager _playerStatsManager;
+    [HideInInspector] public PlayerNetworkManager _playerNetworkManager;
 
 
     protected override void Awake() {
@@ -14,6 +15,8 @@ public class PlayerManager : CharacterManager
         _playerMovementManager = GetComponent<PlayerMovementManager>();
         _playerAnimatorManager = GetComponent<PlayerAnimatorManager>();
         _playerStatsManager = GetComponent<PlayerStatsManager>();
+        _playerNetworkManager = GetComponent<PlayerNetworkManager>();
+
 
 
         // Player Stamina Calculations
