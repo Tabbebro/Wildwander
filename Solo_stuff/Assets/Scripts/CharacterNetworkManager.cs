@@ -19,6 +19,11 @@ public class CharacterNetworkManager : NetworkBehaviour
     [Header("Flags")]
     public NetworkVariable<bool> IsSprinting = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
+    [Header("Stats")]
+    public NetworkVariable<int> Endurance = new NetworkVariable<int>(1, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    public NetworkVariable<float> CurrentStamina = new NetworkVariable<float>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    public NetworkVariable<int> MaxStamina = new NetworkVariable<int>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+
 
     protected virtual void Awake() {
         _character = GetComponent<CharacterManager>();
@@ -39,8 +44,8 @@ public class CharacterNetworkManager : NetworkBehaviour
     }
 
     private void PerformActionAnimationFromServer(string animationID, bool applyRootMotion) {
-        _character.applyRootMotion = applyRootMotion;
-        _character._animator.CrossFade(animationID, 0.2f);
+        _character.ApplyRootMotion = applyRootMotion;
+        _character.Animator.CrossFade(animationID, 0.2f);
     }
 
 }

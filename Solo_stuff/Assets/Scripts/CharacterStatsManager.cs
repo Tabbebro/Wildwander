@@ -26,25 +26,27 @@ public class CharacterStatsManager : MonoBehaviour
 
     public virtual void RegenerateStamina() {
 
+        if (!_character.IsOwner) { return; }
+
         // Don't regenerate when sprinting or performing action
-        if (_character._characterNetworkManager.IsSprinting.Value || _character.isPerformingAction) {
+        if (_character.CharacterNetworkManager.IsSprinting.Value || _character.IsPerformingAction) {
             return;
         }
 
         _staminaRegenerationTimer += Time.deltaTime;
 
-        if (_staminaRegenerationTimer >= _staminaRegenerationDelay && _character.CurrentStamina < _character.MaxStamina) {
+        if (_staminaRegenerationTimer >= _staminaRegenerationDelay && _character.CharacterNetworkManager.CurrentStamina.Value < _character.CharacterNetworkManager.MaxStamina.Value) {
 
             _staminaTickTimer += Time.deltaTime;
             if (_staminaTickTimer >= 0.1f) {
                 _staminaTickTimer = 0;
-                _character.SetCurrentStamina(_character.CurrentStamina + _staminaRegenerationAmount);
+                _character.CharacterNetworkManager.CurrentStamina.Value += _staminaRegenerationAmount;
             }
         }
     }
 
     public virtual void ResetStaminaRegenTimer(float previousStaminaValue, float currentStaminaAmount) {
-        if (previousStaminaValue < currentStaminaAmount) {
+        if (currentStaminaAmount < previousStaminaValue) {
             _staminaRegenerationTimer = 0;
         }
     }

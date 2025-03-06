@@ -119,7 +119,7 @@ public class PlayerInputManager : MonoBehaviour
         if(Player == null) { return; }
 
         // Only pass vertical because horizontal is only for lock on
-        Player._playerAnimatorManager.UpdateAnimatorMovementParameters(0, MoveAmount, Player._playerNetworkManager.IsSprinting.Value);
+        Player.PlayerAnimatorManager.UpdateAnimatorMovementParameters(0, MoveAmount, Player.PlayerNetworkManager.IsSprinting.Value);
     }
 
     void HandleCameraMovementInput() {
@@ -133,16 +133,16 @@ public class PlayerInputManager : MonoBehaviour
         if (_dodgeInput) {
             _dodgeInput = false;
 
-            Player._playerMovementManager.AttemptToPerformDodge();
+            Player.PlayerMovementManager.AttemptToPerformDodge();
         }
     }
 
     void HandleSprintInput() {
         if (_sprintInput) {
-            Player._playerMovementManager.HandleSprint();
+            Player.PlayerMovementManager.HandleSprint();
         }
         else {
-            Player._playerNetworkManager.IsSprinting.Value = false;
+            Player.PlayerNetworkManager.IsSprinting.Value = false;
         }
     }
 }

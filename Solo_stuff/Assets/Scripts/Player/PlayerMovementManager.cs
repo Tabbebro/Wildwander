@@ -3,9 +3,9 @@ using UnityEngine;
 public class PlayerMovementManager : CharacterMovementManager
 {
     PlayerManager _player;
-    [ReadOnly] public float _verticalMovement;
-    [ReadOnly] public float _horizontalMovement;
-    [ReadOnly] public float _moveAmount;
+    [ReadOnly] public float VerticalMovement;
+    [ReadOnly] public float HorizontalMovement;
+    [ReadOnly] public float MoveAmount;
 
     [Header("Movement Settings")]
     Vector3 _moveDirection;
@@ -31,23 +31,23 @@ public class PlayerMovementManager : CharacterMovementManager
         base.Update();
 
         if (_player.IsOwner) {
-            _player._characterNetworkManager.VerticalMovement.Value = _verticalMovement;
-            _player._characterNetworkManager.HorizontalMovement.Value = _horizontalMovement;
-            _player._characterNetworkManager.MoveAmount.Value = _moveAmount;
+            _player.CharacterNetworkManager.VerticalMovement.Value = VerticalMovement;
+            _player.CharacterNetworkManager.HorizontalMovement.Value = HorizontalMovement;
+            _player.CharacterNetworkManager.MoveAmount.Value = MoveAmount;
         }
         else {
-            _moveAmount = _player._characterNetworkManager.MoveAmount.Value;
-            _horizontalMovement = _player._characterNetworkManager.HorizontalMovement.Value;
-            _verticalMovement = _player._characterNetworkManager.VerticalMovement.Value;
+            MoveAmount = _player.CharacterNetworkManager.MoveAmount.Value;
+            HorizontalMovement = _player.CharacterNetworkManager.HorizontalMovement.Value;
+            VerticalMovement = _player.CharacterNetworkManager.VerticalMovement.Value;
 
-            _player._playerAnimatorManager.UpdateAnimatorMovementParameters(0, _moveAmount, _player._playerNetworkManager.IsSprinting.Value);
+            _player.PlayerAnimatorManager.UpdateAnimatorMovementParameters(0, MoveAmount, _player.PlayerNetworkManager.IsSprinting.Value);
         }
     }
 
     private void GetMovementValues() {
-        _verticalMovement = PlayerInputManager.Instance.VerticalInput;
-        _horizontalMovement = PlayerInputManager.Instance.HorizontalInput;
-        _moveAmount = PlayerInputManager.Instance.MoveAmount;
+        VerticalMovement = PlayerInputManager.Instance.VerticalInput;
+        HorizontalMovement = PlayerInputManager.Instance.HorizontalInput;
+        MoveAmount = PlayerInputManager.Instance.MoveAmount;
     }
 
     public void HandleAllMovement() {
@@ -58,28 +58,28 @@ public class PlayerMovementManager : CharacterMovementManager
 
     void HandleMovement() {
         // Flag check
-        if (!_player.canMove) { return; }
+        if (!_player.CanMove) { return; }
 
         GetMovementValues();
 
         // Move direction based on cameras perspective & inputs
-        _moveDirection = PlayerCamera.Instance.transform.forward * _verticalMovement;
-        _moveDirection = _moveDirection + PlayerCamera.Instance.transform.right * _horizontalMovement;
+        _moveDirection = PlayerCamera.Instance.transform.forward * VerticalMovement;
+        _moveDirection = _moveDirection + PlayerCamera.Instance.transform.right * HorizontalMovement;
         _moveDirection.Normalize();
         _moveDirection.y = 0;
 
         // Sprinting
-        if (_player._playerNetworkManager.IsSprinting.Value) {
-            _player._characterController.Move(_moveDirection * _sprinttingSpeed * Time.deltaTime);
+        if (_player.PlayerNetworkManager.IsSprinting.Value) {
+            _player.CharacterController.Move(_moveDirection * _sprinttingSpeed * Time.deltaTime);
         }
         // Walking
         else {
             if (PlayerInputManager.Instance.MoveAmount > 0.5f) {
-                _player._characterController.Move(_moveDirection * _runningSpeed * Time.deltaTime);
+                _player.CharacterController.Move(_moveDirection * _runningSpeed * Time.deltaTime);
             }
             else if (PlayerInputManager.Instance.MoveAmount <= 0.5f) {
 
-                _player._characterController.Move(_moveDirection * _walkingSpeed * Time.deltaTime);
+                _player.CharacterController.Move(_moveDirection * _walkingSpeed * Time.deltaTime);
             }
         }
 
@@ -87,11 +87,11 @@ public class PlayerMovementManager : CharacterMovementManager
 
     void HandleRotation() {
         // Flag check
-        if (!_player.canRotate) { return; }
+        if (!_player.CanRotate) { return; }
 
         _targetRotationDirection = Vector3.zero;
-        _targetRotationDirection = PlayerCamera.Instance.CameraObject.transform.forward * _verticalMovement;
-        _targetRotationDirection = _targetRotationDirection + PlayerCamera.Instance.CameraObject.transform.right * _horizontalMovement;
+        _targetRotationDirection = PlayerCamera.Instance.CameraObject.transform.forward * VerticalMovement;
+        _targetRotationDirection = _targetRotationDirection + PlayerCamera.Instance.CameraObject.transform.right * HorizontalMovement;
         _targetRotationDirection.Normalize();
         _targetRotationDirection.y = 0;
 
@@ -108,7 +108,7 @@ public class PlayerMovementManager : CharacterMovementManager
     public void AttemptToPerformDodge() {
 
         // Check if performing another action or if has stamina
-        if(_player.isPerformingAction || _player.CurrentStamina <= 0) { return; }
+        if(_player.IsPerformingAction || _player.PlayerNetworkManager.CurrentStamina.Value <= 0) { return; }
 
 
         // Rolling
@@ -123,41 +123,41 @@ public class PlayerMovementManager : CharacterMovementManager
             Quaternion playerRotation = Quaternion.LookRotation(_rollDirection);
             _player.transform.rotation = playerRotation;
 
-            _player._playerAnimatorManager.PlayTargetActionAnimation("Roll_Forward_01", true);
+            _player.PlayerAnimatorManager.PlayTargetActionAnimation("Roll_Forward_01", true);
         }
         // Backstep
         else {
 
-            _player._playerAnimatorManager.PlayTargetActionAnimation("Back_Step_01", true);
+            _player.PlayerAnimatorManager.PlayTargetActionAnimation("Back_Step_01", true);
         }
 
-        _player.SetCurrentStamina(_player.CurrentStamina - _dodgeStaminaCost);
+        // Remove Stamina
+        _player.PlayerNetworkManager.CurrentStamina.Value -= _dodgeStaminaCost;
     }
 
     public void HandleSprint() {
         // If performing action set to false
-        if (_player.isPerformingAction) {
-            _player._playerNetworkManager.IsSprinting.Value = false;
+        if (_player.IsPerformingAction) {
+            _player.PlayerNetworkManager.IsSprinting.Value = false;
         }
 
         // Check for stamina
-        if (_player.CurrentStamina <= 0) {
-            _player._playerNetworkManager.IsSprinting.Value = false;
+        if (_player.PlayerNetworkManager.CurrentStamina.Value <= 0) {
+            _player.PlayerNetworkManager.IsSprinting.Value = false;
             return;
         }
 
         // If moving set to true
-        if (_moveAmount >= 0.5f) {
-            _player._playerNetworkManager.IsSprinting.Value = true;
+        if (MoveAmount >= 0.5f) {
+            _player.PlayerNetworkManager.IsSprinting.Value = true;
         }
         // If stationary / moving too slow set to false
         else {
-            _player._playerNetworkManager.IsSprinting.Value = false;
+            _player.PlayerNetworkManager.IsSprinting.Value = false;
         }
 
-        if (_player._playerNetworkManager.IsSprinting.Value) {
-            //_player.CurrentStamina -= _sprintingStaminaCost * Time.deltaTime;
-            _player.SetCurrentStamina(_player.CurrentStamina - _sprintingStaminaCost * Time.deltaTime);
+        if (_player.PlayerNetworkManager.IsSprinting.Value) {
+            _player.PlayerNetworkManager.CurrentStamina.Value -= _sprintingStaminaCost * Time.deltaTime;
         }
 
     }

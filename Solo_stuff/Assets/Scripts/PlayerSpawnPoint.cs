@@ -7,7 +7,7 @@ public class PlayerSpawnPoint : MonoBehaviour
         Offset += transform.position;
         if (PlayerInputManager.Instance.Player != null) { 
             PlayerInputManager.Instance.Player.transform.position = Offset;
-            PlayerInputManager.Instance.Player._characterController.enabled = true;
+            PlayerInputManager.Instance.Player.CharacterController.enabled = true;
         }
     }
 }

@@ -11,10 +11,10 @@ public class ResetActionFlag : StateMachineBehaviour
         }
 
         // Reset Flags
-        _character.isPerformingAction = false;
-        _character.canMove = true;
-        _character.canRotate = true;
-        _character.applyRootMotion = false;
+        _character.IsPerformingAction = false;
+        _character.CanMove = true;
+        _character.CanRotate = true;
+        _character.ApplyRootMotion = false;
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

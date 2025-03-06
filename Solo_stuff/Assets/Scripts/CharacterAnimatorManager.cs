@@ -24,8 +24,8 @@ public class CharacterAnimatorManager : MonoBehaviour
             vertical = 2;
         }
 
-        _character._animator.SetFloat(_horizontal, horizontal, 0.1f, Time.deltaTime);
-        _character._animator.SetFloat(_vertical, vertical, 0.1f, Time.deltaTime);
+        _character.Animator.SetFloat(_horizontal, horizontal, 0.1f, Time.deltaTime);
+        _character.Animator.SetFloat(_vertical, vertical, 0.1f, Time.deltaTime);
 
     }
 
@@ -37,13 +37,13 @@ public class CharacterAnimatorManager : MonoBehaviour
         bool canMove = false
         ) {
 
-        _character.applyRootMotion = applyRootMotion;
-        _character._animator.CrossFade(targetAnimation, 0.2f);
+        _character.ApplyRootMotion = applyRootMotion;
+        _character.Animator.CrossFade(targetAnimation, 0.2f);
 
-        _character.isPerformingAction = isPerformingAnimation;
-        _character.canRotate = canRotate;
-        _character.canMove = canMove;
+        _character.IsPerformingAction = isPerformingAnimation;
+        _character.CanRotate = canRotate;
+        _character.CanMove = canMove;
 
-        _character._characterNetworkManager.NotifyServerOfActionAnimationServerRpc(NetworkManager.Singleton.LocalClientId, targetAnimation, applyRootMotion);
+        _character.CharacterNetworkManager.NotifyServerOfActionAnimationServerRpc(NetworkManager.Singleton.LocalClientId, targetAnimation, applyRootMotion);
     }
 }

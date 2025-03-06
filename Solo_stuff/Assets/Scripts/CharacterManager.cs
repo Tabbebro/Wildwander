@@ -3,55 +3,50 @@ using Unity.Netcode;
 
 public class CharacterManager : NetworkBehaviour
 {
-    [HideInInspector] public CharacterController _characterController;
-    [HideInInspector] public Animator _animator;
+    [HideInInspector] public CharacterController CharacterController;
+    [HideInInspector] public Animator Animator;
 
-    [HideInInspector] public CharacterNetworkManager _characterNetworkManager;
+    [HideInInspector] public CharacterNetworkManager CharacterNetworkManager;
 
     [Header("Is Player?")]
     public bool IsPlayer = false;
 
     [Header("Flags (Character Manager)")]
-    public bool isPerformingAction = false;
-    public bool applyRootMotion = false;
-    public bool canRotate = true;
-    public bool canMove = true;
-
-    [Header("Stats")]
-    public int Endurance = 1;
-    public float CurrentStamina { get; private set; }
-    public int MaxStamina = 0;
+    public bool IsPerformingAction = false;
+    public bool ApplyRootMotion = false;
+    public bool CanRotate = true;
+    public bool CanMove = true;
 
 
     protected virtual void Awake() {
         DontDestroyOnLoad(this);
 
-        _characterController = GetComponent<CharacterController>();
-        _characterNetworkManager = GetComponent<CharacterNetworkManager>();
-        _animator = GetComponent<Animator>();
+        CharacterController = GetComponent<CharacterController>();
+        CharacterNetworkManager = GetComponent<CharacterNetworkManager>();
+        Animator = GetComponent<Animator>();
     }
 
     protected virtual void Update() {
 
         if (IsOwner) {
             // Position
-            _characterNetworkManager.NetworkPosition.Value = transform.position;
+            CharacterNetworkManager.NetworkPosition.Value = transform.position;
             // Rotation
-            _characterNetworkManager.NetworkRotation.Value = transform.rotation;
+            CharacterNetworkManager.NetworkRotation.Value = transform.rotation;
         }
         else {
             // Position
             transform.position = Vector3.SmoothDamp(
                 transform.position, 
-                _characterNetworkManager.NetworkPosition.Value, 
-                ref _characterNetworkManager.NetworkPositionVelocity, 
-                _characterNetworkManager.NetworkPositionSmoothTime);
+                CharacterNetworkManager.NetworkPosition.Value, 
+                ref CharacterNetworkManager.NetworkPositionVelocity, 
+                CharacterNetworkManager.NetworkPositionSmoothTime);
 
             // Rotation
             transform.rotation = Quaternion.Slerp(
                 transform.rotation, 
-                _characterNetworkManager.NetworkRotation.Value, 
-                _characterNetworkManager.NetworkRotationSmoothTime);
+                CharacterNetworkManager.NetworkRotation.Value, 
+                CharacterNetworkManager.NetworkRotationSmoothTime);
         }
     }
 
@@ -59,13 +54,5 @@ public class CharacterManager : NetworkBehaviour
         
     }
 
-
-    public virtual void SetCurrentStamina(float newStamina) {
-        float OldStamina = CurrentStamina;
-        if (IsPlayer) {
-            PlayerUIManager.Instance.PlayerUIHudManager.SetNewStaminaValue(OldStamina, newStamina);
-        }
-        CurrentStamina = newStamina;
-    }
 
 }

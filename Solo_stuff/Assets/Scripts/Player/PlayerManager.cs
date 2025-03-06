@@ -2,27 +2,21 @@ using UnityEngine;
 
 public class PlayerManager : CharacterManager
 {
-    [HideInInspector] public PlayerAnimatorManager _playerAnimatorManager;
-    [HideInInspector] public PlayerMovementManager _playerMovementManager;
-    [HideInInspector] public PlayerStatsManager _playerStatsManager;
-    [HideInInspector] public PlayerNetworkManager _playerNetworkManager;
+    [HideInInspector] public PlayerAnimatorManager PlayerAnimatorManager;
+    [HideInInspector] public PlayerMovementManager PlayerMovementManager;
+    [HideInInspector] public PlayerStatsManager PlayerStatsManager;
+    [HideInInspector] public PlayerNetworkManager PlayerNetworkManager;
 
 
     protected override void Awake() {
         base.Awake();
 
         // Find components
-        _playerMovementManager = GetComponent<PlayerMovementManager>();
-        _playerAnimatorManager = GetComponent<PlayerAnimatorManager>();
-        _playerStatsManager = GetComponent<PlayerStatsManager>();
-        _playerNetworkManager = GetComponent<PlayerNetworkManager>();
+        PlayerMovementManager = GetComponent<PlayerMovementManager>();
+        PlayerAnimatorManager = GetComponent<PlayerAnimatorManager>();
+        PlayerStatsManager = GetComponent<PlayerStatsManager>();
+        PlayerNetworkManager = GetComponent<PlayerNetworkManager>();
 
-
-
-        // Player Stamina Calculations
-        MaxStamina = _playerStatsManager.CalculateStaminaBasedOnLevel(Endurance);
-        SetCurrentStamina(_playerStatsManager.CalculateStaminaBasedOnLevel(Endurance));
-        PlayerUIManager.Instance.PlayerUIHudManager.SetMaxStaminaValue(MaxStamina);
     }
 
     protected override void Update() {
@@ -31,10 +25,10 @@ public class PlayerManager : CharacterManager
         if(!IsOwner) { return; }
 
         // Handle movement
-        _playerMovementManager.HandleAllMovement();
+        PlayerMovementManager.HandleAllMovement();
 
         // Regenerate Stamina
-        _playerStatsManager.RegenerateStamina();
+        PlayerStatsManager.RegenerateStamina();
     }
 
     protected override void LateUpdate() {
@@ -52,15 +46,14 @@ public class PlayerManager : CharacterManager
             
             // Give Reference to other scripts
             PlayerInputManager.Instance.Player = this;
-            PlayerCamera.Instance.Player = this;        
+            PlayerCamera.Instance.Player = this;
+
+            PlayerNetworkManager.CurrentStamina.OnValueChanged += PlayerUIManager.Instance.PlayerUIHudManager.SetNewStaminaValue;
+            PlayerNetworkManager.CurrentStamina.OnValueChanged += PlayerStatsManager.ResetStaminaRegenTimer;
+
+            PlayerNetworkManager.MaxStamina.Value = PlayerStatsManager.CalculateStaminaBasedOnLevel(PlayerNetworkManager.Endurance.Value);
+            PlayerNetworkManager.CurrentStamina.Value = PlayerStatsManager.CalculateStaminaBasedOnLevel(PlayerNetworkManager.Endurance.Value);
+            PlayerUIManager.Instance.PlayerUIHudManager.SetMaxStaminaValue(PlayerNetworkManager.MaxStamina.Value);
         }
     }
-
-    public override void SetCurrentStamina(float newStamina) {
-        float OldStamina = CurrentStamina;
-        base.SetCurrentStamina(newStamina);
-        _playerStatsManager.ResetStaminaRegenTimer(OldStamina, newStamina);
-    }
-
-
 }
