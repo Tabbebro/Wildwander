@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerManager : CharacterManager
 {
@@ -59,6 +60,9 @@ public class PlayerManager : CharacterManager
     }
 
     public void SaveDataToCurrentCharacterData(ref CharacterSaveData currentCharacterData) {
+        // Give Character Scene
+        currentCharacterData.SceneIndex = SceneManager.GetActiveScene().buildIndex;
+
         // Give Character Name
         currentCharacterData.CharacterName = PlayerNetworkManager.CharacterName.Value.ToString();
 
@@ -66,6 +70,7 @@ public class PlayerManager : CharacterManager
         currentCharacterData.xPosition = transform.position.x;
         currentCharacterData.yPosition = transform.position.y;
         currentCharacterData.zPosition = transform.position.z;
+
     }
 
     public void LoadDataFromCurrentCharacterData(ref CharacterSaveData currentCharacterData) {

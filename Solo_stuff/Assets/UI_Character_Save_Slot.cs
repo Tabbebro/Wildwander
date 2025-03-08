@@ -72,12 +72,10 @@ public class UI_Character_Save_Slot : MonoBehaviour
         writer.SaveFileName = WorldSaveGameManager.Instance.DecideCharacterFileNameBasedOnCharacterSlotBeingUsed(characterSlot);
         // If File Exists Load Character Data
         if (writer.CheckToSeeIfFileExists()) {
-            print("File does exist" + "\n" + "save file name: " + Path.Combine(writer.SaveDataPath, writer.SaveFileName));
             CharacterName.text = saveData.CharacterName;
         }
         // Else Hide Game Object
         else {
-            print("File doesn't exist");
             gameObject.SetActive(false);
         }
     }
@@ -85,5 +83,9 @@ public class UI_Character_Save_Slot : MonoBehaviour
     public void LoadGameFromCharacterSlot() {
         WorldSaveGameManager.Instance.CurrentCharacterSlotUsed = CharacterSlot;
         WorldSaveGameManager.Instance.LoadGame();
+    }
+
+    public void SelectCurrentSlot() {
+        TitleScreenManager.Instance.SelectCharacterSlot(CharacterSlot);
     }
 }

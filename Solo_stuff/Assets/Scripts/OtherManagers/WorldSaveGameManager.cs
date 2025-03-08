@@ -106,19 +106,6 @@ public class WorldSaveGameManager : MonoBehaviour
         saveFileWriter = new();
         saveFileWriter.SaveDataPath = Application.persistentDataPath;
 
-        // TODO: Remove if thing below works
-        /* Base
-        // Slot #1
-        _fileName = DecideCharacterFileNameBasedOnCharacterSlotBeingUsed(CharacterSlot.CharacterSlot_01);
-        if (!saveFileWriter.CheckToSeeIfFileExists()) {
-            CurrentCharacterSlotUsed = CharacterSlot.CharacterSlot_01;
-            CurrentCharacterData = new();
-            StartCoroutine(LoadWorldScene());
-            return;
-        }
-        */
-
-
         // Checks if there are available slots to make a new save
         // Slot #1
         if (CheckIfSlotIsUsed(CharacterSlot.CharacterSlot_01, saveFileWriter)) {
@@ -204,6 +191,14 @@ public class WorldSaveGameManager : MonoBehaviour
         saveFileWriter.CreateNewCharacterSaveFile(CurrentCharacterData);
     }
 
+    public void DeleteGame(CharacterSlot characterSlot) {
+        // Get file to delete
+        saveFileWriter = new();
+        saveFileWriter.SaveDataPath = Application.persistentDataPath;
+        saveFileWriter.SaveFileName = DecideCharacterFileNameBasedOnCharacterSlotBeingUsed(characterSlot);
+        saveFileWriter.DeleteSaveFile();
+    }
+
     // Load All Character Slots When Starting Game
     private void LoadAllCharacterSlots() {
         saveFileWriter = new();
@@ -251,7 +246,10 @@ public class WorldSaveGameManager : MonoBehaviour
     }
 
     public IEnumerator LoadWorldScene() {
-        AsyncOperation loadOperation = SceneManager.LoadSceneAsync(worldSceneIndex);
+        // For only 1 world scene
+        //AsyncOperation loadOperation = SceneManager.LoadSceneAsync(worldSceneIndex);
+        
+        AsyncOperation loadOperation = SceneManager.LoadSceneAsync(CurrentCharacterData.SceneIndex);
 
         Player.LoadDataFromCurrentCharacterData(ref CurrentCharacterData);
 
