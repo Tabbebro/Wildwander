@@ -6,7 +6,7 @@ public class WorldSaveGameManager : MonoBehaviour
 {
     public static WorldSaveGameManager Instance;
 
-    [SerializeField] PlayerManager _player;
+    public PlayerManager Player;
 
     [Header("Save/Load")]
     [SerializeField] bool _saveGame;
@@ -101,10 +101,79 @@ public class WorldSaveGameManager : MonoBehaviour
         return fileName;
     }
 
-    public void NewGame() {
-        _fileName = DecideCharacterFileNameBasedOnCharacterSlotBeingUsed(CurrentCharacterSlotUsed);
+    public void AttemptToCreateNewGame() {
 
-        CurrentCharacterData = new CharacterSaveData();
+        saveFileWriter = new();
+        saveFileWriter.SaveDataPath = Application.persistentDataPath;
+
+        // TODO: Remove if thing below works
+        /* Base
+        // Slot #1
+        _fileName = DecideCharacterFileNameBasedOnCharacterSlotBeingUsed(CharacterSlot.CharacterSlot_01);
+        if (!saveFileWriter.CheckToSeeIfFileExists()) {
+            CurrentCharacterSlotUsed = CharacterSlot.CharacterSlot_01;
+            CurrentCharacterData = new();
+            StartCoroutine(LoadWorldScene());
+            return;
+        }
+        */
+
+
+        // Checks if there are available slots to make a new save
+        // Slot #1
+        if (CheckIfSlotIsUsed(CharacterSlot.CharacterSlot_01, saveFileWriter)) {
+            return;
+        }
+        // Slot # 2
+        else if (CheckIfSlotIsUsed(CharacterSlot.CharacterSlot_02, saveFileWriter)) {
+            return;
+        }
+        // Slot # 3
+        else if (CheckIfSlotIsUsed(CharacterSlot.CharacterSlot_03, saveFileWriter)) {
+            return;
+        }
+        // Slot # 4
+        else if (CheckIfSlotIsUsed(CharacterSlot.CharacterSlot_04, saveFileWriter)) {
+            return;
+        }
+        // Slot # 5
+        else if (CheckIfSlotIsUsed(CharacterSlot.CharacterSlot_05, saveFileWriter)) {
+            return;
+        }
+        // Slot # 6
+        else if (CheckIfSlotIsUsed(CharacterSlot.CharacterSlot_06, saveFileWriter)) {
+            return;
+        }
+        // Slot # 7
+        else if (CheckIfSlotIsUsed(CharacterSlot.CharacterSlot_07, saveFileWriter)) {
+            return;
+        }
+        // Slot # 8
+        else if (CheckIfSlotIsUsed(CharacterSlot.CharacterSlot_08, saveFileWriter)) {
+            return;
+        }
+        // Slot # 9
+        else if (CheckIfSlotIsUsed(CharacterSlot.CharacterSlot_09, saveFileWriter)) {
+            return;
+        }
+        // Slot # 10
+        else if (CheckIfSlotIsUsed(CharacterSlot.CharacterSlot_10, saveFileWriter)) {
+            return;
+        }
+
+        // If no avalailable slots notify player
+        TitleScreenManager.Instance.DisplayNoFreeCharactersMessage();
+    }
+
+    bool CheckIfSlotIsUsed(CharacterSlot slot, SaveFileWriter writer) {
+        writer.SaveFileName = DecideCharacterFileNameBasedOnCharacterSlotBeingUsed(slot);
+        if (!writer.CheckToSeeIfFileExists()) { 
+            CurrentCharacterSlotUsed = slot;
+            CurrentCharacterData = new();
+            StartCoroutine(LoadWorldScene());
+            return true; 
+        }
+        else { return false; }
     }
 
     public void LoadGame() {
@@ -129,7 +198,7 @@ public class WorldSaveGameManager : MonoBehaviour
         saveFileWriter.SaveFileName = _fileName;
 
         // Get Values From Player
-        _player.SaveDataToCurrentCharacterData(ref CurrentCharacterData);
+        Player.SaveDataToCurrentCharacterData(ref CurrentCharacterData);
 
         // Write Info To Save File
         saveFileWriter.CreateNewCharacterSaveFile(CurrentCharacterData);
@@ -183,7 +252,9 @@ public class WorldSaveGameManager : MonoBehaviour
 
     public IEnumerator LoadWorldScene() {
         AsyncOperation loadOperation = SceneManager.LoadSceneAsync(worldSceneIndex);
-        
+
+        Player.LoadDataFromCurrentCharacterData(ref CurrentCharacterData);
+
         yield return null;
     }
 

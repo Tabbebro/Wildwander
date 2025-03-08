@@ -47,6 +47,7 @@ public class PlayerManager : CharacterManager
             // Give Reference to other scripts
             PlayerInputManager.Instance.Player = this;
             PlayerCamera.Instance.Player = this;
+            WorldSaveGameManager.Instance.Player = this;
 
             PlayerNetworkManager.CurrentStamina.OnValueChanged += PlayerUIManager.Instance.PlayerUIHudManager.SetNewStaminaValue;
             PlayerNetworkManager.CurrentStamina.OnValueChanged += PlayerStatsManager.ResetStaminaRegenTimer;
