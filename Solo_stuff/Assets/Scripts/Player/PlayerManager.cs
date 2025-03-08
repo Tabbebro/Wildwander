@@ -56,4 +56,23 @@ public class PlayerManager : CharacterManager
             PlayerUIManager.Instance.PlayerUIHudManager.SetMaxStaminaValue(PlayerNetworkManager.MaxStamina.Value);
         }
     }
+
+    public void SaveDataToCurrentCharacterData(ref CharacterSaveData currentCharacterData) {
+        // Give Character Name
+        currentCharacterData.CharacterName = PlayerNetworkManager.CharacterName.Value.ToString();
+
+        // Give Character Position
+        currentCharacterData.xPosition = transform.position.x;
+        currentCharacterData.yPosition = transform.position.y;
+        currentCharacterData.zPosition = transform.position.z;
+    }
+
+    public void LoadDataFromCurrentCharacterData(ref CharacterSaveData currentCharacterData) {
+        // Get Character Name
+        PlayerNetworkManager.CharacterName.Value = currentCharacterData.CharacterName;
+
+        // Get Character Position
+        Vector3 position = new Vector3(currentCharacterData.xPosition, currentCharacterData.yPosition, currentCharacterData.zPosition);
+        transform.position = position;
+    }
 }

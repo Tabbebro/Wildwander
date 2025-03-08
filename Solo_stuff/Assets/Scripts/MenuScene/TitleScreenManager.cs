@@ -16,7 +16,8 @@ public class TitleScreenManager : MonoBehaviour
         _mainMenuFirstSelectable.Select();
     }
     public void StartNewGame() {
-        StartCoroutine(WorldSaveGameManager.Instance.LoadNewGame());
+        WorldSaveGameManager.Instance.NewGame();
+        StartCoroutine(WorldSaveGameManager.Instance.LoadWorldScene());
     }
 
     public void StartNetworkAsHost() {
