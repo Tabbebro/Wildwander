@@ -13,6 +13,8 @@ public class UI_Character_Save_Slot : MonoBehaviour
     [Header("Character Info")]
     public TextMeshProUGUI CharacterName;
     public TextMeshProUGUI TimePlayed;
+    public TextMeshProUGUI CharacterLevel;
+    public TextMeshProUGUI CharacterLocation;
 
     private void OnEnable() {
         LoadSaveSlots();

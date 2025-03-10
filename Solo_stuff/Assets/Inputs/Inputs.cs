@@ -593,6 +593,42 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": ""Tap"",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ButtonEast"",
+                    ""type"": ""Button"",
+                    ""id"": ""7684f303-be79-4ab7-a2c9-fd08feb91e46"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Tap"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ButtonSouth"",
+                    ""type"": ""Button"",
+                    ""id"": ""168952d3-a03d-48f7-9c63-1ea8f281249a"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Tap"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ButtonWest"",
+                    ""type"": ""Button"",
+                    ""id"": ""cdef350b-8ae9-4255-9155-f709fff4a8a4"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Tap"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Navigation"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""6335bdcb-dc36-406d-a1e1-9029d3c0dccb"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -604,6 +640,259 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""ButtonNorth"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""D-Pad"",
+                    ""id"": ""43f8d7e5-1c25-4cef-b538-94f2509bd087"",
+                    ""path"": ""2DVector(mode=2)"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Navigation"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""667d6fbe-caab-4e97-88da-9be6ef01104b"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Navigation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""b5be768f-2821-4a61-801e-ef603b40346d"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Navigation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""a2715ac1-956a-4885-932d-34b5265071ba"",
+                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Navigation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""ef14ce61-5a91-4dca-91bd-48d22fe552b7"",
+                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Navigation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""RightStick"",
+                    ""id"": ""35918c34-4eed-4ec4-ae15-4f790b45c33b"",
+                    ""path"": ""2DVector(mode=2)"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Navigation"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""e64e64b4-250c-404f-98ef-5b8b0eb0c4a3"",
+                    ""path"": ""<Gamepad>/rightStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Navigation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""5028eb71-d787-4919-af78-2fd16f881d2d"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Navigation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""e4f0dbe1-21f1-49b5-825d-8e2b3509aa44"",
+                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Navigation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""ea965e32-79e9-48be-a6bd-e7cedfab3712"",
+                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Navigation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""WASD"",
+                    ""id"": ""bfe7bec9-0629-4541-bd3b-3bdef0fac417"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Navigation"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""b3446d9e-8d3c-4361-aa6f-688e03acb20a"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Navigation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""133ed2f5-9133-44da-9b7d-baf7c556588b"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Navigation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""4e478905-b941-48f0-a36f-11e2e3f953c7"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Navigation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""d5685967-0639-405e-9290-d55cd5aa795d"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Navigation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Arrows"",
+                    ""id"": ""ef967eae-92a9-4d83-a5da-61f5859a9a97"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Navigation"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""80a49baa-2962-43d8-b2f7-38e1577ee3a9"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Navigation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""1b2525cc-c4c4-4bdb-a14a-e8641d6c1517"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Navigation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""c2e26472-9197-4202-afb6-14bc5c92b8eb"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Navigation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""adae8bbf-8c75-4368-888f-628c841413bf"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Navigation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8f2881bf-4726-4513-a845-8afe4b78ea74"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ButtonSouth"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""085c09e3-1972-416f-a222-4ce7737c4629"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ButtonEast"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""428a8e00-0401-40d3-b610-ce5eaf0f4dc9"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ButtonWest"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -689,6 +978,10 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_ButtonNorth = m_UI.FindAction("ButtonNorth", throwIfNotFound: true);
+        m_UI_ButtonEast = m_UI.FindAction("ButtonEast", throwIfNotFound: true);
+        m_UI_ButtonSouth = m_UI.FindAction("ButtonSouth", throwIfNotFound: true);
+        m_UI_ButtonWest = m_UI.FindAction("ButtonWest", throwIfNotFound: true);
+        m_UI_Navigation = m_UI.FindAction("Navigation", throwIfNotFound: true);
     }
 
     ~@Inputs()
@@ -1105,6 +1398,10 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_UI;
     private List<IUIActions> m_UIActionsCallbackInterfaces = new List<IUIActions>();
     private readonly InputAction m_UI_ButtonNorth;
+    private readonly InputAction m_UI_ButtonEast;
+    private readonly InputAction m_UI_ButtonSouth;
+    private readonly InputAction m_UI_ButtonWest;
+    private readonly InputAction m_UI_Navigation;
     /// <summary>
     /// Provides access to input actions defined in input action map "UI".
     /// </summary>
@@ -1120,6 +1417,22 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "UI/ButtonNorth".
         /// </summary>
         public InputAction @ButtonNorth => m_Wrapper.m_UI_ButtonNorth;
+        /// <summary>
+        /// Provides access to the underlying input action "UI/ButtonEast".
+        /// </summary>
+        public InputAction @ButtonEast => m_Wrapper.m_UI_ButtonEast;
+        /// <summary>
+        /// Provides access to the underlying input action "UI/ButtonSouth".
+        /// </summary>
+        public InputAction @ButtonSouth => m_Wrapper.m_UI_ButtonSouth;
+        /// <summary>
+        /// Provides access to the underlying input action "UI/ButtonWest".
+        /// </summary>
+        public InputAction @ButtonWest => m_Wrapper.m_UI_ButtonWest;
+        /// <summary>
+        /// Provides access to the underlying input action "UI/Navigation".
+        /// </summary>
+        public InputAction @Navigation => m_Wrapper.m_UI_Navigation;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1149,6 +1462,18 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
             @ButtonNorth.started += instance.OnButtonNorth;
             @ButtonNorth.performed += instance.OnButtonNorth;
             @ButtonNorth.canceled += instance.OnButtonNorth;
+            @ButtonEast.started += instance.OnButtonEast;
+            @ButtonEast.performed += instance.OnButtonEast;
+            @ButtonEast.canceled += instance.OnButtonEast;
+            @ButtonSouth.started += instance.OnButtonSouth;
+            @ButtonSouth.performed += instance.OnButtonSouth;
+            @ButtonSouth.canceled += instance.OnButtonSouth;
+            @ButtonWest.started += instance.OnButtonWest;
+            @ButtonWest.performed += instance.OnButtonWest;
+            @ButtonWest.canceled += instance.OnButtonWest;
+            @Navigation.started += instance.OnNavigation;
+            @Navigation.performed += instance.OnNavigation;
+            @Navigation.canceled += instance.OnNavigation;
         }
 
         /// <summary>
@@ -1163,6 +1488,18 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
             @ButtonNorth.started -= instance.OnButtonNorth;
             @ButtonNorth.performed -= instance.OnButtonNorth;
             @ButtonNorth.canceled -= instance.OnButtonNorth;
+            @ButtonEast.started -= instance.OnButtonEast;
+            @ButtonEast.performed -= instance.OnButtonEast;
+            @ButtonEast.canceled -= instance.OnButtonEast;
+            @ButtonSouth.started -= instance.OnButtonSouth;
+            @ButtonSouth.performed -= instance.OnButtonSouth;
+            @ButtonSouth.canceled -= instance.OnButtonSouth;
+            @ButtonWest.started -= instance.OnButtonWest;
+            @ButtonWest.performed -= instance.OnButtonWest;
+            @ButtonWest.canceled -= instance.OnButtonWest;
+            @Navigation.started -= instance.OnNavigation;
+            @Navigation.performed -= instance.OnNavigation;
+            @Navigation.canceled -= instance.OnNavigation;
         }
 
         /// <summary>
@@ -1348,5 +1685,33 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnButtonNorth(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "ButtonEast" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnButtonEast(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "ButtonSouth" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnButtonSouth(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "ButtonWest" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnButtonWest(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Navigation" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnNavigation(InputAction.CallbackContext context);
     }
 }

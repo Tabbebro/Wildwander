@@ -49,7 +49,7 @@ public class TitleScreenManager : MonoBehaviour {
 
         _titleMainMenu.SetActive(false);
         _titleLoadGameMenu.SetActive(true);
-        _loadMenuReturnButton.Select();
+        //_loadMenuReturnButton.Select();
     }
     public void CloseLoadGameMenu() {
 
@@ -66,7 +66,7 @@ public class TitleScreenManager : MonoBehaviour {
         _mainMenuStartGameButton.Select();
     }
 
-    // Character Slots
+    #region Character Slots
     public void SelectCharacterSlot(CharacterSlot characterSlot) {
         CurrentSelectedSlot = characterSlot;
     }
@@ -96,10 +96,13 @@ public class TitleScreenManager : MonoBehaviour {
         _titleLoadGameMenu.SetActive(true);
 
         // Select Return Button
-        _loadMenuReturnButton.Select();
+        //_loadMenuReturnButton.Select();
+        TitleScreenLoadManager.Instance.TryToSelectFirstSlot();
     }
     public void CloseDeleteCharacterPopUp() {
         _deleteCharacterSlotPopUp.SetActive(false);
         _loadMenuReturnButton.Select();
+        TitleScreenLoadManager.Instance.TryToSelectFirstSlot();
     }
+    #endregion
 }
