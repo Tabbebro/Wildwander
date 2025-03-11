@@ -4,7 +4,9 @@ using UnityEngine.UI;
 
 public class TitleScreenInputReader : MonoBehaviour
 {
-    Inputs _inputs;
+    public static TitleScreenInputReader Instance;
+
+    public Inputs Inputs;
 
     [Header("Selection")]
     [ReadOnly][SerializeField] GameObject _currentSelectable;
@@ -16,7 +18,7 @@ public class TitleScreenInputReader : MonoBehaviour
     [SerializeField] GameObject _titleLoadCharacterMenu;
 
     [Header("Pop Ups")]
-    [SerializeField] GameObject _deleteCharacterPopUp;
+    public GameObject DeleteCharacterPopUp;
     [SerializeField] GameObject _noCharactersAvailablePopUp;
 
     [Header("Buttons")]
@@ -27,22 +29,32 @@ public class TitleScreenInputReader : MonoBehaviour
 
     bool _navigation = false;
 
+    private void Awake() {
+
+        if(Instance == null) {
+            Instance = this;
+        }
+        else {
+            Destroy(gameObject);
+        }
+    }
+
     private void OnEnable() {
-        if (_inputs == null) {
-            _inputs = new();
-            _inputs.UI.ButtonNorth.performed += i => _northButton = true;
-            _inputs.UI.ButtonEast.performed += i => _eastButton= true;
-            _inputs.UI.ButtonSouth.performed += i => _southButton = true;
-            _inputs.UI.ButtonWest.performed += i => _westButton = true;
-            _inputs.UI.Navigation.performed += i => _navigation = true;
+        if (Inputs == null) {
+            Inputs = new();
+            Inputs.UI.ButtonNorth.performed += i => _northButton = true;
+            Inputs.UI.ButtonEast.performed += i => _eastButton= true;
+            Inputs.UI.ButtonSouth.performed += i => _southButton = true;
+            Inputs.UI.ButtonWest.performed += i => _westButton = true;
+            Inputs.UI.Navigation.performed += i => _navigation = true;
         }
 
-        _inputs.UI.Enable();
+        Inputs.UI.Enable();
     }
 
     private void OnDisable() {
 
-        _inputs.UI.Disable();
+        Inputs.UI.Disable();
     }
 
     private void Update() {
@@ -55,7 +67,7 @@ public class TitleScreenInputReader : MonoBehaviour
     #region Inputs
 
     void CharacterLoadInputs() {
-        if (!_titleLoadCharacterMenu.activeInHierarchy || _deleteCharacterPopUp.activeInHierarchy) { return; }
+        if (!_titleLoadCharacterMenu.activeInHierarchy || DeleteCharacterPopUp.activeInHierarchy) { return; }
 
 
         if (_northButton) {
@@ -78,7 +90,7 @@ public class TitleScreenInputReader : MonoBehaviour
     }
 
     void DeleteCharacterPopUpInputs() {
-        if (!_deleteCharacterPopUp.activeInHierarchy) { return; }
+        if (!DeleteCharacterPopUp.activeInHierarchy) { return; }
         print("In Delete character");
 
         if (_northButton) {

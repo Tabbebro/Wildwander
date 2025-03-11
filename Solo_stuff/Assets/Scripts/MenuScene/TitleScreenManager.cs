@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using Unity.Netcode;
+using TMPro;
 
 public class TitleScreenManager : MonoBehaviour {
     public static TitleScreenManager Instance;
@@ -22,6 +23,9 @@ public class TitleScreenManager : MonoBehaviour {
     [SerializeField] GameObject _noCharacterSlotsPopUp;
     [SerializeField] GameObject _deleteCharacterSlotPopUp;
 
+    [Header("Texts")]
+    [SerializeField] TextMeshProUGUI _versionText;
+
     [Header("Save Slots")]
     public CharacterSlot CurrentSelectedSlot = CharacterSlot.NO_Slot;
 
@@ -32,6 +36,10 @@ public class TitleScreenManager : MonoBehaviour {
         else {
             Destroy(gameObject);
         }
+    }
+
+    private void Start() {
+        _versionText.text = "Version: " + Application.version;
     }
 
     public void PressStart() {

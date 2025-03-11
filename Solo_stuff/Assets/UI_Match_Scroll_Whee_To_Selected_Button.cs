@@ -14,12 +14,14 @@ public class UI_Match_Scroll_Whee_To_Selected_Button : MonoBehaviour
     private void Update() {
         _currentSelected = EventSystem.current.currentSelectedGameObject;
 
-        if (_currentSelected != null) {
-            if(_currentSelected != _previouslySelected) {
-                _previouslySelected = _currentSelected;
-                _currentSelectedTransform = _currentSelected.GetComponent<RectTransform>();
-                SnapTo(_currentSelectedTransform);
-            }
+        if (_currentSelected != null && 
+            TitleScreenInputReader.Instance.Inputs.UI.Navigation.WasPerformedThisFrame() && 
+            !TitleScreenInputReader.Instance.DeleteCharacterPopUp.activeInHierarchy &&
+            _currentSelected != _previouslySelected) {
+
+            _previouslySelected = _currentSelected;
+            _currentSelectedTransform = _currentSelected.GetComponent<RectTransform>();
+            SnapTo(_currentSelectedTransform);
         }
     }
 
