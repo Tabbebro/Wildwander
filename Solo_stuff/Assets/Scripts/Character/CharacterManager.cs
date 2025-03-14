@@ -13,6 +13,8 @@ public class CharacterManager : NetworkBehaviour
 
     [Header("Flags (Character Manager)")]
     public bool IsPerformingAction = false;
+    public bool IsGrounded = true;
+    public bool IsJumping = false;
     public bool ApplyRootMotion = false;
     public bool CanRotate = true;
     public bool CanMove = true;
@@ -27,6 +29,8 @@ public class CharacterManager : NetworkBehaviour
     }
 
     protected virtual void Update() {
+
+        Animator.SetBool("IsGrounded", IsGrounded);
 
         if (IsOwner) {
             // Position

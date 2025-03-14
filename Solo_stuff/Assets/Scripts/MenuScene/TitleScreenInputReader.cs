@@ -91,7 +91,6 @@ public class TitleScreenInputReader : MonoBehaviour
 
     void DeleteCharacterPopUpInputs() {
         if (!DeleteCharacterPopUp.activeInHierarchy) { return; }
-        print("In Delete character");
 
         if (_northButton) {
             _northButton = false;
@@ -112,7 +111,6 @@ public class TitleScreenInputReader : MonoBehaviour
 
     void NoCharactersAvailablePopUpInputs() {
         if (!_noCharactersAvailablePopUp.activeInHierarchy) { return; }
-        print("In no characters available");
 
         if (_northButton) {
             _northButton = false;

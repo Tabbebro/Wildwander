@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b23150778855cf94e9ee3347f3c9c2c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
+  Player: {fileID: 0}
   CameraObject: {fileID: 9046217929382533371}
   _cameraPivotTransform: {fileID: 4362721337018526281}
   _leftAndRightRotationSpeed: 220
@@ -55,7 +55,7 @@ MonoBehaviour:
   _cameraCollisionRadius: 0.2
   _collideWithLayers:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 321
   _leftAndRightLookAngle: 0
   _upAndDownLookAngle: 0
 --- !u!1 &2276125111519079387

@@ -23,6 +23,7 @@ public class PlayerInputManager : MonoBehaviour
     [Header("Player Action Input")]
     [SerializeField] bool _dodgeInput = false;
     [SerializeField] bool _sprintInput = false;
+    [SerializeField] bool _jumpInput = false;
 
     private void Awake() {
         if (Instance == null) {
@@ -62,6 +63,8 @@ public class PlayerInputManager : MonoBehaviour
             // Sprint
             _inputs.PlayerActions.Sprint.performed += i => _sprintInput = true;
             _inputs.PlayerActions.Sprint.canceled += i => _sprintInput = false;
+            // Jump
+            _inputs.PlayerActions.Jump.performed += i => _jumpInput = true;
         }
 
         _inputs.PlayerMovement.Enable();
@@ -97,6 +100,7 @@ public class PlayerInputManager : MonoBehaviour
         HandleCameraMovementInput();
         HandleDodgeInput();
         HandleSprintInput();
+        HandleJumpInput();
     }
 
     // Movement
@@ -143,6 +147,14 @@ public class PlayerInputManager : MonoBehaviour
         }
         else {
             Player.PlayerNetworkManager.IsSprinting.Value = false;
+        }
+    }
+
+    void HandleJumpInput() {
+        if (_jumpInput) {
+            _jumpInput = false;
+
+            Player.PlayerMovementManager.AttemptToPerformJump();
         }
     }
 }
