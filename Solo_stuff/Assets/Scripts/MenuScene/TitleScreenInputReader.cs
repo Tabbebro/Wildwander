@@ -8,6 +8,8 @@ public class TitleScreenInputReader : MonoBehaviour
 
     public Inputs Inputs;
 
+    TitleScreenManager _titleScreenManager;
+
     [Header("Selection")]
     [ReadOnly][SerializeField] GameObject _currentSelectable;
     [ReadOnly][SerializeField] GameObject _previousSelectable;
@@ -37,13 +39,15 @@ public class TitleScreenInputReader : MonoBehaviour
         else {
             Destroy(gameObject);
         }
+
+        _titleScreenManager = GetComponent<TitleScreenManager>();
     }
 
     private void OnEnable() {
         if (Inputs == null) {
             Inputs = new();
             Inputs.UI.ButtonNorth.performed += i => _northButton = true;
-            Inputs.UI.ButtonEast.performed += i => _eastButton= true;
+            Inputs.UI.ButtonEast.performed += i => _eastButton = true;
             Inputs.UI.ButtonSouth.performed += i => _southButton = true;
             Inputs.UI.ButtonWest.performed += i => _westButton = true;
             Inputs.UI.Navigation.performed += i => _navigation = true;
@@ -68,23 +72,27 @@ public class TitleScreenInputReader : MonoBehaviour
 
     void CharacterLoadInputs() {
         if (!_titleLoadCharacterMenu.activeInHierarchy || DeleteCharacterPopUp.activeInHierarchy) { return; }
-
+        print("Load");
 
         if (_northButton) {
             _northButton = false;
+            print("North");
         }
         if (_eastButton) { 
             _eastButton = false;
-            TitleScreenManager.Instance.CloseLoadGameMenu();
+            print("East");
+            _titleScreenManager.CloseLoadGameMenu();
         
         }
         if (_southButton) {
             _southButton = false;
+            print("South");
 
         }
         if (_westButton) { 
             _westButton = false;
-            TitleScreenManager.Instance.AttemptToDeleteCharacterSlot();
+            print("West");
+            _titleScreenManager.AttemptToDeleteCharacterSlot();
         }
 
     }
@@ -97,7 +105,7 @@ public class TitleScreenInputReader : MonoBehaviour
         }
         if (_eastButton) {
             _eastButton = false;
-            TitleScreenManager.Instance.CloseDeleteCharacterPopUp();
+            _titleScreenManager.CloseDeleteCharacterPopUp();
         }
         if (_southButton) {
             _southButton = false;
@@ -117,7 +125,7 @@ public class TitleScreenInputReader : MonoBehaviour
         }
         if (_eastButton) {
             _eastButton = false;
-            TitleScreenManager.Instance.CloseNoFreeCharactersMessage();
+            _titleScreenManager.CloseNoFreeCharactersMessage();
         }
         if (_southButton) {
             _southButton = false;

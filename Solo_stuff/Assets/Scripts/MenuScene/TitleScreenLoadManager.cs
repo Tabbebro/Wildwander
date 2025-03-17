@@ -25,11 +25,14 @@ public class TitleScreenLoadManager : MonoBehaviour
         foreach (Selectable slot in SaveSlotSelectableList) {
             // Checks if slot is active in hierarchy
             if (slot.gameObject.activeInHierarchy) {
-                // selects first active slot & returns
+
+                // Gets First Character Slot, Sets It As Current Slot & Selects It
+                TitleScreenManager.Instance.CurrentSelectedSlot = slot.GetComponent<UI_Character_Save_Slot>().CharacterSlot;
                 slot.Select();
                 return;
             }
         }
+        TitleScreenManager.Instance.CurrentSelectedSlot = CharacterSlot.NO_Slot;
         TitleScreenManager.Instance.CloseLoadGameMenu();
     }
 }
