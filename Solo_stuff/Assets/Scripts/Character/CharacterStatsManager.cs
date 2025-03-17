@@ -14,6 +14,21 @@ public class CharacterStatsManager : MonoBehaviour
         _character = GetComponent<CharacterManager>();
     }
 
+    protected virtual void Start() {
+
+    }
+
+    public int CalculateHealthBasedOnLevel(int vitality) {
+        float health = 0;
+
+
+        // TODO: Get a better equation for health
+        health = vitality * 15;
+
+        return Mathf.RoundToInt(health);
+    }
+
+    #region Stamina
     public int CalculateStaminaBasedOnLevel(int endurance) {
         float stamina = 0;
 
@@ -50,4 +65,5 @@ public class CharacterStatsManager : MonoBehaviour
             _staminaRegenerationTimer = 0;
         }
     }
+    #endregion
 }

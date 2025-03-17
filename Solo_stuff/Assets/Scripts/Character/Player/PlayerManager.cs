@@ -50,12 +50,15 @@ public class PlayerManager : CharacterManager
             PlayerCamera.Instance.Player = this;
             WorldSaveGameManager.Instance.Player = this;
 
+            // Update Total Amount Of (Health/Stamina) With Level (Vitality/Endurance)
+            PlayerNetworkManager.Vitality.OnValueChanged += PlayerNetworkManager.SetNewMaxHealthValue;
+            PlayerNetworkManager.Endurance.OnValueChanged += PlayerNetworkManager.SetNewMaxStaminaValue;
+
+            // Updates HUD UI When Value Change (HP/Stamina)
+            PlayerNetworkManager.CurrentHealth.OnValueChanged += PlayerUIManager.Instance.PlayerUIHudManager.SetNewHealthValue;
             PlayerNetworkManager.CurrentStamina.OnValueChanged += PlayerUIManager.Instance.PlayerUIHudManager.SetNewStaminaValue;
             PlayerNetworkManager.CurrentStamina.OnValueChanged += PlayerStatsManager.ResetStaminaRegenTimer;
 
-            PlayerNetworkManager.MaxStamina.Value = PlayerStatsManager.CalculateStaminaBasedOnLevel(PlayerNetworkManager.Endurance.Value);
-            PlayerNetworkManager.CurrentStamina.Value = PlayerStatsManager.CalculateStaminaBasedOnLevel(PlayerNetworkManager.Endurance.Value);
-            PlayerUIManager.Instance.PlayerUIHudManager.SetMaxStaminaValue(PlayerNetworkManager.MaxStamina.Value);
         }
     }
 
@@ -71,6 +74,13 @@ public class PlayerManager : CharacterManager
         currentCharacterData.yPosition = transform.position.y;
         currentCharacterData.zPosition = transform.position.z;
 
+        // Give Character Stats
+        currentCharacterData.Vitality = PlayerNetworkManager.Vitality.Value;
+        currentCharacterData.Endurance = PlayerNetworkManager.Endurance.Value;
+
+        // Give Character Resourcess
+        currentCharacterData.CurrentHealth = PlayerNetworkManager.CurrentHealth.Value;
+        currentCharacterData.CurrentStamina = PlayerNetworkManager.CurrentStamina.Value;
     }
 
     public void LoadDataFromCurrentCharacterData(ref CharacterSaveData currentCharacterData) {
@@ -80,5 +90,16 @@ public class PlayerManager : CharacterManager
         // Get Character Position
         Vector3 position = new Vector3(currentCharacterData.xPosition, currentCharacterData.yPosition, currentCharacterData.zPosition);
         transform.position = position;
+
+        // Give Character Stats
+        PlayerNetworkManager.Vitality.Value = currentCharacterData.Vitality;
+        PlayerNetworkManager.Endurance.Value = currentCharacterData.Endurance;
+
+        // Get Character Resourcess
+        PlayerNetworkManager.MaxHealth.Value = PlayerStatsManager.CalculateHealthBasedOnLevel(currentCharacterData.Vitality);
+        PlayerNetworkManager.MaxStamina.Value = PlayerStatsManager.CalculateStaminaBasedOnLevel(currentCharacterData.Endurance);
+        PlayerNetworkManager.CurrentHealth.Value = currentCharacterData.CurrentHealth;
+        PlayerNetworkManager.CurrentStamina.Value = currentCharacterData.CurrentStamina;
+        PlayerUIManager.Instance.PlayerUIHudManager.SetMaxStaminaValue(PlayerNetworkManager.MaxStamina.Value);
     }
 }

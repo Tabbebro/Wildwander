@@ -10,10 +10,18 @@ public class CharacterSaveData
     public string CharacterName = "Character";
 
     [Header("Time Played")]
-    public float secondsPlayed;
+    public float SecondsPlayed;
 
     [Header("Character Position")]
     public float xPosition;
     public float yPosition;
     public float zPosition;
+
+    [Header("Stats")]
+    public int Vitality;
+    public int Endurance;
+
+    [Header("Resources")]
+    public float CurrentHealth;
+    public float CurrentStamina;
 }

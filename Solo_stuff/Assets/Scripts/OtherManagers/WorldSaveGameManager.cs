@@ -152,12 +152,17 @@ public class WorldSaveGameManager : MonoBehaviour
         TitleScreenManager.Instance.DisplayNoFreeCharactersMessage();
     }
 
+    void NewGame() {
+        SaveGame();
+        StartCoroutine(LoadWorldScene());
+    }
+
     bool CheckIfSlotIsUsed(CharacterSlot slot, SaveFileWriter writer) {
         writer.SaveFileName = DecideCharacterFileNameBasedOnCharacterSlotBeingUsed(slot);
         if (!writer.CheckToSeeIfFileExists()) { 
             CurrentCharacterSlotUsed = slot;
             CurrentCharacterData = new();
-            StartCoroutine(LoadWorldScene());
+            NewGame();
             return true; 
         }
         else { return false; }
@@ -247,9 +252,10 @@ public class WorldSaveGameManager : MonoBehaviour
 
     public IEnumerator LoadWorldScene() {
         // For only 1 world scene
-        //AsyncOperation loadOperation = SceneManager.LoadSceneAsync(worldSceneIndex);
+        AsyncOperation loadOperation = SceneManager.LoadSceneAsync(worldSceneIndex);
         
-        AsyncOperation loadOperation = SceneManager.LoadSceneAsync(CurrentCharacterData.SceneIndex);
+        // TODO: Get Back Later
+        //AsyncOperation loadOperation = SceneManager.LoadSceneAsync(CurrentCharacterData.SceneIndex);
 
         Player.LoadDataFromCurrentCharacterData(ref CurrentCharacterData);
 
