@@ -12,15 +12,15 @@ TagManager:
   - Water
   - UI
   - CameraCollision
-  - Character
   - Solid Ground
   - 
   - 
   - 
+  - Character
   - 
   - 
   - 
-  - 
+  - Damage Collider
   - 
   - 
   - 

@@ -143,7 +143,6 @@ public class TitleScreenInputReader : MonoBehaviour
         }
 
         if (_currentSelectable == null && !SelectionDisabled && _navigation) {
-            print("hehe");
             _navigation = false;
             EventSystem.current.SetSelectedGameObject(_previousSelectable);
         }

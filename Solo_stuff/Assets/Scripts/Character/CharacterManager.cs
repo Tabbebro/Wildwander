@@ -3,13 +3,14 @@ using Unity.Netcode;
 
 public class CharacterManager : NetworkBehaviour
 {
+    [Header("Status")]
+    public NetworkVariable<bool> IsDead = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+
     [HideInInspector] public CharacterController CharacterController;
     [HideInInspector] public Animator Animator;
 
     [HideInInspector] public CharacterNetworkManager CharacterNetworkManager;
-
-    [Header("Is Player?")]
-    public bool IsPlayer = false;
+    [HideInInspector] public CharacterEffectsManager CharacterEffectsManager;
 
     [Header("Flags (Character Manager)")]
     public bool IsPerformingAction = false;
@@ -25,6 +26,7 @@ public class CharacterManager : NetworkBehaviour
 
         CharacterController = GetComponent<CharacterController>();
         CharacterNetworkManager = GetComponent<CharacterNetworkManager>();
+        CharacterEffectsManager = GetComponent<CharacterEffectsManager>();
         Animator = GetComponent<Animator>();
     }
 

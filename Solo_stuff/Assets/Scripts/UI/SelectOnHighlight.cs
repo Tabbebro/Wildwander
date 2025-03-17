@@ -13,8 +13,9 @@ public class SelectOnHighlight : MonoBehaviour, IPointerEnterHandler, IPointerEx
         _thisSelectable.Select();
     }
 
+    // Not Needed
     public void OnPointerExit(PointerEventData eventData) {
-        EventSystem.current.SetSelectedGameObject(null);
+        //EventSystem.current.SetSelectedGameObject(null);
     }
 
 
