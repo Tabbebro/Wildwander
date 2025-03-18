@@ -15,8 +15,8 @@ public class PlayerUIHudManager : MonoBehaviour
     }
 
     #region Health
-    public void SetNewHealthValue(float oldValue, float newValue) {
-        _healthBar.SetStat(Mathf.RoundToInt(newValue));
+    public void SetNewHealthValue(int oldValue, int newValue) {
+        _healthBar.SetStat(newValue);
     }
 
     public void SetMaxHealthValue(int maxHealth) {

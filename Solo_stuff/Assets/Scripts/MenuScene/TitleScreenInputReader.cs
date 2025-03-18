@@ -72,26 +72,21 @@ public class TitleScreenInputReader : MonoBehaviour
 
     void CharacterLoadInputs() {
         if (!_titleLoadCharacterMenu.activeInHierarchy || DeleteCharacterPopUp.activeInHierarchy) { return; }
-        print("Load");
 
         if (_northButton) {
             _northButton = false;
-            print("North");
         }
         if (_eastButton) { 
             _eastButton = false;
-            print("East");
             _titleScreenManager.CloseLoadGameMenu();
         
         }
         if (_southButton) {
             _southButton = false;
-            print("South");
 
         }
         if (_westButton) { 
             _westButton = false;
-            print("West");
             _titleScreenManager.AttemptToDeleteCharacterSlot();
         }
 

@@ -25,7 +25,7 @@ public class CharacterNetworkManager : NetworkBehaviour
 
     [Header("Resources")]
     // Health Atributes Comes From Vitality
-    public NetworkVariable<float> CurrentHealth = new NetworkVariable<float>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    public NetworkVariable<int> CurrentHealth = new NetworkVariable<int>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     public NetworkVariable<int> MaxHealth = new NetworkVariable<int>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
     // Stamina Atributes Comes From Endurance
@@ -34,6 +34,20 @@ public class CharacterNetworkManager : NetworkBehaviour
 
     protected virtual void Awake() {
         _character = GetComponent<CharacterManager>();
+    }
+
+    public void CheckHP(int oldValue, int newValue) {
+
+
+        if (CurrentHealth.Value <= 0) {
+            StartCoroutine(_character.ProcessDeathEvent());
+        }
+
+        if (!_character.IsOwner) { return; }
+        
+        if (CurrentHealth.Value > MaxHealth.Value) {
+            CurrentHealth.Value = MaxHealth.Value;
+        }
     }
 
     [ServerRpc]

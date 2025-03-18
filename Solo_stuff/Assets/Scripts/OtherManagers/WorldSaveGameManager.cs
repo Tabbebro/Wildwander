@@ -153,11 +153,11 @@ public class WorldSaveGameManager : MonoBehaviour
     }
 
     void NewGame() {
-        SaveGame();
-
         // TODO: Remove Later
         Player.PlayerNetworkManager.Vitality.Value = 10;
         Player.PlayerNetworkManager.Endurance.Value = 10;
+
+        SaveGame();
 
         StartCoroutine(LoadWorldScene());
     }
