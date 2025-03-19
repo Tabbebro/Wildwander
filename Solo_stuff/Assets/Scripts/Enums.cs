@@ -18,3 +18,9 @@ public enum CharacterSlot {
     CharacterSlot_10,
     NO_Slot
 }
+
+public enum WeaponModelSlot {
+    RightHand, 
+    LeftHand,
+    Back
+}
