@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0fb7b7f3870d1a245ae5932ff1c4956e, type: 3}
-  m_Name: Straight Sword
+  m_Name: Broad Sword
   m_EditorClassIdentifier: 
-  ItemName: Straight Sword
+  ItemName: Broad Sword
   ItemIcon: {fileID: 0}
-  ItemDescription: A normal straight sword wielded by the lowest ranking soldiers.
+  ItemDescription: A slightly larger sword.
   ItemID: 0
-  weaponModel: {fileID: 2856970132399443511, guid: 5b321ef64f82b594d905520d9ec07743, type: 3}
-  StrReq: 10
+  weaponModel: {fileID: 7338052296767090823, guid: 958bd224d51b70041b8a15beb741a55e, type: 3}
+  StrReq: 15
   DexReq: 8
   IntReq: 0
   FaiReq: 0
-  PhysicalDamage: 76
+  PhysicalDamage: 115
   MagicDamage: 0
   FireDamage: 0
   LightningDamage: 0
   HolyDamage: 0
-  PoiseDamage: 20
+  PoiseDamage: 25
   BaseStaminaCost: 20

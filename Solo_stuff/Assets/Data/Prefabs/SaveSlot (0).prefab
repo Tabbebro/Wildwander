@@ -421,11 +421,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae33a12c0fcaa94194b32793121363e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ThisSelectable: {fileID: 8578126882384594417}
   CharacterSlot: 6
   CharacterName: {fileID: 1195702287351908199}
-  TimePlayed: {fileID: 6440612402772317844}
-  CharacterLevel: {fileID: 0}
-  CharacterLocation: {fileID: 0}
+  TimePlayed: {fileID: 7709372819171292009}
+  CharacterLevel: {fileID: 9218551468061981678}
+  CharacterLocation: {fileID: 7207536570428364578}
 --- !u!114 &8637173853011722052
 MonoBehaviour:
   m_ObjectHideFlags: 0

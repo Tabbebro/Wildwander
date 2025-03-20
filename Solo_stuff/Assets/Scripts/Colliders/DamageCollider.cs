@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class DamageCollider : MonoBehaviour
 {
+    [Header("Collider")]
+    protected Collider _damageCollider;
+
     [Header("Damage")]
     public float PhysicalDamage = 0; // TODO: Split Into Slashing, Piercing & Bludgeoning
     public float MagicDamage = 0;
@@ -53,5 +56,14 @@ public class DamageCollider : MonoBehaviour
 
         // Process The Damage Effect
         damageTarget.CharacterEffectsManager.ProcessInstantEffect(damageEffect);
+    }
+
+    public virtual void EnableDamageCollider() {
+        _damageCollider.enabled = true;
+    }
+
+    public virtual void DisableDamageCollider() { 
+        _damageCollider.enabled = false;
+        _charactersDamaged.Clear();
     }
 }

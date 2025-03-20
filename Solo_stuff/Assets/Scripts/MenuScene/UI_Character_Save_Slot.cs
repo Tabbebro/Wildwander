@@ -2,10 +2,13 @@ using System.IO;
 using TMPro;
 using UnityEditor.Overlays;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UI_Character_Save_Slot : MonoBehaviour
 {
     SaveFileWriter _saveFileWriter;
+
+    public Selectable ThisSelectable;
 
     [Header("Save Slot")]
     public CharacterSlot CharacterSlot;
@@ -16,11 +19,7 @@ public class UI_Character_Save_Slot : MonoBehaviour
     public TextMeshProUGUI CharacterLevel;
     public TextMeshProUGUI CharacterLocation;
 
-    private void OnEnable() {
-        LoadSaveSlots();
-    }
-
-    void LoadSaveSlots() {
+    public void LoadSaveSlots() {
         _saveFileWriter = new();
         _saveFileWriter.SaveDataPath = Application.persistentDataPath;
 
@@ -70,7 +69,7 @@ public class UI_Character_Save_Slot : MonoBehaviour
         }
     }
 
-    private void CharacterSlotLoading(CharacterSlot characterSlot, ref SaveFileWriter writer, CharacterSaveData saveData) {
+    void CharacterSlotLoading(CharacterSlot characterSlot, ref SaveFileWriter writer, CharacterSaveData saveData) {
         writer.SaveFileName = WorldSaveGameManager.Instance.DecideCharacterFileNameBasedOnCharacterSlotBeingUsed(characterSlot);
         // If File Exists Load Character Data
         if (writer.CheckToSeeIfFileExists()) {

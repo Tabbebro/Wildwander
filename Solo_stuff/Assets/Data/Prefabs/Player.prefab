@@ -1290,13 +1290,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4606180178791784699}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.06472118, y: 0.68213505, z: 0.53878516, w: 0.49011594}
-  m_LocalPosition: {x: -0.00142, y: 0.00155, z: 0.00021}
+  m_LocalRotation: {x: 0.27539584, y: 0.57689047, z: 0.56525236, w: 0.521387}
+  m_LocalPosition: {x: -0.00128, y: 0.00182, z: 0.00028}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.010000003}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2851291304695964151}
-  m_LocalEulerAnglesHint: {x: -42.191, y: 85.277, z: 56.304}
+  m_LocalEulerAnglesHint: {x: -21.408, y: 78.682, z: 77.009}
 --- !u!114 &5078455858425228394
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1586,6 +1586,10 @@ MonoBehaviour:
         byte0059: 0
         byte0060: 0
         byte0061: 0
+  CurrentRightHandWeaponID:
+    m_InternalValue: 0
+  CurrentLeftHandWeaponID:
+    m_InternalValue: 0
 --- !u!114 &5163293338268271206
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1613,11 +1617,14 @@ MonoBehaviour:
   CanRotate: 1
   CanMove: 1
   _respawnCharacter: 0
+  _switchRightWeapon: 0
+  _switchLeftWeapon: 0
   PlayerAnimatorManager: {fileID: 0}
   PlayerMovementManager: {fileID: 0}
   PlayerStatsManager: {fileID: 0}
   PlayerNetworkManager: {fileID: 0}
   PlayerInventoryManager: {fileID: 0}
+  PlayerEquipmentManager: {fileID: 0}
 --- !u!114 &2956767300954857412
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1715,8 +1722,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8dc504ab3da4594dbe1174318da9331, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentRightHandWeapon: {fileID: 11400000, guid: 14ffc6a837f57f643a84dda3c38a6419, type: 2}
-  CurrentLeftHandWeapon: {fileID: 11400000, guid: 14ffc6a837f57f643a84dda3c38a6419, type: 2}
+  CurrentRightHandWeapon: {fileID: 11400000, guid: ff866753925ffdc41bb502965c551bbe, type: 2}
+  CurrentLeftHandWeapon: {fileID: 11400000, guid: ff866753925ffdc41bb502965c551bbe, type: 2}
+  WeaponsInRightHandSlots:
+  - {fileID: 11400000, guid: ff866753925ffdc41bb502965c551bbe, type: 2}
+  - {fileID: 11400000, guid: ff866753925ffdc41bb502965c551bbe, type: 2}
+  - {fileID: 11400000, guid: ff866753925ffdc41bb502965c551bbe, type: 2}
+  RightHandWeaponIndex: 0
+  WeaponsInLeftHandSlots:
+  - {fileID: 11400000, guid: ff866753925ffdc41bb502965c551bbe, type: 2}
+  - {fileID: 11400000, guid: ff866753925ffdc41bb502965c551bbe, type: 2}
+  - {fileID: 11400000, guid: ff866753925ffdc41bb502965c551bbe, type: 2}
+  LeftHandWeaponIndex: 0
 --- !u!114 &1555412973480747844
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1731,6 +1748,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RightHandSlot: {fileID: 0}
   LeftHandSlot: {fileID: 0}
+  _rightWeaponManager: {fileID: 0}
+  _leftWeaponManager: {fileID: 0}
   RightHandWeaponModel: {fileID: 0}
   LeftHandWeaponModel: {fileID: 0}
 --- !u!143 &7232921620605311635
@@ -2366,13 +2385,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6476212638928469430}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.6642236, y: 0.42836502, z: -0.0008035097, w: 0.61262536}
-  m_LocalPosition: {x: 0.001161, y: 0.001683, z: 0.00012}
+  m_LocalRotation: {x: 0.5222718, y: 0.5897464, z: 0.104091816, w: 0.6071212}
+  m_LocalPosition: {x: 0.00092, y: 0.00171, z: 0.00019}
   m_LocalScale: {x: 0.010000003, y: 0.010000003, z: 0.0100000035}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6505474769548390914}
-  m_LocalEulerAnglesHint: {x: 54.541, y: 115.459, z: 78.303}
+  m_LocalEulerAnglesHint: {x: 30.756, y: 106.296, z: 59.76}
 --- !u!114 &8404774376845270942
 MonoBehaviour:
   m_ObjectHideFlags: 0

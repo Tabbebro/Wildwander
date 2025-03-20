@@ -16,6 +16,7 @@ public class PlayerUIHudManager : MonoBehaviour
 
     #region Health
     public void SetNewHealthValue(int oldValue, int newValue) {
+        print("Current Health Changed From: " + oldValue + " To: " + newValue);
         _healthBar.SetStat(newValue);
     }
 

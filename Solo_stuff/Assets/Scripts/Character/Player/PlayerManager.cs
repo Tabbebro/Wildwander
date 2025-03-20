@@ -6,12 +6,15 @@ public class PlayerManager : CharacterManager
 {
     [Header("DEBUG MENU")]
     [SerializeField] bool _respawnCharacter = false;
+    [SerializeField] bool _switchRightWeapon = false;
+    [SerializeField] bool _switchLeftWeapon = false;
 
     [HideInInspector] public PlayerAnimatorManager PlayerAnimatorManager;
     [HideInInspector] public PlayerMovementManager PlayerMovementManager;
     [HideInInspector] public PlayerStatsManager PlayerStatsManager;
     [HideInInspector] public PlayerNetworkManager PlayerNetworkManager;
     [HideInInspector] public PlayerInventoryManager PlayerInventoryManager;
+    [HideInInspector] public PlayerEquipmentManager PlayerEquipmentManager;
 
 
     protected override void Awake() {
@@ -23,6 +26,7 @@ public class PlayerManager : CharacterManager
         PlayerStatsManager = GetComponent<PlayerStatsManager>();
         PlayerNetworkManager = GetComponent<PlayerNetworkManager>();
         PlayerInventoryManager = GetComponent<PlayerInventoryManager>();
+        PlayerEquipmentManager = GetComponent<PlayerEquipmentManager>();
 
     }
 
@@ -69,7 +73,12 @@ public class PlayerManager : CharacterManager
 
         }
 
+        // Stats
         PlayerNetworkManager.CurrentHealth.OnValueChanged += PlayerNetworkManager.CheckHP;
+
+        // Equipment
+        PlayerNetworkManager.CurrentRightHandWeaponID.OnValueChanged += PlayerNetworkManager.OnCurrentRightHandWeaponIDChange;
+        PlayerNetworkManager.CurrentLeftHandWeaponID.OnValueChanged += PlayerNetworkManager.OnCurrentLeftHandWeaponIDChange;
     }
 
     public override IEnumerator ProcessDeathEvent(bool manuallySelectDeathAnimation = false) {
@@ -142,9 +151,19 @@ public class PlayerManager : CharacterManager
 
     // TODO: Delete Later
     void DebugMenu() {
+        // Respawn
         if (_respawnCharacter) {
             _respawnCharacter = false;
             ReviveCharacter();
+        }
+        // Switch Right Hand Weapon
+        if (_switchRightWeapon) { 
+            _switchRightWeapon = false;
+            PlayerEquipmentManager.SwitchRightWeapon();
+        }
+        // Switch Right Hand Weapon
+        if (_switchLeftWeapon) {
+            _switchLeftWeapon = false;
         }
     }
 }
