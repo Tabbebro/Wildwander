@@ -164,6 +164,7 @@ public class PlayerManager : CharacterManager
         // Switch Right Hand Weapon
         if (_switchLeftWeapon) {
             _switchLeftWeapon = false;
+            PlayerEquipmentManager.SwitchLeftWeapon();
         }
     }
 }

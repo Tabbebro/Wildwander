@@ -148,4 +148,65 @@ public class PlayerEquipmentManager : CharacterEquipmentManager
 
         }
     }
+
+    public void SwitchLeftWeapon() {
+        if (!_player.IsOwner) { return; }
+
+        _player.PlayerAnimatorManager.PlayTargetActionAnimation("Swap_Left_Weapon_01", false, false, true, true);
+
+        WeaponItem selectedWeapon = null;
+
+        // TODO: Disable Two Handing Here When I Make It
+
+        // Increment Weapon Index
+        _player.PlayerInventoryManager.LeftHandWeaponIndex++;
+
+        // Clamp Index To Be Between 0 & 2
+        if (_player.PlayerInventoryManager.LeftHandWeaponIndex < 0 || _player.PlayerInventoryManager.LeftHandWeaponIndex > 2) {
+            _player.PlayerInventoryManager.LeftHandWeaponIndex = 0;
+
+            // Check If Holding More Than One Weapon
+            float weaponCount = 0;
+            WeaponItem firstWeapon = null;
+            int firstWeaponPosition = 0;
+
+            for (int i = 0; i < _player.PlayerInventoryManager.WeaponsInLeftHandSlots.Length; i++) {
+                if (_player.PlayerInventoryManager.WeaponsInLeftHandSlots[i].ItemID != WorldItemDatabase.Instance.UnarmedWeapon.ItemID) {
+                    weaponCount += 1;
+
+                    if (firstWeapon == null) {
+                        firstWeapon = _player.PlayerInventoryManager.WeaponsInLeftHandSlots[i];
+                        firstWeaponPosition = i;
+                    }
+                }
+            }
+            // If Player Is Holding 0 or 1 Item Allow Switching To Unarmed
+            if (weaponCount <= 1) {
+                _player.PlayerInventoryManager.LeftHandWeaponIndex = -1;
+                selectedWeapon = WorldItemDatabase.Instance.UnarmedWeapon;
+                _player.PlayerNetworkManager.CurrentLeftHandWeaponID.Value = selectedWeapon.ItemID;
+            }
+            // Else Go Back To First Weapon
+            else {
+                _player.PlayerInventoryManager.LeftHandWeaponIndex = firstWeaponPosition;
+                _player.PlayerNetworkManager.CurrentLeftHandWeaponID.Value = firstWeapon.ItemID;
+            }
+
+            return;
+        }
+
+        foreach (WeaponItem weapon in _player.PlayerInventoryManager.WeaponsInLeftHandSlots) {
+            // Check If Next Weapon Is Unarmed
+            if (_player.PlayerInventoryManager.WeaponsInLeftHandSlots[_player.PlayerInventoryManager.LeftHandWeaponIndex].ItemID != WorldItemDatabase.Instance.UnarmedWeapon.ItemID) {
+                selectedWeapon = _player.PlayerInventoryManager.WeaponsInLeftHandSlots[_player.PlayerInventoryManager.LeftHandWeaponIndex];
+                // Assign Network Weapon ID So It Changes To All Clients
+                _player.PlayerNetworkManager.CurrentLeftHandWeaponID.Value = _player.PlayerInventoryManager.WeaponsInLeftHandSlots[_player.PlayerInventoryManager.LeftHandWeaponIndex].ItemID;
+                return;
+            }
+        }
+
+        if (selectedWeapon == null && _player.PlayerInventoryManager.LeftHandWeaponIndex <= 2) {
+            SwitchLeftWeapon();
+        }
+    }
 }
