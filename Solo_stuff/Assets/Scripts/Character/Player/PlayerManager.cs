@@ -79,6 +79,11 @@ public class PlayerManager : CharacterManager
         // Equipment
         PlayerNetworkManager.CurrentRightHandWeaponID.OnValueChanged += PlayerNetworkManager.OnCurrentRightHandWeaponIDChange;
         PlayerNetworkManager.CurrentLeftHandWeaponID.OnValueChanged += PlayerNetworkManager.OnCurrentLeftHandWeaponIDChange;
+
+        // Load Stats When Joining
+        if (IsOwner && !IsServer) {
+            LoadDataFromCurrentCharacterData(ref WorldSaveGameManager.Instance.CurrentCharacterData);
+        }
     }
 
     public override IEnumerator ProcessDeathEvent(bool manuallySelectDeathAnimation = false) {

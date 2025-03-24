@@ -96,7 +96,7 @@ public class PlayerMovementManager : CharacterMovementManager
     }
 
     void HandleJumpingMovement() {
-        if (!_player.IsJumping) { return; }
+        if (!_player.CharacterNetworkManager.IsJumping.Value) { return; }
             
         _player.CharacterController.Move(_jumpDirection * _jumpForwardSpeed * Time.deltaTime);
     }
@@ -196,11 +196,11 @@ public class PlayerMovementManager : CharacterMovementManager
         if (_player.IsPerformingAction || _player.PlayerNetworkManager.CurrentStamina.Value <= 0) { return; }
 
         // Check if jumping or not grounded
-        if (_player.IsJumping || !_player.IsGrounded) { return; }
+        if (_player.CharacterNetworkManager.IsJumping.Value || !_player.IsGrounded) { return; }
 
         _player.PlayerAnimatorManager.PlayTargetActionAnimation("Main_Jump_01", false);
 
-        _player.IsJumping = true;
+        _player.CharacterNetworkManager.IsJumping.Value = true;
 
         _player.PlayerNetworkManager.CurrentStamina.Value -= _jumpStaminaCost;
 

@@ -10,7 +10,9 @@ public class ResetIsJumping : StateMachineBehaviour
         }
 
         // Reset Flags
-        _character.IsJumping = false;
+        if (_character.IsOwner) {
+            _character.CharacterNetworkManager.IsJumping.Value = false;
+        }
     }
 
 

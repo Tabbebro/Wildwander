@@ -27,7 +27,7 @@ public class CharacterMovementManager : MonoBehaviour
             _yVelocity.y = _groundedYVelocity;
         }
         else {
-            if (!_character.IsJumping && !_fallingVelocityHasBeenSet) {
+            if (!_character.CharacterNetworkManager.IsJumping.Value && !_fallingVelocityHasBeenSet) {
                 _fallingVelocityHasBeenSet = true;
                 _yVelocity.y = _fallStartYVelocity;
             }

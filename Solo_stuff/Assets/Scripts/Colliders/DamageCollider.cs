@@ -1,8 +1,13 @@
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class DamageCollider : MonoBehaviour
 {
+    // TODO: DELETE
+    [SerializeField] bool _debugRearmTrigger = false;
+
+
     [Header("Collider")]
     protected Collider _damageCollider;
 
@@ -21,7 +26,9 @@ public class DamageCollider : MonoBehaviour
     protected List<CharacterManager> _charactersDamaged = new();
 
     private void OnTriggerEnter(Collider other) {
-        CharacterManager damageTarget = other.GetComponent<CharacterManager>();
+        CharacterManager damageTarget = other.GetComponentInParent<CharacterManager>();
+        print("Part Hit: " + other.name);
+
 
         if(damageTarget == null) { return; }
 
@@ -65,5 +72,14 @@ public class DamageCollider : MonoBehaviour
     public virtual void DisableDamageCollider() { 
         _damageCollider.enabled = false;
         _charactersDamaged.Clear();
+    }
+
+    // TODO: Delete
+    private void Update() {
+        if (_debugRearmTrigger) {
+            _debugRearmTrigger = false;
+
+            _charactersDamaged.Clear();
+        }
     }
 }

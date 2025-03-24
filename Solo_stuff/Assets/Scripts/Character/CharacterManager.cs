@@ -1,7 +1,7 @@
 using UnityEngine;
 using Unity.Netcode;
 using System.Collections;
-using UnityEngine.Android;
+using System.Collections.Generic;
 
 public class CharacterManager : NetworkBehaviour
 {
@@ -18,7 +18,6 @@ public class CharacterManager : NetworkBehaviour
     [Header("Flags (Character Manager)")]
     public bool IsPerformingAction = false;
     public bool IsGrounded = true;
-    public bool IsJumping = false;
     public bool ApplyRootMotion = false;
     public bool CanRotate = true;
     public bool CanMove = true;
@@ -32,6 +31,10 @@ public class CharacterManager : NetworkBehaviour
         CharacterEffectsManager = GetComponent<CharacterEffectsManager>();
         CharacterAnimatorManager = GetComponent<CharacterAnimatorManager>();
         Animator = GetComponent<Animator>();
+    }
+
+    protected virtual void Start() {
+        IgnoreMyOwnColliders();
     }
 
     protected virtual void Update() {
@@ -85,5 +88,25 @@ public class CharacterManager : NetworkBehaviour
 
     public virtual void ReviveCharacter() {
 
+    }
+
+    protected virtual void IgnoreMyOwnColliders() {
+        Collider characterControllerCollider = GetComponent<Collider>();
+        Collider[] damageableCharacterColliders = GetComponentsInChildren<Collider>();
+
+        List<Collider> ignoreColliders = new();
+
+        foreach (Collider c in damageableCharacterColliders) {
+            ignoreColliders.Add(c);
+        }
+
+        ignoreColliders.Add(characterControllerCollider);
+
+        // Makes Colliders Ignore Collision With Each Other. It's A Bit Spageth But Should Work
+        foreach (Collider collider in ignoreColliders) {
+            foreach (Collider otherCollider in ignoreColliders) {
+                Physics.IgnoreCollision(collider, otherCollider, true);
+            }
+        }
     }
 }

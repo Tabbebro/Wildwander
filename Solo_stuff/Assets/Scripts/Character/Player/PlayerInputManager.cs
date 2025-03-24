@@ -40,14 +40,20 @@ public class PlayerInputManager : MonoBehaviour
 
         SceneManager.activeSceneChanged += OnSceneChange;
         Instance.enabled = false;
+        
+        if (_inputs != null) {
+            DisableInputs();
+        }
     }
 
     private void OnSceneChange(Scene oldScene, Scene newScene) {
         if (newScene.buildIndex == WorldSaveGameManager.Instance.GetWorldSceneIndex()) {
             Instance.enabled = true;
+            EnableInputs();
         }
         else {
             Instance.enabled = false;
+            DisableInputs();
         }
     }
 
@@ -67,9 +73,7 @@ public class PlayerInputManager : MonoBehaviour
             _inputs.PlayerActions.Jump.performed += i => _jumpInput = true;
         }
 
-        _inputs.PlayerMovement.Enable();
-        _inputs.PlayerCamera.Enable();
-        _inputs.PlayerActions.Enable();
+        EnableInputs();
     }
 
     private void OnDestroy() {
@@ -79,16 +83,24 @@ public class PlayerInputManager : MonoBehaviour
     private void OnApplicationFocus(bool focus) {
         if (enabled) {
             if (focus) {
-                _inputs.PlayerMovement.Enable();
-                _inputs.PlayerCamera.Enable();
-                _inputs.PlayerActions.Enable();
+                EnableInputs();
             }
             else {
-                _inputs.PlayerMovement.Disable();
-                _inputs.PlayerCamera.Disable();
-                _inputs.PlayerActions.Disable();
+                DisableInputs();
             }
         }
+    }
+
+    void EnableInputs() {
+        _inputs.PlayerMovement.Enable();
+        _inputs.PlayerCamera.Enable();
+        _inputs.PlayerActions.Enable();
+    }
+
+    void DisableInputs() {
+        _inputs.PlayerMovement.Disable();
+        _inputs.PlayerCamera.Disable();
+        _inputs.PlayerActions.Disable();
     }
 
     private void Update() {
