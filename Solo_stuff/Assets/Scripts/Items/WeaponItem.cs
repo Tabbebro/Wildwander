@@ -27,4 +27,7 @@ public class WeaponItem : Item
 
     // TODO: Add Defence
 
+    [Header("Actions")]
+    public WeaponItemAction OhLightAction; // One Handed Light Action
+
 }

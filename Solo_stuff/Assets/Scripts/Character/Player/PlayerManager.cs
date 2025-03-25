@@ -15,6 +15,8 @@ public class PlayerManager : CharacterManager
     [HideInInspector] public PlayerNetworkManager PlayerNetworkManager;
     [HideInInspector] public PlayerInventoryManager PlayerInventoryManager;
     [HideInInspector] public PlayerEquipmentManager PlayerEquipmentManager;
+    [HideInInspector] public PlayerCombatManager PlayerCombatManager;
+
 
 
     protected override void Awake() {
@@ -27,7 +29,7 @@ public class PlayerManager : CharacterManager
         PlayerNetworkManager = GetComponent<PlayerNetworkManager>();
         PlayerInventoryManager = GetComponent<PlayerInventoryManager>();
         PlayerEquipmentManager = GetComponent<PlayerEquipmentManager>();
-
+        PlayerCombatManager = GetComponent<PlayerCombatManager>();
     }
 
     protected override void Update() {
@@ -79,6 +81,7 @@ public class PlayerManager : CharacterManager
         // Equipment
         PlayerNetworkManager.CurrentRightHandWeaponID.OnValueChanged += PlayerNetworkManager.OnCurrentRightHandWeaponIDChange;
         PlayerNetworkManager.CurrentLeftHandWeaponID.OnValueChanged += PlayerNetworkManager.OnCurrentLeftHandWeaponIDChange;
+        PlayerNetworkManager.CurrentWeaponBeingUsed.OnValueChanged += PlayerNetworkManager.OnCurrentWeaponBeingUsedIDChange;
 
         // Load Stats When Joining
         if (IsOwner && !IsServer) {

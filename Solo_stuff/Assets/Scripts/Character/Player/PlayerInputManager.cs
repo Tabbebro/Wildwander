@@ -24,6 +24,7 @@ public class PlayerInputManager : MonoBehaviour
     [SerializeField] bool _dodgeInput = false;
     [SerializeField] bool _sprintInput = false;
     [SerializeField] bool _jumpInput = false;
+    [SerializeField] bool _lightAttackInput = false;
 
     private void Awake() {
         if (Instance == null) {
@@ -71,6 +72,8 @@ public class PlayerInputManager : MonoBehaviour
             _inputs.PlayerActions.Sprint.canceled += i => _sprintInput = false;
             // Jump
             _inputs.PlayerActions.Jump.performed += i => _jumpInput = true;
+            // Attack Actions
+            _inputs.PlayerActions.LightAttack.performed += i => _lightAttackInput = true;
         }
 
         EnableInputs();
@@ -113,6 +116,7 @@ public class PlayerInputManager : MonoBehaviour
         HandleDodgeInput();
         HandleSprintInput();
         HandleJumpInput();
+        HandleLightAttackInput();
     }
 
     // Movement
@@ -167,6 +171,20 @@ public class PlayerInputManager : MonoBehaviour
             _jumpInput = false;
 
             Player.PlayerMovementManager.AttemptToPerformJump();
+        }
+    }
+
+    // Attack Actions
+
+    void HandleLightAttackInput() {
+        if (_lightAttackInput) {
+            _lightAttackInput = false;
+
+            // TODO: Check For UI
+
+            Player.PlayerNetworkManager.SetCharacterActionHand(true);
+
+            Player.PlayerCombatManager.PerformWeaponBasedAction(Player.PlayerInventoryManager.CurrentRightHandWeapon.OhLightAction, Player.PlayerInventoryManager.CurrentRightHandWeapon);
         }
     }
 }

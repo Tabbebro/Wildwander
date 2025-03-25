@@ -1634,16 +1634,17 @@ GameObject:
   - component: {fileID: 1027502405729582624}
   - component: {fileID: 8216120834076287211}
   - component: {fileID: 5163293338268271206}
+  - component: {fileID: 573514607798344774}
   - component: {fileID: 2956767300954857412}
-  - component: {fileID: 4130408762295923674}
-  - component: {fileID: 613237461335639856}
   - component: {fileID: -8267923244536723280}
   - component: {fileID: 8654487679512543548}
   - component: {fileID: -4681505307297486156}
   - component: {fileID: 1555412973480747844}
-  - component: {fileID: 7232921620605311635}
+  - component: {fileID: 4130408762295923674}
+  - component: {fileID: 613237461335639856}
   - component: {fileID: 8977560169917997248}
   - component: {fileID: -429732661137189510}
+  - component: {fileID: 7232921620605311635}
   - component: {fileID: 6131452010572097414}
   m_Layer: 11
   m_Name: Player
@@ -1721,6 +1722,8 @@ MonoBehaviour:
   MoveAmount:
     m_InternalValue: 0
   IsSprinting:
+    m_InternalValue: 0
+  IsJumping:
     m_InternalValue: 0
   Vitality:
     m_InternalValue: 10
@@ -1803,9 +1806,15 @@ MonoBehaviour:
         byte0059: 0
         byte0060: 0
         byte0061: 0
+  CurrentWeaponBeingUsed:
+    m_InternalValue: 0
   CurrentRightHandWeaponID:
     m_InternalValue: 0
   CurrentLeftHandWeaponID:
+    m_InternalValue: 0
+  IsUsingRightHand:
+    m_InternalValue: 0
+  IsUsingLeftHand:
     m_InternalValue: 0
 --- !u!114 &5163293338268271206
 MonoBehaviour:
@@ -1829,7 +1838,6 @@ MonoBehaviour:
   CharacterAnimatorManager: {fileID: 0}
   IsPerformingAction: 0
   IsGrounded: 1
-  IsJumping: 0
   ApplyRootMotion: 0
   CanRotate: 1
   CanMove: 1
@@ -1842,6 +1850,20 @@ MonoBehaviour:
   PlayerNetworkManager: {fileID: 0}
   PlayerInventoryManager: {fileID: 0}
   PlayerEquipmentManager: {fileID: 0}
+  PlayerCombatManager: {fileID: 0}
+--- !u!114 &573514607798344774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5002884483716068296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7671338993a0e8148b0079f66f5c6897, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentWeaponBeingUsed: {fileID: 0}
 --- !u!114 &2956767300954857412
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1875,30 +1897,6 @@ MonoBehaviour:
   _freeFallSpeed: 5
   _jumpStaminaCost: 25
   _dodgeStaminaCost: 25
---- !u!114 &4130408762295923674
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5002884483716068296}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c5ee31f0f929624489afc3dde322c85, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &613237461335639856
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5002884483716068296}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 488de54c149939749ac662cbb2e3b9f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &-8267923244536723280
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1969,31 +1967,30 @@ MonoBehaviour:
   _leftWeaponManager: {fileID: 0}
   RightHandWeaponModel: {fileID: 0}
   LeftHandWeaponModel: {fileID: 0}
---- !u!143 &7232921620605311635
-CharacterController:
+--- !u!114 &4130408762295923674
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5002884483716068296}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Height: 2
-  m_Radius: 0.32
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 1, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c5ee31f0f929624489afc3dde322c85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &613237461335639856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5002884483716068296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 488de54c149939749ac662cbb2e3b9f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!95 &8977560169917997248
 Animator:
   serializedVersion: 7
@@ -2113,6 +2110,31 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!143 &7232921620605311635
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5002884483716068296}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 2
+  m_Radius: 0.32
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!54 &6131452010572097414
 Rigidbody:
   m_ObjectHideFlags: 0

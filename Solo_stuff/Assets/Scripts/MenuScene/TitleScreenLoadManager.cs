@@ -22,10 +22,6 @@ public class TitleScreenLoadManager : MonoBehaviour
         CheckForSaveFiles();
     }
 
-    private void Update() {
-        print("Current Selected GameObject: " + EventSystem.current.currentSelectedGameObject);
-    }
-
     public void TryToSelectFirstSlot() {
         foreach (UI_Character_Save_Slot slot in SaveSlotList) {
             // Checks if slot is active in hierarchy
