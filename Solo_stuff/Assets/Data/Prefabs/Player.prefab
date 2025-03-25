@@ -1726,17 +1726,17 @@ MonoBehaviour:
   IsJumping:
     m_InternalValue: 0
   Vitality:
-    m_InternalValue: 10
+    m_InternalValue: 1
   Endurance:
-    m_InternalValue: 10
+    m_InternalValue: 1
   CurrentHealth:
-    m_InternalValue: 0
+    m_InternalValue: 1
   MaxHealth:
-    m_InternalValue: 0
+    m_InternalValue: 1
   CurrentStamina:
-    m_InternalValue: 0
+    m_InternalValue: 1
   MaxStamina:
-    m_InternalValue: 0
+    m_InternalValue: 1
   CharacterName:
     m_InternalValue:
       utf8LengthInBytes: 9

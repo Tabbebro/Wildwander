@@ -24,7 +24,6 @@ public class CharacterStatsManager : MonoBehaviour
 
         // TODO: Get a better equation for health
         health = vitality * 15;
-        print("Health calculated to be: " + health);
         return Mathf.RoundToInt(health);
     }
 
