@@ -46,4 +46,27 @@ public class CharacterAnimatorManager : MonoBehaviour
 
         _character.CharacterNetworkManager.NotifyServerOfActionAnimationServerRpc(NetworkManager.Singleton.LocalClientId, targetAnimation, applyRootMotion);
     }
+
+    public virtual void PlayTargetAttackActionAnimation(
+        string targetAnimation,
+        bool isPerformingAnimation,
+        bool applyRootMotion = true,
+        bool canRotate = false,
+        bool canMove = false
+    ) {
+
+        // TODO: Combo Check
+        // TODO: Keep Track Of Attack Type
+        // TODO: Update Animations
+        // TODO: Parry?
+
+        _character.ApplyRootMotion = applyRootMotion;
+        _character.Animator.CrossFade(targetAnimation, 0.2f);
+
+        _character.IsPerformingAction = isPerformingAnimation;
+        _character.CanRotate = canRotate;
+        _character.CanMove = canMove;
+
+        _character.CharacterNetworkManager.NotifyServerOfAttackActionAnimationServerRpc(NetworkManager.Singleton.LocalClientId, targetAnimation, applyRootMotion);
+    }
 }

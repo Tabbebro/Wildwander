@@ -1,4 +1,5 @@
 using UnityEngine;
+using Unity.Netcode;
 
 public class PlayerCombatManager : CharacterCombatManager
 {
@@ -14,10 +15,11 @@ public class PlayerCombatManager : CharacterCombatManager
 
     public void PerformWeaponBasedAction(WeaponItemAction weaponAction, WeaponItem weaponPerformingAction) {
         
+        if (!_player.IsOwner) { return; }
         // Perform Action
         weaponAction.AttemptToPerformAction(_player, weaponPerformingAction);
 
         // Notify The Server That Action Is Performed
-
+        _player.PlayerNetworkManager.NotifyServerOfWeaponActionServerRpc(NetworkManager.Singleton.LocalClientId, weaponAction.actionID, weaponPerformingAction.ItemID);
     }
 }

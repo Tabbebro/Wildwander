@@ -1,8 +1,7 @@
 using UnityEngine;
 using Unity.Netcode;
 
-public class CharacterNetworkManager : NetworkBehaviour
-{
+public class CharacterNetworkManager : NetworkBehaviour {
     CharacterManager _character;
     [Header("Position")]
     public NetworkVariable<Vector3> NetworkPosition = new NetworkVariable<Vector3>(Vector3.zero, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
@@ -45,11 +44,14 @@ public class CharacterNetworkManager : NetworkBehaviour
         }
 
         if (!_character.IsOwner) { return; }
-        
+
         if (CurrentHealth.Value > MaxHealth.Value) {
             CurrentHealth.Value = MaxHealth.Value;
         }
     }
+    #region Animation RPC:s
+
+    // BASIC ANIMATIONS //
 
     [ServerRpc]
     public void NotifyServerOfActionAnimationServerRpc(ulong clientID, string animationID, bool applyRootMotion) {
@@ -60,7 +62,7 @@ public class CharacterNetworkManager : NetworkBehaviour
 
     [ClientRpc]
     public void PlayActionAnimationForAllClientsClientRpc(ulong clientID, string animationID, bool applyRootMotion) {
-        if (clientID != NetworkManager.Singleton.LocalClientId) { 
+        if (clientID != NetworkManager.Singleton.LocalClientId) {
             PerformActionAnimationFromServer(animationID, applyRootMotion);
         }
     }
@@ -68,6 +70,29 @@ public class CharacterNetworkManager : NetworkBehaviour
     private void PerformActionAnimationFromServer(string animationID, bool applyRootMotion) {
         _character.ApplyRootMotion = applyRootMotion;
         _character.Animator.CrossFade(animationID, 0.2f);
+    }
+
+    // WEAPONS //
+
+    [ServerRpc]
+    public void NotifyServerOfAttackActionAnimationServerRpc(ulong clientID, string animationID, bool applyRootMotion) {
+        if (IsServer) {
+            PlayActionAttackAnimationForAllClientsClientRpc(clientID, animationID, applyRootMotion);
+        }
+    }
+
+    [ClientRpc]
+    public void PlayActionAttackAnimationForAllClientsClientRpc(ulong clientID, string animationID, bool applyRootMotion) {
+        if (clientID != NetworkManager.Singleton.LocalClientId) {
+            PerformAttackActionAnimationFromServer(animationID, applyRootMotion);
+        }
+    }
+
+    private void PerformAttackActionAnimationFromServer(string animationID, bool applyRootMotion) {
+        _character.ApplyRootMotion = applyRootMotion;
+        _character.Animator.CrossFade(animationID, 0.2f);
+        #endregion
+
     }
 
 }

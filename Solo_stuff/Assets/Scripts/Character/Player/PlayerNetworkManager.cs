@@ -33,7 +33,7 @@ public class PlayerNetworkManager : CharacterNetworkManager
             IsUsingRightHand.Value = false;
         }
     }
-
+    #region Stats
     public void SetNewMaxHealthValue(int oldVitality, int newVitality) {
         print("Vitality Changed from: " + oldVitality + " To: " + newVitality);
         MaxHealth.Value = _player.PlayerStatsManager.CalculateHealthBasedOnLevel(newVitality);
@@ -46,7 +46,9 @@ public class PlayerNetworkManager : CharacterNetworkManager
         PlayerUIManager.Instance.PlayerUIHudManager.SetMaxStaminaValue(MaxStamina.Value);
         CurrentStamina.Value = MaxStamina.Value;
     }
+    #endregion
 
+    #region Items
     public void OnCurrentRightHandWeaponIDChange(int oldID, int newID) {
         WeaponItem newWeapon = Instantiate(WorldItemDatabase.Instance.GetWeaponByID(newID));
         _player.PlayerInventoryManager.CurrentRightHandWeapon = newWeapon;
@@ -63,5 +65,31 @@ public class PlayerNetworkManager : CharacterNetworkManager
         WeaponItem newWeapon = Instantiate(WorldItemDatabase.Instance.GetWeaponByID(newID));
         _player.PlayerCombatManager.CurrentWeaponBeingUsed = newWeapon;
         _player.PlayerEquipmentManager.LoadLeftWeapon();
+    }
+    #endregion
+
+    [ServerRpc]
+    public void NotifyServerOfWeaponActionServerRpc(ulong clientID, int actionID, int weaponID) {
+        if (IsServer) {
+            NotyfyServerOfWeaponActionClientRpc(clientID, actionID, weaponID);
+        }
+    }
+
+    [ClientRpc]
+    void NotyfyServerOfWeaponActionClientRpc(ulong clientID, int actionID, int weaponID) {
+        if (clientID != NetworkManager.Singleton.LocalClientId) {
+            PerformWeaponBasedAction(actionID, weaponID);
+        }
+    }
+
+    void PerformWeaponBasedAction(int actionID, int weaponID) {
+        WeaponItemAction weaponAction = WorldActionManager.Instance.GetWeaponItemActionByID(actionID);
+
+        if (weaponAction != null) {
+            weaponAction.AttemptToPerformAction(_player, WorldItemDatabase.Instance.GetWeaponByID(weaponID));
+        }
+        else {
+            Debug.LogError("Action Is Null & Cannot Be Performed!");
+        }
     }
 }
