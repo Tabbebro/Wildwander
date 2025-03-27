@@ -7,6 +7,8 @@ public class PlayerCombatManager : CharacterCombatManager
 
     public WeaponItem CurrentWeaponBeingUsed;
 
+    
+
     protected override void Awake() {
         base.Awake();
 
@@ -21,5 +23,24 @@ public class PlayerCombatManager : CharacterCombatManager
 
         // Notify The Server That Action Is Performed
         _player.PlayerNetworkManager.NotifyServerOfWeaponActionServerRpc(NetworkManager.Singleton.LocalClientId, weaponAction.actionID, weaponPerformingAction.ItemID);
+    }
+
+    public virtual void DrainStaminaBasedOnAttack() {
+        if (!_player.IsOwner) { return; }
+
+        if (CurrentWeaponBeingUsed == null) { return; }
+
+        float staminaDrainded = 0;
+
+        // TODO: ADD More When There Are More Attack Types
+        switch (CurrentAttackType) {
+            case AttackType.LightAttack01:
+                staminaDrainded = CurrentWeaponBeingUsed.BaseStaminaCost * CurrentWeaponBeingUsed.LigthAttackStaminaModifier;
+                break;
+            default:
+                break;
+        }
+
+        _player.PlayerNetworkManager.CurrentStamina.Value -= Mathf.RoundToInt(staminaDrainded);
     }
 }

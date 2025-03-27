@@ -9,7 +9,7 @@ public class DamageCollider : MonoBehaviour
 
 
     [Header("Collider")]
-    protected Collider _damageCollider;
+    [SerializeField] protected Collider _damageCollider;
 
     [Header("Damage")]
     public float PhysicalDamage = 0; // TODO: Split Into Slashing, Piercing & Bludgeoning
@@ -25,7 +25,11 @@ public class DamageCollider : MonoBehaviour
     [Header("Characters Damaged")]
     protected List<CharacterManager> _charactersDamaged = new();
 
-    private void OnTriggerEnter(Collider other) {
+    protected virtual void Awake() {
+        
+    }
+
+    protected virtual void OnTriggerEnter(Collider other) {
         CharacterManager damageTarget = other.GetComponentInParent<CharacterManager>();
         print("Part Hit: " + other.name);
 

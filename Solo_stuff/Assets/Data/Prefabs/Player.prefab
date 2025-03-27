@@ -1596,6 +1596,7 @@ MonoBehaviour:
   CharacterNetworkManager: {fileID: 0}
   CharacterEffectsManager: {fileID: 0}
   CharacterAnimatorManager: {fileID: 0}
+  CharacterCombatManager: {fileID: 0}
   IsPerformingAction: 0
   IsGrounded: 1
   ApplyRootMotion: 0
@@ -1623,6 +1624,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7671338993a0e8148b0079f66f5c6897, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurrentAttackType: 0
   CurrentWeaponBeingUsed: {fileID: 0}
 --- !u!114 &2956767300954857412
 MonoBehaviour:
@@ -1669,8 +1671,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 886b74ce1f4effe47a6e93c334cdad57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _staminaRegenerationAmount: 2
-  _staminaRegenerationDelay: 2
+  _staminaRegenerationAmount: 10
+  _staminaRegenerationDelay: 1
 --- !u!114 &8654487679512543548
 MonoBehaviour:
   m_ObjectHideFlags: 0

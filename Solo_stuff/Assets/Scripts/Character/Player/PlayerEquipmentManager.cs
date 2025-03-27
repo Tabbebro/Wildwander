@@ -51,8 +51,9 @@ public class PlayerEquipmentManager : CharacterEquipmentManager
         LoadRightWeapon();
     }
 
-    // Right Weapon
+    #region Weapons
 
+    // Right Weapon
     public void LoadRightWeapon() {
         if (_player.PlayerInventoryManager.CurrentRightHandWeapon != null) {
 
@@ -130,7 +131,6 @@ public class PlayerEquipmentManager : CharacterEquipmentManager
     }
 
     // Left Weapon
-
     public void LoadLeftWeapon() {
         if (_player.PlayerInventoryManager.CurrentLeftHandWeapon != null) {
 
@@ -209,4 +209,35 @@ public class PlayerEquipmentManager : CharacterEquipmentManager
             SwitchLeftWeapon();
         }
     }
+    #endregion
+
+    #region Damage Colliders
+    // Damage Colliders
+    public void OpenDamageCollider() {
+
+        // TODO: Change When Powerstance Is Added
+
+        // Right Hand
+        if (_player.PlayerNetworkManager.IsUsingRightHand.Value) {
+            _rightWeaponManager.MeleeDamageCollider.EnableDamageCollider();
+        }
+        // Left Hand
+        else if (_player.PlayerNetworkManager.IsUsingLeftHand.Value) {
+            _leftWeaponManager.MeleeDamageCollider.EnableDamageCollider();
+        }
+
+        // TODO: Add Weapon SFX
+    }
+
+    public void CloseDamageCollider() {
+        // Right Hand
+        if (_player.PlayerNetworkManager.IsUsingRightHand.Value) {
+            _rightWeaponManager.MeleeDamageCollider.DisableDamageCollider();
+        }
+        // Left Hand
+        else if (_player.PlayerNetworkManager.IsUsingLeftHand.Value) {
+            _leftWeaponManager.MeleeDamageCollider.DisableDamageCollider();
+        }
+    }
+    #endregion
 }

@@ -2,19 +2,21 @@ using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
 {
-    [SerializeField] MeleeWeaponDamageCollider _meleeDamageCollider;
+    public MeleeWeaponDamageCollider MeleeDamageCollider;
 
     private void Awake() {
-        _meleeDamageCollider = GetComponentInChildren<MeleeWeaponDamageCollider>();
+        MeleeDamageCollider = GetComponentInChildren<MeleeWeaponDamageCollider>();
     }
 
     public void SetWeaponDamage(CharacterManager characterWieldingWeapon, WeaponItem weapon) {
 
-        _meleeDamageCollider.CharacterCausingDamage = characterWieldingWeapon;
-        _meleeDamageCollider.PhysicalDamage = weapon.PhysicalDamage;
-        _meleeDamageCollider.MagicDamage = weapon.MagicDamage;
-        _meleeDamageCollider.FireDamage = weapon.FireDamage;
-        _meleeDamageCollider.LightningDamage = weapon.LightningDamage;
-        _meleeDamageCollider.HolyDamage = weapon.HolyDamage;
+        MeleeDamageCollider.CharacterCausingDamage = characterWieldingWeapon;
+        MeleeDamageCollider.PhysicalDamage = weapon.PhysicalDamage;
+        MeleeDamageCollider.MagicDamage = weapon.MagicDamage;
+        MeleeDamageCollider.FireDamage = weapon.FireDamage;
+        MeleeDamageCollider.LightningDamage = weapon.LightningDamage;
+        MeleeDamageCollider.HolyDamage = weapon.HolyDamage;
+
+        MeleeDamageCollider.LightAttack01Modifier = weapon.LightAttack01Modifier;
     }
 }

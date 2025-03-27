@@ -22,8 +22,13 @@ public class WeaponItem : Item
     public float PoiseDamage = 10;
     // TODO: Add Hyper Armor
 
+    [Header("Attack Modifiers")]
+    // TODO: Add Modifiers
+    public float LightAttack01Modifier = 1.1f;
+
     [Header("Stamina Costs")]
     public int BaseStaminaCost = 20;
+    public float LigthAttackStaminaModifier = 0.75f;
 
     // TODO: Add Defence
 
