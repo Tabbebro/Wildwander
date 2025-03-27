@@ -57,7 +57,6 @@ public class TitleScreenManager : MonoBehaviour {
 
         _titleMainMenu.SetActive(false);
         _titleLoadGameMenu.SetActive(true);
-        //_loadMenuReturnButton.Select();
     }
     public void CloseLoadGameMenu() {
 

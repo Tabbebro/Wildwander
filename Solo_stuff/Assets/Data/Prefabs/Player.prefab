@@ -1699,10 +1699,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8dc504ab3da4594dbe1174318da9331, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentRightHandWeapon: {fileID: 11400000, guid: ff866753925ffdc41bb502965c551bbe, type: 2}
+  CurrentRightHandWeapon: {fileID: 11400000, guid: 14ffc6a837f57f643a84dda3c38a6419, type: 2}
   CurrentLeftHandWeapon: {fileID: 11400000, guid: ff866753925ffdc41bb502965c551bbe, type: 2}
   WeaponsInRightHandSlots:
-  - {fileID: 11400000, guid: ff866753925ffdc41bb502965c551bbe, type: 2}
+  - {fileID: 11400000, guid: 14ffc6a837f57f643a84dda3c38a6419, type: 2}
   - {fileID: 11400000, guid: ff866753925ffdc41bb502965c551bbe, type: 2}
   - {fileID: 11400000, guid: ff866753925ffdc41bb502965c551bbe, type: 2}
   RightHandWeaponIndex: 0
