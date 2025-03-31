@@ -2173,15 +2173,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7033262840581409929, guid: 16af4ee3ca0546e40bbb33f514bc921e, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7033262840581409929, guid: 16af4ee3ca0546e40bbb33f514bc921e, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7033262840581409929, guid: 16af4ee3ca0546e40bbb33f514bc921e, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8644763850029460299, guid: 16af4ee3ca0546e40bbb33f514bc921e, type: 3}
       propertyPath: m_AnchorMax.x
@@ -2193,15 +2193,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8721261343589314572, guid: 16af4ee3ca0546e40bbb33f514bc921e, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8721261343589314572, guid: 16af4ee3ca0546e40bbb33f514bc921e, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8721261343589314572, guid: 16af4ee3ca0546e40bbb33f514bc921e, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8296,7 +8296,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4151774307124509807, guid: 48f111db532e9834eb78c2edb6a50686, type: 3}
       propertyPath: m_Name
-      value: Network Manager
+      value: World Network Manager
       objectReference: {fileID: 0}
     - target: {fileID: 7343335139666277142, guid: 48f111db532e9834eb78c2edb6a50686, type: 3}
       propertyPath: m_LocalPosition.x

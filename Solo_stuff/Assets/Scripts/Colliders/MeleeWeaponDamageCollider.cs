@@ -27,8 +27,6 @@ public class MeleeWeaponDamageCollider : DamageCollider
         // Checks For Friendly Fire
         if(damageTarget == CharacterCausingDamage) { return; }
 
-        print("Part Hit: " + other.name);
-
         _contactPoint = other.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position);
 
         // TODO: Check If Blocking
@@ -43,7 +41,6 @@ public class MeleeWeaponDamageCollider : DamageCollider
 
         // If target already on list return
         if (_charactersDamaged.Contains(damageTarget)) { return; }
-
         _charactersDamaged.Add(damageTarget);
 
         TakeDamageEffect damageEffect = Instantiate(WorldCharacterEffectsManager.Instance.TakeDamageEffect);

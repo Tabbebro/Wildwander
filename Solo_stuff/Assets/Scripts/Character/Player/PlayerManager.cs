@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Unity.Netcode;
 
 public class PlayerManager : CharacterManager
 {
@@ -57,6 +58,8 @@ public class PlayerManager : CharacterManager
 
     public override void OnNetworkSpawn() {
         base.OnNetworkSpawn();
+        NetworkManager.Singleton.OnClientConnectedCallback += OnClientConnectedCallback;
+
         if(IsOwner) { 
             
             // Give Reference to other scripts
@@ -86,6 +89,24 @@ public class PlayerManager : CharacterManager
         // Load Stats When Joining
         if (IsOwner && !IsServer) {
             LoadDataFromCurrentCharacterData(ref WorldSaveGameManager.Instance.CurrentCharacterData);
+        }
+    }
+
+    void OnClientConnectedCallback(ulong clientID) {
+        // Keep List Of Active Players
+        WorldGameSessionManager.Instance.AddPlayerToActivePlayersList(this);
+
+        // TODO: Remove Later Debug
+        PlayerNetworkManager.Vitality.Value = 10;
+        PlayerNetworkManager.Endurance.Value = 10;
+
+        // Check If Client & Not Host
+        if (!IsServer && IsOwner) {
+            foreach (PlayerManager player in WorldGameSessionManager.Instance.Players) {
+                if (player != this) {
+                    player.LoadOtherPlayerCharacterWhenJoiningServer();
+                }
+            }
         }
     }
 
@@ -155,7 +176,12 @@ public class PlayerManager : CharacterManager
         PlayerUIManager.Instance.PlayerUIHudManager.SetMaxStaminaValue(PlayerNetworkManager.MaxStamina.Value);
     }
 
-    
+    public void LoadOtherPlayerCharacterWhenJoiningServer() {
+
+        // Sync Weapons
+        PlayerNetworkManager.OnCurrentRightHandWeaponIDChange(0, PlayerNetworkManager.CurrentRightHandWeaponID.Value);
+        PlayerNetworkManager.OnCurrentLeftHandWeaponIDChange(0, PlayerNetworkManager.CurrentLeftHandWeaponID.Value);
+    }
 
     // TODO: Delete Later
     void DebugMenu() {

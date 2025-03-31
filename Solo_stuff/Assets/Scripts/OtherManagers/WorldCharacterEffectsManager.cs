@@ -5,6 +5,9 @@ public class WorldCharacterEffectsManager : MonoBehaviour
 {
     public static WorldCharacterEffectsManager Instance;
 
+    [Header("VFX")]
+    public GameObject BloodSplatterVFX;
+
     [Header("Damage")]
     public TakeDamageEffect TakeDamageEffect;
 

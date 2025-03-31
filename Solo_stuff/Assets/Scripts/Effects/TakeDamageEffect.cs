@@ -56,9 +56,9 @@ public class TakeDamageEffect : InstantCharacterEffect
         // Check For Build Ups
 
         // Play SFX
-
+        PlayDamageSFX(character);
         // Play VFX
-
+        PlayDamageVFX(character);
 
     }
 
@@ -81,5 +81,18 @@ public class TakeDamageEffect : InstantCharacterEffect
         character.CharacterNetworkManager.CurrentHealth.Value -= _finalDamage;
 
         // TODO: Calculate Poise Damage
+    }
+
+    void PlayDamageVFX(CharacterManager character) {
+        // TODO: Add Elemental VFX
+
+        character.CharacterEffectsManager.PlayBloodSplatterVFX(ContactPoint);
+    }
+
+    void PlayDamageSFX(CharacterManager character) {
+        AudioClip physicalDamageSFX = WorldSoundFXManager.Instance.ChooseRandomSFXFromArray(WorldSoundFXManager.Instance.PhysicalDamageSFX);
+        Debug.Log("Audio Played");
+        character.CharacterSoundFXManager.PlaySoundFX(physicalDamageSFX);
+        // TODO: Add Elemental SFX
     }
 }

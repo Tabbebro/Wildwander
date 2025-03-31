@@ -44,4 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6f84e6f427b7574d87be58ae5a9eaa3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PhysicalDamageSFX:
+  - {fileID: 8300000, guid: 7cfb144b313207b419ec3a631736ea54, type: 3}
+  - {fileID: 8300000, guid: 415e7d9b5de48bb40943a30fc3b86c36, type: 3}
   rollSFX: {fileID: 8300000, guid: 5c9a6ef4c9e1f41478d5074b44239136, type: 3}
