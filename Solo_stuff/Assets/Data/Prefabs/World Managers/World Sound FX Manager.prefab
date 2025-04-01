@@ -45,6 +45,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PhysicalDamageSFX:
-  - {fileID: 8300000, guid: 7cfb144b313207b419ec3a631736ea54, type: 3}
-  - {fileID: 8300000, guid: 415e7d9b5de48bb40943a30fc3b86c36, type: 3}
-  rollSFX: {fileID: 8300000, guid: 5c9a6ef4c9e1f41478d5074b44239136, type: 3}
+  - {fileID: 8300000, guid: 1af14dee5d8f6f94caf961f00608c318, type: 3}
+  - {fileID: 8300000, guid: 8b2e05117d9870e4c8a0d01430a16a7a, type: 3}
+  - {fileID: 8300000, guid: a3a5b5d1572e58a48b80cedd3f9c094f, type: 3}
+  - {fileID: 8300000, guid: d0b19da17b3b1cd46b9bf4094da816b1, type: 3}
+  - {fileID: 8300000, guid: 8fc47918c4cd4154bb9cf74d65de34f1, type: 3}
+  - {fileID: 8300000, guid: 95a1165a6bde9a740830eda0ac475f98, type: 3}
+  - {fileID: 8300000, guid: d792e10d4cfdfd04a87d21ff8ed4601b, type: 3}
+  - {fileID: 8300000, guid: 1ec08154ddf81fb4ab0cc46e56476dc1, type: 3}
+  - {fileID: 8300000, guid: a9c15f330ee326548a7f30509d67de32, type: 3}
+  - {fileID: 8300000, guid: aa2f9c8509e5f674ab94ecd858345162, type: 3}
+  rollSFX: {fileID: 8300000, guid: 0fea683f9b45b564d8fbbc9b436c3f4b, type: 3}

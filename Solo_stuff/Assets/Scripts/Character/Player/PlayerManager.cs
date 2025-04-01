@@ -177,7 +177,6 @@ public class PlayerManager : CharacterManager
     }
 
     public void LoadOtherPlayerCharacterWhenJoiningServer() {
-
         // Sync Weapons
         PlayerNetworkManager.OnCurrentRightHandWeaponIDChange(0, PlayerNetworkManager.CurrentRightHandWeaponID.Value);
         PlayerNetworkManager.OnCurrentLeftHandWeaponIDChange(0, PlayerNetworkManager.CurrentLeftHandWeaponID.Value);
