@@ -63,12 +63,30 @@ public class TitleScreenInputReader : MonoBehaviour
 
     private void Update() {
         CheckSelectionLoss();
+        MainMenuInputs();
         CharacterLoadInputs();
         DeleteCharacterPopUpInputs();
         NoCharactersAvailablePopUpInputs();
     }
 
     #region Inputs
+    void MainMenuInputs() {
+        if (!_titleMainMenu.activeInHierarchy) { return; }
+
+        if (_northButton) {
+            _northButton = false;
+        }
+        if (_eastButton) {
+            _eastButton = false;    
+        }
+        if (_southButton) {
+            _southButton = false;
+
+        }
+        if (_westButton) {
+            _westButton = false;
+        }
+    }
 
     void CharacterLoadInputs() {
         if (!_titleLoadCharacterMenu.activeInHierarchy || DeleteCharacterPopUp.activeInHierarchy) { return; }

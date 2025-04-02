@@ -80,7 +80,7 @@ public class MeleeWeaponDamageCollider : DamageCollider
                 damageEffect.AngleHitFrom,
                 damageEffect.ContactPoint.x, 
                 damageEffect.ContactPoint.y, 
-                damageEffect.ContactPoint.y);
+                damageEffect.ContactPoint.z);
         }
 
     }
