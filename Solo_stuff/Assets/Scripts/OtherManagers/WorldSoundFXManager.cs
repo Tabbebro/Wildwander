@@ -4,12 +4,17 @@ public class WorldSoundFXManager : MonoBehaviour
 {
     public static WorldSoundFXManager Instance;
 
+    public AudioSource Source;
+
     [Header("Damage Sounds")]
     public AudioClip[] PhysicalDamageSFX;
 
-
     [Header("Action SFX")]
-    public AudioClip rollSFX;
+    public AudioClip RollSFX;
+
+    [Header("UI")]
+    public AudioClip SelectButton;
+    public AudioClip ClickButton;
 
     private void Awake() {
         if (Instance == null) {
@@ -22,6 +27,10 @@ public class WorldSoundFXManager : MonoBehaviour
 
     private void Start() {
         DontDestroyOnLoad(gameObject);
+    }
+
+    public void PlayAudio(AudioClip clip) {
+        Source.PlayOneShot(clip);
     }
 
     public AudioClip ChooseRandomSFXFromArray(AudioClip[] array) {

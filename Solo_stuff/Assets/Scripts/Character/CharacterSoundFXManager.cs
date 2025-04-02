@@ -19,7 +19,7 @@ public class CharacterSoundFXManager : MonoBehaviour
     }
 
     public void PlayRollSoundFX() {
-        _audioSource.PlayOneShot(WorldSoundFXManager.Instance.rollSFX);
+        _audioSource.PlayOneShot(WorldSoundFXManager.Instance.RollSFX);
         print("Audio Played");
     }
 
