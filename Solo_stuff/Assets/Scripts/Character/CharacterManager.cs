@@ -73,12 +73,11 @@ public class CharacterManager : NetworkBehaviour
 
     public virtual IEnumerator ProcessDeathEvent(bool manuallySelectDeathAnimation = false) {
         if (IsOwner) { 
-            CharacterNetworkManager.CurrentHealth.Value = 0;
-            IsDead.Value = true;
-
             if (!manuallySelectDeathAnimation) {
                 CharacterAnimatorManager.PlayTargetActionAnimation("Death_01", true);
             }
+            CharacterNetworkManager.CurrentHealth.Value = 0;
+            IsDead.Value = true;
         }
 
         // Play Death SFX

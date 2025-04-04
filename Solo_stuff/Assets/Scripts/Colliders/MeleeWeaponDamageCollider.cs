@@ -28,7 +28,6 @@ public class MeleeWeaponDamageCollider : DamageCollider
         if(damageTarget == CharacterCausingDamage) { return; }
 
         _contactPoint = other.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position);
-        print("Original Contact Point: " + _contactPoint);
         // TODO: Check If Blocking
 
         // TODO: Check I Frames
@@ -52,8 +51,9 @@ public class MeleeWeaponDamageCollider : DamageCollider
         damageEffect.LightningDamage = LightningDamage;
         damageEffect.HolyDamage = HolyDamage;
 
-        // Give Contact Point
+        // Give Contact Point & Angle
         damageEffect.ContactPoint = _contactPoint;
+        damageEffect.AngleHitFrom = Vector3.SignedAngle(CharacterCausingDamage.transform.forward, damageTarget.transform.forward, Vector3.up);
 
         // TODO: ATTACK TYPE: Add More When There Is More 
         switch (CharacterCausingDamage.CharacterCombatManager.CurrentAttackType) {

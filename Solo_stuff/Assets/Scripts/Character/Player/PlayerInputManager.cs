@@ -20,11 +20,15 @@ public class PlayerInputManager : MonoBehaviour
     [ReadOnly] public float CameraHorizontalInput;
     [ReadOnly] public float CameraVerticalInput;
 
+    [Header("Lock On Input")]
+    [SerializeField] bool _lockOnInput = false;
+
     [Header("Player Action Input")]
     [SerializeField] bool _dodgeInput = false;
     [SerializeField] bool _sprintInput = false;
     [SerializeField] bool _jumpInput = false;
     [SerializeField] bool _lightAttackInput = false;
+
 
     private void Awake() {
         if (Instance == null) {

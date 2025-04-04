@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
 
@@ -8,11 +9,67 @@ public class CharacterAnimatorManager : MonoBehaviour
     int _horizontal;
     int _vertical;
 
+    [Header("Damage Animations")]
+    public string LastDamageAnimationPlayed;
+
+    [SerializeField] string Hit_Front_Medium_01 = "Hit_Front_Medium_01";
+    [SerializeField] string Hit_Front_Medium_02 = "Hit_Front_Medium_02";
+
+    [SerializeField] string Hit_Back_Medium_01 = "Hit_Back_Medium_01";
+    [SerializeField] string Hit_Back_Medium_02 = "Hit_Back_Medium_02";
+
+    [SerializeField] string Hit_Left_Medium_01 = "Hit_Left_Medium_01";
+    [SerializeField] string Hit_Left_Medium_02 = "Hit_Left_Medium_02";
+
+    [SerializeField] string Hit_Right_Medium_01 = "Hit_Right_Medium_01";
+    [SerializeField] string Hit_Right_Medium_02 = "Hit_Right_Medium_02";
+
+    public List<string> front_Medium_Damage = new();
+    public List<string> back_Medium_Damage = new();
+    public List<string> left_Medium_Damage = new();
+    public List<string> right_Medium_Damage = new();
+
     protected virtual void Awake() {
         _character = GetComponent<CharacterManager>();
 
         _vertical = Animator.StringToHash("Vertical");
         _horizontal = Animator.StringToHash("Horizontal");
+    }
+
+    protected virtual void Start() {
+        front_Medium_Damage.Add(Hit_Front_Medium_01);
+        front_Medium_Damage.Add(Hit_Front_Medium_02);
+
+        back_Medium_Damage.Add(Hit_Back_Medium_01);
+        back_Medium_Damage.Add(Hit_Back_Medium_02);
+
+        left_Medium_Damage.Add(Hit_Left_Medium_01);
+        left_Medium_Damage.Add(Hit_Left_Medium_02);
+
+        right_Medium_Damage.Add(Hit_Right_Medium_01);
+        right_Medium_Damage.Add(Hit_Right_Medium_02);
+    }
+
+    public string GetRandomAnimationFromList(List<string> animationList) {
+        List<string> finalList = new();
+
+        foreach (string animation in animationList) {
+            finalList.Add(animation);
+        }
+
+        // Check If Already Played
+        finalList.Remove(LastDamageAnimationPlayed);
+
+        // Checks & Removes Nulls
+        for (int i = finalList.Count - 1; i > -1 ; i--) {
+            if (finalList[i] == null) {
+                finalList.RemoveAt(i);
+            }
+        }
+
+        int randomValue = Random.Range(0, finalList.Count);
+
+        return finalList[randomValue];
     }
 
     public void UpdateAnimatorMovementParameters(float horizontalValue, float verticalValue, bool isSprinting) {

@@ -106,8 +106,11 @@ public class PlayerManager : CharacterManager
         }
 
         // TODO: Remove Later Debug
-        PlayerNetworkManager.Vitality.Value = 10;
-        PlayerNetworkManager.Endurance.Value = 10;
+        if (IsClient) {
+            PlayerNetworkManager.Vitality.Value = 50;
+            PlayerNetworkManager.Endurance.Value = 50;
+            IsDead.Value = false;
+        }
 
     }
 

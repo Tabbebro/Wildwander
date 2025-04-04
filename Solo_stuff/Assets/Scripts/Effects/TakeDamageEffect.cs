@@ -52,7 +52,7 @@ public class TakeDamageEffect : InstantCharacterEffect
         // Check DMG Direction
 
         // Play Animation
-
+        PlayDirectionalBadsedDamageAnimation(character);
         // Check For Build Ups
 
         // Play SFX
@@ -94,5 +94,39 @@ public class TakeDamageEffect : InstantCharacterEffect
         Debug.Log("Audio Played");
         character.CharacterSoundFXManager.PlaySoundFX(physicalDamageSFX);
         // TODO: Add Elemental SFX
+    }
+
+    void PlayDirectionalBadsedDamageAnimation(CharacterManager character) {
+        
+        if(!character.IsOwner) { return; } 
+
+        // TODO: Calculate If Poise Breaks
+        PoiseIsBroken = true;
+        
+        // Front
+        if (AngleHitFrom >= 145 && AngleHitFrom <= 180) {
+            DamageAnimation = character.CharacterAnimatorManager.GetRandomAnimationFromList(character.CharacterAnimatorManager.front_Medium_Damage);
+        }
+        // Front
+        else if (AngleHitFrom <= -145 && AngleHitFrom >= -180) {
+            DamageAnimation = character.CharacterAnimatorManager.GetRandomAnimationFromList(character.CharacterAnimatorManager.front_Medium_Damage);
+        }
+        // Back
+        else if (AngleHitFrom >= -45 && AngleHitFrom <= 45) {
+            DamageAnimation = character.CharacterAnimatorManager.GetRandomAnimationFromList(character.CharacterAnimatorManager.back_Medium_Damage);
+        }
+        // Left
+        else if (AngleHitFrom >= -144 && AngleHitFrom <= -45) {
+            DamageAnimation = character.CharacterAnimatorManager.GetRandomAnimationFromList(character.CharacterAnimatorManager.left_Medium_Damage);
+        }
+        // Right
+        else if (AngleHitFrom >= 45 && AngleHitFrom <= 144) {
+            DamageAnimation = character.CharacterAnimatorManager.GetRandomAnimationFromList(character.CharacterAnimatorManager.right_Medium_Damage);
+        }
+
+        if (PoiseIsBroken) {
+            character.CharacterAnimatorManager.LastDamageAnimationPlayed = DamageAnimation; 
+            character.CharacterAnimatorManager.PlayTargetActionAnimation(DamageAnimation, true);
+        }
     }
 }

@@ -16,7 +16,7 @@ public class CharacterEffectsManager : MonoBehaviour
     }
 
     public void PlayBloodSplatterVFX(Vector3 contactPoint) {
-        print("Contact Point: " + contactPoint);
+
         // For Manually Changing Blood Splatters Between Different Characters
         if (_bloodSplatterVFX != null) {
             GameObject bloodSplatter = Instantiate(_bloodSplatterVFX, contactPoint, Quaternion.identity);
