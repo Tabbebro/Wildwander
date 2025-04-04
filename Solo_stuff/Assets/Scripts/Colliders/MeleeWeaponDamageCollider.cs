@@ -28,7 +28,7 @@ public class MeleeWeaponDamageCollider : DamageCollider
         if(damageTarget == CharacterCausingDamage) { return; }
 
         _contactPoint = other.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position);
-
+        print("Original Contact Point: " + _contactPoint);
         // TODO: Check If Blocking
 
         // TODO: Check I Frames

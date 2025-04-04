@@ -96,10 +96,6 @@ public class PlayerManager : CharacterManager
         // Keep List Of Active Players
         WorldGameSessionManager.Instance.AddPlayerToActivePlayersList(this);
 
-        // TODO: Remove Later Debug
-        PlayerNetworkManager.Vitality.Value = 10;
-        PlayerNetworkManager.Endurance.Value = 10;
-
         // Check If Client & Not Host
         if (!IsServer && IsOwner) {
             foreach (PlayerManager player in WorldGameSessionManager.Instance.Players) {
@@ -108,6 +104,11 @@ public class PlayerManager : CharacterManager
                 }
             }
         }
+
+        // TODO: Remove Later Debug
+        PlayerNetworkManager.Vitality.Value = 10;
+        PlayerNetworkManager.Endurance.Value = 10;
+
     }
 
     public override IEnumerator ProcessDeathEvent(bool manuallySelectDeathAnimation = false) {

@@ -15,7 +15,8 @@ public class CharacterEffectsManager : MonoBehaviour
         effect.ProcessEffect(_character);
     }
 
-    public void PlayBloodSplatterVFX(Vector2 contactPoint) {
+    public void PlayBloodSplatterVFX(Vector3 contactPoint) {
+        print("Contact Point: " + contactPoint);
         // For Manually Changing Blood Splatters Between Different Characters
         if (_bloodSplatterVFX != null) {
             GameObject bloodSplatter = Instantiate(_bloodSplatterVFX, contactPoint, Quaternion.identity);
