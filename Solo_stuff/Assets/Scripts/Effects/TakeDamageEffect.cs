@@ -125,6 +125,7 @@ public class TakeDamageEffect : InstantCharacterEffect
         }
 
         if (PoiseIsBroken) {
+            Debug.Log("Animation Played: " + DamageAnimation);
             character.CharacterAnimatorManager.LastDamageAnimationPlayed = DamageAnimation; 
             character.CharacterAnimatorManager.PlayTargetActionAnimation(DamageAnimation, true);
         }

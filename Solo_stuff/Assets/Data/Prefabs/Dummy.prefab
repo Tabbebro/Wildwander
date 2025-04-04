@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 3090116290527550543}
   - component: {fileID: 829782931193759577}
   - component: {fileID: 5640042334526157245}
+  - component: {fileID: 3400007420310409787}
   m_Layer: 11
   m_Name: Dummy
   m_TagString: Untagged
@@ -404,7 +405,7 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 3
   m_Height: 2
-  m_Radius: 0.05
+  m_Radius: 0.1
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
@@ -437,6 +438,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &3400007420310409787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 470099821283756596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e8c592607a53374d80c6da2dc95b9cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &616892275143307137
 GameObject:
   m_ObjectHideFlags: 0
