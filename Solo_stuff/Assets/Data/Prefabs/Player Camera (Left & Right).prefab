@@ -58,6 +58,10 @@ MonoBehaviour:
     m_Bits: 193
   _leftAndRightLookAngle: 0
   _upAndDownLookAngle: 0
+  _lockOnRadius: 20
+  _minimumViewableAngle: -70
+  _maximumViewableAngle: 70
+  _maximumLockOnDistance: 20
 --- !u!1 &2276125111519079387
 GameObject:
   m_ObjectHideFlags: 0

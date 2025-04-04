@@ -78,6 +78,8 @@ public class PlayerInputManager : MonoBehaviour
             _inputs.PlayerActions.Jump.performed += i => _jumpInput = true;
             // Attack Actions
             _inputs.PlayerActions.LightAttack.performed += i => _lightAttackInput = true;
+            // Lock On
+            _inputs.PlayerActions.LockOn.performed += i => _lockOnInput = true;
         }
 
         EnableInputs();
@@ -115,12 +117,40 @@ public class PlayerInputManager : MonoBehaviour
     }
 
     void HandleAllInputs() {
+        HandleLockOnInput();
         HandlePlayerMovementInput();
         HandleCameraMovementInput();
         HandleDodgeInput();
         HandleSprintInput();
         HandleJumpInput();
         HandleLightAttackInput();
+    }
+
+    // Lock On
+    void HandleLockOnInput() {
+        // Check For Dead Target
+        if (Player.PlayerNetworkManager.IsLockedOn.Value) {
+            if (Player.PlayerCombatManager.CurrentTarget == null) { return; }
+
+            if (Player.PlayerCombatManager.CurrentTarget.IsDead.Value) {
+                Player.PlayerNetworkManager.IsLockedOn.Value = false;
+            }
+
+            // TODO: Attempt To Find New Target
+        }
+        // Chekc If Already Locked On
+        if (_lockOnInput && Player.PlayerNetworkManager.IsLockedOn.Value) {
+            _lockOnInput = false;
+
+
+            return;
+        }
+        // Chekc If Not Already Locked On Then Lock On
+        if (_lockOnInput && !Player.PlayerNetworkManager.IsLockedOn.Value) {
+            _lockOnInput = false;
+            // TODO: If Using Ranged Weapon Return
+            PlayerCamera.Instance.HandleLocatingLockOnTargets();
+        }
     }
 
     // Movement

@@ -25,6 +25,12 @@ public class PlayerCamera : MonoBehaviour
     float _cameraZPosition;
     float _targetCameraZPosition;
 
+    [Header("Lock On")]
+    [SerializeField] float _lockOnRadius = 20f;
+    [SerializeField] float _minimumViewableAngle = -70;
+    [SerializeField] float _maximumViewableAngle = 70;
+    [SerializeField] float _maximumLockOnDistance = 20;
+
     private void Awake() {
         if (Instance == null) {
             Instance = this;
@@ -98,5 +104,48 @@ public class PlayerCamera : MonoBehaviour
         // apply final position using a lerp
         _cameraObjectPosition.z = Mathf.Lerp(CameraObject.transform.localPosition.z, _targetCameraZPosition, 0.2f);
         CameraObject.transform.localPosition = _cameraObjectPosition;
+    }
+
+    public void HandleLocatingLockOnTargets() {
+        float shortestDistance = Mathf.Infinity;
+        float shortestDistanceOfLeftTarget = Mathf.Infinity;
+        float shortestDistanceOfRightTarget = -Mathf.Infinity;
+
+        // TODO: Use A LayerMask
+        Collider[] colliders = Physics.OverlapSphere(Player.transform.position, _lockOnRadius, WorldUtilityManager.Instance.GetCharacterLayers());
+
+        for (int i = 0; i < colliders.Length; i++) {
+            CharacterManager lockOnTarget = colliders[i].GetComponent<CharacterManager>();
+
+            if (lockOnTarget != null) {
+                // FOV Check
+                Vector3 lockOnTargetDirection = lockOnTarget.transform.position - Player.transform.position;
+                float distanceFromTarget = Vector3.Distance(Player.transform.position, lockOnTarget.transform.position);
+                float viewableAngle = Vector3.Angle(lockOnTargetDirection, CameraObject.transform.forward);
+
+                // Check If Target Is Dead
+                if (lockOnTarget.IsDead.Value) { continue; }
+
+                // Check If Target Is Self
+                if(lockOnTarget.transform.root == Player.transform.root) { continue; }
+
+                // Check If Target Is Too Far
+                if (distanceFromTarget > _maximumLockOnDistance) { continue; }
+
+                if (viewableAngle > _minimumViewableAngle && viewableAngle < _maximumViewableAngle) {
+                    RaycastHit hit;
+
+                    // TODO: Add LayerMask For Environment Layers Only
+                    if (Physics.Linecast(Player.PlayerCombatManager.LockOnTransform.position, lockOnTarget.CharacterCombatManager.LockOnTransform.position, out hit, WorldUtilityManager.Instance.GetEnviroLayers())) {
+                        // Hit Environment
+                        continue;
+                    }
+                    else {
+                        Debug.Log("Found Lock On Target");
+                    }
+                }
+            }
+        }
+
     }
 }
