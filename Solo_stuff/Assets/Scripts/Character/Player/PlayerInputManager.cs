@@ -141,7 +141,8 @@ public class PlayerInputManager : MonoBehaviour
         // Chekc If Already Locked On
         if (_lockOnInput && Player.PlayerNetworkManager.IsLockedOn.Value) {
             _lockOnInput = false;
-
+            PlayerCamera.Instance.ClearLockOnTargets();
+            Player.PlayerNetworkManager.IsLockedOn.Value = false;
 
             return;
         }
@@ -150,6 +151,11 @@ public class PlayerInputManager : MonoBehaviour
             _lockOnInput = false;
             // TODO: If Using Ranged Weapon Return
             PlayerCamera.Instance.HandleLocatingLockOnTargets();
+
+            if (PlayerCamera.Instance.NearestLockOnTarget != null) {
+                Player.PlayerCombatManager.SetTarget(PlayerCamera.Instance.NearestLockOnTarget);
+                Player.PlayerNetworkManager.IsLockedOn.Value = true;
+            }
         }
     }
 

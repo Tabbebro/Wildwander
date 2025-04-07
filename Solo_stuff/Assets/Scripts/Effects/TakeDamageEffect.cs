@@ -98,7 +98,9 @@ public class TakeDamageEffect : InstantCharacterEffect
 
     void PlayDirectionalBadsedDamageAnimation(CharacterManager character) {
         
-        if(!character.IsOwner) { return; } 
+        if(!character.IsOwner) { return; }
+
+        if (character.IsDead.Value) { return; }
 
         // TODO: Calculate If Poise Breaks
         PoiseIsBroken = true;

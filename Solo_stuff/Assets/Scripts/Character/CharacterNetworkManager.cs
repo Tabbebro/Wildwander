@@ -15,6 +15,9 @@ public class CharacterNetworkManager : NetworkBehaviour {
     public NetworkVariable<float> VerticalMovement = new NetworkVariable<float>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     public NetworkVariable<float> MoveAmount = new NetworkVariable<float>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
+    [Header("Target")]
+    public NetworkVariable<ulong> CurrentTargetNetworkObjectID = new NetworkVariable<ulong>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    
     [Header("Flags")]
     public NetworkVariable<bool> IsLockedOn = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     public NetworkVariable<bool> IsSprinting = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
@@ -164,6 +167,22 @@ public class CharacterNetworkManager : NetworkBehaviour {
         damageEffect.CharacterCausingDamage = characterCausingDamage;
 
         damagedCharacter.CharacterEffectsManager.ProcessInstantEffect(damageEffect);
+    }
+
+    #endregion
+
+    #region Lock On
+
+    public void OnLockOnTargetIDChange(ulong oldID, ulong newID) {
+        if (!IsOwner) {  
+            _character.CharacterCombatManager.CurrentTarget = NetworkManager.Singleton.SpawnManager.SpawnedObjects[newID].gameObject.GetComponent<CharacterManager>(); 
+        }
+    }
+
+    public void OnIsLockedOnChanged(bool oldValue, bool isLockedOn) {
+        if (!isLockedOn) {
+            _character.CharacterCombatManager.CurrentTarget = null;
+        }
     }
 
     #endregion

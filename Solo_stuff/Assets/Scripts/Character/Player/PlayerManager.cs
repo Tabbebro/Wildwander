@@ -81,6 +81,10 @@ public class PlayerManager : CharacterManager
         // Stats
         PlayerNetworkManager.CurrentHealth.OnValueChanged += PlayerNetworkManager.CheckHP;
 
+        // Lock On
+        PlayerNetworkManager.IsLockedOn.OnValueChanged += PlayerNetworkManager.OnIsLockedOnChanged;
+        PlayerNetworkManager.CurrentTargetNetworkObjectID.OnValueChanged += PlayerNetworkManager.OnLockOnTargetIDChange;
+
         // Equipment
         PlayerNetworkManager.CurrentRightHandWeaponID.OnValueChanged += PlayerNetworkManager.OnCurrentRightHandWeaponIDChange;
         PlayerNetworkManager.CurrentLeftHandWeaponID.OnValueChanged += PlayerNetworkManager.OnCurrentLeftHandWeaponIDChange;
@@ -130,6 +134,7 @@ public class PlayerManager : CharacterManager
         base.ReviveCharacter();
 
         if (IsOwner) {
+            IsDead.Value = false;
             PlayerNetworkManager.CurrentHealth.Value = PlayerNetworkManager.MaxHealth.Value;
             PlayerNetworkManager.CurrentStamina.Value = PlayerNetworkManager.MaxStamina.Value;
             // Restore Mana
@@ -184,6 +189,11 @@ public class PlayerManager : CharacterManager
         // Sync Weapons
         PlayerNetworkManager.OnCurrentRightHandWeaponIDChange(0, PlayerNetworkManager.CurrentRightHandWeaponID.Value);
         PlayerNetworkManager.OnCurrentLeftHandWeaponIDChange(0, PlayerNetworkManager.CurrentLeftHandWeaponID.Value);
+
+        // Lock On
+        if (PlayerNetworkManager.IsLockedOn.Value) {
+            PlayerNetworkManager.OnLockOnTargetIDChange(0, PlayerNetworkManager.CurrentTargetNetworkObjectID.Value);
+        }
     }
 
     // TODO: Delete Later
