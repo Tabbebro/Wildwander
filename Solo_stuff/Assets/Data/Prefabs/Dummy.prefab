@@ -99,6 +99,8 @@ MonoBehaviour:
     m_InternalValue: 0
   MoveAmount:
     m_InternalValue: 0
+  CurrentTargetNetworkObjectID:
+    m_InternalValue: 0
   IsLockedOn:
     m_InternalValue: 0
   IsSprinting:
@@ -156,6 +158,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3b2fa5763c9d0846bb3839cd59d08d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
   CurrentTarget: {fileID: 0}
   CurrentAttackType: 0
   LockOnTransform: {fileID: 6714923025995938375}
@@ -405,7 +408,7 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 3
   m_Height: 2
-  m_Radius: 0.1
+  m_Radius: 0.2
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08

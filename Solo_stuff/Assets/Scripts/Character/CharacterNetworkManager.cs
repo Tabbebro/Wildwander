@@ -163,6 +163,7 @@ public class CharacterNetworkManager : NetworkBehaviour {
         damageEffect.LightningDamage = lightningDamage;
         damageEffect.HolyDamage = holyDamage;
         damageEffect.PoiseDamage = poiseDamage;
+        damageEffect.AngleHitFrom = angleHitFrom;
         damageEffect.ContactPoint = new Vector3(contactPointX, contactPointY, contactPointZ);
         damageEffect.CharacterCausingDamage = characterCausingDamage;
 
