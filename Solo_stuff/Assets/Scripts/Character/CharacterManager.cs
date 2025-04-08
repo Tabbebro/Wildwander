@@ -12,6 +12,7 @@ public class CharacterManager : NetworkBehaviour
     [HideInInspector] public Animator Animator;
 
     [HideInInspector] public CharacterNetworkManager CharacterNetworkManager;
+    [HideInInspector] public CharacterMovementManager CharacterMovementManager;
     [HideInInspector] public CharacterEffectsManager CharacterEffectsManager;
     [HideInInspector] public CharacterAnimatorManager CharacterAnimatorManager;
     [HideInInspector] public CharacterCombatManager CharacterCombatManager;
@@ -30,6 +31,7 @@ public class CharacterManager : NetworkBehaviour
 
         CharacterController = GetComponent<CharacterController>();
         CharacterNetworkManager = GetComponent<CharacterNetworkManager>();
+        CharacterMovementManager = GetComponent<CharacterMovementManager>();
         CharacterEffectsManager = GetComponent<CharacterEffectsManager>();
         CharacterAnimatorManager = GetComponent<CharacterAnimatorManager>();
         CharacterCombatManager = GetComponent<CharacterCombatManager>();

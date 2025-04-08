@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Collections;
 
 public class PlayerCamera : MonoBehaviour
 {
@@ -30,9 +31,15 @@ public class PlayerCamera : MonoBehaviour
     [SerializeField] float _lockOnRadius = 20f;
     [SerializeField] float _minimumViewableAngle = -70;
     [SerializeField] float _maximumViewableAngle = 70;
+    [SerializeField] float _lockOnTargetFollowSpeed = 0.2f;
+    [SerializeField] float _setCameraHeightSpeed = 0.05f;
+    [SerializeField] float _unlockedCameraHeight = 1.5f;
+    [SerializeField] float _lockedCameraHeight = 2.0f;
+    Coroutine _cameraLockOnHeightCoroutine;
     List<CharacterManager> _availableTargets = new();
     public CharacterManager NearestLockOnTarget;
-    [SerializeField] float _lockOnTargetFollowSpeed = 0.2f;
+    public CharacterManager LeftLockOnTarget;
+    public CharacterManager RightLockOnTarget;
 
     private void Awake() {
         if (Instance == null) {
@@ -136,8 +143,8 @@ public class PlayerCamera : MonoBehaviour
 
     public void HandleLocatingLockOnTargets() {
         float shortestDistance = Mathf.Infinity;
-        float shortestDistanceOfLeftTarget = Mathf.Infinity;
-        float shortestDistanceOfRightTarget = -Mathf.Infinity;
+        float shortestDistanceOfLeftTarget = -Mathf.Infinity;
+        float shortestDistanceOfRightTarget = Mathf.Infinity;
 
         // TODO: Use A LayerMask
         Collider[] colliders = Physics.OverlapSphere(Player.transform.position, _lockOnRadius, WorldUtilityManager.Instance.GetCharacterLayers());
@@ -182,6 +189,28 @@ public class PlayerCamera : MonoBehaviour
                     shortestDistance = distanceFromTarget;
                     NearestLockOnTarget = _availableTargets[i];
                 }
+
+                // If Locked On Search For Left & Right Targets
+                if (Player.PlayerNetworkManager.IsLockedOn.Value) {
+                    Vector3 relativeEnemyPosition = Player.transform.InverseTransformPoint(_availableTargets[i].transform.position);
+                    var distanceFromLeftTarget = relativeEnemyPosition.x;
+                    var distanceFromRightTarget = relativeEnemyPosition.x;
+
+                    // Checks For Player
+                    if (_availableTargets[i] == Player.PlayerCombatManager.CurrentTarget) { continue; }
+
+
+                    // Checks Left Targets
+                    if (relativeEnemyPosition.x <= 0.00f && distanceFromLeftTarget > shortestDistanceOfLeftTarget) {
+                        shortestDistanceOfLeftTarget = distanceFromLeftTarget;
+                        LeftLockOnTarget = _availableTargets[i];
+                    }
+                    // Checks Right Targets
+                    else if (relativeEnemyPosition.x >= 0.00f && distanceFromRightTarget < shortestDistanceOfRightTarget) { 
+                        shortestDistanceOfRightTarget = distanceFromRightTarget;
+                        RightLockOnTarget = _availableTargets[i];
+                    }
+                }
             }
             else {
                 ClearLockOnTargets();
@@ -191,8 +220,72 @@ public class PlayerCamera : MonoBehaviour
 
     }
 
+    public void SetLockCameraHeight() {
+        if (_cameraLockOnHeightCoroutine != null) {
+            StopCoroutine(_cameraLockOnHeightCoroutine);
+        }
+
+        _cameraLockOnHeightCoroutine = StartCoroutine(SetCameraHeight());
+    }
+
     public void ClearLockOnTargets() {
         NearestLockOnTarget = null;
+        LeftLockOnTarget = null;
+        RightLockOnTarget = null;
         _availableTargets.Clear();
+    }
+
+    public IEnumerator WaitThenFindNewTarget() {
+
+        while (Player.IsPerformingAction) {
+            yield return null;
+        }
+
+        ClearLockOnTargets();
+        HandleLocatingLockOnTargets();
+
+        if(NearestLockOnTarget != null) {
+            Player.CharacterCombatManager.SetTarget(NearestLockOnTarget);
+            Player.PlayerNetworkManager.IsLockedOn.Value = true;
+        }
+
+        yield return null;
+    }
+
+    public IEnumerator SetCameraHeight() {
+        float duration = 2;
+        float timer = 0;
+        Vector3 velocity = Vector3.zero;
+        Vector3 newLockedCameraHeight = new Vector3(_cameraPivotTransform.transform.localPosition.x, _lockedCameraHeight);
+        Vector3 newUnlockedCameraHeight = new Vector3(_cameraPivotTransform.transform.localPosition.x, _unlockedCameraHeight);
+
+        while(timer < duration) {
+            timer += Time.deltaTime;
+            if (Player != null) {
+                if (Player.PlayerCombatManager.CurrentTarget != null) {
+                    _cameraPivotTransform.transform.localPosition = 
+                        Vector3.SmoothDamp(_cameraPivotTransform.transform.localPosition, newLockedCameraHeight, ref velocity, _setCameraHeightSpeed);
+                    _cameraPivotTransform.transform.localRotation = 
+                        Quaternion.Slerp(_cameraPivotTransform.transform.localRotation, Quaternion.Euler(0, 0, 0), _lockOnTargetFollowSpeed);
+                }
+                else {
+                    _cameraPivotTransform.transform.localPosition = 
+                        Vector3.SmoothDamp(_cameraPivotTransform.transform.localPosition, newUnlockedCameraHeight, ref velocity, _setCameraHeightSpeed);
+                }
+            }
+            yield return null;
+        }
+        
+        if (Player != null) {
+            if (Player.PlayerCombatManager.CurrentTarget != null) {
+                _cameraPivotTransform.transform.localPosition = newLockedCameraHeight;
+                _cameraPivotTransform.transform.localRotation = Quaternion.Euler(0,0,0);
+            }
+            else {
+                _cameraPivotTransform.transform.localPosition = newUnlockedCameraHeight;
+            }
+        }
+        
+        yield return null;
     }
 }

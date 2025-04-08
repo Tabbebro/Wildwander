@@ -74,15 +74,48 @@ public class CharacterAnimatorManager : MonoBehaviour
 
     public void UpdateAnimatorMovementParameters(float horizontalValue, float verticalValue, bool isSprinting) {
 
-        float horizontal = horizontalValue;
-        float vertical = verticalValue;
+        float snappedHorizontal;
+        float snappedVertical;
 
-        if (isSprinting) {
-            vertical = 2;
+        // Clamp Horizontal Values
+        if (horizontalValue > 0 && horizontalValue <= 0.5f) {
+            snappedHorizontal = 0.5f;
+        }
+        else if (horizontalValue > 0.5f && horizontalValue <= 1) {
+            snappedHorizontal = 1f;
+        }
+        else if (horizontalValue < 0 && horizontalValue >= -0.5f) {
+            snappedHorizontal = -0.5f;
+        }
+        else if (horizontalValue < -0.5f && horizontalValue >= -1) {
+            snappedHorizontal = -1f;
+        }
+        else {
+            snappedHorizontal = 0f;
+        }
+        // Clamp Vertical Values
+        if (verticalValue > 0 && verticalValue <= 0.5f) {
+            snappedVertical = 0.5f;
+        }
+        else if (verticalValue > 0.5f && verticalValue <= 1) {
+            snappedVertical = 1f;
+        }
+        else if (verticalValue < 0 && verticalValue >= -0.5f) {
+            snappedVertical = -0.5f;
+        }
+        else if (verticalValue < -0.5f && verticalValue >= -1) {
+            snappedVertical = -1f;
+        }
+        else {
+            snappedVertical = 0f;
         }
 
-        _character.Animator.SetFloat(_horizontal, horizontal, 0.1f, Time.deltaTime);
-        _character.Animator.SetFloat(_vertical, vertical, 0.1f, Time.deltaTime);
+        if (isSprinting) {
+            snappedVertical = 2;
+        }
+
+        _character.Animator.SetFloat(_horizontal, snappedHorizontal, 0.1f, Time.deltaTime);
+        _character.Animator.SetFloat(_vertical, snappedVertical, 0.1f, Time.deltaTime);
 
     }
 

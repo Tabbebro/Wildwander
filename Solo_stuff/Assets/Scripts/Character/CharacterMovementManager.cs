@@ -14,6 +14,9 @@ public class CharacterMovementManager : MonoBehaviour
     protected bool _fallingVelocityHasBeenSet = false;
     protected float _inAirTimer = 0;
 
+    [Header("Flags")]
+    public bool isRolling = false;
+
     protected virtual void Awake() {
         _character = GetComponent<CharacterManager>();
     }

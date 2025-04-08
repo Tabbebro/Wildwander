@@ -22,6 +22,10 @@ public class PlayerInputManager : MonoBehaviour
 
     [Header("Lock On Input")]
     [SerializeField] bool _lockOnInput = false;
+    [SerializeField] bool _lockOnLeftInput = false;
+    [SerializeField] bool _lockOnRightInput = false;
+    Coroutine _lockOnCoroutine;
+    
 
     [Header("Player Action Input")]
     [SerializeField] bool _dodgeInput = false;
@@ -80,6 +84,9 @@ public class PlayerInputManager : MonoBehaviour
             _inputs.PlayerActions.LightAttack.performed += i => _lightAttackInput = true;
             // Lock On
             _inputs.PlayerActions.LockOn.performed += i => _lockOnInput = true;
+            _inputs.PlayerActions.ChangeLockOnLeft.performed += i => _lockOnLeftInput = true;
+            _inputs.PlayerActions.ChangeLockOnRight.performed += i => _lockOnRightInput = true;
+            
         }
 
         EnableInputs();
@@ -118,6 +125,7 @@ public class PlayerInputManager : MonoBehaviour
 
     void HandleAllInputs() {
         HandleLockOnInput();
+        HandleLockOnSwitchTargetInput();
         HandlePlayerMovementInput();
         HandleCameraMovementInput();
         HandleDodgeInput();
@@ -134,15 +142,22 @@ public class PlayerInputManager : MonoBehaviour
 
             if (Player.PlayerCombatManager.CurrentTarget.IsDead.Value) {
                 Player.PlayerNetworkManager.IsLockedOn.Value = false;
-            }
 
-            // TODO: Attempt To Find New Target
+                // Prevents Multiple Coroutines From Running
+                if (_lockOnCoroutine != null) {
+                    StopCoroutine(_lockOnCoroutine);
+                }
+
+                _lockOnCoroutine = StartCoroutine(PlayerCamera.Instance.WaitThenFindNewTarget());
+            }
         }
         // Chekc If Already Locked On
         if (_lockOnInput && Player.PlayerNetworkManager.IsLockedOn.Value) {
             _lockOnInput = false;
             PlayerCamera.Instance.ClearLockOnTargets();
             Player.PlayerNetworkManager.IsLockedOn.Value = false;
+            // TODO: Testing
+            Player.PlayerCombatManager.SetTarget(null);
 
             return;
         }
@@ -155,6 +170,33 @@ public class PlayerInputManager : MonoBehaviour
             if (PlayerCamera.Instance.NearestLockOnTarget != null) {
                 Player.PlayerCombatManager.SetTarget(PlayerCamera.Instance.NearestLockOnTarget);
                 Player.PlayerNetworkManager.IsLockedOn.Value = true;
+            }
+        }
+    }
+
+    void HandleLockOnSwitchTargetInput() {
+        // Left Input
+        if (_lockOnLeftInput) {
+            _lockOnLeftInput = false;
+
+            if (Player.PlayerNetworkManager.IsLockedOn.Value) {
+                PlayerCamera.Instance.HandleLocatingLockOnTargets();
+
+                if(PlayerCamera.Instance.LeftLockOnTarget != null) {
+                    Player.PlayerCombatManager.SetTarget(PlayerCamera.Instance.LeftLockOnTarget);
+                }
+            }
+        }
+        // Right Input
+        if (_lockOnRightInput) {
+            _lockOnRightInput = false;
+
+            if (Player.PlayerNetworkManager.IsLockedOn.Value) {
+                PlayerCamera.Instance.HandleLocatingLockOnTargets();
+
+                if (PlayerCamera.Instance.RightLockOnTarget != null) {
+                    Player.PlayerCombatManager.SetTarget(PlayerCamera.Instance.RightLockOnTarget);
+                }
             }
         }
     }
@@ -178,8 +220,16 @@ public class PlayerInputManager : MonoBehaviour
 
         if(Player == null) { return; }
 
-        // Only pass vertical because horizontal is only for lock on
-        Player.PlayerAnimatorManager.UpdateAnimatorMovementParameters(0, MoveAmount, Player.PlayerNetworkManager.IsSprinting.Value);
+
+        // Normal Movement Animations
+        if (!Player.PlayerNetworkManager.IsLockedOn.Value || Player.PlayerNetworkManager.IsSprinting.Value ) {
+            Player.PlayerAnimatorManager.UpdateAnimatorMovementParameters(0, MoveAmount, Player.PlayerNetworkManager.IsSprinting.Value);
+        }
+        // Strafing Movement Animations
+        else {
+            Player.PlayerAnimatorManager.UpdateAnimatorMovementParameters(HorizontalInput, VerticalInput, Player.PlayerNetworkManager.IsSprinting.Value);
+        }
+
     }
 
     void HandleCameraMovementInput() {

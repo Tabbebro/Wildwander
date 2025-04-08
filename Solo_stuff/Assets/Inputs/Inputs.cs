@@ -429,6 +429,24 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ChangeLockOnLeft"",
+                    ""type"": ""Button"",
+                    ""id"": ""7377c9db-1916-4840-a3a3-7aabab62da00"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ChangeLockOnRight"",
+                    ""type"": ""Button"",
+                    ""id"": ""015cac35-6f1c-4038-b803-1d763e215e40"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -539,6 +557,28 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""LockOn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fcfe24fe-b015-4c46-929e-ee0384c17c0c"",
+                    ""path"": ""<Gamepad>/rightStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChangeLockOnLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a8b9d621-b687-498a-94f2-44586c5502cb"",
+                    ""path"": ""<Gamepad>/rightStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChangeLockOnRight"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -940,6 +980,8 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
         m_PlayerActions_Sprint = m_PlayerActions.FindAction("Sprint", throwIfNotFound: true);
         m_PlayerActions_Dodge = m_PlayerActions.FindAction("Dodge", throwIfNotFound: true);
         m_PlayerActions_LockOn = m_PlayerActions.FindAction("LockOn", throwIfNotFound: true);
+        m_PlayerActions_ChangeLockOnLeft = m_PlayerActions.FindAction("ChangeLockOnLeft", throwIfNotFound: true);
+        m_PlayerActions_ChangeLockOnRight = m_PlayerActions.FindAction("ChangeLockOnRight", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_ButtonNorth = m_UI.FindAction("ButtonNorth", throwIfNotFound: true);
@@ -1229,6 +1271,8 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerActions_Sprint;
     private readonly InputAction m_PlayerActions_Dodge;
     private readonly InputAction m_PlayerActions_LockOn;
+    private readonly InputAction m_PlayerActions_ChangeLockOnLeft;
+    private readonly InputAction m_PlayerActions_ChangeLockOnRight;
     /// <summary>
     /// Provides access to input actions defined in input action map "PlayerActions".
     /// </summary>
@@ -1268,6 +1312,14 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "PlayerActions/LockOn".
         /// </summary>
         public InputAction @LockOn => m_Wrapper.m_PlayerActions_LockOn;
+        /// <summary>
+        /// Provides access to the underlying input action "PlayerActions/ChangeLockOnLeft".
+        /// </summary>
+        public InputAction @ChangeLockOnLeft => m_Wrapper.m_PlayerActions_ChangeLockOnLeft;
+        /// <summary>
+        /// Provides access to the underlying input action "PlayerActions/ChangeLockOnRight".
+        /// </summary>
+        public InputAction @ChangeLockOnRight => m_Wrapper.m_PlayerActions_ChangeLockOnRight;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1315,6 +1367,12 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
             @LockOn.started += instance.OnLockOn;
             @LockOn.performed += instance.OnLockOn;
             @LockOn.canceled += instance.OnLockOn;
+            @ChangeLockOnLeft.started += instance.OnChangeLockOnLeft;
+            @ChangeLockOnLeft.performed += instance.OnChangeLockOnLeft;
+            @ChangeLockOnLeft.canceled += instance.OnChangeLockOnLeft;
+            @ChangeLockOnRight.started += instance.OnChangeLockOnRight;
+            @ChangeLockOnRight.performed += instance.OnChangeLockOnRight;
+            @ChangeLockOnRight.canceled += instance.OnChangeLockOnRight;
         }
 
         /// <summary>
@@ -1347,6 +1405,12 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
             @LockOn.started -= instance.OnLockOn;
             @LockOn.performed -= instance.OnLockOn;
             @LockOn.canceled -= instance.OnLockOn;
+            @ChangeLockOnLeft.started -= instance.OnChangeLockOnLeft;
+            @ChangeLockOnLeft.performed -= instance.OnChangeLockOnLeft;
+            @ChangeLockOnLeft.canceled -= instance.OnChangeLockOnLeft;
+            @ChangeLockOnRight.started -= instance.OnChangeLockOnRight;
+            @ChangeLockOnRight.performed -= instance.OnChangeLockOnRight;
+            @ChangeLockOnRight.canceled -= instance.OnChangeLockOnRight;
         }
 
         /// <summary>
@@ -1671,6 +1735,20 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnLockOn(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "ChangeLockOnLeft" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnChangeLockOnLeft(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "ChangeLockOnRight" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnChangeLockOnRight(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.

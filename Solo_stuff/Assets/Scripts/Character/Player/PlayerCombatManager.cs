@@ -43,4 +43,12 @@ public class PlayerCombatManager : CharacterCombatManager
 
         _player.PlayerNetworkManager.CurrentStamina.Value -= Mathf.RoundToInt(staminaDrainded);
     }
+
+    public override void SetTarget(CharacterManager newTarget) {
+        base.SetTarget(newTarget);
+
+        if (_player.IsOwner) {
+            PlayerCamera.Instance.SetLockCameraHeight();
+        }
+    }
 }
