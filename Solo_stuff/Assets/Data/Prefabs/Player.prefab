@@ -1521,6 +1521,8 @@ MonoBehaviour:
     m_InternalValue: 0
   IsJumping:
     m_InternalValue: 0
+  IsChargingAttack:
+    m_InternalValue: 0
   Vitality:
     m_InternalValue: 1
   Endurance:
@@ -1630,6 +1632,7 @@ MonoBehaviour:
   CharacterController: {fileID: 0}
   Animator: {fileID: 0}
   CharacterNetworkManager: {fileID: 0}
+  CharacterMovementManager: {fileID: 0}
   CharacterEffectsManager: {fileID: 0}
   CharacterAnimatorManager: {fileID: 0}
   CharacterCombatManager: {fileID: 0}
@@ -1639,9 +1642,6 @@ MonoBehaviour:
   ApplyRootMotion: 0
   CanRotate: 1
   CanMove: 1
-  _respawnCharacter: 0
-  _switchRightWeapon: 0
-  _switchLeftWeapon: 0
   PlayerAnimatorManager: {fileID: 0}
   PlayerMovementManager: {fileID: 0}
   PlayerStatsManager: {fileID: 0}
@@ -1686,6 +1686,7 @@ MonoBehaviour:
   _yVelocity: {x: 0, y: 0, z: 0}
   _groundedYVelocity: -20
   _fallStartYVelocity: -5
+  isRolling: 0
   VerticalMovement: 0
   HorizontalMovement: 0
   MoveAmount: 0
@@ -1740,16 +1741,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8dc504ab3da4594dbe1174318da9331, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentRightHandWeapon: {fileID: 11400000, guid: 14ffc6a837f57f643a84dda3c38a6419, type: 2}
+  CurrentRightHandWeapon: {fileID: 11400000, guid: ff866753925ffdc41bb502965c551bbe, type: 2}
   CurrentLeftHandWeapon: {fileID: 11400000, guid: ff866753925ffdc41bb502965c551bbe, type: 2}
   WeaponsInRightHandSlots:
-  - {fileID: 11400000, guid: 14ffc6a837f57f643a84dda3c38a6419, type: 2}
   - {fileID: 11400000, guid: ff866753925ffdc41bb502965c551bbe, type: 2}
+  - {fileID: 11400000, guid: 14ffc6a837f57f643a84dda3c38a6419, type: 2}
   - {fileID: 11400000, guid: ff866753925ffdc41bb502965c551bbe, type: 2}
   RightHandWeaponIndex: 0
   WeaponsInLeftHandSlots:
   - {fileID: 11400000, guid: ff866753925ffdc41bb502965c551bbe, type: 2}
-  - {fileID: 11400000, guid: ff866753925ffdc41bb502965c551bbe, type: 2}
+  - {fileID: 11400000, guid: 14ffc6a837f57f643a84dda3c38a6419, type: 2}
   - {fileID: 11400000, guid: ff866753925ffdc41bb502965c551bbe, type: 2}
   LeftHandWeaponIndex: 0
 --- !u!114 &1555412973480747844

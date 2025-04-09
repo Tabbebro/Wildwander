@@ -31,6 +31,8 @@ public class PlayerInputManager : MonoBehaviour
     [SerializeField] bool _dodgeInput = false;
     [SerializeField] bool _sprintInput = false;
     [SerializeField] bool _jumpInput = false;
+    [SerializeField] bool _switchRightWeaponInput = false;
+    [SerializeField] bool _switchLeftWeaponInput = false;
 
     [Header("Light Attack Inputs")]
     [SerializeField] bool _lightAttackInput = false;
@@ -86,6 +88,9 @@ public class PlayerInputManager : MonoBehaviour
             _inputs.PlayerActions.Sprint.canceled += i => _sprintInput = false;
             // Jump
             _inputs.PlayerActions.Jump.performed += i => _jumpInput = true;
+            // Weapon Switching
+            _inputs.PlayerActions.SwitchRightWeapon.performed += i => _switchRightWeaponInput = true;
+            _inputs.PlayerActions.SwitchLeftWeapon.performed += i => _switchLeftWeaponInput = true;
             // Light Attack Actions
             _inputs.PlayerActions.LightAttack.performed += i => _lightAttackInput = true;
             // Heavy Attack Actions
@@ -144,6 +149,8 @@ public class PlayerInputManager : MonoBehaviour
         HandleLightAttackInput();
         HandleHeavyAttackInput();
         HandleHeavyAttackHoldInput();
+        HandleSwitchRightWeaponInput();
+        HandleSwitchLeftWeaponInput();
     }
 
     // Lock On
@@ -307,5 +314,23 @@ public class PlayerInputManager : MonoBehaviour
         if (!Player.PlayerNetworkManager.IsUsingRightHand.Value) { return; }
 
         Player.PlayerNetworkManager.IsChargingAttack.Value = _heavyAttackHoldInput;
+    }
+
+    // Weapon Switch Action
+
+    void HandleSwitchRightWeaponInput() {
+        if (_switchRightWeaponInput) {
+            _switchRightWeaponInput = false;
+
+            Player.PlayerEquipmentManager.SwitchRightWeapon();
+        }
+    }
+
+    void HandleSwitchLeftWeaponInput() {
+        if (_switchLeftWeaponInput) {
+            _switchLeftWeaponInput = false;
+
+            Player.PlayerEquipmentManager.SwitchLeftWeapon();
+        }
     }
 }

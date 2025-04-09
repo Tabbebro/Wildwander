@@ -5,11 +5,6 @@ using Unity.Netcode;
 
 public class PlayerManager : CharacterManager
 {
-    [Header("DEBUG MENU")]
-    [SerializeField] bool _respawnCharacter = false;
-    [SerializeField] bool _switchRightWeapon = false;
-    [SerializeField] bool _switchLeftWeapon = false;
-
     [HideInInspector] public PlayerAnimatorManager PlayerAnimatorManager;
     [HideInInspector] public PlayerMovementManager PlayerMovementManager;
     [HideInInspector] public PlayerStatsManager PlayerStatsManager;
@@ -43,8 +38,6 @@ public class PlayerManager : CharacterManager
 
         // Regenerate Stamina
         PlayerStatsManager.RegenerateStamina();
-
-        DebugMenu();
     }
 
     protected override void LateUpdate() {
@@ -232,22 +225,4 @@ public class PlayerManager : CharacterManager
         }
     }
 
-    // TODO: Delete Later
-    void DebugMenu() {
-        // Respawn
-        if (_respawnCharacter) {
-            _respawnCharacter = false;
-            ReviveCharacter();
-        }
-        // Switch Right Hand Weapon
-        if (_switchRightWeapon) { 
-            _switchRightWeapon = false;
-            PlayerEquipmentManager.SwitchRightWeapon();
-        }
-        // Switch Right Hand Weapon
-        if (_switchLeftWeapon) {
-            _switchLeftWeapon = false;
-            PlayerEquipmentManager.SwitchLeftWeapon();
-        }
-    }
 }

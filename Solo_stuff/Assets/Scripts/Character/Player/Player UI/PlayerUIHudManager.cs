@@ -1,9 +1,15 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerUIHudManager : MonoBehaviour
 {
+    [Header("Stat Bars")]
     [SerializeField] UI_StatBar _healthBar;
     [SerializeField] UI_StatBar _staminaBar;
+
+    [Header("Quick Slots")]
+    [SerializeField] Image _rightWeaponQuickSlotIcon;
+    [SerializeField] Image _leftWeaponQuickSlotIcon;
 
     public void RefreshHud() {
 
@@ -25,7 +31,6 @@ public class PlayerUIHudManager : MonoBehaviour
     }
     #endregion
 
-
     #region Stamina
     public void SetNewStaminaValue(float oldValue, float newValue) {
         _staminaBar.SetStat(Mathf.RoundToInt(newValue));
@@ -36,4 +41,55 @@ public class PlayerUIHudManager : MonoBehaviour
     }
     #endregion
 
+    #region Quick Slots
+    public void SetRightWeaponQuickSlotIcon(int weaponID) {
+        
+        WeaponItem weapon = WorldItemDatabase.Instance.GetWeaponByID(weaponID);
+        
+        // Check If Weapon ID Is Null
+        if (weapon == null) {
+            Debug.Log("Item Is Null");
+            _rightWeaponQuickSlotIcon.enabled = false;
+            _rightWeaponQuickSlotIcon.sprite = null;
+            return;
+        }
+        // Check If item Has Icon
+        if (weapon.ItemIcon == null) {
+            Debug.Log("Item Has No Icon");
+            _rightWeaponQuickSlotIcon.enabled = false;
+            _rightWeaponQuickSlotIcon.sprite = null;
+            return;
+        }
+
+        // TODO: Check Item Requirements
+
+        _rightWeaponQuickSlotIcon.sprite = weapon.ItemIcon;
+        _rightWeaponQuickSlotIcon.enabled = true;
+    }
+
+    public void SetLeftWeaponQuickSlotIcon(int weaponID) {
+
+        WeaponItem weapon = WorldItemDatabase.Instance.GetWeaponByID(weaponID);
+
+        // Check If Weapon ID Is Null
+        if (weapon == null) {
+            Debug.Log("Item Is Null");
+            _leftWeaponQuickSlotIcon.enabled = false;
+            _leftWeaponQuickSlotIcon.sprite = null;
+            return;
+        }
+        // Check If item Has Icon
+        if (weapon.ItemIcon == null) {
+            Debug.Log("Item Has No Icon");
+            _leftWeaponQuickSlotIcon.enabled = false;
+            _leftWeaponQuickSlotIcon.sprite = null;
+            return;
+        }
+
+        // TODO: Check Item Requirements
+
+        _leftWeaponQuickSlotIcon.sprite = weapon.ItemIcon;
+        _leftWeaponQuickSlotIcon.enabled = true;
+    }
+    #endregion
 }
