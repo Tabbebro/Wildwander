@@ -300,6 +300,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "HeavyAttackHold",
+                    "type": "PassThrough",
+                    "id": "e041f042-ae02-4e36-9fb6-cb87d8cc723b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Hold(pressPoint=0.1)",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Interact",
                     "type": "Button",
                     "id": "e2e5818f-a861-46bd-8e60-23ee4b3a7b86",
@@ -449,6 +458,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "HeavyAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "86efb5e0-dafd-4827-855c-d1621a6320a9",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "HeavyAttackHold",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

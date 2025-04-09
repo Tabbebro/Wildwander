@@ -62,7 +62,7 @@ MonoBehaviour:
   _minimumViewableAngle: -70
   _maximumViewableAngle: 70
   _lockOnTargetFollowSpeed: 1
-  _setCameraHeightSpeed: 0.25
+  _setCameraHeightSpeed: 0.05
   _unlockedCameraHeight: 1.75
   _lockedCameraHeight: 2.75
   NearestLockOnTarget: {fileID: 0}

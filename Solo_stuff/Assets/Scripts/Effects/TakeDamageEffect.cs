@@ -92,7 +92,6 @@ public class TakeDamageEffect : InstantCharacterEffect
 
     void PlayDamageSFX(CharacterManager character) {
         AudioClip physicalDamageSFX = WorldSoundFXManager.Instance.ChooseRandomSFXFromArray(WorldSoundFXManager.Instance.PhysicalDamageSFX);
-        Debug.Log("Audio Played");
         character.CharacterSoundFXManager.PlaySoundFX(physicalDamageSFX);
         // TODO: Add Elemental SFX
     }
@@ -128,7 +127,6 @@ public class TakeDamageEffect : InstantCharacterEffect
         }
 
         if (PoiseIsBroken) {
-            Debug.Log("Animation Played: " + DamageAnimation);
             character.CharacterAnimatorManager.LastDamageAnimationPlayed = DamageAnimation; 
             character.CharacterAnimatorManager.PlayTargetActionAnimation(DamageAnimation, true);
         }

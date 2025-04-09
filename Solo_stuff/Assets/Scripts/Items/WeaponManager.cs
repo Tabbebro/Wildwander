@@ -18,5 +18,7 @@ public class WeaponManager : MonoBehaviour
         MeleeDamageCollider.HolyDamage = weapon.HolyDamage;
 
         MeleeDamageCollider.LightAttack01Modifier = weapon.LightAttack01Modifier;
+        MeleeDamageCollider.HeavyAttack01Modifier = weapon.HeavyAttack01Modifier;
+        MeleeDamageCollider.HeavyAttackHold01Modifier = weapon.HeavyAttackHold01Modifier;
     }
 }

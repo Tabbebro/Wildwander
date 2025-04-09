@@ -24,7 +24,10 @@ public class WeaponItem : Item
 
     [Header("Attack Modifiers")]
     // TODO: Add Modifiers
-    public float LightAttack01Modifier = 1.1f;
+    public float LightAttack01Modifier = 1f;
+    public float LightAttack02Modifier = 1.1f;
+    public float HeavyAttack01Modifier = 1.5f;
+    public float HeavyAttackHold01Modifier = 2.0f;
 
     [Header("Stamina Costs")]
     public int BaseStaminaCost = 20;
@@ -34,5 +37,6 @@ public class WeaponItem : Item
 
     [Header("Actions")]
     public WeaponItemAction OhLightAction; // One Handed Light Action
+    public WeaponItemAction OhHeavyAction; // One Handed Heavy Action
 
 }

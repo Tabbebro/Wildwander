@@ -22,6 +22,7 @@ public class CharacterNetworkManager : NetworkBehaviour {
     public NetworkVariable<bool> IsLockedOn = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     public NetworkVariable<bool> IsSprinting = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     public NetworkVariable<bool> IsJumping = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+    public NetworkVariable<bool> IsChargingAttack = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
     [Header("Stats")]
     public NetworkVariable<int> Vitality = new NetworkVariable<int>(1, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
@@ -52,6 +53,10 @@ public class CharacterNetworkManager : NetworkBehaviour {
         if (CurrentHealth.Value > MaxHealth.Value) {
             CurrentHealth.Value = MaxHealth.Value;
         }
+    }
+
+    public void OnIsChargingAttackChanged(bool oldStatus, bool newStatus) {
+        _character.Animator.SetBool("IsChargingAttack", newStatus);
     }
 
     #region Animation Rpc

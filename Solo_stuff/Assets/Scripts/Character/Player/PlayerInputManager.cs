@@ -31,7 +31,13 @@ public class PlayerInputManager : MonoBehaviour
     [SerializeField] bool _dodgeInput = false;
     [SerializeField] bool _sprintInput = false;
     [SerializeField] bool _jumpInput = false;
+
+    [Header("Light Attack Inputs")]
     [SerializeField] bool _lightAttackInput = false;
+
+    [Header("Heavy Attack Inputs")]
+    [SerializeField] bool _heavyAttackInput = false;
+    [SerializeField] bool _heavyAttackHoldInput = false;
 
 
     private void Awake() {
@@ -80,8 +86,12 @@ public class PlayerInputManager : MonoBehaviour
             _inputs.PlayerActions.Sprint.canceled += i => _sprintInput = false;
             // Jump
             _inputs.PlayerActions.Jump.performed += i => _jumpInput = true;
-            // Attack Actions
+            // Light Attack Actions
             _inputs.PlayerActions.LightAttack.performed += i => _lightAttackInput = true;
+            // Heavy Attack Actions
+            _inputs.PlayerActions.HeavyAttack.performed += i => _heavyAttackInput = true;
+            _inputs.PlayerActions.HeavyAttackHold.performed += i => _heavyAttackHoldInput = true;
+            _inputs.PlayerActions.HeavyAttackHold.canceled += i => _heavyAttackHoldInput = false;
             // Lock On
             _inputs.PlayerActions.LockOn.performed += i => _lockOnInput = true;
             _inputs.PlayerActions.ChangeLockOnLeft.performed += i => _lockOnLeftInput = true;
@@ -132,6 +142,8 @@ public class PlayerInputManager : MonoBehaviour
         HandleSprintInput();
         HandleJumpInput();
         HandleLightAttackInput();
+        HandleHeavyAttackInput();
+        HandleHeavyAttackHoldInput();
     }
 
     // Lock On
@@ -276,5 +288,24 @@ public class PlayerInputManager : MonoBehaviour
 
             Player.PlayerCombatManager.PerformWeaponBasedAction(Player.PlayerInventoryManager.CurrentRightHandWeapon.OhLightAction, Player.PlayerInventoryManager.CurrentRightHandWeapon);
         }
+    }
+
+    void HandleHeavyAttackInput() {
+        if (_heavyAttackInput) {
+            _heavyAttackInput = false;
+
+            // TODO: Check For UI
+
+            Player.PlayerNetworkManager.SetCharacterActionHand(true);
+
+            Player.PlayerCombatManager.PerformWeaponBasedAction(Player.PlayerInventoryManager.CurrentRightHandWeapon.OhHeavyAction, Player.PlayerInventoryManager.CurrentRightHandWeapon);
+        }
+    }
+
+    void HandleHeavyAttackHoldInput() {
+        if (!Player.IsPerformingAction) { return; }
+        if (!Player.PlayerNetworkManager.IsUsingRightHand.Value) { return; }
+
+        Player.PlayerNetworkManager.IsChargingAttack.Value = _heavyAttackHoldInput;
     }
 }

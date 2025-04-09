@@ -9,7 +9,5 @@ public class WeaponItemAction : ScriptableObject
         if (playerPerformingAction.IsOwner) {
             playerPerformingAction.PlayerNetworkManager.CurrentWeaponBeingUsed.Value = weaponPerformingAction.ItemID;
         }
-
-        Debug.Log("The Action Has Been Performed");
     }
 }

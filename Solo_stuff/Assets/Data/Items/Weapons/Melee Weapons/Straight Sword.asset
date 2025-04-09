@@ -27,5 +27,8 @@ MonoBehaviour:
   LightningDamage: 0
   HolyDamage: 0
   PoiseDamage: 20
+  LightAttack01Modifier: 1.1
   BaseStaminaCost: 20
+  LigthAttackStaminaModifier: 0.75
   OhLightAction: {fileID: 11400000, guid: 3a750157116138347b052d795e00adbe, type: 2}
+  OhHeavyAction: {fileID: 11400000, guid: 105cbbf0a7636624a8c87c9910b3922c, type: 2}

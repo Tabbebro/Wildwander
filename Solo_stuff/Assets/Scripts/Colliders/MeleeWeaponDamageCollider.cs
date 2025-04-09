@@ -7,6 +7,9 @@ public class MeleeWeaponDamageCollider : DamageCollider
 
     [Header("Weapon Attack Modifiers")]
     public float LightAttack01Modifier;
+    public float LightAttack02Modifier;
+    public float HeavyAttack01Modifier;
+    public float HeavyAttackHold01Modifier;
 
     protected override void Awake() {
         base.Awake();
@@ -60,10 +63,22 @@ public class MeleeWeaponDamageCollider : DamageCollider
             case AttackType.LightAttack01:
                 ApplyAttackDamageModifiers(LightAttack01Modifier, damageEffect);
                 break;
+            case AttackType.LightAttack02:
+                ApplyAttackDamageModifiers(LightAttack02Modifier, damageEffect);
+                break;
+            case AttackType.HeavyAttack01:
+                ApplyAttackDamageModifiers(HeavyAttack01Modifier, damageEffect);
+                break;
+            case AttackType.HeavyAttackHold01:
+                ApplyAttackDamageModifiers(HeavyAttackHold01Modifier, damageEffect);
+                break;
+            case AttackType.HeavyAttackHold02:
+                ApplyAttackDamageModifiers(HeavyAttackHold01Modifier, damageEffect);
+                break;
             default:
                 break;
         }
-
+        print("Final Damage Given: " + damageEffect.PhysicalDamage);
         // Process The Damage Effect
         // damageTarget.CharacterEffectsManager.ProcessInstantEffect(damageEffect);
 
@@ -91,7 +106,5 @@ public class MeleeWeaponDamageCollider : DamageCollider
         damage.FireDamage *= modifier;
         damage.LightningDamage *= modifier;
         damage.HolyDamage *= modifier;
-
-        // TODO: Add Heavy Attack Full Charge Modifier
     }
 }
