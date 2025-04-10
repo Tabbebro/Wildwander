@@ -1,5 +1,13 @@
 fileFormatVersion: 2
-guid: 033368736776eee46a6c0cf8c8b14341
+guid: 7b5a4980ec67fcc45ba152bbebfc11a5
+AssetOrigin:
+  serializedVersion: 1
+  productId: 220752
+  packageName: Straight Sword Animation Set
+  packageVersion: 3.0
+  assetPath: Assets/Nephilite Studios/Straight Sword Animation Set/Animations/Straight
+    Sword Animations/Nephilim Animations (Remastered)/Straight Sword Main Hand/straight_sword_main_light_attack_02.fbx
+  uploadId: 722475
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -32,10 +40,10 @@ ModelImporter:
     clipAnimations:
     - serializedVersion: 16
       name: oh_main_light_02
-      takeName: straight_sword_main_light_attack_01
-      internalID: 673659374932735726
+      takeName: straight_sword_main_light_attack_02
+      internalID: -2746501166638713497
       firstFrame: 0
-      lastFrame: 38
+      lastFrame: 45
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -54,7 +62,35 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.18736842
+        functionName: DrainStaminaBasedOnAttack
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.19356953
+        functionName: OpenDamageCollider
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.32058486
+        functionName: CloseDamageCollider
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.4075849
+        functionName: EnableCanDoCombo
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}

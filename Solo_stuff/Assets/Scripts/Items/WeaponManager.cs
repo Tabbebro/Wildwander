@@ -17,8 +17,14 @@ public class WeaponManager : MonoBehaviour
         MeleeDamageCollider.LightningDamage = weapon.LightningDamage;
         MeleeDamageCollider.HolyDamage = weapon.HolyDamage;
 
+        // Light Attack
         MeleeDamageCollider.LightAttack01Modifier = weapon.LightAttack01Modifier;
+        MeleeDamageCollider.LightAttack02Modifier = weapon.LightAttack02Modifier;
+
+        // Melee Weapon
         MeleeDamageCollider.HeavyAttack01Modifier = weapon.HeavyAttack01Modifier;
+        MeleeDamageCollider.HeavyAttack02Modifier = weapon.HeavyAttack02Modifier;
         MeleeDamageCollider.HeavyAttackHold01Modifier = weapon.HeavyAttackHold01Modifier;
+        MeleeDamageCollider.HeavyAttackHold02Modifier = weapon.HeavyAttackHold02Modifier;
     }
 }

@@ -13,18 +13,25 @@ MonoBehaviour:
   m_Name: Broad Sword
   m_EditorClassIdentifier: 
   ItemName: Broad Sword
-  ItemIcon: {fileID: 0}
+  ItemIcon: {fileID: 21300000, guid: b31f2ff6350d46e4ba43d059d8e76ae1, type: 3}
   ItemDescription: A slightly larger sword.
-  ItemID: 0
+  ItemID: 2
   weaponModel: {fileID: 7338052296767090823, guid: 958bd224d51b70041b8a15beb741a55e, type: 3}
   StrReq: 15
   DexReq: 8
   IntReq: 0
   FaiReq: 0
-  PhysicalDamage: 115
+  PhysicalDamage: 75
   MagicDamage: 0
   FireDamage: 0
   LightningDamage: 0
   HolyDamage: 0
   PoiseDamage: 25
-  BaseStaminaCost: 20
+  LightAttack01Modifier: 1
+  LightAttack02Modifier: 1.1
+  HeavyAttack01Modifier: 1.5
+  HeavyAttackHold01Modifier: 2
+  BaseStaminaCost: 25
+  LigthAttackStaminaModifier: 0.75
+  OhLightAction: {fileID: 11400000, guid: 3a750157116138347b052d795e00adbe, type: 2}
+  OhHeavyAction: {fileID: 11400000, guid: 105cbbf0a7636624a8c87c9910b3922c, type: 2}

@@ -52,10 +52,10 @@ CapsuleCollider:
   m_ProvidesContacts: 1
   m_Enabled: 0
   serializedVersion: 2
-  m_Radius: 0.0919884
-  m_Height: 1.5625261
+  m_Radius: 0.14209972
+  m_Height: 1.7796752
   m_Direction: 1
-  m_Center: {x: 0.005356267, y: 0.94681543, z: 0.0025656894}
+  m_Center: {x: 0.005356267, y: 0.9217597, z: 0.005349651}
 --- !u!114 &6945658693923446667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77,6 +77,9 @@ MonoBehaviour:
   HolyDamage: 0
   CharacterCausingDamage: {fileID: 0}
   LightAttack01Modifier: 0
+  LightAttack02Modifier: 0
+  HeavyAttack01Modifier: 0
+  HeavyAttackHold01Modifier: 0
 --- !u!1 &7338052296767090823
 GameObject:
   m_ObjectHideFlags: 0

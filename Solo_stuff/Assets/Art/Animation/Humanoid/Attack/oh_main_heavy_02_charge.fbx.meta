@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7b5a4980ec67fcc45ba152bbebfc11a5
+guid: 60c9febf564f18143977fed58b3e72c2
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -16,8 +16,6 @@ ModelImporter:
     optimizeGameObjects: 0
     removeConstantScaleCurves: 0
     motionNodeName: 
-    rigImportErrors: 
-    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
@@ -33,11 +31,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: straight_sword_main_light_attack_02
-      takeName: straight_sword_main_light_attack_02
-      internalID: -2746501166638713497
+      name: oh_main_heavy_02_charge
+      takeName: straight_sword_main_charged_attack_02_charge
+      internalID: 6212206780038780846
       firstFrame: 0
-      lastFrame: 45
+      lastFrame: 18
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -749,8 +747,7 @@ ModelImporter:
     hasTranslationDoF: 0
     hasExtraRoot: 1
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 0ad932253e8dc8841948afa5d1a0d051,
-    type: 3}
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 0ad932253e8dc8841948afa5d1a0d051, type: 3}
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 3
   humanoidOversampling: 1
@@ -762,11 +759,3 @@ ModelImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 220752
-  packageName: Straight Sword Animation Set
-  packageVersion: 3.0
-  assetPath: Assets/Nephilite Studios/Straight Sword Animation Set/Animations/Straight
-    Sword Animations/Nephilim Animations (Remastered)/Straight Sword Main Hand/straight_sword_main_light_attack_02.fbx
-  uploadId: 722475

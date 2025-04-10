@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Straight Sword
   m_EditorClassIdentifier: 
   ItemName: Straight Sword
-  ItemIcon: {fileID: 0}
+  ItemIcon: {fileID: 21300000, guid: acb8f0138f6828a45b4c85635dfd1b20, type: 3}
   ItemDescription: A normal straight sword wielded by the lowest ranking soldiers.
   ItemID: 1
   weaponModel: {fileID: 2856970132399443511, guid: 5b321ef64f82b594d905520d9ec07743, type: 3}
@@ -21,13 +21,16 @@ MonoBehaviour:
   DexReq: 8
   IntReq: 0
   FaiReq: 0
-  PhysicalDamage: 76
+  PhysicalDamage: 50
   MagicDamage: 0
   FireDamage: 0
   LightningDamage: 0
   HolyDamage: 0
   PoiseDamage: 20
-  LightAttack01Modifier: 1.1
+  LightAttack01Modifier: 1
+  LightAttack02Modifier: 1.1
+  HeavyAttack01Modifier: 1.5
+  HeavyAttackHold01Modifier: 2
   BaseStaminaCost: 20
   LigthAttackStaminaModifier: 0.75
   OhLightAction: {fileID: 11400000, guid: 3a750157116138347b052d795e00adbe, type: 2}

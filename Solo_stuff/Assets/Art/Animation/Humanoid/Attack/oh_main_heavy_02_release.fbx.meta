@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7c108f23e4019c44e9047066dec3e41c
+guid: 373b8690ddadc084290204facca4b396
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -31,11 +31,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: oh_main_light_01
-      takeName: straight_sword_main_light_attack_01
-      internalID: 673659374932735726
+      name: oh_main_heavy_02_release
+      takeName: straight_sword_main_charged_attack_02_release
+      internalID: 2211200744456600243
       firstFrame: 0
-      lastFrame: 38
+      lastFrame: 40
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -55,28 +55,28 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.2370941
+      - time: 0.057246964
         functionName: DrainStaminaBasedOnAttack
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.24540046
+      - time: 0.06555334
         functionName: OpenDamageCollider
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.42925793
+      - time: 0.15667416
         functionName: CloseDamageCollider
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.5288895
+      - time: 0.24655546
         functionName: EnableCanDoCombo
         data: 
         objectReferenceParameter: {instanceID: 0}

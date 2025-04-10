@@ -152,6 +152,7 @@ public class CharacterAnimatorManager : MonoBehaviour
         // TODO: Parry?
 
         _character.CharacterCombatManager.CurrentAttackType = attackType;
+        _character.CharacterCombatManager.LastAttackAnimationPerformed = targetAnimation;
 
         _character.ApplyRootMotion = applyRootMotion;
         _character.Animator.CrossFade(targetAnimation, 0.2f);
@@ -161,5 +162,13 @@ public class CharacterAnimatorManager : MonoBehaviour
         _character.CanMove = canMove;
 
         _character.CharacterNetworkManager.NotifyServerOfAttackActionAnimationServerRpc(NetworkManager.Singleton.LocalClientId, targetAnimation, applyRootMotion);
+    }
+
+    public virtual void EnableCanDoCombo() {
+
+    }
+
+    public virtual void DisableCanDoCombo() {
+
     }
 }
