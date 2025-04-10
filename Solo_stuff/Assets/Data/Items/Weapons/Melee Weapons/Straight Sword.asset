@@ -28,9 +28,11 @@ MonoBehaviour:
   HolyDamage: 0
   PoiseDamage: 20
   LightAttack01Modifier: 1
-  LightAttack02Modifier: 1.1
+  LightAttack02Modifier: 1.2
   HeavyAttack01Modifier: 1.5
+  HeavyAttack02Modifier: 1.7
   HeavyAttackHold01Modifier: 2
+  HeavyAttackHold02Modifier: 2.2
   BaseStaminaCost: 20
   LigthAttackStaminaModifier: 0.75
   OhLightAction: {fileID: 11400000, guid: 3a750157116138347b052d795e00adbe, type: 2}
