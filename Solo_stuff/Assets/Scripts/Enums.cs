@@ -19,6 +19,13 @@ public enum CharacterSlot {
     NO_Slot
 }
 
+public enum CharacterGroup {
+    Player,
+    FriendlyPhantom,
+    HostilePhantom,
+    EnemyGroup01
+}
+
 public enum WeaponModelSlot {
     RightHand, 
     LeftHand,

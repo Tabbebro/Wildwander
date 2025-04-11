@@ -3,7 +3,7 @@ using Unity.Netcode;
 
 public class CharacterCombatManager : NetworkBehaviour
 {
-    CharacterManager _character;
+    protected CharacterManager _character;
 
     [Header("Last Attack Animation Performed")]
     public string LastAttackAnimationPerformed;
