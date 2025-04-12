@@ -36,7 +36,6 @@ public class AICharacterCombatManager : CharacterCombatManager
                         WorldUtilityManager.Instance.GetEnviroLayers())) {
 
                         Debug.DrawLine(aiCharacter.CharacterCombatManager.LockOnTransform.position, targetCharacter.CharacterCombatManager.LockOnTransform.position, Color.red);
-                        Debug.Log("FOV Blocked");
                     }
                     else {
                         aiCharacter.CharacterCombatManager.SetTarget(targetCharacter);

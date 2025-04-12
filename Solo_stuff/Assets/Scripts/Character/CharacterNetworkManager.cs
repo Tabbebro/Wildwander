@@ -11,6 +11,7 @@ public class CharacterNetworkManager : NetworkBehaviour {
     public float NetworkRotationSmoothTime = 0.1f;
 
     [Header("Animator")]
+    public NetworkVariable<bool> IsMoving = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     public NetworkVariable<float> HorizontalMovement = new NetworkVariable<float>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     public NetworkVariable<float> VerticalMovement = new NetworkVariable<float>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     public NetworkVariable<float> MoveAmount = new NetworkVariable<float>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
@@ -57,6 +58,10 @@ public class CharacterNetworkManager : NetworkBehaviour {
 
     public void OnIsChargingAttackChanged(bool oldStatus, bool newStatus) {
         _character.Animator.SetBool("IsChargingAttack", newStatus);
+    }
+
+    public void OnIsMovingChanged(bool oldValue, bool newValue) {
+        _character.Animator.SetBool("IsMoving", IsMoving.Value);
     }
 
     #region Animation Rpc

@@ -1,15 +1,37 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class AICharacterManager : CharacterManager
 {
+    [HideInInspector] public AICharacterNetworkManager AICharacterNetworkManager;
+    [HideInInspector] public AICharacterMovementManager AICharacterMovementManager;
     [HideInInspector] public AICharacterCombatManager AICharacterCombatManager;
+
+    [Header("Navmesh Agent")]
+    public NavMeshAgent NavmeshAgent;
 
     [Header("Current State")]
     [SerializeField] AIState _currentState;
 
+    [Header("States")]
+    public IdleState Idle;
+    public PursueTargetState PursueTarget;
+    // Combat
+    // Attack
+
     protected override void Awake() {
         base.Awake();
+        AICharacterNetworkManager = GetComponent<AICharacterNetworkManager>();
+        AICharacterMovementManager = GetComponent<AICharacterMovementManager>();
         AICharacterCombatManager = GetComponent<AICharacterCombatManager>();
+
+        NavmeshAgent = GetComponentInChildren<NavMeshAgent>();
+
+        // Using Copy Of Scriptable Objects
+        Idle = Instantiate(Idle);
+        PursueTarget = Instantiate(PursueTarget);
+
+        _currentState = Idle;
     }
 
     protected override void FixedUpdate() {
@@ -28,6 +50,23 @@ public class AICharacterManager : CharacterManager
 
         if (nextState != null) { 
             _currentState = nextState;
+        }
+
+        NavmeshAgent.transform.localPosition = Vector3.zero;
+        NavmeshAgent.transform.localRotation = Quaternion.identity;
+
+        if (NavmeshAgent.enabled) {
+            Vector3 agentDestination = NavmeshAgent.destination;
+            float remainingDistance = Vector3.Distance(agentDestination, transform.position);
+            if (remainingDistance > NavmeshAgent.stoppingDistance) {
+                AICharacterNetworkManager.IsMoving.Value = true;   
+            }
+            else {
+                AICharacterNetworkManager.IsMoving.Value = false;   
+            }
+        }
+        else {
+            AICharacterNetworkManager.IsMoving.Value = false;   
         }
     }
 }

@@ -80,6 +80,18 @@ public class CharacterManager : NetworkBehaviour
         
     }
 
+    public override void OnNetworkSpawn() {
+        base.OnNetworkSpawn();
+
+        CharacterNetworkManager.IsMoving.OnValueChanged += CharacterNetworkManager.OnIsMovingChanged;
+    }
+
+    public override void OnNetworkDespawn() {
+        base.OnNetworkDespawn();
+
+        CharacterNetworkManager.IsMoving.OnValueChanged -= CharacterNetworkManager.OnIsMovingChanged;
+    }
+
     public virtual IEnumerator ProcessDeathEvent(bool manuallySelectDeathAnimation = false) {
         if (IsOwner) { 
             if (!manuallySelectDeathAnimation) {

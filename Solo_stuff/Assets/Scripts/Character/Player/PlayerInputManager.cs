@@ -239,9 +239,15 @@ public class PlayerInputManager : MonoBehaviour
 
         if(Player == null) { return; }
 
+        if (MoveAmount != 0) {
+            Player.PlayerNetworkManager.IsMoving.Value = true;
+        }
+        else {
+            Player.PlayerNetworkManager.IsMoving.Value = false;
+        }
 
         // Normal Movement Animations
-        if (!Player.PlayerNetworkManager.IsLockedOn.Value || Player.PlayerNetworkManager.IsSprinting.Value ) {
+        if (!Player.PlayerNetworkManager.IsLockedOn.Value || Player.PlayerNetworkManager.IsSprinting.Value) {
             Player.PlayerAnimatorManager.UpdateAnimatorMovementParameters(0, MoveAmount, Player.PlayerNetworkManager.IsSprinting.Value);
         }
         // Strafing Movement Animations
