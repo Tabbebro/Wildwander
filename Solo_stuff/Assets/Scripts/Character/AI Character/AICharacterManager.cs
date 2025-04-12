@@ -37,7 +37,9 @@ public class AICharacterManager : CharacterManager
     protected override void FixedUpdate() {
         base.FixedUpdate();
 
-        ProcessStateMachine();
+        if (IsOwner) {
+            ProcessStateMachine();
+        }
     }
 
     void ProcessStateMachine() {
@@ -52,8 +54,14 @@ public class AICharacterManager : CharacterManager
             _currentState = nextState;
         }
 
+        
         NavmeshAgent.transform.localPosition = Vector3.zero;
         NavmeshAgent.transform.localRotation = Quaternion.identity;
+
+        if (AICharacterCombatManager.CurrentTarget != null) {
+            AICharacterCombatManager.TargetsDirection = AICharacterCombatManager.CurrentTarget.transform.position - transform.position;
+            AICharacterCombatManager.ViewableAngle = WorldUtilityManager.Instance.GetAngleOfTarget(transform, AICharacterCombatManager.TargetsDirection);
+        }
 
         if (NavmeshAgent.enabled) {
             Vector3 agentDestination = NavmeshAgent.destination;
