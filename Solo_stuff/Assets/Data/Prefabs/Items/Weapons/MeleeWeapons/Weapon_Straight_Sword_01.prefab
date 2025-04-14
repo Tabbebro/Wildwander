@@ -153,10 +153,10 @@ CapsuleCollider:
   m_ProvidesContacts: 1
   m_Enabled: 0
   serializedVersion: 2
-  m_Radius: 0.13502747
-  m_Height: 1.7758155
+  m_Radius: 0.16896826
+  m_Height: 1.9292868
   m_Direction: 1
-  m_Center: {x: 0.0014374107, y: 0.9054018, z: 0.0011167824}
+  m_Center: {x: -0.000038295984, y: 0.9821375, z: 0.0011167824}
 --- !u!114 &4094828312407463865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,4 +180,6 @@ MonoBehaviour:
   LightAttack01Modifier: 0
   LightAttack02Modifier: 0
   HeavyAttack01Modifier: 0
+  HeavyAttack02Modifier: 0
   HeavyAttackHold01Modifier: 0
+  HeavyAttackHold02Modifier: 0

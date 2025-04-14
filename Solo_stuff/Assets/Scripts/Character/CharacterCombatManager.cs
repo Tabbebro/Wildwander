@@ -19,6 +19,7 @@ public class CharacterCombatManager : NetworkBehaviour
 
     protected virtual void Awake() {
         _character = GetComponent<CharacterManager>();
+        LockOnTransform = GetComponentInChildren<Utility_GetLockOnTarget>().transform;
     }
 
     public virtual void SetTarget(CharacterManager newTarget) {

@@ -287,6 +287,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4127963704561799725}
+  - component: {fileID: 6703626918664096104}
   m_Layer: 12
   m_Name: LockOnTarget
   m_TagString: Untagged
@@ -309,6 +310,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 517494476509011349}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6703626918664096104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1364492834650673755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c77134d53663d634185b41893e1ed0fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1366487953548126962
 GameObject:
   m_ObjectHideFlags: 0
@@ -1507,6 +1520,8 @@ MonoBehaviour:
   NetworkPositionVelocity: {x: 0, y: 0, z: 0}
   NetworkPositionSmoothTime: 0.1
   NetworkRotationSmoothTime: 0.1
+  IsMoving:
+    m_InternalValue: 0
   HorizontalMovement:
     m_InternalValue: 0
   VerticalMovement:
@@ -1637,6 +1652,7 @@ MonoBehaviour:
   CharacterAnimatorManager: {fileID: 0}
   CharacterCombatManager: {fileID: 0}
   CharacterSoundFXManager: {fileID: 0}
+  CharacterGroup: 0
   IsPerformingAction: 0
   IsGrounded: 1
   ApplyRootMotion: 0
@@ -1662,10 +1678,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
+  LastAttackAnimationPerformed: 
   CurrentTarget: {fileID: 0}
   CurrentAttackType: 0
-  LockOnTransform: {fileID: 4127963704561799725}
+  LockOnTransform: {fileID: 0}
   CurrentWeaponBeingUsed: {fileID: 0}
+  CanComboWithMainHandWeapon: 0
 --- !u!114 &2956767300954857412
 MonoBehaviour:
   m_ObjectHideFlags: 0
