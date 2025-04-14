@@ -3,6 +3,7 @@ using UnityEngine;
 public class AICharacterCombatManager : CharacterCombatManager
 {
     [Header("Target Information")]
+    public float DistanceFromTarget;
     public float ViewableAngle;
     public Vector3 TargetsDirection;
 

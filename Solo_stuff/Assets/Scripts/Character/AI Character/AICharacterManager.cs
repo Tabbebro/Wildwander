@@ -61,6 +61,7 @@ public class AICharacterManager : CharacterManager
         if (AICharacterCombatManager.CurrentTarget != null) {
             AICharacterCombatManager.TargetsDirection = AICharacterCombatManager.CurrentTarget.transform.position - transform.position;
             AICharacterCombatManager.ViewableAngle = WorldUtilityManager.Instance.GetAngleOfTarget(transform, AICharacterCombatManager.TargetsDirection);
+            AICharacterCombatManager.DistanceFromTarget = Vector3.Distance(transform.position, AICharacterCombatManager.CurrentTarget.transform.position);
         }
 
         if (NavmeshAgent.enabled) {
