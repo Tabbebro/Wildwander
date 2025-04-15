@@ -26,6 +26,9 @@ public class PursueTargetState : AIState
         aiCharacter.AICharacterMovementManager.RotateTowardsAgent(aiCharacter);
 
         // If Near Change To Combat State
+        if (aiCharacter.AICharacterCombatManager.DistanceFromTarget <= aiCharacter.NavmeshAgent.stoppingDistance) {
+            return SwitchState(aiCharacter, aiCharacter.CombatStance);
+        }
 
         // TODO: If Target Too Far Lose Agro
 

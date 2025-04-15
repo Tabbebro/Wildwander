@@ -16,8 +16,8 @@ public class AICharacterManager : CharacterManager
     [Header("States")]
     public IdleState Idle;
     public PursueTargetState PursueTarget;
-    // Combat
-    // Attack
+    public CombatStanceState CombatStance;
+    public AttackState Attack;
 
     protected override void Awake() {
         base.Awake();
@@ -32,6 +32,12 @@ public class AICharacterManager : CharacterManager
         PursueTarget = Instantiate(PursueTarget);
 
         _currentState = Idle;
+    }
+
+    protected override void Update() {
+        base.Update();
+
+        AICharacterCombatManager.HandleActionRecovery(this);
     }
 
     protected override void FixedUpdate() {

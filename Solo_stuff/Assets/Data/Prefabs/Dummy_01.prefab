@@ -159,6 +159,8 @@ MonoBehaviour:
   _currentState: {fileID: 11400000, guid: ac5cd43ff82832448b5e4437d3cf8d8d, type: 2}
   Idle: {fileID: 11400000, guid: ac5cd43ff82832448b5e4437d3cf8d8d, type: 2}
   PursueTarget: {fileID: 11400000, guid: 18a9df56749f7384b8ba4a3597ad1044, type: 2}
+  CombatStance: {fileID: 11400000, guid: bc7cf8c19205bc141bfd8d8141d05f18, type: 2}
+  Attack: {fileID: 11400000, guid: 818c83c0ba9736349b0fa43341561fd3, type: 2}
 --- !u!114 &2945196324151218237
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,12 +178,14 @@ MonoBehaviour:
   CurrentTarget: {fileID: 0}
   CurrentAttackType: 0
   LockOnTransform: {fileID: 0}
+  ActionRecoveryTimer: 0
   DistanceFromTarget: 0
   ViewableAngle: 0
   TargetsDirection: {x: 0, y: 0, z: 0}
   DetectionRadius: 15
   MinFOV: -35
   MaxFOV: 35
+  AttackRotationSpeed: 25
 --- !u!114 &2714057233422917514
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2643,7 +2647,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 1
+  m_StoppingDistance: 2
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1

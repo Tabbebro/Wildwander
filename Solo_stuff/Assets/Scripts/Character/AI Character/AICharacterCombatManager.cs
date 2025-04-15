@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class AICharacterCombatManager : CharacterCombatManager
 {
+    [Header("Action Recovery")]
+    public float ActionRecoveryTimer = 0;
+
     [Header("Target Information")]
     public float DistanceFromTarget;
     public float ViewableAngle;
@@ -11,6 +14,9 @@ public class AICharacterCombatManager : CharacterCombatManager
     public float DetectionRadius = 15f;
     public float MinFOV = -35;
     public float MaxFOV = 35;
+
+    [Header("Attack Rotation")]
+    public float AttackRotationSpeed = 25;
 
     public void FindTargetLineOfSight(AICharacterManager aiCharacter) {
         if (CurrentTarget != null) {
@@ -92,6 +98,40 @@ public class AICharacterCombatManager : CharacterCombatManager
         else if (ViewableAngle <= -146 && ViewableAngle >= -180) {
             print("Turning 180 Degrees");
             aiCharacter.CharacterAnimatorManager.PlayTargetActionAnimation("Turn_L180", true);
+        }
+    }
+
+    public void RotateTowardsAgent(AICharacterManager aiCharacter) {
+        if (aiCharacter.AICharacterNetworkManager.IsMoving.Value) {
+            aiCharacter.transform.rotation = aiCharacter.NavmeshAgent.transform.rotation;
+        }
+    }
+
+    public void RotateTowardsTarget(AICharacterManager aiCharacter) {
+        if (CurrentTarget == null) { return; }
+
+        if (!aiCharacter.CanRotate) { return; }
+
+        if (!aiCharacter.IsPerformingAction) { return; }
+
+        Vector3 targetDirection = CurrentTarget.transform.position - aiCharacter.transform.position;
+        targetDirection.y = 0f;
+        targetDirection.Normalize();
+
+        if (targetDirection == Vector3.zero) {
+            targetDirection = aiCharacter.transform.forward;
+        }
+
+        Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
+
+        aiCharacter.transform.rotation = Quaternion.Slerp(aiCharacter.transform.rotation, targetRotation, AttackRotationSpeed * Time.deltaTime);
+    }
+
+    public void HandleActionRecovery(AICharacterManager aiCharacter) {
+        if (ActionRecoveryTimer > 0) {
+            if (!aiCharacter.IsPerformingAction) {
+                ActionRecoveryTimer -= Time.deltaTime;
+            }
         }
     }
 }

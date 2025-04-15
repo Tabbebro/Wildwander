@@ -1,13 +1,14 @@
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.AI;
+using Unity.VisualScripting.FullSerializer;
 
 [CreateAssetMenu(menuName = "AI/States/Combat Stance")]
 public class CombatStanceState : AIState
 {
 
     [Header("Attacks")]
-    public List<AICharacterAttackAction> AICharacterAttacks = new();
+    public List<AICharacterAttackAction> AICharacterAttacks;
     protected List<AICharacterAttackAction> _potentialAttacks;
     AICharacterAttackAction _chosenAttack;
     AICharacterAttackAction _previousAttack;
@@ -19,7 +20,7 @@ public class CombatStanceState : AIState
     protected bool _hasRolledForComboChance = false;
 
     [Header("Engagement Distance")]
-    [SerializeField] protected float _maxEngagementDistance = 5;
+    [SerializeField] public float MaxEngagementDistance = 5;
 
     public override AIState Tick(AICharacterManager aiCharacter) {
         if (aiCharacter.IsPerformingAction) { return this; }
@@ -32,6 +33,8 @@ public class CombatStanceState : AIState
             }
         }
 
+        aiCharacter.AICharacterCombatManager.RotateTowardsAgent(aiCharacter);
+
         // If No Target Change State To Idle
         if (aiCharacter.AICharacterCombatManager.CurrentTarget == null) {
             return SwitchState(aiCharacter, aiCharacter.Idle);
@@ -41,11 +44,13 @@ public class CombatStanceState : AIState
             GetNewAttack(aiCharacter);
         }
         else {
+            aiCharacter.Attack.CurrentAttack = _chosenAttack;
             // Go To Attack State
+            return SwitchState(aiCharacter, aiCharacter.Attack);
         }
 
         // If Outside Max Engagement Distance Change State To Pursue Target
-        if (aiCharacter.AICharacterCombatManager.DistanceFromTarget > _maxEngagementDistance) {
+        if (aiCharacter.AICharacterCombatManager.DistanceFromTarget > MaxEngagementDistance) {
             return SwitchState(aiCharacter, aiCharacter.PursueTarget);
         }
 
@@ -58,17 +63,18 @@ public class CombatStanceState : AIState
 
     protected virtual void GetNewAttack(AICharacterManager aiCharacter) {
         _potentialAttacks = new();
-
-        foreach (AICharacterAttackAction potentialAttack in _potentialAttacks) {
+        foreach (AICharacterAttackAction potentialAttack in AICharacterAttacks) {
             // Check If Target Is Too Close
             if (potentialAttack.MinAttackDistance > aiCharacter.AICharacterCombatManager.DistanceFromTarget) { continue; }
+
             // Check If Target Is Too Far Away
             if (potentialAttack.MaxAttackDistance < aiCharacter.AICharacterCombatManager.DistanceFromTarget) { continue; }
 
             // Check If Target Is Outside Min FOV
-            if (potentialAttack.MinAttackAngle < aiCharacter.AICharacterCombatManager.ViewableAngle) { continue; }
+            if (potentialAttack.MinAttackAngle > aiCharacter.AICharacterCombatManager.ViewableAngle) { continue; }
+
             // Check If Target Is Outside Max FOV
-            if (potentialAttack.MaxAttackAngle > aiCharacter.AICharacterCombatManager.ViewableAngle) { continue; }
+            if (potentialAttack.MaxAttackAngle < aiCharacter.AICharacterCombatManager.ViewableAngle) { continue; }
 
             _potentialAttacks.Add(potentialAttack);
         }
@@ -91,9 +97,9 @@ public class CombatStanceState : AIState
                 _chosenAttack = attack;
                 _previousAttack = _chosenAttack;
                 _hasAttack = true;
+                return;
             }
         }
-
     }
 
     protected virtual bool RollForOutcomeChance(int outcomeChance) {
