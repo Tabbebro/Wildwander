@@ -8,6 +8,8 @@ public class CharacterAnimatorManager : MonoBehaviour
 
     int _horizontal;
     int _vertical;
+    [Header("Flags")]
+    public bool ApplyRootMotion = false;
 
     [Header("Damage Animations")]
     public string LastDamageAnimationPlayed;
@@ -127,12 +129,12 @@ public class CharacterAnimatorManager : MonoBehaviour
         bool canMove = false
         ) {
 
-        _character.ApplyRootMotion = applyRootMotion;
+        ApplyRootMotion = applyRootMotion;
         _character.Animator.CrossFade(targetAnimation, 0.2f);
 
         _character.IsPerformingAction = isPerformingAnimation;
-        _character.CanRotate = canRotate;
-        _character.CanMove = canMove;
+        _character.CharacterMovementManager.CanRotate = canRotate;
+        _character.CharacterMovementManager.CanMove = canMove;
 
         _character.CharacterNetworkManager.NotifyServerOfActionAnimationServerRpc(NetworkManager.Singleton.LocalClientId, targetAnimation, applyRootMotion);
     }
@@ -154,12 +156,12 @@ public class CharacterAnimatorManager : MonoBehaviour
         _character.CharacterCombatManager.CurrentAttackType = attackType;
         _character.CharacterCombatManager.LastAttackAnimationPerformed = targetAnimation;
 
-        _character.ApplyRootMotion = applyRootMotion;
+        ApplyRootMotion = applyRootMotion;
         _character.Animator.CrossFade(targetAnimation, 0.2f);
 
         _character.IsPerformingAction = isPerformingAnimation;
-        _character.CanRotate = canRotate;
-        _character.CanMove = canMove;
+        _character.CharacterMovementManager.CanRotate = canRotate;
+        _character.CharacterMovementManager.CanMove = canMove;
 
         _character.CharacterNetworkManager.NotifyServerOfAttackActionAnimationServerRpc(NetworkManager.Singleton.LocalClientId, targetAnimation, applyRootMotion);
     }

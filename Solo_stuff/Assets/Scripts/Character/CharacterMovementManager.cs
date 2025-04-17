@@ -15,6 +15,9 @@ public class CharacterMovementManager : MonoBehaviour
     protected float _inAirTimer = 0;
 
     [Header("Flags")]
+    public bool IsGrounded = true;
+    public bool CanRotate = true;
+    public bool CanMove = true;
     public bool isRolling = false;
 
     protected virtual void Awake() {
@@ -24,7 +27,7 @@ public class CharacterMovementManager : MonoBehaviour
     protected virtual void Update() {
         HandleGroundCheck();
 
-        if (_character.IsGrounded && _yVelocity.y < 0) {
+        if (_character.CharacterMovementManager.IsGrounded && _yVelocity.y < 0) {
             _inAirTimer = 0;
             _fallingVelocityHasBeenSet = false;
             _yVelocity.y = _groundedYVelocity;
@@ -46,7 +49,15 @@ public class CharacterMovementManager : MonoBehaviour
     }
 
     protected void HandleGroundCheck() {
-        _character.IsGrounded = Physics.CheckSphere(_character.transform.position, _groundCheckSphereRadius, _groundLayer);
+        _character.CharacterMovementManager.IsGrounded = Physics.CheckSphere(_character.transform.position, _groundCheckSphereRadius, _groundLayer);
+    }
+
+    public void EnableCanRotate() {
+        CanRotate = true;
+    }
+
+    public void DisableCanRotate() {
+        CanRotate = false;
     }
 
     protected void OnDrawGizmosSelected() {

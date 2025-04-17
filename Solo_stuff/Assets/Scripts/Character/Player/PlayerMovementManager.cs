@@ -75,7 +75,7 @@ public class PlayerMovementManager : CharacterMovementManager
 
     void HandleGroundedMovement() {
         // Flag check
-        if (!_player.CanMove) { return; }
+        if (!_player.CharacterMovementManager.CanMove) { return; }
 
         GetMovementValues();
 
@@ -109,7 +109,7 @@ public class PlayerMovementManager : CharacterMovementManager
     }
 
     void HandleFreeFallMovement() {
-        if (_player.IsGrounded) { return; }
+        if (_player.CharacterMovementManager.IsGrounded) { return; }
 
         Vector3 freeFallDirection;
 
@@ -123,7 +123,7 @@ public class PlayerMovementManager : CharacterMovementManager
     void HandleRotation() {
         // Flag check
         if (_player.IsDead.Value) { return; }
-        if (!_player.CanRotate) { return; }
+        if (!_player.CharacterMovementManager.CanRotate) { return; }
 
         if (_player.PlayerNetworkManager.IsLockedOn.Value ||_player.PlayerMovementManager.isRolling) {
             // Check For Sprinting & Allow Free Movement
@@ -238,7 +238,7 @@ public class PlayerMovementManager : CharacterMovementManager
         if (_player.IsPerformingAction || _player.PlayerNetworkManager.CurrentStamina.Value <= 0) { return; }
 
         // Check if jumping or not grounded
-        if (_player.CharacterNetworkManager.IsJumping.Value || !_player.IsGrounded) { return; }
+        if (_player.CharacterNetworkManager.IsJumping.Value || !_player.CharacterMovementManager.IsGrounded) { return; }
 
         _player.PlayerAnimatorManager.PlayTargetActionAnimation("Main_Jump_01", false);
 

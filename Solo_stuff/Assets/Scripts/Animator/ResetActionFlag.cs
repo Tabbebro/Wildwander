@@ -12,9 +12,9 @@ public class ResetActionFlag : StateMachineBehaviour
 
         // Reset Flags
         _character.IsPerformingAction = false;
-        _character.CanMove = true;
-        _character.CanRotate = true;
-        _character.ApplyRootMotion = false;
+        _character.CharacterMovementManager.CanMove = true;
+        _character.CharacterMovementManager.CanRotate = true;
+        _character.CharacterAnimatorManager.ApplyRootMotion = false;
         _character.CharacterMovementManager.isRolling = false;
         _character.CharacterAnimatorManager.DisableCanDoCombo();
 

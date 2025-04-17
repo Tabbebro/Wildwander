@@ -110,7 +110,7 @@ public class AICharacterCombatManager : CharacterCombatManager
     public void RotateTowardsTarget(AICharacterManager aiCharacter) {
         if (CurrentTarget == null) { return; }
 
-        if (!aiCharacter.CanRotate) { return; }
+        if (!aiCharacter.CharacterMovementManager.CanRotate) { return; }
 
         if (!aiCharacter.IsPerformingAction) { return; }
 

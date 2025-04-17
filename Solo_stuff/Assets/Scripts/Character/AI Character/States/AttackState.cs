@@ -26,6 +26,8 @@ public class AttackState : AIState
             return SwitchState(aiCharacter, aiCharacter.Idle);
         }
 
+        aiCharacter.AICharacterCombatManager.RotateTowardsTarget(aiCharacter);
+
         aiCharacter.CharacterAnimatorManager.UpdateAnimatorMovementParameters(0, 0, false);
 
         // Perform Combo
@@ -36,12 +38,12 @@ public class AttackState : AIState
             }
         }
 
+        if (aiCharacter.IsPerformingAction) {
+            return this;
+        }
+
         if (!_hasPerformedAttack) {
             if (aiCharacter.AICharacterCombatManager.ActionRecoveryTimer > 0) {
-                return this;
-            }
-
-            if (aiCharacter.IsPerformingAction) {
                 return this;
             }
 

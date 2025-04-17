@@ -81,7 +81,7 @@ public class CharacterNetworkManager : NetworkBehaviour {
     }
 
     private void PerformActionAnimationFromServer(string animationID, bool applyRootMotion) {
-        _character.ApplyRootMotion = applyRootMotion;
+        _character.CharacterAnimatorManager.ApplyRootMotion = applyRootMotion;
         _character.Animator.CrossFade(animationID, 0.2f);
     }
 
@@ -102,7 +102,7 @@ public class CharacterNetworkManager : NetworkBehaviour {
     }
 
     private void PerformAttackActionAnimationFromServer(string animationID, bool applyRootMotion) {
-        _character.ApplyRootMotion = applyRootMotion;
+        _character.CharacterAnimatorManager.ApplyRootMotion = applyRootMotion;
         _character.Animator.CrossFade(animationID, 0.2f);
     }
     #endregion

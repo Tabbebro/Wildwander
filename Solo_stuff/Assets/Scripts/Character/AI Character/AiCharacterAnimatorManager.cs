@@ -11,7 +11,7 @@ public class AiCharacterAnimatorManager : CharacterAnimatorManager
     private void OnAnimatorMove() {
         // Host
         if (_aiCharacter.IsOwner) {
-            if (!_aiCharacter.IsGrounded) { return; }
+            if (!_aiCharacter.CharacterMovementManager.IsGrounded) { return; }
 
             Vector3 velocity = _aiCharacter.Animator.deltaPosition;
 
@@ -20,7 +20,7 @@ public class AiCharacterAnimatorManager : CharacterAnimatorManager
         }
         // Client
         else {
-            if (!_aiCharacter.IsGrounded) { return; }
+            if (!_aiCharacter.CharacterMovementManager.IsGrounded) { return; }
 
             Vector3 velocity = _aiCharacter.Animator.deltaPosition;
 

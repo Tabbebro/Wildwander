@@ -10,7 +10,7 @@ public class PlayerAnimatorManager : CharacterAnimatorManager
         _player = GetComponent<PlayerManager>();
     }
     private void OnAnimatorMove() {
-        if (_player.ApplyRootMotion) {
+        if (ApplyRootMotion) {
             Vector3 velocity = _player.Animator.deltaPosition;
             if (_player.Animator.GetCurrentAnimatorStateInfo(1).IsName("Roll_Forward_01")) {
                 velocity *= 1.25f;

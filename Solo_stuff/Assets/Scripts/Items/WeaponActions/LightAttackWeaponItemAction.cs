@@ -14,7 +14,7 @@ public class LightAttackWeaponItemAction : WeaponItemAction
 
         if (playerPerformingAction.PlayerNetworkManager.CurrentStamina.Value <= 0) { return; }
 
-        if (!playerPerformingAction.IsGrounded) { return; }
+        if (!playerPerformingAction.CharacterMovementManager.IsGrounded) { return; }
 
         PerformLightAttack(playerPerformingAction, weaponPerformingAction);
     }
