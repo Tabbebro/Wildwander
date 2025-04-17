@@ -93,6 +93,7 @@ public class TakeDamageEffect : InstantCharacterEffect
     void PlayDamageSFX(CharacterManager character) {
         AudioClip physicalDamageSFX = WorldSoundFXManager.Instance.ChooseRandomSFXFromArray(WorldSoundFXManager.Instance.PhysicalDamageSFX);
         character.CharacterSoundFXManager.PlaySoundFX(physicalDamageSFX);
+        character.CharacterSoundFXManager.PlayDamageGrunt();
         // TODO: Add Elemental SFX
     }
 

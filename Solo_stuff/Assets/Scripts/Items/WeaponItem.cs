@@ -41,4 +41,6 @@ public class WeaponItem : Item
     public WeaponItemAction OhLightAction; // One Handed Light Action
     public WeaponItemAction OhHeavyAction; // One Handed Heavy Action
 
+    [Header("Sound FX")]
+    public AudioClip[] SwooshSFXs;
 }

@@ -4,7 +4,11 @@ using UnityEngine;
 public class CharacterSoundFXManager : MonoBehaviour
 {
     private AudioSource _audioSource;
+    [Header("Damage Grunts")]
+    [SerializeField] protected AudioClip[] _damageGrunts;
 
+    [Header("Attack Grunts")]
+    [SerializeField] protected AudioClip[] _attackGrunts;
     protected virtual void Awake() {
         _audioSource = GetComponent<AudioSource>();
     }
@@ -20,8 +24,13 @@ public class CharacterSoundFXManager : MonoBehaviour
 
     public void PlayRollSoundFX() {
         _audioSource.PlayOneShot(WorldSoundFXManager.Instance.RollSFX);
-        print("Audio Played");
     }
 
+    public virtual void PlayDamageGrunt() {
+        PlaySoundFX(WorldSoundFXManager.Instance.ChooseRandomSFXFromArray(_damageGrunts));
+    }
 
+    public virtual void PlayAttackGrunt() {
+        PlaySoundFX(WorldSoundFXManager.Instance.ChooseRandomSFXFromArray(_attackGrunts));
+    }
 }

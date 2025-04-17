@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class AICharacterCombatManager : CharacterCombatManager
 {
+
+    protected AICharacterManager _aiCharacter;
+
     [Header("Action Recovery")]
     public float ActionRecoveryTimer = 0;
 
@@ -17,6 +20,12 @@ public class AICharacterCombatManager : CharacterCombatManager
 
     [Header("Attack Rotation")]
     public float AttackRotationSpeed = 25;
+
+    protected override void Awake() {
+        base.Awake();
+
+        _aiCharacter = GetComponent<AICharacterManager>();
+    }
 
     public void FindTargetLineOfSight(AICharacterManager aiCharacter) {
         if (CurrentTarget != null) {
