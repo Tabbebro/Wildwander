@@ -1513,6 +1513,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
+  IsActive:
+    m_InternalValue: 1
   NetworkPosition:
     m_InternalValue: {x: 0, y: 0, z: 0}
   NetworkRotation:
@@ -1837,6 +1839,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 57faa6ec42fbdc7438cf4ae323828d95, type: 3}
   - {fileID: 8300000, guid: 88e76a8c26892b441926dde7d376ff82, type: 3}
   - {fileID: 8300000, guid: 930d47934157fc241a9bf580745d7257, type: 3}
+  _attackGrunts: []
 --- !u!95 &8977560169917997248
 Animator:
   serializedVersion: 7

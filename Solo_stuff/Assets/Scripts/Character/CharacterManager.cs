@@ -79,13 +79,18 @@ public class CharacterManager : NetworkBehaviour
         base.OnNetworkSpawn();
 
         Animator.SetBool("IsMoving", CharacterNetworkManager.IsMoving.Value);
+        CharacterNetworkManager.OnIsActiveChanged(false, CharacterNetworkManager.IsActive.Value);
+
+
         CharacterNetworkManager.IsMoving.OnValueChanged += CharacterNetworkManager.OnIsMovingChanged;
+        CharacterNetworkManager.IsActive.OnValueChanged += CharacterNetworkManager.OnIsActiveChanged;
     }
 
     public override void OnNetworkDespawn() {
         base.OnNetworkDespawn();
 
         CharacterNetworkManager.IsMoving.OnValueChanged -= CharacterNetworkManager.OnIsMovingChanged;
+        CharacterNetworkManager.IsActive.OnValueChanged -= CharacterNetworkManager.OnIsActiveChanged;
     }
 
     public virtual IEnumerator ProcessDeathEvent(bool manuallySelectDeathAnimation = false) {

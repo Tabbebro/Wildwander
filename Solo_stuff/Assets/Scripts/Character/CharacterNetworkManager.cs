@@ -3,6 +3,10 @@ using Unity.Netcode;
 
 public class CharacterNetworkManager : NetworkBehaviour {
     CharacterManager _character;
+
+    [Header("Is Active")]
+    public NetworkVariable<bool> IsActive = new NetworkVariable<bool>(true, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+
     [Header("Position")]
     public NetworkVariable<Vector3> NetworkPosition = new NetworkVariable<Vector3>(Vector3.zero, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     public NetworkVariable<Quaternion> NetworkRotation = new NetworkVariable<Quaternion>(Quaternion.identity, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
@@ -62,6 +66,10 @@ public class CharacterNetworkManager : NetworkBehaviour {
 
     public void OnIsMovingChanged(bool oldValue, bool newValue) {
         _character.Animator.SetBool("IsMoving", IsMoving.Value);
+    }
+
+    public virtual void OnIsActiveChanged(bool oldStatus, bool newStatus) {
+        gameObject.SetActive(IsActive.Value);
     }
 
     #region Animation Rpc

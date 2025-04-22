@@ -2687,7 +2687,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 329012499
+  GlobalObjectIdHash: 842409734
   InScenePlacedSourceGlobalObjectIdHash: 842409734
   DeferredDespawnTick: 0
   Ownership: 1
@@ -2759,7 +2759,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7022929451176602196}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 341c4cbd45cb3654f9b322aeeabf05ed, type: 3}
+  m_Script: {fileID: 11500000, guid: 0318964aa507cc0469b45c838bed98cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
@@ -2773,17 +2773,20 @@ MonoBehaviour:
   CharacterAnimatorManager: {fileID: 0}
   CharacterCombatManager: {fileID: 0}
   CharacterSoundFXManager: {fileID: 0}
-  CharacterGroup: 3
+  CharacterGroup: 0
   IsPerformingAction: 0
   AICharacterNetworkManager: {fileID: 0}
   AICharacterMovementManager: {fileID: 0}
   AICharacterCombatManager: {fileID: 0}
   NavmeshAgent: {fileID: 0}
-  _currentState: {fileID: 11400000, guid: ac5cd43ff82832448b5e4437d3cf8d8d, type: 2}
+  _currentState: {fileID: 0}
   Idle: {fileID: 11400000, guid: ac5cd43ff82832448b5e4437d3cf8d8d, type: 2}
   PursueTarget: {fileID: 11400000, guid: 18a9df56749f7384b8ba4a3597ad1044, type: 2}
   CombatStance: {fileID: 11400000, guid: bc7cf8c19205bc141bfd8d8141d05f18, type: 2}
   Attack: {fileID: 11400000, guid: 818c83c0ba9736349b0fa43341561fd3, type: 2}
+  BossID: 0
+  _hasBeenDefeated: 0
+  _defeateBossDebug: 0
 --- !u!114 &5643248130078563218
 MonoBehaviour:
   m_ObjectHideFlags: 0
