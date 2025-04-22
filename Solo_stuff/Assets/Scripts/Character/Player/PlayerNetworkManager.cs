@@ -35,7 +35,6 @@ public class PlayerNetworkManager : CharacterNetworkManager
     }
     #region Stats
     public void SetNewMaxHealthValue(int oldVitality, int newVitality) {
-        print("Vitality Changed from: " + oldVitality + " To: " + newVitality);
         MaxHealth.Value = _player.PlayerStatsManager.CalculateHealthBasedOnLevel(newVitality);
         PlayerUIManager.Instance.PlayerUIHudManager.SetMaxHealthValue(MaxHealth.Value);
         CurrentHealth.Value = MaxHealth.Value;

@@ -2713,6 +2713,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
+  IsActive:
+    m_InternalValue: 1
   NetworkPosition:
     m_InternalValue: {x: 0, y: 0, z: 0}
   NetworkRotation:
@@ -2786,7 +2788,6 @@ MonoBehaviour:
   Attack: {fileID: 11400000, guid: 818c83c0ba9736349b0fa43341561fd3, type: 2}
   BossID: 0
   _hasBeenDefeated: 0
-  _defeateBossDebug: 0
 --- !u!114 &5643248130078563218
 MonoBehaviour:
   m_ObjectHideFlags: 0
