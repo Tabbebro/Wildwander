@@ -74,38 +74,30 @@ public class AICharacterCombatManager : CharacterCombatManager
 
         // 45 Angle Pivot
         if (ViewableAngle >= 20 && ViewableAngle <= 60) {
-            print("Turning 45 Degrees");
             aiCharacter.CharacterAnimatorManager.PlayTargetActionAnimation("Turn_R45", true);
         }
         else if (ViewableAngle <= -20 && ViewableAngle >= -60) {
-            print("Turning 45 Degrees");
             aiCharacter.CharacterAnimatorManager.PlayTargetActionAnimation("Turn_L45", true);
         }
         // 90 Angle Pivot
         else if (ViewableAngle >= 61 && ViewableAngle <= 110) {
-            print("Turning 90 Degrees");
             aiCharacter.CharacterAnimatorManager.PlayTargetActionAnimation("Turn_R90", true);
         }
         else if (ViewableAngle <= -61 && ViewableAngle >= -110) {
-            print("Turning 90 Degrees");
             aiCharacter.CharacterAnimatorManager.PlayTargetActionAnimation("Turn_L90", true);
         }
         // 135 Angle Pivot
         else if (ViewableAngle >= 110 && ViewableAngle <= 145) {
-            print("Turning 135 Degrees");
             aiCharacter.CharacterAnimatorManager.PlayTargetActionAnimation("Turn_L135", true);
         }
         else if (ViewableAngle <= -110 && ViewableAngle >= -145) {
-            print("Turning 135 Degrees");
             aiCharacter.CharacterAnimatorManager.PlayTargetActionAnimation("Turn_L135", true);
         }
         // 180 Angle Pivot
         else if (ViewableAngle >= 146 && ViewableAngle <= 180) {
-            print("Turning 180 Degrees");
             aiCharacter.CharacterAnimatorManager.PlayTargetActionAnimation("Turn_L180", true);
         }
         else if (ViewableAngle <= -146 && ViewableAngle >= -180) {
-            print("Turning 180 Degrees");
             aiCharacter.CharacterAnimatorManager.PlayTargetActionAnimation("Turn_L180", true);
         }
     }

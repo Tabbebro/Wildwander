@@ -85,9 +85,6 @@ public class MeleeWeaponDamageCollider : DamageCollider
             default:
                 break;
         }
-        print("Final Damage Given: " + damageEffect.PhysicalDamage);
-        // Process The Damage Effect
-        // damageTarget.CharacterEffectsManager.ProcessInstantEffect(damageEffect);
 
         if (CharacterCausingDamage.IsOwner) {
             damageTarget.CharacterNetworkManager.NotifyServerOfCharacterDamageServerRpc(

@@ -29,10 +29,6 @@ public class AIMeleeWeaponDamageCollider : DamageCollider
         damageEffect.ContactPoint = _contactPoint;
         damageEffect.AngleHitFrom = Vector3.SignedAngle(AICharacter.transform.forward, damageTarget.transform.forward, Vector3.up);
 
-        
-
-        print("Final Damage Given: " + damageEffect.PhysicalDamage);
-
         if (AICharacter.IsOwner) {
             damageTarget.CharacterNetworkManager.NotifyServerOfCharacterDamageServerRpc(
                 damageTarget.NetworkObjectId,

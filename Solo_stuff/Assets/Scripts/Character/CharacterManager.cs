@@ -78,6 +78,7 @@ public class CharacterManager : NetworkBehaviour
     public override void OnNetworkSpawn() {
         base.OnNetworkSpawn();
 
+        Animator.SetBool("IsMoving", CharacterNetworkManager.IsMoving.Value);
         CharacterNetworkManager.IsMoving.OnValueChanged += CharacterNetworkManager.OnIsMovingChanged;
     }
 

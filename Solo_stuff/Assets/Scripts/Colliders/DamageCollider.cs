@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class DamageCollider : MonoBehaviour
 {
-    // TODO: DELETE
-    [SerializeField] bool _debugRearmTrigger = false;
-
-
     [Header("Collider")]
     [SerializeField] protected Collider _damageCollider;
 
@@ -31,8 +27,6 @@ public class DamageCollider : MonoBehaviour
 
     protected virtual void OnTriggerEnter(Collider other) {
         CharacterManager damageTarget = other.GetComponentInParent<CharacterManager>();
-        print("Part Hit: " + other.name);
-
 
         if(damageTarget == null) { return; }
 
@@ -78,12 +72,4 @@ public class DamageCollider : MonoBehaviour
         _charactersDamaged.Clear();
     }
 
-    // TODO: Delete
-    private void Update() {
-        if (_debugRearmTrigger) {
-            _debugRearmTrigger = false;
-
-            _charactersDamaged.Clear();
-        }
-    }
 }
