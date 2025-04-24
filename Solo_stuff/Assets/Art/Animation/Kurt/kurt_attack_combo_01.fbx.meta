@@ -62,6 +62,13 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
+      - time: 0.0068649882
+        functionName: SetStompAttackDamage
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       - time: 0.16768701
         functionName: EnableCanRotate
         data: 
@@ -69,15 +76,15 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.35536754
-        functionName: DisableCanRotate
+      - time: 0.343366
+        functionName: OpenStompDamageCollider
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.36708862
-        functionName: ActivateKurtStomp
+      - time: 0.35536754
+        functionName: DisableCanRotate
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
@@ -106,6 +113,13 @@ ModelImporter:
         messageOptions: 0
       - time: 0.6398473
         functionName: CloseClubDamageCollider
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.37528604
+        functionName: CloseStompDamageCollider
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0

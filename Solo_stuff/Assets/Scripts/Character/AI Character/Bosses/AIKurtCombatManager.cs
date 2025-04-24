@@ -5,6 +5,7 @@ public class AIKurtCombatManager : AICharacterCombatManager
 {
     [Header("Damage Colliders")]
     [SerializeField] KurtWeaponDamageCollider _WeaponDamageCollider;
+    [SerializeField] KurtWeaponDamageCollider _StompDamageCollider;
     [SerializeField] Transform _stompFoot;
     [SerializeField] float _stompRadius = 1.5f;
 
@@ -27,6 +28,10 @@ public class AIKurtCombatManager : AICharacterCombatManager
         _WeaponDamageCollider.PhysicalDamage = _baseDamage * _attack03DamageModifier;
     }
 
+    public void SetStompAttackDamage() {
+        _StompDamageCollider.PhysicalDamage = _stompDamage;
+    }
+
     public void OpenClubDamageCollider() {
         _aiCharacter.CharacterSoundFXManager.PlayAttackGrunt();
         _WeaponDamageCollider.EnableDamageCollider();
@@ -34,6 +39,15 @@ public class AIKurtCombatManager : AICharacterCombatManager
 
     public void CloseClubDamageCollider() {
         _WeaponDamageCollider.DisableDamageCollider();
+    }
+
+    public void OpenStompDamageCollider() {
+        _aiCharacter.CharacterSoundFXManager.PlayAttackGrunt();
+        _StompDamageCollider.EnableDamageCollider();
+    }
+
+    public void CloseStompDamageCollider() {
+        _StompDamageCollider.DisableDamageCollider();
     }
 
     public void ActivateKurtStomp() {

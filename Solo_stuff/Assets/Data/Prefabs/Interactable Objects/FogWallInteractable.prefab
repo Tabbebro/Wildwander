@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6889829557456426799}
   - component: {fileID: 5314317261862235643}
   - component: {fileID: 1878873947180282276}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ground Fog
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4845,7 +4845,7 @@ GameObject:
   - component: {fileID: 7125200709641895193}
   - component: {fileID: 4193106888616922555}
   - component: {fileID: 2715181620141365973}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Fog Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4954,7 +4954,7 @@ GameObject:
   - component: {fileID: 4246800741506118090}
   - component: {fileID: 2467271563636805532}
   - component: {fileID: 9007387957676891604}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FogWallInteractable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5030,7 +5030,7 @@ GameObject:
   - component: {fileID: 7525593730817264841}
   - component: {fileID: 2750268824063441851}
   - component: {fileID: 7856214784615947157}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Big Fog
   m_TagString: Untagged
   m_Icon: {fileID: 0}
