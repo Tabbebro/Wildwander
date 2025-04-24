@@ -17,10 +17,12 @@ public class PursueTargetState : AIState
             aiCharacter.NavmeshAgent.enabled = true;
         }
 
-        // If Target Outside FOV Pivot To Face Target
-        if (aiCharacter.AICharacterCombatManager.ViewableAngle < aiCharacter.AICharacterCombatManager.MinFOV ||
-            aiCharacter.AICharacterCombatManager.ViewableAngle > aiCharacter.AICharacterCombatManager.MaxFOV) {
-            aiCharacter.AICharacterCombatManager.PivotTowardsTarget(aiCharacter);
+        if (aiCharacter.AICharacterCombatManager.EnablePivot) {            
+            // If Target Outside FOV Pivot To Face Target
+            if (aiCharacter.AICharacterCombatManager.ViewableAngle < aiCharacter.AICharacterCombatManager.MinFOV ||
+                aiCharacter.AICharacterCombatManager.ViewableAngle > aiCharacter.AICharacterCombatManager.MaxFOV) {
+                aiCharacter.AICharacterCombatManager.PivotTowardsTarget(aiCharacter);
+            }
         }
 
         aiCharacter.AICharacterMovementManager.RotateTowardsAgent(aiCharacter);

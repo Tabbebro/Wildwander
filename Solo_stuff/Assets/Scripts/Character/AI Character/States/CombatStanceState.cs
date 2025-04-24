@@ -9,9 +9,9 @@ public class CombatStanceState : AIState
 
     [Header("Attacks")]
     public List<AICharacterAttackAction> AICharacterAttacks;
-    protected List<AICharacterAttackAction> _potentialAttacks;
-    AICharacterAttackAction _chosenAttack;
-    AICharacterAttackAction _previousAttack;
+    [SerializeField] protected List<AICharacterAttackAction> _potentialAttacks;
+    [SerializeField] AICharacterAttackAction _chosenAttack;
+    [SerializeField] AICharacterAttackAction _previousAttack;
     protected bool _hasAttack = false;
 
     [Header("Combo")]
@@ -26,12 +26,15 @@ public class CombatStanceState : AIState
         if (aiCharacter.IsPerformingAction) { return this; }
         if (!aiCharacter.NavmeshAgent.enabled) { aiCharacter.NavmeshAgent.enabled = true; }
 
-        // Rotate Towards Target If Outside FOV
-        if (!aiCharacter.AICharacterNetworkManager.IsMoving.Value) {
-            if (aiCharacter.AICharacterCombatManager.ViewableAngle < -30 || aiCharacter.AICharacterCombatManager.ViewableAngle > 30) {
-                aiCharacter.AICharacterCombatManager.PivotTowardsTarget(aiCharacter);
+        if (aiCharacter.AICharacterCombatManager.EnablePivot) {            
+            // Rotate Towards Target If Outside FOV
+            if (!aiCharacter.AICharacterNetworkManager.IsMoving.Value) {
+                if (aiCharacter.AICharacterCombatManager.ViewableAngle < -30 || aiCharacter.AICharacterCombatManager.ViewableAngle > 30) {
+                    aiCharacter.AICharacterCombatManager.PivotTowardsTarget(aiCharacter);
+                }
             }
         }
+
 
         aiCharacter.AICharacterCombatManager.RotateTowardsAgent(aiCharacter);
 

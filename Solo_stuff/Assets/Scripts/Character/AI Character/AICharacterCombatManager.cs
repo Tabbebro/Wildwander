@@ -8,6 +8,9 @@ public class AICharacterCombatManager : CharacterCombatManager
     [Header("Action Recovery")]
     public float ActionRecoveryTimer = 0;
 
+    [Header("Pivot")]
+    public bool EnablePivot = true;
+
     [Header("Target Information")]
     public float DistanceFromTarget;
     public float ViewableAngle;
@@ -61,14 +64,17 @@ public class AICharacterCombatManager : CharacterCombatManager
                         TargetsDirection = targetCharacter.transform.position - transform.position;
                         ViewableAngle = WorldUtilityManager.Instance.GetAngleOfTarget(transform, targetDirection);
                         aiCharacter.CharacterCombatManager.SetTarget(targetCharacter);
-                        PivotTowardsTarget(aiCharacter);
+
+                        if (EnablePivot) {
+                            PivotTowardsTarget(aiCharacter);    
+                        }
                     }
                 }
             }
         }
     }
 
-    public void PivotTowardsTarget(AICharacterManager aiCharacter) {
+    public virtual void PivotTowardsTarget(AICharacterManager aiCharacter) {
         // Play Correct Pivot Animation
         if (aiCharacter.IsPerformingAction) { return; }
 

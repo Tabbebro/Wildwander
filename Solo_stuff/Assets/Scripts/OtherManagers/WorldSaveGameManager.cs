@@ -154,8 +154,8 @@ public class WorldSaveGameManager : MonoBehaviour
 
     void NewGame() {
         // TODO: Remove Later
-        Player.PlayerNetworkManager.Vitality.Value = 10;
-        Player.PlayerNetworkManager.Endurance.Value = 10;
+        Player.PlayerNetworkManager.Vitality.Value = 50;
+        Player.PlayerNetworkManager.Endurance.Value = 50;
 
         SaveGame();
 

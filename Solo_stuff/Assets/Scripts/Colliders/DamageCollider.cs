@@ -36,8 +36,6 @@ public class DamageCollider : MonoBehaviour
 
         // TODO: Check If Blocking
 
-        // TODO: Check I Frames
-
         DamageTarget(damageTarget);
     }
 

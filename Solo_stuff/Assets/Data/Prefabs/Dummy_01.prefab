@@ -86,6 +86,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
+  IsActive:
+    m_InternalValue: 1
   NetworkPosition:
     m_InternalValue: {x: 0, y: 0, z: 0}
   NetworkRotation:
@@ -102,6 +104,8 @@ MonoBehaviour:
   MoveAmount:
     m_InternalValue: 0
   CurrentTargetNetworkObjectID:
+    m_InternalValue: 0
+  IsInvulnerable:
     m_InternalValue: 0
   IsLockedOn:
     m_InternalValue: 0
@@ -3326,7 +3330,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1625efa19e294e74c9b7bdeb80fd73db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _debugRearmTrigger: 0
   _damageCollider: {fileID: 3848570696161804256}
   PhysicalDamage: 0
   MagicDamage: 0

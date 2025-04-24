@@ -40,6 +40,9 @@ public class TakeDamageEffect : InstantCharacterEffect
 
 
     public override void ProcessEffect(CharacterManager character) {
+
+        if (character.CharacterNetworkManager.IsInvulnerable.Value) { return; }
+
         base.ProcessEffect(character);
 
         // If Character Is Dead Return

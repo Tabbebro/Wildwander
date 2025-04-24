@@ -1532,6 +1532,8 @@ MonoBehaviour:
     m_InternalValue: 0
   CurrentTargetNetworkObjectID:
     m_InternalValue: 0
+  IsInvulnerable:
+    m_InternalValue: 0
   IsLockedOn:
     m_InternalValue: 0
   IsSprinting:
