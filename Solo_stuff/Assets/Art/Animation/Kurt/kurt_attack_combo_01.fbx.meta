@@ -62,13 +62,6 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.0068649882
-        functionName: SetStompAttackDamage
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
       - time: 0.16768701
         functionName: EnableCanRotate
         data: 
@@ -77,7 +70,7 @@ ModelImporter:
         intParameter: 0
         messageOptions: 0
       - time: 0.343366
-        functionName: OpenStompDamageCollider
+        functionName: ActivateStomp
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
@@ -85,6 +78,13 @@ ModelImporter:
         messageOptions: 0
       - time: 0.35536754
         functionName: DisableCanRotate
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.3569794
+        functionName: PlayFootImpact
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
@@ -111,20 +111,6 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.6398473
-        functionName: CloseClubDamageCollider
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
-      - time: 0.37528604
-        functionName: CloseStompDamageCollider
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
       - time: 0.62929064
         functionName: PlayHammerImpact
         data: 
@@ -132,8 +118,8 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.3569794
-        functionName: PlayFootImpact
+      - time: 0.6398473
+        functionName: CloseClubDamageCollider
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0

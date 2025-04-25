@@ -7,16 +7,16 @@ public class AIKurtCombatManager : AICharacterCombatManager
 
     [Header("Damage Colliders")]
     [SerializeField] KurtWeaponDamageCollider _WeaponDamageCollider;
-    [SerializeField] KurtWeaponDamageCollider _StompDamageCollider;
+    [SerializeField] KurtStompCollider _StompDamageCollider;
     [SerializeField] Transform _stompFoot;
-    [SerializeField] float _stompRadius = 1.5f;
+    public float StompRadius = 1.5f;
 
     [Header("Damage")]
     [SerializeField] int _baseDamage = 25;
     [SerializeField] float _attack01DamageModifier = 1.0f;
     [SerializeField] float _attack02DamageModifier = 1.4f;
     [SerializeField] float _attack03DamageModifier = 1.6f;
-    [SerializeField] float _stompDamage = 25f;
+    public float StompDamage = 25f;
 
     [Header("VFX")]
     public GameObject ImpactVFX;
@@ -42,13 +42,8 @@ public class AIKurtCombatManager : AICharacterCombatManager
         _WeaponDamageCollider.PhysicalDamage = _baseDamage * _attack03DamageModifier;
     }
 
-    public void SetStompAttackDamage() {
-        _aiCharacter.CharacterSFXManager.PlayAttackGruntSFX();
-        _StompDamageCollider.PhysicalDamage = _stompDamage;
-    }
-
     public void OpenClubDamageCollider() {
-        _aiCharacter.CharacterSFXManager.PlayAttackGruntSFX();
+        _kurtManager.CharacterSFXManager.PlaySoundFX(WorldSFXManager.Instance.ChooseRandomSFXFromArray(_kurtManager.KurtSoundManager.HammerWooshes));
         _WeaponDamageCollider.EnableDamageCollider();
     }
 
@@ -56,19 +51,8 @@ public class AIKurtCombatManager : AICharacterCombatManager
         _WeaponDamageCollider.DisableDamageCollider();
     }
 
-    public void OpenStompDamageCollider() {
-        GameObject stompVFX = Instantiate(ImpactVFX, _StompDamageCollider.transform);
-        // TODO: Do Not Hardcode
-        stompVFX.transform.localPosition = new Vector3(0, -2.6f, 0);
-        stompVFX.transform.localRotation = Quaternion.Euler(new Vector3(90, 0, 0));
-        stompVFX.transform.localScale = new Vector3(30, 30, 30);
-
-        _StompDamageCollider.EnableDamageCollider();
-        _kurtManager.CharacterSFXManager.PlaySoundFX(WorldSFXManager.Instance.ChooseRandomSFXFromArray(_kurtManager.KurtSoundManager.HammerWooshes));
-    }
-
-    public void CloseStompDamageCollider() {
-        _StompDamageCollider.DisableDamageCollider();
+    public void ActivateStomp() {
+        _StompDamageCollider.StompAttack();
     }
 
     public override void PivotTowardsTarget(AICharacterManager aiCharacter) {
