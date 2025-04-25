@@ -15,10 +15,10 @@ public class UIButtonAudio : MonoBehaviour, ISelectHandler
     }
 
     public void OnSelect(BaseEventData eventData) {
-        WorldSoundFXManager.Instance.PlayAudio(WorldSoundFXManager.Instance.SelectButton);
+        WorldSFXManager.Instance.PlayAudio(WorldSFXManager.Instance.SelectButton);
     }
 
     void ButtonOnClick() {
-        WorldSoundFXManager.Instance.PlayAudio(WorldSoundFXManager.Instance.ClickButton);
+        WorldSFXManager.Instance.PlayAudio(WorldSFXManager.Instance.ClickButton);
     }
 }

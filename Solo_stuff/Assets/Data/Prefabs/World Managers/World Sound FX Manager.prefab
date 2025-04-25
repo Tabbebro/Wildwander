@@ -42,16 +42,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 2918241092212903030}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6f84e6f427b7574d87be58ae5a9eaa3, type: 3}
+  m_Script: {fileID: 11500000, guid: 75d0c153c0cda2942b2217b89e0c70d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Source: {fileID: 3847344628250527443}
   PhysicalDamageSFX:
-  - {fileID: 8300000, guid: 1af14dee5d8f6f94caf961f00608c318, type: 3}
-  - {fileID: 8300000, guid: 8b2e05117d9870e4c8a0d01430a16a7a, type: 3}
-  - {fileID: 8300000, guid: a3a5b5d1572e58a48b80cedd3f9c094f, type: 3}
-  - {fileID: 8300000, guid: 95a1165a6bde9a740830eda0ac475f98, type: 3}
-  - {fileID: 8300000, guid: a9c15f330ee326548a7f30509d67de32, type: 3}
+  - {fileID: 8300000, guid: 6723382ff024f7e4781df35734b5c94a, type: 3}
+  - {fileID: 8300000, guid: 3ad1a647bdb7a87468ba47471e0a2d6b, type: 3}
+  - {fileID: 8300000, guid: b38e61135880b5e43b2cc597be495c6e, type: 3}
+  - {fileID: 8300000, guid: 873888f035e779648b2bbdbf3a6810ab, type: 3}
+  - {fileID: 8300000, guid: ee058b69511014d4cb34e6d240edb4c5, type: 3}
   RollSFX: {fileID: 8300000, guid: 0fea683f9b45b564d8fbbc9b436c3f4b, type: 3}
   SelectButton: {fileID: 8300000, guid: b76def5412d258846b40394b47069d34, type: 3}
   ClickButton: {fileID: 8300000, guid: 79eb3e1e1834dcc48b1934a44bfaba82, type: 3}

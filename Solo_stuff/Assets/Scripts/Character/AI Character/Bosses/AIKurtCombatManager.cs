@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class AIKurtCombatManager : AICharacterCombatManager
 {
+    AIKurtCharacterManager _kurtManager;
+
     [Header("Damage Colliders")]
     [SerializeField] KurtWeaponDamageCollider _WeaponDamageCollider;
     [SerializeField] KurtWeaponDamageCollider _StompDamageCollider;
@@ -16,24 +18,37 @@ public class AIKurtCombatManager : AICharacterCombatManager
     [SerializeField] float _attack03DamageModifier = 1.6f;
     [SerializeField] float _stompDamage = 25f;
 
+    [Header("VFX")]
+    public GameObject ImpactVFX;
+
+    protected override void Awake() {
+        base.Awake();
+
+        _kurtManager = GetComponent<AIKurtCharacterManager>();
+    }
+
     public void SetAttack01Damage() {
+        _aiCharacter.CharacterSFXManager.PlayAttackGruntSFX();
         _WeaponDamageCollider.PhysicalDamage = _baseDamage * _attack01DamageModifier;
     }
 
     public void SetAttack02Damage() {
+        _aiCharacter.CharacterSFXManager.PlayAttackGruntSFX();
         _WeaponDamageCollider.PhysicalDamage = _baseDamage * _attack02DamageModifier;
     }
 
     public void SetAttack03Damage() {
+        _aiCharacter.CharacterSFXManager.PlayAttackGruntSFX();
         _WeaponDamageCollider.PhysicalDamage = _baseDamage * _attack03DamageModifier;
     }
 
     public void SetStompAttackDamage() {
+        _aiCharacter.CharacterSFXManager.PlayAttackGruntSFX();
         _StompDamageCollider.PhysicalDamage = _stompDamage;
     }
 
     public void OpenClubDamageCollider() {
-        _aiCharacter.CharacterSoundFXManager.PlayAttackGrunt();
+        _aiCharacter.CharacterSFXManager.PlayAttackGruntSFX();
         _WeaponDamageCollider.EnableDamageCollider();
     }
 
@@ -42,42 +57,18 @@ public class AIKurtCombatManager : AICharacterCombatManager
     }
 
     public void OpenStompDamageCollider() {
-        _aiCharacter.CharacterSoundFXManager.PlayAttackGrunt();
+        GameObject stompVFX = Instantiate(ImpactVFX, _StompDamageCollider.transform);
+        // TODO: Do Not Hardcode
+        stompVFX.transform.localPosition = new Vector3(0, -2.6f, 0);
+        stompVFX.transform.localRotation = Quaternion.Euler(new Vector3(90, 0, 0));
+        stompVFX.transform.localScale = new Vector3(30, 30, 30);
+
         _StompDamageCollider.EnableDamageCollider();
+        _kurtManager.CharacterSFXManager.PlaySoundFX(WorldSFXManager.Instance.ChooseRandomSFXFromArray(_kurtManager.KurtSoundManager.HammerWooshes));
     }
 
     public void CloseStompDamageCollider() {
         _StompDamageCollider.DisableDamageCollider();
-    }
-
-    public void ActivateKurtStomp() {
-        Collider[] colliders = Physics.OverlapSphere(_stompFoot.position, _stompRadius, WorldUtilityManager.Instance.GetCharacterLayers());
-        List<CharacterManager> _charactersDamaged = new();
-
-        foreach (Collider collider in colliders) {
-            CharacterManager character = collider.GetComponentInParent<CharacterManager>();
-
-            if (character != null) {
-                
-                if (_charactersDamaged.Contains(character)) { continue; }
-
-                _charactersDamaged.Add(character);
-
-                if (character.IsOwner) {
-                    // TODO: Check For Block
-
-                    TakeDamageEffect damageEffect = Instantiate(WorldCharacterEffectsManager.Instance.TakeDamageEffect);
-
-                    // Give Damages
-                    damageEffect.PhysicalDamage = _stompDamage;
-                    damageEffect.PoiseDamage = _stompDamage;
-
-                    // Process The Damage Effect
-                    character.CharacterEffectsManager.ProcessInstantEffect(damageEffect);
-                }
-            }
-
-        }
     }
 
     public override void PivotTowardsTarget(AICharacterManager aiCharacter) {

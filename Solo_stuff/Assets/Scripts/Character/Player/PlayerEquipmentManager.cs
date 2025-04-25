@@ -220,12 +220,12 @@ public class PlayerEquipmentManager : CharacterEquipmentManager
         // Right Hand
         if (_player.PlayerNetworkManager.IsUsingRightHand.Value) {
             _rightWeaponManager.MeleeDamageCollider.EnableDamageCollider();
-            _player.CharacterSoundFXManager.PlaySoundFX(WorldSoundFXManager.Instance.ChooseRandomSFXFromArray(_player.PlayerInventoryManager.CurrentRightHandWeapon.SwooshSFXs));
+            _player.CharacterSFXManager.PlaySoundFX(WorldSFXManager.Instance.ChooseRandomSFXFromArray(_player.PlayerInventoryManager.CurrentRightHandWeapon.SwooshSFXs));
         }
         // Left Hand
         else if (_player.PlayerNetworkManager.IsUsingLeftHand.Value) {
             _leftWeaponManager.MeleeDamageCollider.EnableDamageCollider();
-            _player.CharacterSoundFXManager.PlaySoundFX(WorldSoundFXManager.Instance.ChooseRandomSFXFromArray(_player.PlayerInventoryManager.CurrentLeftHandWeapon.SwooshSFXs));
+            _player.CharacterSFXManager.PlaySoundFX(WorldSFXManager.Instance.ChooseRandomSFXFromArray(_player.PlayerInventoryManager.CurrentLeftHandWeapon.SwooshSFXs));
         }
     }
 

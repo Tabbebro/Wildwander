@@ -22,7 +22,7 @@ public class AIHumanoidCombatManager : AICharacterCombatManager
 
     public void OpenDamageCollider() {
         // ADD Damage Grunts If Needed
-        _aiCharacter.CharacterSoundFXManager.PlayAttackGrunt();
+        _aiCharacter.CharacterSFXManager.PlayAttackGruntSFX();
         _WeaponDamageCollider.EnableDamageCollider();
     }
 
