@@ -61,11 +61,11 @@ ModelImporter:
       - path: Root
         weight: 1
       - path: Root/Fx_Attachment
-        weight: 1
+        weight: 0
       - path: Root/Hips
         weight: 1
       - path: Root/Hips/Hips_Attachment
-        weight: 1
+        weight: 0
       - path: Root/Hips/Spine_01
         weight: 1
       - path: Root/Hips/Spine_01/Spine_02
@@ -87,7 +87,7 @@ ModelImporter:
       - path: Root/Hips/Spine_01/Spine_02/Spine_03/Clavicle_L/Shoulder_L/Elbow_L/Hand_L/Finger_01_L/Finger_02_L/Finger_03_L
         weight: 1
       - path: Root/Hips/Spine_01/Spine_02/Spine_03/Clavicle_L/Shoulder_L/Elbow_L/Hand_L/Finger_01_L/Finger_02_L/Finger_03_L/Finger_04_L
-        weight: 1
+        weight: 0
       - path: Root/Hips/Spine_01/Spine_02/Spine_03/Clavicle_L/Shoulder_L/Elbow_L/Hand_L/IndexFinger_01_L
         weight: 1
       - path: Root/Hips/Spine_01/Spine_02/Spine_03/Clavicle_L/Shoulder_L/Elbow_L/Hand_L/IndexFinger_01_L/IndexFinger_02_L
@@ -95,11 +95,11 @@ ModelImporter:
       - path: Root/Hips/Spine_01/Spine_02/Spine_03/Clavicle_L/Shoulder_L/Elbow_L/Hand_L/IndexFinger_01_L/IndexFinger_02_L/IndexFinger_03_L
         weight: 1
       - path: Root/Hips/Spine_01/Spine_02/Spine_03/Clavicle_L/Shoulder_L/Elbow_L/Hand_L/IndexFinger_01_L/IndexFinger_02_L/IndexFinger_03_L/IndexFinger_04_L
-        weight: 1
+        weight: 0
       - path: Root/Hips/Spine_01/Spine_02/Spine_03/Clavicle_L/Shoulder_L/Elbow_L/Hand_L/Prop_Attachment_L
-        weight: 1
+        weight: 0
       - path: Root/Hips/Spine_01/Spine_02/Spine_03/Clavicle_L/Shoulder_L/Elbow_L/Hand_L/Shield_Attachment_L
-        weight: 1
+        weight: 0
       - path: Root/Hips/Spine_01/Spine_02/Spine_03/Clavicle_L/Shoulder_L/Elbow_L/Hand_L/Thumb_01_L
         weight: 1
       - path: Root/Hips/Spine_01/Spine_02/Spine_03/Clavicle_L/Shoulder_L/Elbow_L/Hand_L/Thumb_01_L/Thumb_02_L
@@ -107,7 +107,7 @@ ModelImporter:
       - path: Root/Hips/Spine_01/Spine_02/Spine_03/Clavicle_L/Shoulder_L/Elbow_L/Hand_L/Thumb_01_L/Thumb_02_L/Thumb_03_L
         weight: 1
       - path: Root/Hips/Spine_01/Spine_02/Spine_03/Clavicle_L/Shoulder_L/Elbow_L/Hand_L/Tome_Attachment_L
-        weight: 1
+        weight: 0
       - path: Root/Hips/Spine_01/Spine_02/Spine_03/Clavicle_R
         weight: 1
       - path: Root/Hips/Spine_01/Spine_02/Spine_03/Clavicle_R/Shoulder_R
@@ -123,7 +123,7 @@ ModelImporter:
       - path: Root/Hips/Spine_01/Spine_02/Spine_03/Clavicle_R/Shoulder_R/Elbow_R/Hand_R/Finger_01_R/Finger_02_R/Finger_03_R
         weight: 1
       - path: Root/Hips/Spine_01/Spine_02/Spine_03/Clavicle_R/Shoulder_R/Elbow_R/Hand_R/Finger_01_R/Finger_02_R/Finger_03_R/Finger_04_R
-        weight: 1
+        weight: 0
       - path: Root/Hips/Spine_01/Spine_02/Spine_03/Clavicle_R/Shoulder_R/Elbow_R/Hand_R/IndexFinger_01_R
         weight: 1
       - path: Root/Hips/Spine_01/Spine_02/Spine_03/Clavicle_R/Shoulder_R/Elbow_R/Hand_R/IndexFinger_01_R/IndexFinger_02_R
@@ -131,9 +131,9 @@ ModelImporter:
       - path: Root/Hips/Spine_01/Spine_02/Spine_03/Clavicle_R/Shoulder_R/Elbow_R/Hand_R/IndexFinger_01_R/IndexFinger_02_R/IndexFinger_03_R
         weight: 1
       - path: Root/Hips/Spine_01/Spine_02/Spine_03/Clavicle_R/Shoulder_R/Elbow_R/Hand_R/IndexFinger_01_R/IndexFinger_02_R/IndexFinger_03_R/IndexFinger_04_R
-        weight: 1
+        weight: 0
       - path: Root/Hips/Spine_01/Spine_02/Spine_03/Clavicle_R/Shoulder_R/Elbow_R/Hand_R/Prop_Attachment_R
-        weight: 1
+        weight: 0
       - path: Root/Hips/Spine_01/Spine_02/Spine_03/Clavicle_R/Shoulder_R/Elbow_R/Hand_R/Thumb_01_R
         weight: 1
       - path: Root/Hips/Spine_01/Spine_02/Spine_03/Clavicle_R/Shoulder_R/Elbow_R/Hand_R/Thumb_01_R/Thumb_02_R
@@ -145,13 +145,13 @@ ModelImporter:
       - path: Root/Hips/Spine_01/Spine_02/Spine_03/Neck/Head
         weight: 1
       - path: Root/Hips/Spine_01/Spine_02/Spine_03/Neck/Head/Eyebrows
-        weight: 1
+        weight: 0
       - path: Root/Hips/Spine_01/Spine_02/Spine_03/Neck/Head/Eyes
-        weight: 1
+        weight: 0
       - path: Root/Hips/Spine_01/Spine_02/Spine_03/Neck/Head/Head_Attachment
-        weight: 1
+        weight: 0
       - path: Root/Hips/Spine_01/Spine_02/Target
-        weight: 1
+        weight: 0
       - path: Root/Hips/UpperLeg_L
         weight: 1
       - path: Root/Hips/UpperLeg_L/LowerLeg_L
@@ -173,9 +173,9 @@ ModelImporter:
       - path: Root/Hips/UpperLeg_R/LowerLeg_R/Ankle_R/Ball_R/Toes_R
         weight: 1
       - path: Root/Prop_Attachment_Extra1
-        weight: 1
+        weight: 0
       - path: Root/Prop_Attachment_Extra2
-        weight: 1
+        weight: 0
       maskType: 0
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0

@@ -8802,7 +8802,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2918241092212903030, guid: baf566245cf4d3d4988f0e6382e97565, type: 3}
       propertyPath: m_Name
-      value: World Sound FX Manager
+      value: World SFX Manager
       objectReference: {fileID: 0}
     - target: {fileID: 8797243276274837781, guid: baf566245cf4d3d4988f0e6382e97565, type: 3}
       propertyPath: m_LocalPosition.x

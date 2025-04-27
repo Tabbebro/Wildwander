@@ -16,6 +16,12 @@ public class WorldSFXManager : MonoBehaviour
     public AudioClip SelectButton;
     public AudioClip ClickButton;
 
+    [Header("Default Footsteps")]
+    public AudioClip[] FootstepsDirt;
+    public AudioClip[] FootstepsConcrete;
+    public AudioClip[] FootstepsStone;
+    public AudioClip[] FootstepsGravel;
+
     private void Awake() {
         if (Instance == null) {
             Instance = this;
@@ -38,7 +44,6 @@ public class WorldSFXManager : MonoBehaviour
 
         return array[index];
     }
-    /*
     public AudioClip ChooseRandomFootstepBasedOnGround(GameObject steppedOnObject, CharacterManager character) {
         switch (steppedOnObject.tag) {
             case "Untagged":    return ChooseRandomSFXFromArray(character.CharacterSFXManager.FootstepsDirt);
@@ -49,5 +54,4 @@ public class WorldSFXManager : MonoBehaviour
             default:            return null;
         }
     }
-    */
 }

@@ -40,3 +40,10 @@ public enum AttackType {
     HeavyAttackHold01,
     HeavyAttackHold02
 }
+
+public enum SurfaceType {
+    Dirt,
+    Concrete,
+    Gravel,
+    Stone
+}

@@ -55,6 +55,90 @@ MonoBehaviour:
   RollSFX: {fileID: 8300000, guid: 0fea683f9b45b564d8fbbc9b436c3f4b, type: 3}
   SelectButton: {fileID: 8300000, guid: b76def5412d258846b40394b47069d34, type: 3}
   ClickButton: {fileID: 8300000, guid: 79eb3e1e1834dcc48b1934a44bfaba82, type: 3}
+  FootstepsDirt:
+  - {fileID: 8300000, guid: d120eb12a45cff347be18e9d266597c2, type: 3}
+  - {fileID: 8300000, guid: 322f8d808f4a11045a1006693efa3249, type: 3}
+  - {fileID: 8300000, guid: 21fc9d44aadb80540b4c55c0654df568, type: 3}
+  - {fileID: 8300000, guid: 1a5869d54c1de654b9574d6c81d3323f, type: 3}
+  - {fileID: 8300000, guid: 4814e905577d4f449a80f74061ca304e, type: 3}
+  - {fileID: 8300000, guid: ac1044a9405cb514aa251fdcaf59fcf5, type: 3}
+  - {fileID: 8300000, guid: 00875dfef38bd99428e7c266ab6cc6f4, type: 3}
+  - {fileID: 8300000, guid: 808712936a660244a88148f32238c52c, type: 3}
+  - {fileID: 8300000, guid: c7a61002091b6a84eb2eb532bc66daa9, type: 3}
+  - {fileID: 8300000, guid: c3d6c5fe3c87fc5419674da6cbbc2110, type: 3}
+  - {fileID: 8300000, guid: c1d65993293bb194db7501f5363dad8b, type: 3}
+  - {fileID: 8300000, guid: 190d1ed64acfd1541a87c9e2a5bf217e, type: 3}
+  - {fileID: 8300000, guid: 7fec614b9c3edc847b96a318ec576572, type: 3}
+  - {fileID: 8300000, guid: e739002c6ae61ba40b9255eea0f86952, type: 3}
+  - {fileID: 8300000, guid: 7e943277cf8566b40bcdb5e503704158, type: 3}
+  - {fileID: 8300000, guid: 9817735053c9ae34f8be5889f3a364fe, type: 3}
+  - {fileID: 8300000, guid: c0ea9319918c16a41b44eb653295512d, type: 3}
+  - {fileID: 8300000, guid: a2b11a6a087de4649a3188e20c00b7a0, type: 3}
+  - {fileID: 8300000, guid: ec77509f36b5802489570f43d968e246, type: 3}
+  - {fileID: 8300000, guid: f364dfd13f67f074fa230e9130027598, type: 3}
+  FootstepsConcrete:
+  - {fileID: 8300000, guid: 4366479d05030374289e070615779f8d, type: 3}
+  - {fileID: 8300000, guid: cc19a8b5fd1af5d4980f343fb0a870ab, type: 3}
+  - {fileID: 8300000, guid: b5f92d745a1f40b43a96ca0fe121ff7f, type: 3}
+  - {fileID: 8300000, guid: 321d8c94377c09e458a1e32067066e27, type: 3}
+  - {fileID: 8300000, guid: ee14f4eb6200be0409e387b3edf56379, type: 3}
+  - {fileID: 8300000, guid: d58e4dead01f8a74a90af0e14fceeb2e, type: 3}
+  - {fileID: 8300000, guid: 4c322b52e3a59b14fb4b19730e21d6de, type: 3}
+  - {fileID: 8300000, guid: 00e1f727d9820fd48aef18711142382d, type: 3}
+  - {fileID: 8300000, guid: 144bd3f81a85c2f4cad2914e49622b29, type: 3}
+  - {fileID: 8300000, guid: 38a4811b91a203342b0c684c3fe3d15a, type: 3}
+  - {fileID: 8300000, guid: 228ff17836c93af42877dc8cc364f689, type: 3}
+  - {fileID: 8300000, guid: 651e21655ba574e45b0c71ac693be89e, type: 3}
+  - {fileID: 8300000, guid: 7f7c99752e82a154fb5fbcef365246d7, type: 3}
+  - {fileID: 8300000, guid: b8a38addb90df78458f614da54c34225, type: 3}
+  - {fileID: 8300000, guid: 8d657466fd6fda941a113cf3f85ea8f2, type: 3}
+  - {fileID: 8300000, guid: d392dc48b63796e4e8ce86faed32fb14, type: 3}
+  - {fileID: 8300000, guid: 43609c1f19488624aafe9666182d87c5, type: 3}
+  - {fileID: 8300000, guid: 51e62be35661fd244903e1e9636eb32a, type: 3}
+  - {fileID: 8300000, guid: 774733a22265723459038ddc88e60e13, type: 3}
+  - {fileID: 8300000, guid: b1f2ba9682048f547a898ce8318250d3, type: 3}
+  FootstepsStone:
+  - {fileID: 8300000, guid: 40c3b3320c26e694e866e03f8f581f5f, type: 3}
+  - {fileID: 8300000, guid: 99c88f023279481458d48b16def05559, type: 3}
+  - {fileID: 8300000, guid: da0a854cdeb41a3459b7c3be43ab47a8, type: 3}
+  - {fileID: 8300000, guid: bea2919426e394b4d86b6e49054a7e6c, type: 3}
+  - {fileID: 8300000, guid: 1dad95eb70539504db001771695496d5, type: 3}
+  - {fileID: 8300000, guid: 752ac10c825478641803bd4103edb7d0, type: 3}
+  - {fileID: 8300000, guid: d15d03f1ec3d5314387081cc043ba20a, type: 3}
+  - {fileID: 8300000, guid: f17c3d2b22006ae41b925763714c77fa, type: 3}
+  - {fileID: 8300000, guid: e24602811879de8488cad91159ecbae8, type: 3}
+  - {fileID: 8300000, guid: c472cfc3491c68d4a8542229230b786a, type: 3}
+  - {fileID: 8300000, guid: 7e00e72b42a42be4294e1ad9afde04e2, type: 3}
+  - {fileID: 8300000, guid: a78e8d95f75d8cb42b001cc42100b818, type: 3}
+  - {fileID: 8300000, guid: b88ed0b4e864c0c4f8c9f3af9b658723, type: 3}
+  - {fileID: 8300000, guid: 4120d21834c7b73408ba86543654a605, type: 3}
+  - {fileID: 8300000, guid: 6b930940b49ca864ab12706d6939a861, type: 3}
+  - {fileID: 8300000, guid: 2ebf600b6e94edb4b82473143012a2bf, type: 3}
+  - {fileID: 8300000, guid: eb7ed49af2478fa45bee5350cf2d552a, type: 3}
+  - {fileID: 8300000, guid: 3a8e1dcfad1a3b84980768931a074d4f, type: 3}
+  - {fileID: 8300000, guid: d7ebe8f3aeb70a04e9c7cefed1111b2c, type: 3}
+  - {fileID: 8300000, guid: f4fca1b298b29c64a8262dc903520241, type: 3}
+  FootstepsGravel:
+  - {fileID: 8300000, guid: 82c92fb722f100d4a87c3896adf2d28c, type: 3}
+  - {fileID: 8300000, guid: 886edf88836386d49b26e1a48d90b0bc, type: 3}
+  - {fileID: 8300000, guid: 6a396dfe23aaec849b11803cbcddae3e, type: 3}
+  - {fileID: 8300000, guid: 899edb44113beee4985a8d6e9e0f2333, type: 3}
+  - {fileID: 8300000, guid: c3d785b4798ca3e409d41c94e83457f7, type: 3}
+  - {fileID: 8300000, guid: 60c4ccc526f9c524e907ef8fb9e7f0a2, type: 3}
+  - {fileID: 8300000, guid: 6e3d263708118834d9e379c76dc61a3d, type: 3}
+  - {fileID: 8300000, guid: 4c9d3fcfb6684ea46a5e6af6f4144fe7, type: 3}
+  - {fileID: 8300000, guid: 69a013d9e1ea1284cb9dea9db8614afc, type: 3}
+  - {fileID: 8300000, guid: eaf187679be76e14dac9f5785794d369, type: 3}
+  - {fileID: 8300000, guid: a1d1c4d8c7b75ae4b9f1be6c457c7ac6, type: 3}
+  - {fileID: 8300000, guid: eb1131b4bd4d19e4889284ce8128ac11, type: 3}
+  - {fileID: 8300000, guid: c43f9a4cd85a41b4d8c95a3a79c8388f, type: 3}
+  - {fileID: 8300000, guid: fa7bef7a4aea27841b0deee9842b55d4, type: 3}
+  - {fileID: 8300000, guid: 4f3a98e1b51e9b64a868e5118392701a, type: 3}
+  - {fileID: 8300000, guid: 1cbe671bdf2fe6e4ca624102592fb1bc, type: 3}
+  - {fileID: 8300000, guid: 3dd56546534b8cb4ca5439ccb5027ac7, type: 3}
+  - {fileID: 8300000, guid: 94d049786b7c89347a868d45c48853b5, type: 3}
+  - {fileID: 8300000, guid: 731b64f3689502342aebd4766fa936d0, type: 3}
+  - {fileID: 8300000, guid: 729460360af42da45bbe6d584f864251, type: 3}
 --- !u!82 &3847344628250527443
 AudioSource:
   m_ObjectHideFlags: 0
