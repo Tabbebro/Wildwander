@@ -292,6 +292,7 @@ MonoBehaviour:
   back_Medium_Damage: []
   left_Medium_Damage: []
   right_Medium_Damage: []
+  _velocityOffset: 1
 --- !u!114 &3711296515269410003
 MonoBehaviour:
   m_ObjectHideFlags: 0
