@@ -1040,7 +1040,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.3
+  m_Volume: 0.6
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -2319,17 +2319,25 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 8c7e4c36be8ead54f9fc3e1ce51d1838, type: 3}
   - {fileID: 8300000, guid: 0a3ffed4c29abc84b85e67774271cb4d, type: 3}
   _footstepAudioSource: {fileID: 84798288964654533}
-  UseSurfaceFootsteps: 0
-  FootstepsDefault:
+  _useCustomFootsteps: 1
+  _footstepCustomWalk:
   - {fileID: 8300000, guid: ce8bba6ca22d792409d154170d810fe7, type: 3}
   - {fileID: 8300000, guid: 16faf47fc52d61e4a81c25ee441673a1, type: 3}
   - {fileID: 8300000, guid: 367e1770c633dc3459b1977fd18e5b82, type: 3}
   - {fileID: 8300000, guid: 2cfcc4a16d8a21341a4c4bad9dc06fcf, type: 3}
   - {fileID: 8300000, guid: 7f4d34494707359458390b7ac1fb83d0, type: 3}
-  FootstepsDirt: []
-  FootstepsConcrete: []
-  FootstepsStone: []
-  FootstepsGravel: []
+  _footstepCustomRun:
+  - {fileID: 8300000, guid: ce8bba6ca22d792409d154170d810fe7, type: 3}
+  - {fileID: 8300000, guid: 16faf47fc52d61e4a81c25ee441673a1, type: 3}
+  - {fileID: 8300000, guid: 367e1770c633dc3459b1977fd18e5b82, type: 3}
+  - {fileID: 8300000, guid: 2cfcc4a16d8a21341a4c4bad9dc06fcf, type: 3}
+  - {fileID: 8300000, guid: 7f4d34494707359458390b7ac1fb83d0, type: 3}
+  _footstepCustomSprint:
+  - {fileID: 8300000, guid: ce8bba6ca22d792409d154170d810fe7, type: 3}
+  - {fileID: 8300000, guid: 16faf47fc52d61e4a81c25ee441673a1, type: 3}
+  - {fileID: 8300000, guid: 367e1770c633dc3459b1977fd18e5b82, type: 3}
+  - {fileID: 8300000, guid: 2cfcc4a16d8a21341a4c4bad9dc06fcf, type: 3}
+  - {fileID: 8300000, guid: 7f4d34494707359458390b7ac1fb83d0, type: 3}
   HammerWooshes:
   - {fileID: 8300000, guid: 8c186c3d31752714cb2335a48fae362f, type: 3}
   - {fileID: 8300000, guid: 86753f8f90822864e976d0bd79815187, type: 3}

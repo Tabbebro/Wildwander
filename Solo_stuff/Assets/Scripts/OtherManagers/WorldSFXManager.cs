@@ -16,11 +16,25 @@ public class WorldSFXManager : MonoBehaviour
     public AudioClip SelectButton;
     public AudioClip ClickButton;
 
-    [Header("Default Footsteps")]
-    public AudioClip[] FootstepsDirt;
-    public AudioClip[] FootstepsConcrete;
-    public AudioClip[] FootstepsStone;
-    public AudioClip[] FootstepsGravel;
+    [Header("Footsteps Dirt")]
+    public AudioClip[] FootstepsDirtWalk;
+    public AudioClip[] FootstepsDirtRun;
+    public AudioClip[] FootstepsDirtSprint;
+
+    [Header("Footsteps Concrete")]
+    public AudioClip[] FootstepsConcreteWalk;
+    public AudioClip[] FootstepsConcreteRun;
+    public AudioClip[] FootstepsConcreteSprint;
+
+    [Header("Footsteps Stone")]
+    public AudioClip[] FootstepsStoneWalk;
+    public AudioClip[] FootstepsStoneRun;
+    public AudioClip[] FootstepsStoneSprint;
+
+    [Header("Footsteps Gravel")]
+    public AudioClip[] FootstepsGravelWalk;
+    public AudioClip[] FootstepsGravelRun;
+    public AudioClip[] FootstepsGravelSprint;
 
     private void Awake() {
         if (Instance == null) {
@@ -43,15 +57,5 @@ public class WorldSFXManager : MonoBehaviour
         int index = Random.Range(0, array.Length);
 
         return array[index];
-    }
-    public AudioClip ChooseRandomFootstepBasedOnGround(GameObject steppedOnObject, CharacterManager character) {
-        switch (steppedOnObject.tag) {
-            case "Untagged":    return ChooseRandomSFXFromArray(character.CharacterSFXManager.FootstepsDirt);
-            case "Dirt":        return ChooseRandomSFXFromArray(character.CharacterSFXManager.FootstepsDirt);
-            case "Concrete":    return ChooseRandomSFXFromArray(character.CharacterSFXManager.FootstepsConcrete);
-            case "Stone":       return ChooseRandomSFXFromArray(character.CharacterSFXManager.FootstepsStone);
-            case "Gravel":      return ChooseRandomSFXFromArray(character.CharacterSFXManager.FootstepsGravel);
-            default:            return null;
-        }
     }
 }

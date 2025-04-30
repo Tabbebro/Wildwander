@@ -42,6 +42,7 @@ public enum AttackType {
 }
 
 public enum SurfaceType {
+    Untagged,
     Dirt,
     Concrete,
     Gravel,

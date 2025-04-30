@@ -14,12 +14,11 @@ public class CharacterSFXManager : MonoBehaviour
     [Header("Footsteps overrides")]
     [SerializeField] AudioSource _footstepAudioSource;
     float _lastFootstep;
-    public bool UseSurfaceFootsteps = true;
-    public AudioClip[] FootstepsDefault;
-    public AudioClip[] FootstepsDirt;
-    public AudioClip[] FootstepsConcrete;
-    public AudioClip[] FootstepsStone;
-    public AudioClip[] FootstepsGravel;
+    [SerializeField] protected bool _useCustomFootsteps = false;
+    [SerializeField] protected AudioClip[] _footstepCustomWalk;
+    [SerializeField] protected AudioClip[] _footstepCustomRun;
+    [SerializeField] protected AudioClip[] _footstepCustomSprint;
+
 
     protected virtual void Awake() {
         _character = GetComponent<CharacterManager>();
@@ -54,7 +53,9 @@ public class CharacterSFXManager : MonoBehaviour
             PlaySoundFX(WorldSFXManager.Instance.ChooseRandomSFXFromArray(_attackGrunts));
         }
     }
-
+    /// <summary>
+    /// Checks Animator Float "Footstep" To See If Footstep Sound Should Be Played
+    /// </summary>
     protected virtual void Footstep() {
         if (_character.IsDead.Value) { return; }
         if (_character.CharacterMovementManager.isRolling) { return; }
@@ -72,15 +73,13 @@ public class CharacterSFXManager : MonoBehaviour
         _lastFootstep = footstep;
     }
 
+    /// <summary>
+    /// Shoots Ray Downward Towards Ground & Checks If There Is A Utility_SurfaceType Script & Checks Ground Type From That
+    /// </summary>
     AudioClip[] GetFootstepClipFromSurface() {
 
-        if (!UseSurfaceFootsteps) {
-            if (FootstepsDefault.Length > 0) {
-                return FootstepsDefault; 
-            }
-            else {
-                return WorldSFXManager.Instance.FootstepsConcrete;
-            }
+        if (_useCustomFootsteps) {
+            return GetCustomFootstepSound(_character.CharacterNetworkManager.MoveAmount.Value, _character.CharacterNetworkManager.IsSprinting.Value);
         }
 
         RaycastHit hit;
@@ -91,43 +90,88 @@ public class CharacterSFXManager : MonoBehaviour
 
             SurfaceType surface = hit.transform.GetComponent<Utility_SurfaceType>().SurfaceType;
 
-            // TODO: ADD more surfaces
-            switch (surface) {
-                case SurfaceType.Dirt:
-                    print("Dirt");
-                    if (FootstepsDirt.Length > 0) {
-                        return FootstepsDirt;
-                    }
-                    else {
-                        return WorldSFXManager.Instance.FootstepsDirt;
-                    }
-                case SurfaceType.Concrete:
-                    print("Concrete");
-                    if (FootstepsConcrete.Length > 0) {
-                        return FootstepsConcrete;
-                    }
-                    else {
-                        return WorldSFXManager.Instance.FootstepsConcrete;
-                    }
-                case SurfaceType.Gravel:
-                    print("Gravel");
-                    if (FootstepsGravel.Length > 0) {
-                        return FootstepsGravel;
-                    }
-                    else {
-                        return WorldSFXManager.Instance.FootstepsGravel;
-                    }
-                case SurfaceType.Stone:
-                    print("Stone");
-                    if (FootstepsStone.Length > 0) {
-                        return FootstepsStone;
-                    }
-                    else {
-                        return WorldSFXManager.Instance.FootstepsStone;
-                    }
-            }
+            return GetFootstepSound(surface, _character.CharacterNetworkManager.MoveAmount.Value, _character.CharacterNetworkManager.IsSprinting.Value);
         }
 
-        return WorldSFXManager.Instance.FootstepsConcrete;
+        return GetFootstepSound(SurfaceType.Untagged, _character.CharacterNetworkManager.MoveAmount.Value, _character.CharacterNetworkManager.IsSprinting.Value);
+    }
+
+    /// <summary>
+    /// Returns Correct Footstep sound from SurfaceType & Movement Speed
+    /// </summary>
+    AudioClip[] GetFootstepSound(SurfaceType surface, float speed, bool isSprinting) {
+        // TODO: ADD more surfaces
+        switch (surface) {
+            case SurfaceType.Dirt:
+                if (speed == 1 && isSprinting) { // Sprint
+                    return WorldSFXManager.Instance.FootstepsDirtSprint;
+                }
+                else if (speed == 1) { // Run
+                    return WorldSFXManager.Instance.FootstepsDirtRun;
+                }
+                else { // Walk
+                    return WorldSFXManager.Instance.FootstepsDirtWalk;
+                }
+
+            case SurfaceType.Concrete:
+                if (speed == 1 && isSprinting) { // Sprint
+                    return WorldSFXManager.Instance.FootstepsConcreteSprint;
+                }
+                else if (speed == 1) { // Run
+                    return WorldSFXManager.Instance.FootstepsConcreteRun;
+                }
+                else { // Walk
+                    return WorldSFXManager.Instance.FootstepsConcreteWalk;
+                }
+
+            case SurfaceType.Gravel:
+                if (speed == 1 && isSprinting) { // Sprint
+                    return WorldSFXManager.Instance.FootstepsGravelSprint;
+                }
+                else if (speed == 1) { // Run
+                    return WorldSFXManager.Instance.FootstepsGravelRun;
+                }
+                else { // Walk
+                    return WorldSFXManager.Instance.FootstepsGravelWalk;
+                }
+
+            case SurfaceType.Stone:
+                if (speed == 1 && isSprinting) { // Sprint
+                    return WorldSFXManager.Instance.FootstepsStoneSprint;
+                }
+                else if (speed == 1) { // Run
+                    return WorldSFXManager.Instance.FootstepsStoneRun;
+                }
+                else { // Walk
+                    return WorldSFXManager.Instance.FootstepsStoneWalk;
+                }
+
+            default: // Works as the "Untagged" SurfaceType
+                if (speed == 1 && isSprinting) { // Sprint
+                    return WorldSFXManager.Instance.FootstepsConcreteSprint;
+                }
+                else if (speed == 1) { // Run
+                    return WorldSFXManager.Instance.FootstepsConcreteRun;
+                }
+                else { // Walk
+                    return WorldSFXManager.Instance.FootstepsConcreteWalk;
+                }
+        }
+
+    }
+
+    /// <summary>
+    /// Returns Custom Footstep Sound Using Movement Speed
+    /// </summary>
+    AudioClip[] GetCustomFootstepSound(float speed, bool isSprinting) {
+        if (speed == 1 && isSprinting) { // Sprint
+            return _footstepCustomSprint;
+        }
+        else if (speed == 1) { // Run
+            return _footstepCustomRun;
+        }
+        else { // Walk
+            return _footstepCustomWalk;
+        }
     }
 }

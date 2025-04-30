@@ -1843,12 +1843,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 930d47934157fc241a9bf580745d7257, type: 3}
   _attackGrunts: []
   _footstepAudioSource: {fileID: 4640184992277770918}
-  UseSurfaceFootsteps: 1
-  FootstepsDefault: []
-  FootstepsDirt: []
-  FootstepsConcrete: []
-  FootstepsStone: []
-  FootstepsGravel: []
+  _useCustomFootsteps: 0
+  _footstepCustomWalk: []
+  _footstepCustomRun: []
+  _footstepCustomSprint: []
 --- !u!95 &8977560169917997248
 Animator:
   serializedVersion: 7
