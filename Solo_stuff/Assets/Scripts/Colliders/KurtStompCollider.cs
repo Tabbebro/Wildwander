@@ -12,12 +12,8 @@ public class KurtStompCollider : DamageCollider
     }
 
     public void StompAttack() {
-        _kurtManager.CharacterSFXManager.PlaySoundFX(WorldSFXManager.Instance.ChooseRandomSFXFromArray(_kurtManager.KurtSoundManager.FootImpact));
-        GameObject stompVFX = Instantiate(_kurtManager.KurtCombatManager.ImpactVFX, transform);
-        // TODO: Do Not Hardcode
-        stompVFX.transform.localPosition = new Vector3(0, -2.6f, 0);
-        stompVFX.transform.localRotation = Quaternion.Euler(new Vector3(90, 0, 0));
-        stompVFX.transform.localScale = new Vector3(30, 30, 30);
+        _kurtManager.CharacterSFXManager.PlaySoundFX(WorldSFXManager.Instance.ChooseRandomSFXFromArray(_kurtManager.KurtSoundManager.FootImpact), 1, false);
+        GameObject stompVFX = Instantiate(_kurtManager.KurtCombatManager.ImpactVFX, new Vector3(transform.position.x, -1f, transform.position.z), Quaternion.identity);
 
         Collider[] colliders = Physics.OverlapSphere(transform.position, _kurtManager.KurtCombatManager.StompRadius, WorldUtilityManager.Instance.GetCharacterLayers());
         List<CharacterManager> _charactersDamaged = new();

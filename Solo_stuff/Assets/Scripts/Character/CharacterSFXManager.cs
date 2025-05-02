@@ -58,6 +58,7 @@ public class CharacterSFXManager : MonoBehaviour
     /// </summary>
     protected virtual void Footstep() {
         if (_character.IsDead.Value) { return; }
+        if (_character.IsPerformingAction) { return; }
         if (_character.CharacterMovementManager.isRolling) { return; }
         if (_character.CharacterNetworkManager.IsJumping.Value) { return; }
 
