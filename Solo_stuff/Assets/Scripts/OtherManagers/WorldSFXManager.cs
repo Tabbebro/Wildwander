@@ -49,7 +49,7 @@ public class WorldSFXManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public void PlayAudio(AudioClip clip) {
+    public void PlayUIAudio(AudioClip clip) {
         Source.PlayOneShot(clip);
     }
 
