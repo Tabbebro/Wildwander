@@ -6,17 +6,15 @@ public class AIKurtCombatManager : AICharacterCombatManager
     AIKurtCharacterManager _kurtManager;
 
     [Header("Damage Colliders")]
-    [SerializeField] KurtWeaponDamageCollider _WeaponDamageCollider;
-    [SerializeField] KurtStompCollider _StompDamageCollider;
-    [SerializeField] Transform _stompFoot;
-    public float StompRadius = 1.5f;
+    [SerializeField] KurtWeaponDamageCollider _weaponDamageCollider;
+    [SerializeField] KurtStompCollider _stompDamageCollider;
 
     [Header("Damage")]
     [SerializeField] int _baseDamage = 25;
     [SerializeField] float _attack01DamageModifier = 1.0f;
     [SerializeField] float _attack02DamageModifier = 1.4f;
     [SerializeField] float _attack03DamageModifier = 1.6f;
-    public float StompDamage = 25f;
+    [SerializeField] float _stompDamage = 25f;
 
     [Header("VFX")]
     public GameObject ImpactVFX;
@@ -29,30 +27,40 @@ public class AIKurtCombatManager : AICharacterCombatManager
 
     public void SetAttack01Damage() {
         _aiCharacter.CharacterSFXManager.PlayAttackGruntSFX();
-        _WeaponDamageCollider.PhysicalDamage = _baseDamage * _attack01DamageModifier;
+        _weaponDamageCollider.PhysicalDamage = _baseDamage * _attack01DamageModifier;
     }
 
     public void SetAttack02Damage() {
         _aiCharacter.CharacterSFXManager.PlayAttackGruntSFX();
-        _WeaponDamageCollider.PhysicalDamage = _baseDamage * _attack02DamageModifier;
+        _weaponDamageCollider.PhysicalDamage = _baseDamage * _attack02DamageModifier;
     }
 
     public void SetAttack03Damage() {
         _aiCharacter.CharacterSFXManager.PlayAttackGruntSFX();
-        _WeaponDamageCollider.PhysicalDamage = _baseDamage * _attack03DamageModifier;
+        _stompDamageCollider.PhysicalDamage = _stompDamage;
+        _weaponDamageCollider.PhysicalDamage = _baseDamage * _attack03DamageModifier;
     }
 
     public void OpenClubDamageCollider() {
         _kurtManager.CharacterSFXManager.PlaySoundFX(WorldSFXManager.Instance.ChooseRandomSFXFromArray(_kurtManager.KurtSoundManager.HammerWooshes));
-        _WeaponDamageCollider.EnableDamageCollider();
+        _weaponDamageCollider.EnableDamageCollider();
     }
 
     public void CloseClubDamageCollider() {
-        _WeaponDamageCollider.DisableDamageCollider();
+        _weaponDamageCollider.DisableDamageCollider();
     }
 
-    public void ActivateStomp() {
-        _StompDamageCollider.StompAttack();
+    public void OpenStompDamageCollider() {
+        _stompDamageCollider.EnableDamageCollider();
+    }
+
+    public void CloseStompDamageCollider() {
+        _stompDamageCollider.DisableDamageCollider();
+    }
+
+    public void StompUtility() {
+        _stompDamageCollider.PlayVFX();
+        _stompDamageCollider.PlaySFX();
     }
 
     public override void PivotTowardsTarget(AICharacterManager aiCharacter) {

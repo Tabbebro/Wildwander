@@ -66,6 +66,7 @@ GameObject:
   m_Component:
   - component: {fileID: 173462712249644922}
   - component: {fileID: 5227630146885054858}
+  - component: {fileID: 4211298070730438900}
   m_Layer: 15
   m_Name: Toes_L
   m_TagString: Untagged
@@ -100,12 +101,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ab348aa86788ea418ff11c30f083936, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damageCollider: {fileID: 0}
+  _damageCollider: {fileID: 4211298070730438900}
   PhysicalDamage: 0
   MagicDamage: 0
   FireDamage: 0
   LightningDamage: 0
   HolyDamage: 0
+--- !u!135 &4211298070730438900
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 145065148624861648}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Radius: 15
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &330609683118418115
 GameObject:
   m_ObjectHideFlags: 0
@@ -1982,7 +2004,6 @@ MonoBehaviour:
   FireDamage: 0
   LightningDamage: 0
   HolyDamage: 0
-  _bossCharacter: {fileID: 6064622634672231513}
 --- !u!1 &6606107438593630910
 GameObject:
   m_ObjectHideFlags: 0
@@ -2210,10 +2231,10 @@ MonoBehaviour:
   MinFOV: -35
   MaxFOV: 35
   AttackRotationSpeed: 25
-  _WeaponDamageCollider: {fileID: 4896414673322241351}
-  _StompDamageCollider: {fileID: 5227630146885054858}
+  _weaponDamageCollider: {fileID: 4896414673322241351}
+  _stompDamageCollider: {fileID: 5227630146885054858}
   _stompFoot: {fileID: 5513639776803947928}
-  StompRadius: 1.5
+  StompRadius: 15
   _baseDamage: 50
   _attack01DamageModifier: 1
   _attack02DamageModifier: 1.4

@@ -3,12 +3,12 @@ using UnityEngine;
 public class KurtWeaponDamageCollider : DamageCollider
 {
 
-    [SerializeField] AIBossCharacterManager _bossCharacter;
+    AIKurtCharacterManager _kurtManager;
 
     protected override void Awake() {
         base.Awake();
         _damageCollider = GetComponent<Collider>();
-        _bossCharacter = GetComponentInParent<AIBossCharacterManager>();
+        _kurtManager = GetComponentInParent<AIKurtCharacterManager>();
     }
     protected override void DamageTarget(CharacterManager damageTarget) {
 
@@ -27,12 +27,12 @@ public class KurtWeaponDamageCollider : DamageCollider
 
         // Give Contact Point & Angle
         damageEffect.ContactPoint = _contactPoint;
-        damageEffect.AngleHitFrom = Vector3.SignedAngle(_bossCharacter.transform.forward, damageTarget.transform.forward, Vector3.up);
+        damageEffect.AngleHitFrom = Vector3.SignedAngle(_kurtManager.transform.forward, damageTarget.transform.forward, Vector3.up);
 
-        if (_bossCharacter.IsOwner) {
+        if (_kurtManager.IsOwner) {
             damageTarget.CharacterNetworkManager.NotifyServerOfCharacterDamageServerRpc(
                 damageTarget.NetworkObjectId,
-                _bossCharacter.NetworkObjectId,
+                _kurtManager.NetworkObjectId,
                 damageEffect.PhysicalDamage,
                 damageEffect.MagicDamage,
                 damageEffect.FireDamage,

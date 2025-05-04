@@ -69,22 +69,29 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.343366
-        functionName: ActivateStomp
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
-      - time: 0.35536754
+      - time: 0.32820454
         functionName: DisableCanRotate
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.3569794
-        functionName: PlayFootImpact
+      - time: 0.32958266
+        functionName: OpenStompDamageCollider
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.35862032
+        functionName: StompUtility
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.36630604
+        functionName: CloseStompDamageCollider
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
