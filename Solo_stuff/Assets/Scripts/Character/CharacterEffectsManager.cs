@@ -9,17 +9,15 @@ public class CharacterEffectsManager : MonoBehaviour
     [Header("VFX Parent")]
     [SerializeField] protected Transform _vfxTransform;
 
-    [Header("VFX")]
-    [SerializeField] GameObject _bloodSplatterVFX;
+    [Header("Blood Splatter")]
+    [SerializeField] ParticleSystem _bloodSplatterVFX;
 
     [Header("Dust Trails")]
     [SerializeField] Vector3 _dustTrailPositionOffset;
-    [SerializeField] ParticleSystem _walkDustTrail;
-    [SerializeField] ParticleSystem _sprintDustTrail;
-
-    [Header("Legs (For Dust Trails)")]
     [SerializeField] Transform _rightLeg;
     [SerializeField] Transform _leftLeg;
+    [SerializeField] ParticleSystem _walkDustTrail;
+    [SerializeField] ParticleSystem _sprintDustTrail;
 
     protected virtual void Awake() {
         _character = GetComponent<CharacterManager>();
@@ -46,14 +44,14 @@ public class CharacterEffectsManager : MonoBehaviour
         particle.gameObject.SetActive(false);
         // Reparent VFX
         particle.transform.SetParent(vfxParent);
-        StopAllCoroutines();
     }
 
     public void PlayBloodSplatterVFX(Vector3 contactPoint) {
 
         // For Manually Changing Blood Splatters Between Different Characters
         if (_bloodSplatterVFX != null) {
-            GameObject bloodSplatter = Instantiate(_bloodSplatterVFX, contactPoint, Quaternion.identity);
+            //GameObject bloodSplatter = Instantiate(_bloodSplatterVFX, contactPoint, Quaternion.identity);
+            StartCoroutine(PlayVFX(_bloodSplatterVFX, _vfxTransform, contactPoint));
         }
         // Use Default If Not Set Manually
         else {
