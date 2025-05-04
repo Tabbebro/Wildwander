@@ -2034,7 +2034,6 @@ GameObject:
   - component: {fileID: 4387097117051667014}
   - component: {fileID: 3679844491780533430}
   - component: {fileID: 4450437942712944438}
-  - component: {fileID: 4318041303100364724}
   - component: {fileID: 469181448318543472}
   - component: {fileID: 4526340262026166375}
   - component: {fileID: 791700808310247929}
@@ -2184,6 +2183,7 @@ MonoBehaviour:
   _wakeBossUp: 0
   KurtCombatManager: {fileID: 0}
   KurtSoundManager: {fileID: 0}
+  KurtEffectsManager: {fileID: 0}
 --- !u!114 &5643248130078563218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2267,10 +2267,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 7022929451176602196}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 812ecea0e5728564eadf162c9b0bd0cc, type: 3}
+  m_Script: {fileID: 11500000, guid: d3f37d59a1b94a44b8fe57aaaaddf821, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _vfxTransform: {fileID: 119057857234672394}
   _bloodSplatterVFX: {fileID: 0}
+  _stompVFX: {fileID: 5065606413171413992}
 --- !u!114 &6223304952787085298
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2398,20 +2400,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 29211f6ff8b5f4b4392481f2994a8091, type: 3}
   - {fileID: 8300000, guid: b6f2c292c25b0064c87d68b645d5e485, type: 3}
   - {fileID: 8300000, guid: 5cbd30f655facb743b5a29e71f4ab53c, type: 3}
---- !u!114 &4318041303100364724
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7022929451176602196}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81f5662b8a311cd4a9cb7a062728be0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  VFXParent: {fileID: 119057857234672394}
-  StompVFX: {fileID: 5065606413171413992}
 --- !u!95 &469181448318543472
 Animator:
   serializedVersion: 7
