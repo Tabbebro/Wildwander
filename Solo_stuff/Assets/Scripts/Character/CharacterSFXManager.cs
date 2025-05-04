@@ -67,8 +67,10 @@ public class CharacterSFXManager : MonoBehaviour
         if(Mathf.Abs(footstep) < 0.00001f) { footstep = 0; }
 
         if(_lastFootstep > 0 && footstep < 0 || _lastFootstep < 0 && footstep > 0) {
-
+            // Play Audio
             _footstepAudioSource.PlayOneShot(WorldSFXManager.Instance.ChooseRandomSFXFromArray(GetFootstepClipFromSurface()));
+            // Play DustTrail VFX
+            _character.CharacterEffectsManager.PlayDustTrailVFX(_character.CharacterNetworkManager.IsSprinting.Value);
         }
 
         _lastFootstep = footstep;

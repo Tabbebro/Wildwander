@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using static UnityEngine.ParticleSystem;
 
 public class CharacterEffectsManager : MonoBehaviour
 {
@@ -10,6 +11,15 @@ public class CharacterEffectsManager : MonoBehaviour
 
     [Header("VFX")]
     [SerializeField] GameObject _bloodSplatterVFX;
+
+    [Header("Dust Trails")]
+    [SerializeField] Vector3 _dustTrailPositionOffset;
+    [SerializeField] ParticleSystem _walkDustTrail;
+    [SerializeField] ParticleSystem _sprintDustTrail;
+
+    [Header("Legs (For Dust Trails)")]
+    [SerializeField] Transform _rightLeg;
+    [SerializeField] Transform _leftLeg;
 
     protected virtual void Awake() {
         _character = GetComponent<CharacterManager>();
@@ -36,6 +46,7 @@ public class CharacterEffectsManager : MonoBehaviour
         particle.gameObject.SetActive(false);
         // Reparent VFX
         particle.transform.SetParent(vfxParent);
+        StopAllCoroutines();
     }
 
     public void PlayBloodSplatterVFX(Vector3 contactPoint) {
@@ -48,5 +59,25 @@ public class CharacterEffectsManager : MonoBehaviour
         else {
             GameObject bloodSplatter = Instantiate(WorldCharacterEffectsManager.Instance.BloodSplatterVFX, contactPoint, Quaternion.identity);
         }
+    }
+
+    public void PlayDustTrailVFX(bool isSprinting) {
+        if (_rightLeg == null || _leftLeg == null) { return; }
+
+        ParticleSystem dustParticle = null;
+        if (_character.CharacterNetworkManager.IsSprinting.Value) {
+            dustParticle = _sprintDustTrail;
+        }
+        else {
+            dustParticle = _walkDustTrail;
+        }
+
+        if (_rightLeg.position.y < _leftLeg.position.y) { // Right Leg Lower
+            StartCoroutine(PlayVFX(dustParticle, _vfxTransform, _rightLeg.transform.position + _dustTrailPositionOffset));
+        }
+        else if (_leftLeg.position.y < _rightLeg.position.y) { // Left Leg Lower
+            StartCoroutine(PlayVFX(dustParticle, _vfxTransform, _leftLeg.transform.position + _dustTrailPositionOffset));
+        }
+
     }
 }
