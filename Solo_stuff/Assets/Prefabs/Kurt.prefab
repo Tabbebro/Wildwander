@@ -2293,10 +2293,10 @@ MonoBehaviour:
   _vfxTransform: {fileID: 119057857234672394}
   _bloodSplatterVFX: {fileID: 0}
   _dustTrailPositionOffset: {x: 0, y: -0.3, z: 0}
+  RightFootTransform: {fileID: 8745054801899677691}
+  LeftFootTransform: {fileID: 5513639776803947928}
   _walkDustTrail: {fileID: 2561884876584777063}
   _sprintDustTrail: {fileID: 2561884876584777063}
-  _rightLeg: {fileID: 8219020988826168667}
-  _leftLeg: {fileID: 3040993056706103044}
   _stompVFX: {fileID: 5065606413171413992}
 --- !u!114 &6223304952787085298
 MonoBehaviour:

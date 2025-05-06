@@ -14,8 +14,8 @@ public class CharacterEffectsManager : MonoBehaviour
 
     [Header("Dust Trails")]
     [SerializeField] Vector3 _dustTrailPositionOffset;
-    [SerializeField] Transform _rightLeg;
-    [SerializeField] Transform _leftLeg;
+    public Transform RightFootTransform;
+    public Transform LeftFootTransform;
     [SerializeField] ParticleSystem _walkDustTrail;
     [SerializeField] ParticleSystem _sprintDustTrail;
 
@@ -37,9 +37,11 @@ public class CharacterEffectsManager : MonoBehaviour
         // Play VFX
         particle.Play();
 
+        // Wait For VFX To Finish Playing
         while (particle.isPlaying) {
             yield return null;
         }
+
         // Disable GameObject
         particle.gameObject.SetActive(false);
         // Reparent VFX
@@ -59,8 +61,8 @@ public class CharacterEffectsManager : MonoBehaviour
         }
     }
 
-    public void PlayDustTrailVFX(bool isSprinting) {
-        if (_rightLeg == null || _leftLeg == null) { return; }
+    public void PlayDustTrailVFX(bool isSprinting, Vector3 location) {
+        if (RightFootTransform == null || LeftFootTransform == null) { return; }
 
         ParticleSystem dustParticle = null;
         if (_character.CharacterNetworkManager.IsSprinting.Value) {
@@ -70,12 +72,6 @@ public class CharacterEffectsManager : MonoBehaviour
             dustParticle = _walkDustTrail;
         }
 
-        if (_rightLeg.position.y < _leftLeg.position.y) { // Right Leg Lower
-            StartCoroutine(PlayVFX(dustParticle, _vfxTransform, _rightLeg.transform.position + _dustTrailPositionOffset));
-        }
-        else if (_leftLeg.position.y < _rightLeg.position.y) { // Left Leg Lower
-            StartCoroutine(PlayVFX(dustParticle, _vfxTransform, _leftLeg.transform.position + _dustTrailPositionOffset));
-        }
-
+        StartCoroutine(PlayVFX(dustParticle, _vfxTransform, location + _dustTrailPositionOffset));
     }
 }

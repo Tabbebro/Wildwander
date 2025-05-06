@@ -1751,10 +1751,10 @@ MonoBehaviour:
   _vfxTransform: {fileID: 2315485580933245465}
   _bloodSplatterVFX: {fileID: 5497891517440406082}
   _dustTrailPositionOffset: {x: 0, y: 0, z: 0}
+  RightFootTransform: {fileID: 7470336424575113553}
+  LeftFootTransform: {fileID: 5840136258919458557}
   _walkDustTrail: {fileID: 6050050090800116625}
   _sprintDustTrail: {fileID: 4608117011435760153}
-  _rightLeg: {fileID: 7470336424575113553}
-  _leftLeg: {fileID: 5840136258919458557}
   _effectToTest: {fileID: 11400000, guid: 37d78ce1b06b541469045cfb0bd1593a, type: 2}
   _processEffect: 0
 --- !u!114 &-4681505307297486156

@@ -60,17 +60,24 @@ public class CharacterSFXManager : MonoBehaviour
         if (_character.IsDead.Value) { return; }
         if (_character.IsPerformingAction) { return; }
         if (_character.CharacterMovementManager.isRolling) { return; }
+        if (!_character.CharacterNetworkManager.IsMoving.Value) { return; }
         if (_character.CharacterNetworkManager.IsJumping.Value) { return; }
 
         var footstep = _character.Animator.GetFloat("Footstep");
 
         if(Mathf.Abs(footstep) < 0.00001f) { footstep = 0; }
 
-        if(_lastFootstep > 0 && footstep < 0 || _lastFootstep < 0 && footstep > 0) {
+        if (_lastFootstep < 0 && footstep > 0) { // Right Foot
             // Play Audio
             _footstepAudioSource.PlayOneShot(WorldSFXManager.Instance.ChooseRandomSFXFromArray(GetFootstepClipFromSurface()));
             // Play DustTrail VFX
-            _character.CharacterEffectsManager.PlayDustTrailVFX(_character.CharacterNetworkManager.IsSprinting.Value);
+            _character.CharacterEffectsManager.PlayDustTrailVFX(_character.CharacterNetworkManager.IsSprinting.Value, _character.CharacterEffectsManager.RightFootTransform.position);
+        }
+        else if (_lastFootstep > 0 && footstep < 0) { // Left Foot
+            // Play Audio
+            _footstepAudioSource.PlayOneShot(WorldSFXManager.Instance.ChooseRandomSFXFromArray(GetFootstepClipFromSurface()));
+            // Play DustTrail VFX
+            _character.CharacterEffectsManager.PlayDustTrailVFX(_character.CharacterNetworkManager.IsSprinting.Value, _character.CharacterEffectsManager.LeftFootTransform.position);
         }
 
         _lastFootstep = footstep;
