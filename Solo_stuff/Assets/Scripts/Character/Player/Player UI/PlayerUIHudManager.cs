@@ -11,6 +11,10 @@ public class PlayerUIHudManager : MonoBehaviour
     [SerializeField] Image _rightWeaponQuickSlotIcon;
     [SerializeField] Image _leftWeaponQuickSlotIcon;
 
+    [Header("Boss Health Bar")]
+    public Transform BossHealthBarParent;
+    public GameObject BossHealthBarObject;
+
     public void RefreshHud() {
 
         _healthBar.gameObject.SetActive(false);

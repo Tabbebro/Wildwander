@@ -2192,6 +2192,7 @@ MonoBehaviour:
   AICharacterNetworkManager: {fileID: 0}
   AICharacterMovementManager: {fileID: 0}
   AICharacterCombatManager: {fileID: 0}
+  CharacterName: Coalbrain Kurt
   NavmeshAgent: {fileID: 0}
   _currentState: {fileID: 0}
   Idle: {fileID: 11400000, guid: c900b4b0279fcc3449adeeba7e767d17, type: 2}
@@ -2199,11 +2200,13 @@ MonoBehaviour:
   CombatStance: {fileID: 11400000, guid: e39ffdc420b87af4c942a988e7f53375, type: 2}
   Attack: {fileID: 11400000, guid: 049f3affe182df64c98cfe4be4058863, type: 2}
   BossID: 0
+  _fogWalls: []
+  BossFightIsActive:
+    m_InternalValue: 0
   _hasBeenDefeated:
     m_InternalValue: 0
   _hasBeenAwakened:
     m_InternalValue: 0
-  _fogWalls: []
   _sleepAnimation: Sleep_01
   _awakenAnimation: Awaken_01
   _sleepState: {fileID: 11400000, guid: 77d30cd3c42d20246bd5ad680e7a25aa, type: 2}

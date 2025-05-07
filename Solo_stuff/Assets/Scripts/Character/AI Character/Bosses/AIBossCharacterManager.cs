@@ -9,6 +9,7 @@ public class AIBossCharacterManager : AICharacterManager
 
     [Header("Status")]
     [SerializeField] List<FogWallInteractable> _fogWalls;
+    public NetworkVariable<bool> BossFightIsActive = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     public NetworkVariable<bool> _hasBeenDefeated = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     public NetworkVariable<bool> _hasBeenAwakened = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
     [SerializeField] string _sleepAnimation;
@@ -23,6 +24,9 @@ public class AIBossCharacterManager : AICharacterManager
 
     public override void OnNetworkSpawn() {
         base.OnNetworkSpawn();
+
+        BossFightIsActive.OnValueChanged += OnBossFightIsActiveChanged;
+        OnBossFightIsActiveChanged(false, BossFightIsActive.Value);
         
         if (IsOwner) {
             _sleepState = Instantiate(_sleepState);
@@ -66,6 +70,12 @@ public class AIBossCharacterManager : AICharacterManager
         }
     }
 
+    public override void OnNetworkDespawn() {
+        base.OnNetworkDespawn();
+
+        BossFightIsActive.OnValueChanged -= OnBossFightIsActiveChanged;
+    }
+
     IEnumerator GetFogWalls() {
         while (WorldObjectManager.Instance.FogWalls.Count == 0) {
             yield return new WaitForEndOfFrame();
@@ -87,6 +97,8 @@ public class AIBossCharacterManager : AICharacterManager
             }
             CharacterNetworkManager.CurrentHealth.Value = 0;
             IsDead.Value = true;
+
+            BossFightIsActive.Value = false;
 
             _hasBeenDefeated.Value = true;
             if (!WorldSaveGameManager.Instance.CurrentCharacterData.BossesAwakened.ContainsKey(BossID)) {
@@ -119,6 +131,7 @@ public class AIBossCharacterManager : AICharacterManager
             if (!_hasBeenAwakened.Value) {
                 CharacterAnimatorManager.PlayTargetActionAnimation(_awakenAnimation, true);
             }
+            BossFightIsActive.Value = true;
             _hasBeenAwakened.Value = true;
             _currentState = Idle;
 
@@ -134,6 +147,15 @@ public class AIBossCharacterManager : AICharacterManager
                 _fogWalls[i].IsActive.Value = true;
             }
 
+        }
+    }
+
+    void OnBossFightIsActiveChanged(bool oldStatus, bool newStatus) {
+        if (BossFightIsActive.Value) {
+            GameObject bossHealthBar = Instantiate(PlayerUIManager.Instance.PlayerUIHudManager.BossHealthBarObject, PlayerUIManager.Instance.PlayerUIHudManager.BossHealthBarParent);
+
+            UI_BossHpBar bossBar = bossHealthBar.GetComponentInChildren<UI_BossHpBar>();
+            bossBar.EnableBossHPBar(this);            
         }
     }
 }

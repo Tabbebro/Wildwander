@@ -3,9 +3,13 @@ using UnityEngine.AI;
 
 public class AICharacterManager : CharacterManager
 {
+
     [HideInInspector] public AICharacterNetworkManager AICharacterNetworkManager;
     [HideInInspector] public AICharacterMovementManager AICharacterMovementManager;
     [HideInInspector] public AICharacterCombatManager AICharacterCombatManager;
+
+    [Header("Character Name")]
+    public string CharacterName = "";
 
     [Header("Navmesh Agent")]
     public NavMeshAgent NavmeshAgent;
