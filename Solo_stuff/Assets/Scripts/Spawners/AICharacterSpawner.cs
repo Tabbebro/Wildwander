@@ -18,6 +18,7 @@ public class AICharacterSpawner : MonoBehaviour
             _instantiatedGameObject.transform.position = transform.position;
             _instantiatedGameObject.transform.rotation = transform.rotation;
             _instantiatedGameObject.GetComponent<NetworkObject>().Spawn();
+            WorldAIManager.Instance.AddCharacterToSpawnedCharacters(_instantiatedGameObject.GetComponent<AICharacterManager>());
         }
     }
 }

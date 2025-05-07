@@ -5015,7 +5015,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
-  _fogGameObjects: []
+  _fogGameObjects:
+  - {fileID: 2132097094425138499}
   FogWallID: 0
   IsActive:
     m_InternalValue: 0

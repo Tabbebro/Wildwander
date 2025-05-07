@@ -11,7 +11,7 @@ public class AICharacterManager : CharacterManager
     public NavMeshAgent NavmeshAgent;
 
     [Header("Current State")]
-    [SerializeField] AIState _currentState;
+    [SerializeField] protected AIState _currentState;
 
     [Header("States")]
     public IdleState Idle;
@@ -26,12 +26,16 @@ public class AICharacterManager : CharacterManager
         AICharacterCombatManager = GetComponent<AICharacterCombatManager>();
 
         NavmeshAgent = GetComponentInChildren<NavMeshAgent>();
+    }
 
+    public override void OnNetworkSpawn() {
+        base.OnNetworkSpawn();
         // Using Copy Of Scriptable Objects
-        Idle = Instantiate(Idle);
-        PursueTarget = Instantiate(PursueTarget);
-
-        _currentState = Idle;
+        if (IsOwner) {
+            Idle = Instantiate(Idle);
+            PursueTarget = Instantiate(PursueTarget);
+            _currentState = Idle;
+        }
     }
 
     protected override void Update() {

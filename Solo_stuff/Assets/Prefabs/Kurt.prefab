@@ -2199,10 +2199,14 @@ MonoBehaviour:
   CombatStance: {fileID: 11400000, guid: e39ffdc420b87af4c942a988e7f53375, type: 2}
   Attack: {fileID: 11400000, guid: 049f3affe182df64c98cfe4be4058863, type: 2}
   BossID: 0
-  _hasBeenDefeated: 0
-  _hasBeenAwakened: 0
+  _hasBeenDefeated:
+    m_InternalValue: 0
+  _hasBeenAwakened:
+    m_InternalValue: 0
   _fogWalls: []
-  _wakeBossUp: 0
+  _sleepAnimation: Sleep_01
+  _awakenAnimation: Awaken_01
+  _sleepState: {fileID: 11400000, guid: 77d30cd3c42d20246bd5ad680e7a25aa, type: 2}
   KurtCombatManager: {fileID: 0}
   KurtSoundManager: {fileID: 0}
   KurtEffectsManager: {fileID: 0}
