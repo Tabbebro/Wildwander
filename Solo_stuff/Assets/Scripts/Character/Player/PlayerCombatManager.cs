@@ -39,6 +39,22 @@ public class PlayerCombatManager : CharacterCombatManager
             case AttackType.LightAttack01:
                 staminaDrainded = CurrentWeaponBeingUsed.BaseStaminaCost * CurrentWeaponBeingUsed.LigthAttackStaminaModifier;
                 break;
+            case AttackType.LightAttack02:
+                staminaDrainded = CurrentWeaponBeingUsed.BaseStaminaCost * CurrentWeaponBeingUsed.LigthAttackStaminaModifier;
+                break;
+            case AttackType.HeavyAttack01:
+                staminaDrainded = CurrentWeaponBeingUsed.BaseStaminaCost * CurrentWeaponBeingUsed.HeavyAttackStaminaModifier;
+                break;
+            case AttackType.HeavyAttack02:
+                staminaDrainded = CurrentWeaponBeingUsed.BaseStaminaCost * CurrentWeaponBeingUsed.HeavyAttackStaminaModifier;
+                break;
+            case AttackType.HeavyAttackHold01:
+                staminaDrainded = CurrentWeaponBeingUsed.BaseStaminaCost * CurrentWeaponBeingUsed.HeavyAttackHoldStaminaModifier;
+                break;
+            case AttackType.HeavyAttackHold02:
+                staminaDrainded = CurrentWeaponBeingUsed.BaseStaminaCost * CurrentWeaponBeingUsed.HeavyAttackHoldStaminaModifier;
+                break;
+
             default:
                 break;
         }

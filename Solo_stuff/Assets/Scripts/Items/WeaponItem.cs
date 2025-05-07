@@ -34,6 +34,8 @@ public class WeaponItem : Item
     [Header("Stamina Costs")]
     public int BaseStaminaCost = 20;
     public float LigthAttackStaminaModifier = 0.75f;
+    public float HeavyAttackStaminaModifier = 1f;
+    public float HeavyAttackHoldStaminaModifier = 1.25f;
 
     // TODO: Add Defence
 
