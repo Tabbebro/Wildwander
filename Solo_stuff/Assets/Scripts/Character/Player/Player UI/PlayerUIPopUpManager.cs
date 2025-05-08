@@ -10,6 +10,12 @@ public class PlayerUIPopUpManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI _youDiedPopUpText;
     [SerializeField] CanvasGroup _youDiedPopUpCanvasGroup;
 
+    [Header("Boss Defeated Pop Up")]
+    [SerializeField] GameObject _bossDefeatedPopUpGameObject;
+    [SerializeField] TextMeshProUGUI _bossDefeatedPopUpBackgroundText;
+    [SerializeField] TextMeshProUGUI _bossDefeatedPopUpText;
+    [SerializeField] CanvasGroup _bossDefeatedPopUpCanvasGroup;
+
     public void SendYouDiedPopUp() {
 
         // TODO: Add Some Post Process
@@ -22,6 +28,23 @@ public class PlayerUIPopUpManager : MonoBehaviour
         StartCoroutine(FadeInPopUpOverTime(_youDiedPopUpCanvasGroup, 5));
 
         StartCoroutine(WaitThenFadeOutPopUpOverTime(_youDiedPopUpCanvasGroup, 2, 5));
+    }
+
+    public void SendBossDefeatedPopUp(string bossDefeatedMessage) {
+
+        // TODO: Add Some Post Process
+
+        _bossDefeatedPopUpText.text = bossDefeatedMessage;
+        _bossDefeatedPopUpBackgroundText.text = bossDefeatedMessage;
+
+        _bossDefeatedPopUpGameObject.SetActive(true);
+        _bossDefeatedPopUpBackgroundText.characterSpacing = 0;
+
+        StartCoroutine(StretchPopUpTextOverTime(_bossDefeatedPopUpBackgroundText, 10, 10));
+
+        StartCoroutine(FadeInPopUpOverTime(_bossDefeatedPopUpCanvasGroup, 5));
+
+        StartCoroutine(WaitThenFadeOutPopUpOverTime(_bossDefeatedPopUpCanvasGroup, 2, 5));
     }
 
     IEnumerator StretchPopUpTextOverTime(TextMeshProUGUI text, float duration, float stretchAmount) {

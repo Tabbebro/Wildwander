@@ -328,6 +328,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scaleBarWithStats: 0
   _widthScaleMultiplier: 1
+  _destroyableObject: {fileID: 2965703475299250151}
   _bossCharacter: {fileID: 0}
   _bossNameText: {fileID: 8668192446639620426}
 --- !u!1 &4352146519879569383

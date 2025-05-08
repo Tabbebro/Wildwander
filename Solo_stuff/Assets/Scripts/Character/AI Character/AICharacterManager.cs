@@ -25,6 +25,7 @@ public class AICharacterManager : CharacterManager
 
     protected override void Awake() {
         base.Awake();
+
         AICharacterNetworkManager = GetComponent<AICharacterNetworkManager>();
         AICharacterMovementManager = GetComponent<AICharacterMovementManager>();
         AICharacterCombatManager = GetComponent<AICharacterCombatManager>();
@@ -34,12 +35,21 @@ public class AICharacterManager : CharacterManager
 
     public override void OnNetworkSpawn() {
         base.OnNetworkSpawn();
-        // Using Copy Of Scriptable Objects
         if (IsOwner) {
+            // Using Copy Of Scriptable Objects
             Idle = Instantiate(Idle);
             PursueTarget = Instantiate(PursueTarget);
+            CombatStance = Instantiate(CombatStance);
+            Attack = Instantiate(Attack);
             _currentState = Idle;
         }
+
+        AICharacterNetworkManager.CurrentHealth.OnValueChanged += AICharacterNetworkManager.CheckHP;
+    }
+
+    public override void OnNetworkDespawn() {
+        base.OnNetworkDespawn();
+        AICharacterNetworkManager.CurrentHealth.OnValueChanged -= AICharacterNetworkManager.CheckHP;
     }
 
     protected override void Update() {

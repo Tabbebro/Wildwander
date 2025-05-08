@@ -7,6 +7,10 @@ public class AIBossCharacterManager : AICharacterManager
 {
     public int BossID = 0;
 
+    [Header("Music")]
+    [SerializeField] AudioClip _bossIntroClip;
+    [SerializeField] AudioClip _bossLoopClip;
+
     [Header("Status")]
     [SerializeField] List<FogWallInteractable> _fogWalls;
     public NetworkVariable<bool> BossFightIsActive = new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
@@ -15,8 +19,15 @@ public class AIBossCharacterManager : AICharacterManager
     [SerializeField] string _sleepAnimation;
     [SerializeField] string _awakenAnimation;
 
+    [Header("Phase Change")]
+    public int Phase02ChangeHealthPercentage = 30;
+    [SerializeField] string _phaseChangeAnimation = "";
+    [SerializeField] CombatStanceState _phase02CombatStanceState;
+
+
     [Header("States")]
     [SerializeField] SleepState _sleepState;
+
 
     protected override void Awake() {
         base.Awake();
@@ -27,7 +38,6 @@ public class AIBossCharacterManager : AICharacterManager
 
         BossFightIsActive.OnValueChanged += OnBossFightIsActiveChanged;
         OnBossFightIsActiveChanged(false, BossFightIsActive.Value);
-        
         if (IsOwner) {
             _sleepState = Instantiate(_sleepState);
             _currentState = _sleepState;
@@ -91,14 +101,20 @@ public class AIBossCharacterManager : AICharacterManager
     }
 
     public override IEnumerator ProcessDeathEvent(bool manuallySelectDeathAnimation = false) {
+
+        PlayerUIManager.Instance.PlayerUIPopUpManager.SendBossDefeatedPopUp("Boat Goes Binted");
+
         if (IsOwner) {
             if (!manuallySelectDeathAnimation) {
                 CharacterAnimatorManager.PlayTargetActionAnimation("Death_01", true);
             }
             CharacterNetworkManager.CurrentHealth.Value = 0;
             IsDead.Value = true;
-
             BossFightIsActive.Value = false;
+
+            foreach (FogWallInteractable fogWall in _fogWalls) {
+                fogWall.IsActive.Value = false;
+            }
 
             _hasBeenDefeated.Value = true;
             if (!WorldSaveGameManager.Instance.CurrentCharacterData.BossesAwakened.ContainsKey(BossID)) {
@@ -152,10 +168,22 @@ public class AIBossCharacterManager : AICharacterManager
 
     void OnBossFightIsActiveChanged(bool oldStatus, bool newStatus) {
         if (BossFightIsActive.Value) {
+
+            WorldSFXManager.Instance.PlayBossTrack(_bossIntroClip, _bossLoopClip);
+
             GameObject bossHealthBar = Instantiate(PlayerUIManager.Instance.PlayerUIHudManager.BossHealthBarObject, PlayerUIManager.Instance.PlayerUIHudManager.BossHealthBarParent);
 
             UI_BossHpBar bossBar = bossHealthBar.GetComponentInChildren<UI_BossHpBar>();
             bossBar.EnableBossHPBar(this);            
         }
+        else {
+            WorldSFXManager.Instance.StopBossMusic();
+        }
+    }
+
+    public void Phase02Change() {
+        CharacterAnimatorManager.PlayTargetActionAnimation(_phaseChangeAnimation, true);
+        CombatStance = Instantiate(_phase02CombatStanceState);
+        _currentState = CombatStance;
     }
 }

@@ -3,6 +3,9 @@ using TMPro;
 
 public class UI_BossHpBar : UI_StatBar
 {
+    [Header("Destroyable Object")]
+    [SerializeField] GameObject _destroyableObject;
+
     [Header("Boss Character")]
     [SerializeField] AIBossCharacterManager _bossCharacter;
 
@@ -30,6 +33,6 @@ public class UI_BossHpBar : UI_StatBar
     }
 
     public void RemoveHPBar(float time) {
-        Destroy(gameObject.transform.parent, time);
+        Destroy(_destroyableObject, time);
     }
 }

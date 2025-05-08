@@ -2119,7 +2119,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7022929451176602196}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c35dc5449af06b74397b0f3b8149921d, type: 3}
+  m_Script: {fileID: 11500000, guid: e13d0e4009a4c3246b995fd64bcd82b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
@@ -2200,6 +2200,8 @@ MonoBehaviour:
   CombatStance: {fileID: 11400000, guid: e39ffdc420b87af4c942a988e7f53375, type: 2}
   Attack: {fileID: 11400000, guid: 049f3affe182df64c98cfe4be4058863, type: 2}
   BossID: 0
+  _bossIntroClip: {fileID: 8300000, guid: d6e70602beacac04ab32b50423734f2f, type: 3}
+  _bossLoopClip: {fileID: 8300000, guid: 7b9affb014d9eee44a51a2e5338ac948, type: 3}
   _fogWalls: []
   BossFightIsActive:
     m_InternalValue: 0
@@ -2209,6 +2211,9 @@ MonoBehaviour:
     m_InternalValue: 0
   _sleepAnimation: Sleep_01
   _awakenAnimation: Awaken_01
+  Phase02ChangeHealthPercentage: 30
+  _phaseChangeAnimation: Phase_Change_01
+  _phase02CombatStanceState: {fileID: 11400000, guid: 50de688b36c46a14aafb3e51841ede21, type: 2}
   _sleepState: {fileID: 11400000, guid: 77d30cd3c42d20246bd5ad680e7a25aa, type: 2}
   KurtCombatManager: {fileID: 0}
   KurtSoundManager: {fileID: 0}

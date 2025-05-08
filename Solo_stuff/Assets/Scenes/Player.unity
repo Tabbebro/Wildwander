@@ -4042,6 +4042,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AISpawner
       objectReference: {fileID: 0}
+    - target: {fileID: 7282944612749835919, guid: 7eeceb4dbbc4117488f56dbd7a0dd6e3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8387823798626693683, guid: 7eeceb4dbbc4117488f56dbd7a0dd6e3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 24.68
