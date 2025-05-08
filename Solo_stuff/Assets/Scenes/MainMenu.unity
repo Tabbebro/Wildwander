@@ -8900,10 +8900,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: World SFX Manager
       objectReference: {fileID: 0}
-    - target: {fileID: 3847344628250527443, guid: baf566245cf4d3d4988f0e6382e97565, type: 3}
-      propertyPath: OutputAudioMixerGroup
-      value: 
-      objectReference: {fileID: -280257131466177401, guid: e5b2f6d0f73d5724e920e604ad39bf09, type: 2}
     - target: {fileID: 8797243276274837781, guid: baf566245cf4d3d4988f0e6382e97565, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
