@@ -11,6 +11,10 @@ public class TitleScreenManager : MonoBehaviour {
     [SerializeField] GameObject _titleMainMenu;
     [SerializeField] GameObject _titleLoadGameMenu;
 
+    [Header("Back Grounds")]
+    [SerializeField] GameObject _firstCheckBG;
+    [SerializeField] GameObject _titleMainMenuBG;
+
     [Header("Buttons")]
     [SerializeField] Selectable _mainMenuStartGameButton;
     [SerializeField] Selectable _mainMenuLoadGameButton;
@@ -43,15 +47,44 @@ public class TitleScreenManager : MonoBehaviour {
     }
 
     public void PressStart() {
-        _firstCheck.SetActive(false);
-        _titleMainMenu.SetActive(true);
-        _mainMenuStartGameButton.Select();
+        CloseFirstCheck();
+        OpenTitleMainMenu();
     }
     public void StartNewGame() {
         WorldSaveGameManager.Instance.AttemptToCreateNewGame();
     }
     public void StartNetworkAsHost() {
         NetworkManager.Singleton.StartHost();
+    }
+
+    public void DisplayNoFreeCharactersMessage() {
+        _noCharacterSlotsPopUp.SetActive(true);
+        _noCharacterSlotsPopUpButton.Select();
+    }
+    public void CloseNoFreeCharactersMessage() {
+        _noCharacterSlotsPopUp.SetActive(false);
+        _mainMenuStartGameButton.Select();
+    }
+    #region Open/Close Different Menus
+    void OpenFirstCheck() {
+        _firstCheck.SetActive(true);
+        _firstCheckBG.SetActive(true);
+    }
+
+    void CloseFirstCheck() {
+        _firstCheck.SetActive(false);
+        _firstCheckBG.SetActive(false);
+    }
+
+    void OpenTitleMainMenu() {
+        _titleMainMenu.SetActive(true);
+        _titleMainMenuBG.SetActive(true);
+        _mainMenuStartGameButton.Select();
+    }
+
+    void CloseTitleMainMenu() {
+        _titleMainMenu.SetActive(false);
+        _titleMainMenuBG.SetActive(false);
     }
     public void OpenLoadGameMenu() {
 
@@ -64,15 +97,7 @@ public class TitleScreenManager : MonoBehaviour {
         _titleMainMenu.SetActive(true);
         _mainMenuLoadGameButton.Select();
     }
-    public void DisplayNoFreeCharactersMessage() {
-        _noCharacterSlotsPopUp.SetActive(true);
-        _noCharacterSlotsPopUpButton.Select();
-    }
-    public void CloseNoFreeCharactersMessage() {
-        _noCharacterSlotsPopUp.SetActive(false);
-        _mainMenuStartGameButton.Select();
-    }
-
+    #endregion
     #region Character Slots
     public void SelectCharacterSlot(CharacterSlot characterSlot) {
         CurrentSelectedSlot = characterSlot;
