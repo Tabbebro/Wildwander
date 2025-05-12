@@ -291,9 +291,27 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "QueueLightAttack",
+                    "type": "Button",
+                    "id": "0e998da1-7bdf-4c91-9269-f30c9609db32",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "HeavyAttack",
                     "type": "Button",
                     "id": "1277dece-1bd4-4607-ad5e-a2532e410375",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "QueueHeavyAttack",
+                    "type": "Button",
+                    "id": "a3b8ab54-bc0a-4d03-bbe1-9d17ff58f124",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -339,6 +357,15 @@
                     "name": "Dodge",
                     "type": "Button",
                     "id": "42460644-f5a4-4eb2-a51c-c94caba35141",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Tap",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "QueueDodge",
+                    "type": "Button",
+                    "id": "c7e003a9-9525-462c-9707-a41aea79b971",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "Tap",
@@ -470,12 +497,34 @@
                 },
                 {
                     "name": "",
+                    "id": "d8762545-22d8-41d5-bddf-60763b1faaef",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "Tap",
+                    "processors": "",
+                    "groups": "",
+                    "action": "QueueDodge",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "e85e32c0-1157-40dc-9022-8c56df1a233c",
                     "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "HeavyAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a7ff6054-51c4-4377-94c7-c84853ef8bd9",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "QueueHeavyAttack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -498,6 +547,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "LightAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ef5e9e06-f587-47f7-8932-ed03e7dfb912",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "QueueLightAttack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

@@ -1,8 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PlayerInputManager : MonoBehaviour
-{
+public class PlayerInputManager : MonoBehaviour {
     public static PlayerInputManager Instance;
     public PlayerManager Player;
 
@@ -25,7 +24,7 @@ public class PlayerInputManager : MonoBehaviour
     [SerializeField] bool _lockOnLeftInput = false;
     [SerializeField] bool _lockOnRightInput = false;
     Coroutine _lockOnCoroutine;
-    
+
 
     [Header("Player Action Input")]
     [SerializeField] bool _dodgeInput = false;
@@ -41,6 +40,13 @@ public class PlayerInputManager : MonoBehaviour
     [SerializeField] bool _heavyAttackInput = false;
     [SerializeField] bool _heavyAttackHoldInput = false;
 
+    [Header("Queued Inputs")]
+    [SerializeField] float _defaultQueueInputTime = 0.35f;
+    [SerializeField] float _queueInputTimer = 0;
+    bool _inputQueueIsActive = false;
+    [SerializeField] bool _queueLightAttackInput;
+    [SerializeField] bool _queueHeavyAttackInput;
+    [SerializeField] bool _queueDodgeInput;
 
     private void Awake() {
         if (Instance == null) {
@@ -101,7 +107,11 @@ public class PlayerInputManager : MonoBehaviour
             _inputs.PlayerActions.LockOn.performed += i => _lockOnInput = true;
             _inputs.PlayerActions.ChangeLockOnLeft.performed += i => _lockOnLeftInput = true;
             _inputs.PlayerActions.ChangeLockOnRight.performed += i => _lockOnRightInput = true;
-            
+
+            // Queued Inputs
+            _inputs.PlayerActions.QueueLightAttack.performed += i => QueueInput(ref _queueLightAttackInput);
+            _inputs.PlayerActions.QueueHeavyAttack.performed += i => QueueInput(ref _queueHeavyAttackInput);
+            _inputs.PlayerActions.QueueDodge.performed += i => QueueInput(ref _queueDodgeInput);
         }
 
         EnableInputs();
@@ -151,8 +161,11 @@ public class PlayerInputManager : MonoBehaviour
         HandleHeavyAttackHoldInput();
         HandleSwitchRightWeaponInput();
         HandleSwitchLeftWeaponInput();
+
+        HandleQueuedInput();
     }
 
+    #region Lock On
     // Lock On
     void HandleLockOnInput() {
         // Check For Dead Target
@@ -219,7 +232,9 @@ public class PlayerInputManager : MonoBehaviour
             }
         }
     }
+    #endregion
 
+    #region Movement
     // Movement
 
     void HandlePlayerMovementInput() {
@@ -261,7 +276,9 @@ public class PlayerInputManager : MonoBehaviour
         CameraHorizontalInput = _cameraInput.x;
         CameraVerticalInput = _cameraInput.y;
     }
+    #endregion
 
+    #region Actions
     // Actions
 
     void HandleDodgeInput() {
@@ -338,5 +355,54 @@ public class PlayerInputManager : MonoBehaviour
 
             Player.PlayerEquipmentManager.SwitchLeftWeapon();
         }
+    }
+    #endregion
+
+    // Input Queue
+    void QueueInput(ref bool quedInput) {
+        ResetQueueInputs();
+
+        // TODO: Check For Open UI
+
+        if (Player.IsPerformingAction || Player.PlayerNetworkManager.IsJumping.Value) {
+            quedInput = true;
+            _queueInputTimer = _defaultQueueInputTime;
+            _inputQueueIsActive = true;
+        }
+    }
+
+    void ProcessQueuedInput() {
+        if (Player.IsDead.Value) { return; }
+
+        if (_queueLightAttackInput) {
+            _lightAttackInput = true;
+        }
+        if (_queueHeavyAttackInput) {
+            _heavyAttackInput = true;
+        }
+        if (_queueDodgeInput) {
+            _dodgeInput = true;
+        }
+    }
+
+    void HandleQueuedInput() {
+        if (_inputQueueIsActive) {
+            if (_queueInputTimer > 0) {
+                _queueInputTimer -= Time.deltaTime;
+                ProcessQueuedInput();
+            }
+            else {
+                ResetQueueInputs();
+                _inputQueueIsActive = false;
+                _queueInputTimer = 0;
+            }
+        }
+    }
+
+    void ResetQueueInputs() {
+        // TODO: Reset All Queued Inputs
+        _queueLightAttackInput = false;
+        _queueHeavyAttackInput = false;
+        _queueDodgeInput = false;
     }
 }

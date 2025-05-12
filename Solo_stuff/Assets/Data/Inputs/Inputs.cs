@@ -377,9 +377,27 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""QueueLightAttack"",
+                    ""type"": ""Button"",
+                    ""id"": ""0e998da1-7bdf-4c91-9269-f30c9609db32"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""HeavyAttack"",
                     ""type"": ""Button"",
                     ""id"": ""1277dece-1bd4-4607-ad5e-a2532e410375"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""QueueHeavyAttack"",
+                    ""type"": ""Button"",
+                    ""id"": ""a3b8ab54-bc0a-4d03-bbe1-9d17ff58f124"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -425,6 +443,15 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
                     ""name"": ""Dodge"",
                     ""type"": ""Button"",
                     ""id"": ""42460644-f5a4-4eb2-a51c-c94caba35141"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Tap"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""QueueDodge"",
+                    ""type"": ""Button"",
+                    ""id"": ""c7e003a9-9525-462c-9707-a41aea79b971"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": ""Tap"",
@@ -556,12 +583,34 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""d8762545-22d8-41d5-bddf-60763b1faaef"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": ""Tap"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""QueueDodge"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""e85e32c0-1157-40dc-9022-8c56df1a233c"",
                     ""path"": ""<Gamepad>/rightTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""HeavyAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a7ff6054-51c4-4377-94c7-c84853ef8bd9"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""QueueHeavyAttack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -584,6 +633,17 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""LightAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ef5e9e06-f587-47f7-8932-ed03e7dfb912"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""QueueLightAttack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1034,12 +1094,15 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
         // PlayerActions
         m_PlayerActions = asset.FindActionMap("PlayerActions", throwIfNotFound: true);
         m_PlayerActions_LightAttack = m_PlayerActions.FindAction("LightAttack", throwIfNotFound: true);
+        m_PlayerActions_QueueLightAttack = m_PlayerActions.FindAction("QueueLightAttack", throwIfNotFound: true);
         m_PlayerActions_HeavyAttack = m_PlayerActions.FindAction("HeavyAttack", throwIfNotFound: true);
+        m_PlayerActions_QueueHeavyAttack = m_PlayerActions.FindAction("QueueHeavyAttack", throwIfNotFound: true);
         m_PlayerActions_HeavyAttackHold = m_PlayerActions.FindAction("HeavyAttackHold", throwIfNotFound: true);
         m_PlayerActions_Interact = m_PlayerActions.FindAction("Interact", throwIfNotFound: true);
         m_PlayerActions_Jump = m_PlayerActions.FindAction("Jump", throwIfNotFound: true);
         m_PlayerActions_Sprint = m_PlayerActions.FindAction("Sprint", throwIfNotFound: true);
         m_PlayerActions_Dodge = m_PlayerActions.FindAction("Dodge", throwIfNotFound: true);
+        m_PlayerActions_QueueDodge = m_PlayerActions.FindAction("QueueDodge", throwIfNotFound: true);
         m_PlayerActions_LockOn = m_PlayerActions.FindAction("LockOn", throwIfNotFound: true);
         m_PlayerActions_ChangeLockOnLeft = m_PlayerActions.FindAction("ChangeLockOnLeft", throwIfNotFound: true);
         m_PlayerActions_ChangeLockOnRight = m_PlayerActions.FindAction("ChangeLockOnRight", throwIfNotFound: true);
@@ -1328,12 +1391,15 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_PlayerActions;
     private List<IPlayerActionsActions> m_PlayerActionsActionsCallbackInterfaces = new List<IPlayerActionsActions>();
     private readonly InputAction m_PlayerActions_LightAttack;
+    private readonly InputAction m_PlayerActions_QueueLightAttack;
     private readonly InputAction m_PlayerActions_HeavyAttack;
+    private readonly InputAction m_PlayerActions_QueueHeavyAttack;
     private readonly InputAction m_PlayerActions_HeavyAttackHold;
     private readonly InputAction m_PlayerActions_Interact;
     private readonly InputAction m_PlayerActions_Jump;
     private readonly InputAction m_PlayerActions_Sprint;
     private readonly InputAction m_PlayerActions_Dodge;
+    private readonly InputAction m_PlayerActions_QueueDodge;
     private readonly InputAction m_PlayerActions_LockOn;
     private readonly InputAction m_PlayerActions_ChangeLockOnLeft;
     private readonly InputAction m_PlayerActions_ChangeLockOnRight;
@@ -1355,9 +1421,17 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @LightAttack => m_Wrapper.m_PlayerActions_LightAttack;
         /// <summary>
+        /// Provides access to the underlying input action "PlayerActions/QueueLightAttack".
+        /// </summary>
+        public InputAction @QueueLightAttack => m_Wrapper.m_PlayerActions_QueueLightAttack;
+        /// <summary>
         /// Provides access to the underlying input action "PlayerActions/HeavyAttack".
         /// </summary>
         public InputAction @HeavyAttack => m_Wrapper.m_PlayerActions_HeavyAttack;
+        /// <summary>
+        /// Provides access to the underlying input action "PlayerActions/QueueHeavyAttack".
+        /// </summary>
+        public InputAction @QueueHeavyAttack => m_Wrapper.m_PlayerActions_QueueHeavyAttack;
         /// <summary>
         /// Provides access to the underlying input action "PlayerActions/HeavyAttackHold".
         /// </summary>
@@ -1378,6 +1452,10 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "PlayerActions/Dodge".
         /// </summary>
         public InputAction @Dodge => m_Wrapper.m_PlayerActions_Dodge;
+        /// <summary>
+        /// Provides access to the underlying input action "PlayerActions/QueueDodge".
+        /// </summary>
+        public InputAction @QueueDodge => m_Wrapper.m_PlayerActions_QueueDodge;
         /// <summary>
         /// Provides access to the underlying input action "PlayerActions/LockOn".
         /// </summary>
@@ -1427,9 +1505,15 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
             @LightAttack.started += instance.OnLightAttack;
             @LightAttack.performed += instance.OnLightAttack;
             @LightAttack.canceled += instance.OnLightAttack;
+            @QueueLightAttack.started += instance.OnQueueLightAttack;
+            @QueueLightAttack.performed += instance.OnQueueLightAttack;
+            @QueueLightAttack.canceled += instance.OnQueueLightAttack;
             @HeavyAttack.started += instance.OnHeavyAttack;
             @HeavyAttack.performed += instance.OnHeavyAttack;
             @HeavyAttack.canceled += instance.OnHeavyAttack;
+            @QueueHeavyAttack.started += instance.OnQueueHeavyAttack;
+            @QueueHeavyAttack.performed += instance.OnQueueHeavyAttack;
+            @QueueHeavyAttack.canceled += instance.OnQueueHeavyAttack;
             @HeavyAttackHold.started += instance.OnHeavyAttackHold;
             @HeavyAttackHold.performed += instance.OnHeavyAttackHold;
             @HeavyAttackHold.canceled += instance.OnHeavyAttackHold;
@@ -1445,6 +1529,9 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
             @Dodge.started += instance.OnDodge;
             @Dodge.performed += instance.OnDodge;
             @Dodge.canceled += instance.OnDodge;
+            @QueueDodge.started += instance.OnQueueDodge;
+            @QueueDodge.performed += instance.OnQueueDodge;
+            @QueueDodge.canceled += instance.OnQueueDodge;
             @LockOn.started += instance.OnLockOn;
             @LockOn.performed += instance.OnLockOn;
             @LockOn.canceled += instance.OnLockOn;
@@ -1474,9 +1561,15 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
             @LightAttack.started -= instance.OnLightAttack;
             @LightAttack.performed -= instance.OnLightAttack;
             @LightAttack.canceled -= instance.OnLightAttack;
+            @QueueLightAttack.started -= instance.OnQueueLightAttack;
+            @QueueLightAttack.performed -= instance.OnQueueLightAttack;
+            @QueueLightAttack.canceled -= instance.OnQueueLightAttack;
             @HeavyAttack.started -= instance.OnHeavyAttack;
             @HeavyAttack.performed -= instance.OnHeavyAttack;
             @HeavyAttack.canceled -= instance.OnHeavyAttack;
+            @QueueHeavyAttack.started -= instance.OnQueueHeavyAttack;
+            @QueueHeavyAttack.performed -= instance.OnQueueHeavyAttack;
+            @QueueHeavyAttack.canceled -= instance.OnQueueHeavyAttack;
             @HeavyAttackHold.started -= instance.OnHeavyAttackHold;
             @HeavyAttackHold.performed -= instance.OnHeavyAttackHold;
             @HeavyAttackHold.canceled -= instance.OnHeavyAttackHold;
@@ -1492,6 +1585,9 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
             @Dodge.started -= instance.OnDodge;
             @Dodge.performed -= instance.OnDodge;
             @Dodge.canceled -= instance.OnDodge;
+            @QueueDodge.started -= instance.OnQueueDodge;
+            @QueueDodge.performed -= instance.OnQueueDodge;
+            @QueueDodge.canceled -= instance.OnQueueDodge;
             @LockOn.started -= instance.OnLockOn;
             @LockOn.performed -= instance.OnLockOn;
             @LockOn.canceled -= instance.OnLockOn;
@@ -1790,12 +1886,26 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnLightAttack(InputAction.CallbackContext context);
         /// <summary>
+        /// Method invoked when associated input action "QueueLightAttack" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnQueueLightAttack(InputAction.CallbackContext context);
+        /// <summary>
         /// Method invoked when associated input action "HeavyAttack" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnHeavyAttack(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "QueueHeavyAttack" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnQueueHeavyAttack(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "HeavyAttackHold" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
@@ -1831,6 +1941,13 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnDodge(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "QueueDodge" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnQueueDodge(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "LockOn" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>

@@ -11,7 +11,7 @@ public class PlayerCamera : MonoBehaviour
 
 
     [Header("Camera Settings")]
-    float _cameraSmoothSpeed = 1;
+    [SerializeField] float _cameraSmoothSpeed = 1;
     [SerializeField] float _leftAndRightRotationSpeed = 220;
     [SerializeField] float _upAndDownRotationSpeed = 220;
     [SerializeField] float _minimumPivot = -30;
@@ -65,7 +65,7 @@ public class PlayerCamera : MonoBehaviour
     }
 
     void HandleFollowTarget() {
-        Vector3 targetCameraPosition = Vector3.SmoothDamp(transform.position, Player.transform.position, ref _cameraVelocity, _cameraSmoothSpeed * Time.deltaTime);
+        Vector3 targetCameraPosition = Vector3.SmoothDamp(transform.position, Player.transform.position, ref _cameraVelocity, _cameraSmoothSpeed* Time.deltaTime);
         transform.position = targetCameraPosition;
     }
 
