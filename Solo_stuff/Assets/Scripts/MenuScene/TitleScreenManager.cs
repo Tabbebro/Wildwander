@@ -56,7 +56,6 @@ public class TitleScreenManager : MonoBehaviour {
     public void StartNetworkAsHost() {
         NetworkManager.Singleton.StartHost();
     }
-
     public void DisplayNoFreeCharactersMessage() {
         _noCharacterSlotsPopUp.SetActive(true);
         _noCharacterSlotsPopUpButton.Select();
@@ -65,6 +64,7 @@ public class TitleScreenManager : MonoBehaviour {
         _noCharacterSlotsPopUp.SetActive(false);
         _mainMenuStartGameButton.Select();
     }
+
     #region Open/Close Different Menus
     void OpenFirstCheck() {
         _firstCheck.SetActive(true);

@@ -15,6 +15,10 @@ public class MeleeWeaponDamageCollider : DamageCollider
     public float HeavyAttackHold01Modifier;
     public float HeavyAttackHold02Modifier;
 
+    public float RunAttack01Modifier;
+    public float RollAttack01Modifier;
+    public float BackstepAttack01Modifier;
+
     protected override void Awake() {
         base.Awake();
 
@@ -81,6 +85,15 @@ public class MeleeWeaponDamageCollider : DamageCollider
                 break;
             case AttackType.HeavyAttackHold02:
                 ApplyAttackDamageModifiers(HeavyAttackHold02Modifier, damageEffect);
+                break;
+            case AttackType.RunningAttack01:
+                ApplyAttackDamageModifiers(RunAttack01Modifier, damageEffect);
+                break;
+            case AttackType.RollingAttack01:
+                ApplyAttackDamageModifiers(RollAttack01Modifier, damageEffect);
+                break;
+            case AttackType.BackstepAttack01:
+                ApplyAttackDamageModifiers(BackstepAttack01Modifier, damageEffect);
                 break;
             default:
                 break;

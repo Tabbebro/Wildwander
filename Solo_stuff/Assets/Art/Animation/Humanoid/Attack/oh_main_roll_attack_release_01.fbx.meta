@@ -1,5 +1,13 @@
 fileFormatVersion: 2
-guid: a331bfc49ba947b4dbfab28907ab0e54
+guid: 084e663d36f3c654193754d061a33ca5
+AssetOrigin:
+  serializedVersion: 1
+  productId: 220752
+  packageName: Straight Sword Animation Set
+  packageVersion: 3.0
+  assetPath: Assets/Nephilite Studios/Straight Sword Animation Set/Animations/Straight
+    Sword Animations/Nephilim Animations (Remastered)/Straight Sword Main Hand/straight_sword_main_roll_attack_01_release.fbx
+  uploadId: 722475
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -31,11 +39,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: oh_main_heavy_02_release_full
-      takeName: straight_sword_main_charged_attack_02_release_full
-      internalID: 5727089098040894955
+      name: oh_main_roll_attack_release_01
+      takeName: straight_sword_main_roll_attack_01_release
+      internalID: 6201974159233468888
       firstFrame: 0
-      lastFrame: 40
+      lastFrame: 47
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -55,43 +63,36 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0
+      - time: 0.0011695906
         functionName: EnableCanRotate
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.06842106
+      - time: 0.13236234
         functionName: DrainStaminaBasedOnAttack
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.07672743
+      - time: 0.13995999
         functionName: OpenDamageCollider
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.12244011
+      - time: 0.17050546
         functionName: DisableCanRotate
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.17416404
+      - time: 0.2472412
         functionName: CloseDamageCollider
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
-      - time: 0.2619401
-        functionName: EnableCanDoCombo
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0

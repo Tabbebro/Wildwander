@@ -1,7 +1,6 @@
 using UnityEngine;
 
-public class PlayerAnimatorManager : CharacterAnimatorManager
-{
+public class PlayerAnimatorManager : CharacterAnimatorManager {
     PlayerManager _player;
 
     protected override void Awake() {
@@ -18,21 +17,5 @@ public class PlayerAnimatorManager : CharacterAnimatorManager
             _player.CharacterController.Move(velocity);
             _player.transform.rotation *= _player.Animator.deltaRotation;
         }
-    }
-
-    // Animation Event Calls
-
-    public override void EnableCanDoCombo() {
-        if (_player.PlayerNetworkManager.IsUsingRightHand.Value) {
-            _player.PlayerCombatManager.CanComboWithMainHandWeapon = true;
-        }
-        else {
-            // TODO: Enable Combo For Offhand
-        }
-    }
-
-    public override void DisableCanDoCombo() {
-        _player.PlayerCombatManager.CanComboWithMainHandWeapon = false;
-        // TODO: Disable Combo For Offhand
     }
 }

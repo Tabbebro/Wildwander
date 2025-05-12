@@ -54,7 +54,15 @@ public class PlayerCombatManager : CharacterCombatManager
             case AttackType.HeavyAttackHold02:
                 staminaDrainded = CurrentWeaponBeingUsed.BaseStaminaCost * CurrentWeaponBeingUsed.HeavyAttackHoldStaminaModifier;
                 break;
-
+            case AttackType.RunningAttack01:
+                staminaDrainded = CurrentWeaponBeingUsed.BaseStaminaCost * CurrentWeaponBeingUsed.RunAttackStaminaModifier;
+                break;
+            case AttackType.RollingAttack01:
+                staminaDrainded = CurrentWeaponBeingUsed.BaseStaminaCost * CurrentWeaponBeingUsed.RollAttackStaminaModifier;
+                break;
+            case AttackType.BackstepAttack01:
+                staminaDrainded = CurrentWeaponBeingUsed.BaseStaminaCost * CurrentWeaponBeingUsed.BackstepAttackStaminaModifier;
+                break;
             default:
                 break;
         }
@@ -70,5 +78,19 @@ public class PlayerCombatManager : CharacterCombatManager
         }
     }
 
+    // Animation Event Calls
+    public override void EnableCanDoCombo() {
+        if (_player.PlayerNetworkManager.IsUsingRightHand.Value) {
+            _player.PlayerCombatManager.CanComboWithMainHandWeapon = true;
+        }
+        else {
+            // TODO: Enable Combo For Offhand
+        }
+    }
 
+    public override void DisableCanDoCombo() {
+        _player.PlayerCombatManager.CanComboWithMainHandWeapon = false;
+        // TODO: Disable Combo For Offhand
+    }
 }
+

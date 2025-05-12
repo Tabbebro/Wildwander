@@ -75,9 +75,12 @@ public class PlayerMovementManager : CharacterMovementManager
 
     void HandleGroundedMovement() {
         // Flag check
+        if (_player.CharacterMovementManager.CanMove || _player.PlayerMovementManager.CanRotate) { 
+            GetMovementValues();
+        }
+
         if (!_player.CharacterMovementManager.CanMove) { return; }
 
-        GetMovementValues();
 
         // Move direction based on cameras perspective & inputs
         _moveDirection = PlayerCamera.Instance.transform.forward * VerticalMovement;

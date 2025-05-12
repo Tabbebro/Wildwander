@@ -30,12 +30,19 @@ public class WeaponItem : Item
     public float HeavyAttack02Modifier = 1.7f;
     public float HeavyAttackHold01Modifier = 2.0f;
     public float HeavyAttackHold02Modifier = 2.2f;
+    public float RunAttack01Modifier = 1.1f;
+    public float RollAttack01Modifier = 1.1f;
+    public float BackstepAttack01Modifier = 1.1f;
 
     [Header("Stamina Costs")]
     public int BaseStaminaCost = 20;
-    public float LigthAttackStaminaModifier = 0.75f;
-    public float HeavyAttackStaminaModifier = 1f;
-    public float HeavyAttackHoldStaminaModifier = 1.25f;
+    public float LigthAttackStaminaModifier = 1f;
+    public float HeavyAttackStaminaModifier = 1.25f;
+    public float HeavyAttackHoldStaminaModifier = 1.5f;
+    public float RunAttackStaminaModifier = 1.1f;
+    public float RollAttackStaminaModifier = 1.1f;
+    public float BackstepAttackStaminaModifier = 1.1f;
+
 
     // TODO: Add Defence
 

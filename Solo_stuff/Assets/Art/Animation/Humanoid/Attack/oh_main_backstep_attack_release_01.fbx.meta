@@ -1,5 +1,13 @@
 fileFormatVersion: 2
-guid: 604ad2a023fddad418574806301e1839
+guid: b7d1723a75051a44cb0bc863f47742ba
+AssetOrigin:
+  serializedVersion: 1
+  productId: 220752
+  packageName: Straight Sword Animation Set
+  packageVersion: 3.0
+  assetPath: Assets/Nephilite Studios/Straight Sword Animation Set/Animations/Straight
+    Sword Animations/Nephilim Animations (Remastered)/Straight Sword Main Hand/straight_sword_main_back_step_attack_01_release.fbx
+  uploadId: 722475
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -16,8 +24,6 @@ ModelImporter:
     optimizeGameObjects: 0
     removeConstantScaleCurves: 0
     motionNodeName: 
-    rigImportErrors: 
-    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
@@ -33,11 +39,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: straight_sword_main_roll_attack_01
-      takeName: straight_sword_main_roll_attack_01
-      internalID: -8409791448243797972
+      name: oh_main_backstep_attack_release_01
+      takeName: straight_sword_main_back_step_attack_01_release
+      internalID: -8877471859203270713
       firstFrame: 0
-      lastFrame: 66
+      lastFrame: 43
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -56,7 +62,42 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.000683189
+        functionName: EnableCanRotate
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.13692166
+        functionName: DisableCanRotate
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.29094025
+        functionName: DrainStaminaBasedOnAttack
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.2985379
+        functionName: OpenDamageCollider
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.4221934
+        functionName: CloseDamageCollider
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -749,8 +790,7 @@ ModelImporter:
     hasTranslationDoF: 0
     hasExtraRoot: 1
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 0ad932253e8dc8841948afa5d1a0d051,
-    type: 3}
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 0ad932253e8dc8841948afa5d1a0d051, type: 3}
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 3
   humanoidOversampling: 1
@@ -762,11 +802,3 @@ ModelImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 220752
-  packageName: Straight Sword Animation Set
-  packageVersion: 3.0
-  assetPath: Assets/Nephilite Studios/Straight Sword Animation Set/Animations/Straight
-    Sword Animations/Nephilim Animations (Remastered)/Straight Sword Main Hand/straight_sword_main_roll_attack_01.fbx
-  uploadId: 722475

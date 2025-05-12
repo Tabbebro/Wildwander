@@ -38,7 +38,10 @@ public enum AttackType {
     HeavyAttack01,
     HeavyAttack02,
     HeavyAttackHold01,
-    HeavyAttackHold02
+    HeavyAttackHold02,
+    RunningAttack01,
+    RollingAttack01,
+    BackstepAttack01
 }
 
 public enum SurfaceType {

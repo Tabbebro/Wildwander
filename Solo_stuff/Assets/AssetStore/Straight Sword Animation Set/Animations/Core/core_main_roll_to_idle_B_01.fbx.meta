@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 084e663d36f3c654193754d061a33ca5
+guid: 06502929cc1b29841ad7040e994f47d6
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -33,11 +33,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: straight_sword_main_roll_attack_01_release
-      takeName: straight_sword_main_roll_attack_01_release
-      internalID: 6201974159233468888
+      name: core_main_roll_to_idle_B_01
+      takeName: core_main_roll_to_idle_B_01
+      internalID: -1104558123450741263
       firstFrame: 0
-      lastFrame: 47
+      lastFrame: 33
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -766,7 +766,6 @@ AssetOrigin:
   serializedVersion: 1
   productId: 220752
   packageName: Straight Sword Animation Set
-  packageVersion: 3.0
-  assetPath: Assets/Nephilite Studios/Straight Sword Animation Set/Animations/Straight
-    Sword Animations/Nephilim Animations (Remastered)/Straight Sword Main Hand/straight_sword_main_roll_attack_01_release.fbx
-  uploadId: 722475
+  packageVersion: 3.1
+  assetPath: Assets/AssetStore/Straight Sword Animation Set/Animations/Core/core_main_roll_to_idle_B_01.fbx
+  uploadId: 753941

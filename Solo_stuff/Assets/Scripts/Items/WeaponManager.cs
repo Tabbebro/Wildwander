@@ -26,5 +26,8 @@ public class WeaponManager : MonoBehaviour
         MeleeDamageCollider.HeavyAttack02Modifier = weapon.HeavyAttack02Modifier;
         MeleeDamageCollider.HeavyAttackHold01Modifier = weapon.HeavyAttackHold01Modifier;
         MeleeDamageCollider.HeavyAttackHold02Modifier = weapon.HeavyAttackHold02Modifier;
+        MeleeDamageCollider.RunAttack01Modifier = weapon.RunAttack01Modifier;
+        MeleeDamageCollider.RollAttack01Modifier = weapon.RollAttack01Modifier;
+        MeleeDamageCollider.BackstepAttack01Modifier = weapon.BackstepAttack01Modifier;
     }
 }
