@@ -2,6 +2,7 @@ using UnityEngine;
 using Unity.Netcode;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 
 public class CharacterManager : NetworkBehaviour
 {
@@ -17,6 +18,7 @@ public class CharacterManager : NetworkBehaviour
     [HideInInspector] public CharacterAnimatorManager CharacterAnimatorManager;
     [HideInInspector] public CharacterCombatManager CharacterCombatManager;
     [HideInInspector] public CharacterSFXManager CharacterSFXManager;
+    [HideInInspector] public CharacterUIManager CharacterUIManager;
 
     [Header("Character Group")]
     public CharacterGroup CharacterGroup;
@@ -34,6 +36,7 @@ public class CharacterManager : NetworkBehaviour
         CharacterAnimatorManager = GetComponent<CharacterAnimatorManager>();
         CharacterCombatManager = GetComponent<CharacterCombatManager>();
         CharacterSFXManager = GetComponent<CharacterSFXManager>();
+        CharacterUIManager = GetComponent<CharacterUIManager>();
         Animator = GetComponent<Animator>();
     }
 
@@ -91,6 +94,13 @@ public class CharacterManager : NetworkBehaviour
 
         CharacterNetworkManager.IsMoving.OnValueChanged -= CharacterNetworkManager.OnIsMovingChanged;
         CharacterNetworkManager.IsActive.OnValueChanged -= CharacterNetworkManager.OnIsActiveChanged;
+    }
+
+    protected virtual void OnEnable() {
+        
+    }
+    protected virtual void OnDisable() {
+
     }
 
     public virtual IEnumerator ProcessDeathEvent(bool manuallySelectDeathAnimation = false) {

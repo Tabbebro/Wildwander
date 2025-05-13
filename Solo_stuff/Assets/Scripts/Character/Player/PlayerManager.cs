@@ -71,6 +71,11 @@ public class PlayerManager : CharacterManager
 
         }
 
+        // Show Hp Bar If Not Own Character
+        if (!IsOwner && CharacterUIManager.HasFloatingUIBar) {
+            CharacterNetworkManager.CurrentHealth.OnValueChanged += CharacterUIManager.OnHPChanged;
+        }
+
         // Stats
         PlayerNetworkManager.CurrentHealth.OnValueChanged += PlayerNetworkManager.CheckHP;
 
@@ -108,6 +113,9 @@ public class PlayerManager : CharacterManager
             PlayerNetworkManager.CurrentStamina.OnValueChanged -= PlayerStatsManager.ResetStaminaRegenTimer;
 
         }
+        if (!IsOwner && CharacterUIManager.HasFloatingUIBar) {
+            CharacterNetworkManager.CurrentHealth.OnValueChanged -= CharacterUIManager.OnHPChanged;
+        }
 
         // Stats
         PlayerNetworkManager.CurrentHealth.OnValueChanged -= PlayerNetworkManager.CheckHP;
@@ -123,6 +131,17 @@ public class PlayerManager : CharacterManager
 
         // Flags
         PlayerNetworkManager.IsChargingAttack.OnValueChanged -= PlayerNetworkManager.OnIsChargingAttackChanged;
+    }
+
+    protected override void OnEnable() {
+        base.OnEnable();
+
+
+    }
+
+    protected override void OnDisable() {
+        base.OnDisable();
+
     }
 
     void OnClientConnectedCallback(ulong clientID) {

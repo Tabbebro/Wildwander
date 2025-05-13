@@ -3,9 +3,8 @@ using UnityEngine.UI;
 
 public class UI_StatBar : MonoBehaviour
 {
-    Slider _slider;
-
-    RectTransform _rectTransform;
+    protected Slider _slider;
+    protected RectTransform _rectTransform;
 
     [Header("Bar Options")]
     [SerializeField] protected bool _scaleBarWithStats = true;
@@ -15,6 +14,10 @@ public class UI_StatBar : MonoBehaviour
     protected virtual void Awake() {
         _slider = GetComponent<Slider>();
         _rectTransform = GetComponent<RectTransform>();
+    }
+
+    protected virtual void Start() {
+
     }
 
     public virtual void SetStat(int newValue) {
