@@ -5147,7 +5147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damageCollider: {fileID: 0}
-  PhysicalDamage: 25
+  PhysicalDamage: 500
   MagicDamage: 0
   FireDamage: 0
   LightningDamage: 0

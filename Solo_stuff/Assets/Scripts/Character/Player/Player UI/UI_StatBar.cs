@@ -10,17 +10,31 @@ public class UI_StatBar : MonoBehaviour
     [SerializeField] protected bool _scaleBarWithStats = true;
     [SerializeField] protected float _widthScaleMultiplier = 1;
 
+    [Header("Secondary Bar")]
+    [SerializeField] Slider _secondaryBar;
+    [SerializeField] bool _showSecondaryBar = true;
+    [SerializeField][ReadOnly] bool _updateSecondaryBar = false;
+    [SerializeField] float _secondaryBarDelay = 1f;
+    [SerializeField][ReadOnly] float _secondaryBarTimer = 0f;
+
 
     protected virtual void Awake() {
         _slider = GetComponent<Slider>();
         _rectTransform = GetComponent<RectTransform>();
+
+        ToggleSecondaryBar();
     }
 
     protected virtual void Start() {
 
     }
 
+    protected virtual void Update() {
+        SecondaryBarUpdate();
+    }
+
     public virtual void SetStat(int newValue) {
+        ResetSecondaryBarTimer(_slider.value, newValue);
         _slider.value = newValue;
     }
 
@@ -34,6 +48,52 @@ public class UI_StatBar : MonoBehaviour
             // Resets Bar Position
             PlayerUIManager.Instance.PlayerUIHudManager.RefreshHud();
         }
+
+        SecondaryBarSetMaxStat(maxValue);
     }
+
+    #region Secondary Bar
+    void ToggleSecondaryBar() {
+
+        if (_secondaryBar == null) { return; }
+
+        if (_showSecondaryBar) {
+            _secondaryBar.gameObject.SetActive(true);
+        }
+        else {
+            _secondaryBar.gameObject.SetActive(false);
+        }
+    }
+
+    void SecondaryBarSetMaxStat(int maxValue) {
+        if (_secondaryBar == null) { return; }
+
+        _secondaryBar.maxValue = maxValue;
+        _secondaryBar.value = maxValue;
+    }
+
+    void SecondaryBarUpdate() {
+        if (_secondaryBar == null) { return; }
+
+        // Deplete Secondary Bar
+        _secondaryBarTimer += Time.deltaTime;
+        if (_secondaryBarTimer >= _secondaryBarDelay && _secondaryBar.value >= _slider.value && _updateSecondaryBar) {
+            _secondaryBar.value = Mathf.MoveTowards(_secondaryBar.value, _slider.value, _secondaryBar.maxValue * 0.5f * Time.deltaTime);
+        }
+
+        if (_secondaryBar.value < _slider.value) {
+            _secondaryBar.value = _slider.value;
+            _updateSecondaryBar = false;
+        }
+    }
+
+    void ResetSecondaryBarTimer(float oldValue, float newValue) {
+        //print("Old Value: " + oldValue + " New Value: " + newValue);
+        if (oldValue > newValue) {
+            _secondaryBarTimer = 0;
+            _updateSecondaryBar = true;
+        }
+    }
+    #endregion
 
 }
