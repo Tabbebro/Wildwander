@@ -102,7 +102,6 @@ public class PlayerMovementManager : CharacterMovementManager
                 _player.CharacterController.Move(_moveDirection * _walkingSpeed * Time.deltaTime);
             }
         }
-
     }
 
     void HandleJumpingMovement() {

@@ -50,12 +50,7 @@ public class CharacterStatsManager : MonoBehaviour
         _staminaRegenerationTimer += Time.deltaTime;
 
         if (_staminaRegenerationTimer >= _staminaRegenerationDelay && _character.CharacterNetworkManager.CurrentStamina.Value < _character.CharacterNetworkManager.MaxStamina.Value) {
-
-            _staminaTickTimer += Time.deltaTime;
-            if (_staminaTickTimer >= 0.1f) {
-                _staminaTickTimer = 0;
-                _character.CharacterNetworkManager.CurrentStamina.Value += _staminaRegenerationAmount;
-            }
+            _character.CharacterNetworkManager.CurrentStamina.Value += _staminaRegenerationAmount * Time.deltaTime;
         }
     }
 

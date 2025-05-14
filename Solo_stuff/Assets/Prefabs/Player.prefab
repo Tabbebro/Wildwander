@@ -1721,7 +1721,7 @@ MonoBehaviour:
   _runningSpeed: 8
   _sprinttingSpeed: 12
   _rotationSpeed: 30
-  _sprintingStaminaCost: 2
+  _sprintingStaminaCost: 25
   _jumpHeight: 4
   _jumpForwardSpeed: 5
   _freeFallSpeed: 5
@@ -1739,7 +1739,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 886b74ce1f4effe47a6e93c334cdad57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _staminaRegenerationAmount: 10
+  _staminaRegenerationAmount: 45
   _staminaRegenerationDelay: 1
 --- !u!114 &8654487679512543548
 MonoBehaviour:
