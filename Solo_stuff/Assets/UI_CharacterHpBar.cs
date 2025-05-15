@@ -7,6 +7,7 @@ public class UI_CharacterHpBar : UI_StatBar
     AICharacterManager _aiCharacter;
     PlayerManager _playerCharacter;
 
+    [Header("Character HP Bar")]
     [SerializeField] bool _displayCharacterNameOnDamage = false;
     [SerializeField] float _defaultTimeBeforeBarHides = 3f;
     [SerializeField] float _hideTimer = 0;
@@ -51,7 +52,7 @@ public class UI_CharacterHpBar : UI_StatBar
 
         _slider.maxValue = _character.CharacterNetworkManager.MaxHealth.Value;
 
-        // TODO: Run Yellow Bar Locig Here
+        ResetSecondaryBarTimer(_slider.value, newValue);
 
         _currentDamageTaken = Mathf.RoundToInt(_currentDamageTaken + (OldHealthValue - newValue));
 
@@ -71,7 +72,8 @@ public class UI_CharacterHpBar : UI_StatBar
         }
     }
 
-    private void Update() {
+    protected override void Update() {
+        base.Update();
         transform.LookAt(transform.position + Camera.main.transform.forward);
 
         if (_hideTimer > 0) {

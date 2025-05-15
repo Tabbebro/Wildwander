@@ -13,9 +13,9 @@ public class UI_StatBar : MonoBehaviour
     [Header("Secondary Bar")]
     [SerializeField] Slider _secondaryBar;
     [SerializeField] bool _showSecondaryBar = true;
-    [SerializeField][ReadOnly] bool _updateSecondaryBar = false;
     [SerializeField] float _secondaryBarDelay = 1f;
     [SerializeField][ReadOnly] float _secondaryBarTimer = 0f;
+    [SerializeField][ReadOnly] bool _updateSecondaryBar = false;
 
 
     protected virtual void Awake() {
@@ -31,6 +31,10 @@ public class UI_StatBar : MonoBehaviour
 
     protected virtual void Update() {
         SecondaryBarUpdate();
+    }
+
+    protected virtual void OnEnable() {
+        SecondaryBarSetMaxStat((int)_slider.maxValue);
     }
 
     public virtual void SetStat(int newValue) {
@@ -68,8 +72,10 @@ public class UI_StatBar : MonoBehaviour
     void SecondaryBarSetMaxStat(int maxValue) {
         if (_secondaryBar == null) { return; }
 
-        _secondaryBar.maxValue = maxValue;
-        _secondaryBar.value = maxValue;
+        if (_secondaryBar.maxValue != maxValue) {
+            _secondaryBar.maxValue = maxValue;
+            _secondaryBar.value = maxValue;            
+        }
     }
 
     void SecondaryBarUpdate() {
@@ -87,8 +93,7 @@ public class UI_StatBar : MonoBehaviour
         }
     }
 
-    void ResetSecondaryBarTimer(float oldValue, float newValue) {
-        //print("Old Value: " + oldValue + " New Value: " + newValue);
+    protected void ResetSecondaryBarTimer(float oldValue, float newValue) {
         if (oldValue > newValue) {
             _secondaryBarTimer = 0;
             _updateSecondaryBar = true;
