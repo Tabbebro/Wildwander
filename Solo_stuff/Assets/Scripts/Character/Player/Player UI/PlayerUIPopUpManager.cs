@@ -4,6 +4,10 @@ using System.Collections;
 
 public class PlayerUIPopUpManager : MonoBehaviour
 {
+    [Header("Message Pop Up")]
+    [SerializeField] GameObject _messagePopUp;
+    [SerializeField] TextMeshProUGUI _messagePopUpText;
+
     [Header("You Died Pop Up")]
     [SerializeField] GameObject _youDiedPopUpGameObject;
     [SerializeField] TextMeshProUGUI _youDiedPopUpBackgroundText;
@@ -15,6 +19,21 @@ public class PlayerUIPopUpManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI _bossDefeatedPopUpBackgroundText;
     [SerializeField] TextMeshProUGUI _bossDefeatedPopUpText;
     [SerializeField] CanvasGroup _bossDefeatedPopUpCanvasGroup;
+
+    public void CloseAllPopUpWindows() {
+
+        _messagePopUp.SetActive(false);
+
+        PlayerUIManager.Instance.PopUpWindowIsOpen = false;
+        print("Closed Message");
+    }
+
+    public void SendMessagePopUp(string messageText) {
+        print("Opened Message");
+        PlayerUIManager.Instance.PopUpWindowIsOpen = true;
+        _messagePopUpText.text = messageText;
+        _messagePopUp.SetActive(true);
+    }
 
     public void SendYouDiedPopUp() {
 

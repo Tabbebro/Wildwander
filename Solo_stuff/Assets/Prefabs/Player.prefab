@@ -1449,6 +1449,7 @@ GameObject:
   - component: {fileID: 4130408762295923674}
   - component: {fileID: 613237461335639856}
   - component: {fileID: 4354622551695612961}
+  - component: {fileID: 6217901440830228114}
   - component: {fileID: 8977560169917997248}
   - component: {fileID: -429732661137189510}
   - component: {fileID: 7232921620605311635}
@@ -1873,6 +1874,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HasFloatingUIBar: 1
   CharacterHPBar: {fileID: 7202027772191294365}
+--- !u!114 &6217901440830228114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5002884483716068296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13e0ff435462d324bafe3b4cb5787e8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!95 &8977560169917997248
 Animator:
   serializedVersion: 7

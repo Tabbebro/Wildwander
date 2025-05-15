@@ -11,6 +11,10 @@ public class PlayerUIManager : MonoBehaviour
     [HideInInspector] public PlayerUIHudManager PlayerUIHudManager;
     [HideInInspector] public PlayerUIPopUpManager PlayerUIPopUpManager;
 
+    [Header("UI Flags")]
+    public bool MenuWindowIsOpen = false; // Inventory Screen, Equipment Screen, ETC.
+    public bool PopUpWindowIsOpen = false; // Item Pick Up, Dialogue, ETC.
+
 
     private void Awake() {
         if (Instance == null) {
