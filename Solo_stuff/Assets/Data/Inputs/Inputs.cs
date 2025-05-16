@@ -418,7 +418,7 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
                     ""id"": ""e2e5818f-a861-46bd-8e60-23ee4b3a7b86"",
                     ""expectedControlType"": """",
                     ""processors"": """",
-                    ""interactions"": ""Hold"",
+                    ""interactions"": """",
                     ""initialStateCheck"": false
                 },
                 {

@@ -27,6 +27,7 @@ public class PlayerInputManager : MonoBehaviour {
 
 
     [Header("Player Action Input")]
+    [SerializeField] bool _interactInput = false;
     [SerializeField] bool _dodgeInput = false;
     [SerializeField] bool _sprintInput = false;
     [SerializeField] bool _jumpInput = false;
@@ -87,6 +88,8 @@ public class PlayerInputManager : MonoBehaviour {
             // Player & Camera Movement
             _inputs.PlayerMovement.Movement.performed += i => _movementInput = i.ReadValue<Vector2>();
             _inputs.PlayerCamera.Movement.performed += i => _cameraInput = i.ReadValue<Vector2>();
+            // Interact
+            _inputs.PlayerActions.Interact.performed += i => _interactInput = true;
             // Dodge
             _inputs.PlayerActions.Dodge.performed += i => _dodgeInput = true;
             // Sprint
@@ -153,6 +156,7 @@ public class PlayerInputManager : MonoBehaviour {
         HandleLockOnSwitchTargetInput();
         HandlePlayerMovementInput();
         HandleCameraMovementInput();
+        HandleInteractInput();
         HandleDodgeInput();
         HandleSprintInput();
         HandleJumpInput();
@@ -281,12 +285,17 @@ public class PlayerInputManager : MonoBehaviour {
     #region Actions
     // Actions
 
-    void HandleDodgeInput() {
-        if (_dodgeInput) {
-            _dodgeInput = false;
+    void HandleInteractInput() {
+        if (!_interactInput) { return; }
+        _interactInput = false;
+        Player.PlayerInteractionManager.Interact();
+    }
 
-            Player.PlayerMovementManager.AttemptToPerformDodge();
-        }
+    void HandleDodgeInput() {
+        if (!_dodgeInput) { return; }
+        _dodgeInput = false;
+
+        Player.PlayerMovementManager.AttemptToPerformDodge();
     }
 
     void HandleSprintInput() {
@@ -299,37 +308,34 @@ public class PlayerInputManager : MonoBehaviour {
     }
 
     void HandleJumpInput() {
-        if (_jumpInput) {
-            _jumpInput = false;
+        if (!_jumpInput) { return; }
+        _jumpInput = false;
 
-            Player.PlayerMovementManager.AttemptToPerformJump();
-        }
+        Player.PlayerMovementManager.AttemptToPerformJump();
     }
 
     // Attack Actions
 
     void HandleLightAttackInput() {
-        if (_lightAttackInput) {
-            _lightAttackInput = false;
+        if (!_lightAttackInput) { return; }
+        _lightAttackInput = false;
 
-            // TODO: Check For UI
+        // TODO: Check For UI
 
-            Player.PlayerNetworkManager.SetCharacterActionHand(true);
+        Player.PlayerNetworkManager.SetCharacterActionHand(true);
 
-            Player.PlayerCombatManager.PerformWeaponBasedAction(Player.PlayerInventoryManager.CurrentRightHandWeapon.OhLightAction, Player.PlayerInventoryManager.CurrentRightHandWeapon);
-        }
+        Player.PlayerCombatManager.PerformWeaponBasedAction(Player.PlayerInventoryManager.CurrentRightHandWeapon.OhLightAction, Player.PlayerInventoryManager.CurrentRightHandWeapon);
     }
 
     void HandleHeavyAttackInput() {
-        if (_heavyAttackInput) {
-            _heavyAttackInput = false;
+        if (!_heavyAttackInput) { return; }
+        _heavyAttackInput = false;
 
-            // TODO: Check For UI
+        // TODO: Check For UI
 
-            Player.PlayerNetworkManager.SetCharacterActionHand(true);
+        Player.PlayerNetworkManager.SetCharacterActionHand(true);
 
-            Player.PlayerCombatManager.PerformWeaponBasedAction(Player.PlayerInventoryManager.CurrentRightHandWeapon.OhHeavyAction, Player.PlayerInventoryManager.CurrentRightHandWeapon);
-        }
+        Player.PlayerCombatManager.PerformWeaponBasedAction(Player.PlayerInventoryManager.CurrentRightHandWeapon.OhHeavyAction, Player.PlayerInventoryManager.CurrentRightHandWeapon);
     }
 
     void HandleHeavyAttackHoldInput() {
@@ -342,19 +348,17 @@ public class PlayerInputManager : MonoBehaviour {
     // Weapon Switch Action
 
     void HandleSwitchRightWeaponInput() {
-        if (_switchRightWeaponInput) {
-            _switchRightWeaponInput = false;
+        if (!_switchRightWeaponInput) { return; }
+        _switchRightWeaponInput = false;
 
-            Player.PlayerEquipmentManager.SwitchRightWeapon();
-        }
+        Player.PlayerEquipmentManager.SwitchRightWeapon();
     }
 
     void HandleSwitchLeftWeaponInput() {
-        if (_switchLeftWeaponInput) {
-            _switchLeftWeaponInput = false;
+        if (!_switchLeftWeaponInput) { return; }
+        _switchLeftWeaponInput = false;
 
-            Player.PlayerEquipmentManager.SwitchLeftWeapon();
-        }
+        Player.PlayerEquipmentManager.SwitchLeftWeapon();
     }
     #endregion
 

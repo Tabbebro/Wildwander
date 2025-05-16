@@ -18,16 +18,17 @@ public class Interactable : MonoBehaviour
     }
 
     public virtual void Interact(PlayerManager player) {
-        Debug.Log("Player Has Interacted!");
+        if (!player.IsOwner) { return; }
 
-        if (player.IsOwner) {
-            PlayerUIManager.Instance.PlayerUIPopUpManager.CloseAllPopUpWindows();
-        }
+        _interactableCollider.enabled = false;
+
+        player.PlayerInteractionManager.RemoveInteractionFromList(this);
+
+        PlayerUIManager.Instance.PlayerUIPopUpManager.CloseAllPopUpWindows();
     }
 
     public virtual void OnTriggerEnter(Collider other) {
         PlayerManager player = other.GetComponent<PlayerManager>();
-        print("Entered The Trigger");
 
         if (player != null) {
             if (!player.PlayerNetworkManager.IsHost && _hostOnlyInteractable) { return; }
@@ -38,7 +39,6 @@ public class Interactable : MonoBehaviour
     }
     public virtual void OnTriggerExit(Collider other) {
         PlayerManager player = other.GetComponent<PlayerManager>();
-        print("Exited The Trigger");
         if (player != null) {
             if (!player.PlayerNetworkManager.IsHost && _hostOnlyInteractable) { return; }
             if (!player.IsOwner) { return; }

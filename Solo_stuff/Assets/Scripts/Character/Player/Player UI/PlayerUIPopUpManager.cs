@@ -25,11 +25,9 @@ public class PlayerUIPopUpManager : MonoBehaviour
         _messagePopUp.SetActive(false);
 
         PlayerUIManager.Instance.PopUpWindowIsOpen = false;
-        print("Closed Message");
     }
 
     public void SendMessagePopUp(string messageText) {
-        print("Opened Message");
         PlayerUIManager.Instance.PopUpWindowIsOpen = true;
         _messagePopUpText.text = messageText;
         _messagePopUp.SetActive(true);
