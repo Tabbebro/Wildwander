@@ -66,14 +66,14 @@ ModelImporter:
         intParameter: 0
         messageOptions: 0
       - time: 0
-        functionName: EnableIsVulnerable
+        functionName: EnableIsInvulnerable
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
       - time: 0.42444444
-        functionName: DisableIsVulnerable
+        functionName: DisableIsInvulnerable
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0

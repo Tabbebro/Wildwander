@@ -1,7 +1,7 @@
 using UnityEngine;
 using Unity.Netcode;
 
-public class Interactable : MonoBehaviour
+public class Interactable : NetworkBehaviour
 {
     public string InteractableText;
     [SerializeField] protected Collider _interactableCollider;

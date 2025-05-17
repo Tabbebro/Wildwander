@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Unity.Netcode;
 
 public class WorldSaveGameManager : MonoBehaviour
 {
@@ -159,7 +160,7 @@ public class WorldSaveGameManager : MonoBehaviour
 
         SaveGame();
 
-        StartCoroutine(LoadWorldScene());
+        LoadWorldScene(worldSceneIndex);
     }
 
     bool CheckIfSlotIsUsed(CharacterSlot slot, SaveFileWriter writer) {
@@ -184,7 +185,7 @@ public class WorldSaveGameManager : MonoBehaviour
         CurrentCharacterData = saveFileWriter.LoadSaveFile();
 
         // Loads World Scene
-        StartCoroutine(LoadWorldScene());
+        LoadWorldScene(worldSceneIndex);
     }
 
     public void SaveGame() {
@@ -255,16 +256,12 @@ public class WorldSaveGameManager : MonoBehaviour
         CharacterSlot10 = saveFileWriter.LoadSaveFile();
     }
 
-    public IEnumerator LoadWorldScene() {
-        // For only 1 world scene
-        AsyncOperation loadOperation = SceneManager.LoadSceneAsync(worldSceneIndex);
+    public void LoadWorldScene(int buildIndex) {
         
-        // TODO: Get Back Later
-        //AsyncOperation loadOperation = SceneManager.LoadSceneAsync(CurrentCharacterData.SceneIndex);
+        string worldScene = SceneUtility.GetScenePathByBuildIndex(buildIndex);
+        NetworkManager.Singleton.SceneManager.LoadScene(worldScene, LoadSceneMode.Single);
 
         Player.LoadDataFromCurrentCharacterData(ref CurrentCharacterData);
-
-        yield return null;
     }
 
     public int GetWorldSceneIndex() {

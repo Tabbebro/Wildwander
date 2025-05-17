@@ -76,7 +76,7 @@ public class AIBossCharacterManager : AICharacterManager
         }
 
         if (!_hasBeenAwakened.Value) {
-            CharacterAnimatorManager.PlayTargetActionAnimation(_sleepAnimation, true);
+            Animator.Play(_sleepAnimation);
         }
     }
 

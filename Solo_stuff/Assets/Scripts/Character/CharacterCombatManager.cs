@@ -38,13 +38,13 @@ public class CharacterCombatManager : NetworkBehaviour
         }
     }
 
-    public void EnableIsVulnerable() {
+    public void EnableIsInvulnerable() {
         if (_character.IsOwner) { 
             _character.CharacterNetworkManager.IsInvulnerable.Value = true;
         }
     }
 
-    public void DisableIsVulnerable() {
+    public void DisableIsInvulnerable() {
         if (_character.IsOwner) {
             _character.CharacterNetworkManager.IsInvulnerable.Value = false;
         }
