@@ -25,11 +25,15 @@ public class CharacterSaveData
     public int CurrentHealth;
     public float CurrentStamina;
 
+    [Header("Rest Spots")]
+    public SerializableDictionary<int, bool> RestSpot;
+
     [Header("Bosses")]
     public SerializableDictionary<int, bool> BossesAwakened;
     public SerializableDictionary<int, bool> BossesDefeated;
 
     public CharacterSaveData() {
+        RestSpot = new SerializableDictionary<int, bool>();
         BossesAwakened = new SerializableDictionary<int, bool>();
         BossesDefeated = new SerializableDictionary<int, bool>();
     }

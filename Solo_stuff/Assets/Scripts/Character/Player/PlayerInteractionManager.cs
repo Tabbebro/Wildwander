@@ -47,7 +47,6 @@ public class PlayerInteractionManager : MonoBehaviour
     }
 
     public void Interact() {
-        print("Huh");
         if (_currentInteractableActions.Count <= 0) { return; }
         if (_currentInteractableActions[0] != null) {
             _currentInteractableActions[0].Interact(_player);

@@ -23,7 +23,7 @@ RenderSettings:
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
-  m_AmbientIntensity: 1
+  m_AmbientIntensity: 0.3
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
@@ -4673,6 +4673,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68b8f339a12ef6543a82ccd7e29d089e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
   InteractableText: It Works!
   _interactableCollider: {fileID: 2096421128}
   _hostOnlyInteractable: 0
@@ -5731,6 +5732,71 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3794fa4d1704592488be12a40358f734, type: 3}
+--- !u!1001 &5613814195992045171
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3591373241030737625, guid: 36bc74c5728cc6e49890e287c3f22381, type: 3}
+      propertyPath: m_Name
+      value: RestSpotInteractable
+      objectReference: {fileID: 0}
+    - target: {fileID: 4661026692617496652, guid: 36bc74c5728cc6e49890e287c3f22381, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4.0551276
+      objectReference: {fileID: 0}
+    - target: {fileID: 4661026692617496652, guid: 36bc74c5728cc6e49890e287c3f22381, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4661026692617496652, guid: 36bc74c5728cc6e49890e287c3f22381, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.9538043
+      objectReference: {fileID: 0}
+    - target: {fileID: 4661026692617496652, guid: 36bc74c5728cc6e49890e287c3f22381, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4661026692617496652, guid: 36bc74c5728cc6e49890e287c3f22381, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4661026692617496652, guid: 36bc74c5728cc6e49890e287c3f22381, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4661026692617496652, guid: 36bc74c5728cc6e49890e287c3f22381, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4661026692617496652, guid: 36bc74c5728cc6e49890e287c3f22381, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4661026692617496652, guid: 36bc74c5728cc6e49890e287c3f22381, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4661026692617496652, guid: 36bc74c5728cc6e49890e287c3f22381, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6076463456156722574, guid: 36bc74c5728cc6e49890e287c3f22381, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 3870221455
+      objectReference: {fileID: 0}
+    - target: {fileID: 6076463456156722574, guid: 36bc74c5728cc6e49890e287c3f22381, type: 3}
+      propertyPath: InScenePlacedSourceGlobalObjectIdHash
+      value: 4068512203
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 36bc74c5728cc6e49890e287c3f22381, type: 3}
 --- !u!1001 &7905313530679251173
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5804,3 +5870,4 @@ SceneRoots:
   - {fileID: 4898382697603024970}
   - {fileID: 1629691482}
   - {fileID: 2059502125}
+  - {fileID: 5613814195992045171}

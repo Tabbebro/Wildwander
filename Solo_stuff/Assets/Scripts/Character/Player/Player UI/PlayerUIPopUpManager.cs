@@ -20,6 +20,12 @@ public class PlayerUIPopUpManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI _bossDefeatedPopUpText;
     [SerializeField] CanvasGroup _bossDefeatedPopUpCanvasGroup;
 
+    [Header("Rest Spot Activated Pop Up")]
+    [SerializeField] GameObject _RestSpotPopUpGameObject;
+    [SerializeField] TextMeshProUGUI _RestSpotPopUpBackgroundText;
+    [SerializeField] TextMeshProUGUI _RestSpotdPopUpText;
+    [SerializeField] CanvasGroup _RestSpotPopUpCanvasGroup;
+
     public void CloseAllPopUpWindows() {
 
         _messagePopUp.SetActive(false);
@@ -62,6 +68,20 @@ public class PlayerUIPopUpManager : MonoBehaviour
         StartCoroutine(FadeInPopUpOverTime(_bossDefeatedPopUpCanvasGroup, 5));
 
         StartCoroutine(WaitThenFadeOutPopUpOverTime(_bossDefeatedPopUpCanvasGroup, 2, 5));
+    }
+
+    public void SendRestSpotActivatedPopUp() {
+
+        // TODO: Add Some Post Process
+
+        _RestSpotPopUpGameObject.SetActive(true);
+        _RestSpotPopUpBackgroundText.characterSpacing = 0;
+
+        StartCoroutine(StretchPopUpTextOverTime(_RestSpotPopUpBackgroundText, 10, 10));
+
+        StartCoroutine(FadeInPopUpOverTime(_RestSpotPopUpCanvasGroup, 5));
+
+        StartCoroutine(WaitThenFadeOutPopUpOverTime(_RestSpotPopUpCanvasGroup, 2, 5));
     }
 
     IEnumerator StretchPopUpTextOverTime(TextMeshProUGUI text, float duration, float stretchAmount) {

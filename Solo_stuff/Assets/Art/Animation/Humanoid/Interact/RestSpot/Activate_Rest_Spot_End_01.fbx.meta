@@ -1,5 +1,12 @@
 fileFormatVersion: 2
 guid: 7540fdbca0a767e40ae14b6507ed7be7
+AssetOrigin:
+  serializedVersion: 1
+  productId: 157744
+  packageName: Basic Motions
+  packageVersion: 2.3.3
+  assetPath: Assets/AssetStore/Animations/Humanoid/Misc/Open/HumanM@Opening01 - Stop.fbx
+  uploadId: 733978
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -16,8 +23,6 @@ ModelImporter:
     optimizeGameObjects: 0
     removeConstantScaleCurves: 0
     motionNodeName: 
-    rigImportErrors: 
-    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
@@ -33,7 +38,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: HumanM@Opening01 - Stop
+      name: Activate_Rest_Spot_End_01
       takeName: Untitled
       internalID: 3094330708855449807
       firstFrame: 0
@@ -946,8 +951,7 @@ ModelImporter:
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 2faa610713d3b3c439473daa55e8c60a,
-    type: 3}
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 2faa610713d3b3c439473daa55e8c60a, type: 3}
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 3
   humanoidOversampling: 1
@@ -959,10 +963,3 @@ ModelImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 157744
-  packageName: Basic Motions
-  packageVersion: 2.3.3
-  assetPath: Assets/AssetStore/Animations/Humanoid/Misc/Open/HumanM@Opening01 - Stop.fbx
-  uploadId: 733978

@@ -46,9 +46,19 @@ public class WorldAIManager : MonoBehaviour
         return _spawnedBosses.FirstOrDefault(boss => boss.BossID == id);
     }
 
+    public void ResetAllCharacters() {
+        DespawnAllCharacters();
+
+        foreach (var spawner in _aiCharacterSpawners) {
+            spawner.AttemptToSpawnCharacter();
+        }
+    }
+
     void DespawnAllCharacters() {
         foreach (AICharacterManager character in _spawnedCharacters) {
             character.GetComponent<NetworkObject>().Despawn();
         }
+
+        _spawnedCharacters.Clear();
     }
 }
