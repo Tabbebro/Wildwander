@@ -4826,7 +4826,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 42b64fdb315e3054ea757d8d1c4bcfa7, type: 2}
+  - {fileID: 2100000, guid: ec4e3847523bb844499342c7de73a9b4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4883,7 +4883,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3439490200
+  GlobalObjectIdHash: 4068512203
   InScenePlacedSourceGlobalObjectIdHash: 0
   DeferredDespawnTick: 0
   Ownership: 1
@@ -4917,6 +4917,9 @@ MonoBehaviour:
     m_InternalValue: 0
   _unactivatedInteractionText: Touch The Orb
   _activatedInteractionText: Ponder The Orb
+  _restSpotRenderer: {fileID: 5036297708210475245}
+  _activatedRestSpotMaterial: {fileID: 2100000, guid: 42b64fdb315e3054ea757d8d1c4bcfa7, type: 2}
+  _unactivatedRestSpotMaterial: {fileID: 2100000, guid: ec4e3847523bb844499342c7de73a9b4, type: 2}
   _restSpotParticles: {fileID: 2096256806035401834}
   _restSpotLight: {fileID: 5592955511988730919}
   _restSpotLightUnactivatedRange: 1

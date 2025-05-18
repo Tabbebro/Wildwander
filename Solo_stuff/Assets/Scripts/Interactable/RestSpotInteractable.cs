@@ -15,6 +15,9 @@ public class RestSpotInteractable : Interactable
     [SerializeField] string _activatedInteractionText = "Ponder The Orb";
 
     [Header("Activated Effects")]
+    [SerializeField] Renderer _restSpotRenderer;
+    [SerializeField] Material _activatedRestSpotMaterial;
+    [SerializeField] Material _unactivatedRestSpotMaterial;
     [SerializeField] GameObject _restSpotParticles;
     [SerializeField] Light _restSpotLight;
     [SerializeField] float _restSpotLightUnactivatedRange = 1;
@@ -102,10 +105,12 @@ public class RestSpotInteractable : Interactable
         _restSpotParticles.SetActive(IsActivated.Value);
 
         if (IsActivated.Value) {
+            _restSpotRenderer.material = _activatedRestSpotMaterial;
             _restSpotLight.range = _restSpotLightActivadeRange;
             InteractableText = _activatedInteractionText;
         }
         else {
+            _restSpotRenderer.material = _unactivatedRestSpotMaterial;
             _restSpotLight.range = _restSpotLightUnactivatedRange;
             InteractableText = _unactivatedInteractionText;
         }
