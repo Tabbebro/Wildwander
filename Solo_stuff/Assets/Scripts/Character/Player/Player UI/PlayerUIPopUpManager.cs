@@ -79,9 +79,9 @@ public class PlayerUIPopUpManager : MonoBehaviour
 
         StartCoroutine(StretchPopUpTextOverTime(_RestSpotPopUpBackgroundText, 10, 10));
 
-        StartCoroutine(FadeInPopUpOverTime(_RestSpotPopUpCanvasGroup, 5));
+        StartCoroutine(FadeInPopUpOverTime(_RestSpotPopUpCanvasGroup, 3));
 
-        StartCoroutine(WaitThenFadeOutPopUpOverTime(_RestSpotPopUpCanvasGroup, 2, 5));
+        StartCoroutine(WaitThenFadeOutPopUpOverTime(_RestSpotPopUpCanvasGroup, 2, 3));
     }
 
     IEnumerator StretchPopUpTextOverTime(TextMeshProUGUI text, float duration, float stretchAmount) {
@@ -110,7 +110,7 @@ public class PlayerUIPopUpManager : MonoBehaviour
 
             while (timer < duration) {
                 timer += Time.deltaTime;
-                canvas.alpha = Mathf.Lerp(canvas.alpha, 1, duration * (Time.deltaTime / 10));
+                canvas.alpha = Mathf.Lerp(canvas.alpha, 1, duration * Time.deltaTime);
                 yield return null;
             }
         }
@@ -136,7 +136,7 @@ public class PlayerUIPopUpManager : MonoBehaviour
 
             while (timer < duration) {
                 timer += Time.deltaTime;
-                canvas.alpha = Mathf.Lerp(canvas.alpha, 0, duration * (Time.deltaTime / 5));
+                canvas.alpha = Mathf.Lerp(canvas.alpha, 0, duration * Time.deltaTime);
                 yield return null;
             }
         }
