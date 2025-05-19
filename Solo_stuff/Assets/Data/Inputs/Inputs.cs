@@ -572,6 +572,17 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""7ab42233-119c-4285-926c-8a0d325c2323"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dodge"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""729c2a3c-ef8e-4d8e-93a3-89058ae4bc2a"",
                     ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": ""Tap"",

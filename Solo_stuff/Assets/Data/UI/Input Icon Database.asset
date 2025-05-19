@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: Input Icon Database
+  m_EditorClassIdentifier: Assembly-CSharp::InputIconDatabase
+  Mappings:
+  - ActionName: LightAttack
+    KeyboardIcon: {fileID: 0}
+    PlaystationIcon: {fileID: 21300000, guid: 22b97dfa5af0d1947a62312c31e633e5, type: 3}
+    XboxIcon: {fileID: 21300000, guid: ed60ff0de79971e468ae179e077d66ca, type: 3}
+  - ActionName: HeavyAttack
+    KeyboardIcon: {fileID: 0}
+    PlaystationIcon: {fileID: 21300000, guid: 87dce22414624c74d90f8bfc4bf3582f, type: 3}
+    XboxIcon: {fileID: 21300000, guid: 0ae60af4bd5e539409acc10ec4300105, type: 3}
+  - ActionName: Interact
+    KeyboardIcon: {fileID: 21300000, guid: a0ecceff44aa70e4aaf6a1c21b008bc2, type: 3}
+    PlaystationIcon: {fileID: 21300000, guid: 47b0c8cbcd450124abdb1b62fb7f5806, type: 3}
+    XboxIcon: {fileID: 21300000, guid: 17fd7d74524d4cc4ea612a100880d012, type: 3}
+  - ActionName: Jump
+    KeyboardIcon: {fileID: 21300000, guid: 74345abde0673124eb3f42209d846297, type: 3}
+    PlaystationIcon: {fileID: 21300000, guid: 2da2d15ce082e12448ac493c55a33f0f, type: 3}
+    XboxIcon: {fileID: 21300000, guid: f609c9b3b1675f947a865ec558b5ad90, type: 3}
+  - ActionName: Sprint
+    KeyboardIcon: {fileID: 21300000, guid: 8bce0a526c3a2824d84e8e3993acdb47, type: 3}
+    PlaystationIcon: {fileID: 21300000, guid: c7f381483fb41f14e935b2d6d9fec62f, type: 3}
+    XboxIcon: {fileID: 21300000, guid: d08c52c09554ca8418a86627f4bd14e1, type: 3}
+  - ActionName: Dodge
+    KeyboardIcon: {fileID: 21300000, guid: 8bce0a526c3a2824d84e8e3993acdb47, type: 3}
+    PlaystationIcon: {fileID: 21300000, guid: c7f381483fb41f14e935b2d6d9fec62f, type: 3}
+    XboxIcon: {fileID: 21300000, guid: d08c52c09554ca8418a86627f4bd14e1, type: 3}
+  - ActionName: LockOn
+    KeyboardIcon: {fileID: 21300000, guid: a94c6ca4295b8914a932ecd28e1f58b5, type: 3}
+    PlaystationIcon: {fileID: 21300000, guid: 04f2711270cd5b64099d2ca2f99529de, type: 3}
+    XboxIcon: {fileID: 21300000, guid: 9c61f7c9d0b7b8b4f9d2350b73289e23, type: 3}
+  - ActionName: SwitchLeftWeapon
+    KeyboardIcon: {fileID: 0}
+    PlaystationIcon: {fileID: 21300000, guid: 4cb9b89846007d142a4a78a190c2d6fe, type: 3}
+    XboxIcon: {fileID: 21300000, guid: 44d8f279ef345c442ae875caa0c26731, type: 3}
+  - ActionName: SwitchRightWeapon
+    KeyboardIcon: {fileID: 0}
+    PlaystationIcon: {fileID: 21300000, guid: be71706bc979d5240bf156bfdfee0ae6, type: 3}
+    XboxIcon: {fileID: 21300000, guid: cfa9b832ea5877745a96e61e8ffaeca2, type: 3}
+  - ActionName: ButtonNorth
+    KeyboardIcon: {fileID: 21300000, guid: 5642c25ab4263a04dad66b8e9f59328b, type: 3}
+    PlaystationIcon: {fileID: 21300000, guid: 47b0c8cbcd450124abdb1b62fb7f5806, type: 3}
+    XboxIcon: {fileID: 21300000, guid: 17fd7d74524d4cc4ea612a100880d012, type: 3}
+  - ActionName: ButtonEast
+    KeyboardIcon: {fileID: 21300000, guid: c7b56f65a1666c145bcea30787a632cd, type: 3}
+    PlaystationIcon: {fileID: 21300000, guid: c7f381483fb41f14e935b2d6d9fec62f, type: 3}
+    XboxIcon: {fileID: 21300000, guid: d08c52c09554ca8418a86627f4bd14e1, type: 3}
+  - ActionName: ButtonSouth
+    KeyboardIcon: {fileID: 21300000, guid: a0ecceff44aa70e4aaf6a1c21b008bc2, type: 3}
+    PlaystationIcon: {fileID: 21300000, guid: 2da2d15ce082e12448ac493c55a33f0f, type: 3}
+    XboxIcon: {fileID: 21300000, guid: f609c9b3b1675f947a865ec558b5ad90, type: 3}
+  - ActionName: ButtonWest
+    KeyboardIcon: {fileID: 21300000, guid: a94c6ca4295b8914a932ecd28e1f58b5, type: 3}
+    PlaystationIcon: {fileID: 21300000, guid: 428de70370df69d45bd4c0025b7ba36e, type: 3}
+    XboxIcon: {fileID: 21300000, guid: cde7469096582e04897fae80dfc34fbe, type: 3}
+  - ActionName: Navigation
+    KeyboardIcon: {fileID: 21300000, guid: 58f845f20ccdac7429bbdb3a5d7df56d, type: 3}
+    PlaystationIcon: {fileID: 21300000, guid: 2f89180ca16a60248a2abc852468156d, type: 3}
+    XboxIcon: {fileID: 21300000, guid: d618f53e36422b345b476680f644b070, type: 3}

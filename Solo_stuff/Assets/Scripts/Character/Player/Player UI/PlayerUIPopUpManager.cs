@@ -35,7 +35,7 @@ public class PlayerUIPopUpManager : MonoBehaviour
 
     public void SendMessagePopUp(string messageText) {
         PlayerUIManager.Instance.PopUpWindowIsOpen = true;
-        _messagePopUpText.text = messageText;
+        _messagePopUpText.text = ": " + messageText;
         _messagePopUp.SetActive(true);
     }
 

@@ -69,6 +69,6 @@ MonoBehaviour:
   _queueLightAttackInput: 0
   _queueHeavyAttackInput: 0
   _queueDodgeInput: 0
-  UIInputDatabase: {fileID: 11400000, guid: c5f78569970251341b8ff5d73a9cb303, type: 2}
+  UIInputDatabase: {fileID: 11400000, guid: 090e2cf636daa2c48baee0e84df32a2d, type: 2}
   ControlScheme: 0
   ControllerType: 0
