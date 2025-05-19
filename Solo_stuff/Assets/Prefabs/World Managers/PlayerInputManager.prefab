@@ -44,4 +44,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b3285df4f09b6541a397b3dd8dc5dd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player: {fileID: 0}
   _movementInput: {x: 0, y: 0}
+  HorizontalInput: 0
+  VerticalInput: 0
+  MoveAmount: 0
+  _cameraInput: {x: 0, y: 0}
+  CameraHorizontalInput: 0
+  CameraVerticalInput: 0
+  _lockOnInput: 0
+  _lockOnLeftInput: 0
+  _lockOnRightInput: 0
+  _interactInput: 0
+  _dodgeInput: 0
+  _sprintInput: 0
+  _jumpInput: 0
+  _switchRightWeaponInput: 0
+  _switchLeftWeaponInput: 0
+  _lightAttackInput: 0
+  _heavyAttackInput: 0
+  _heavyAttackHoldInput: 0
+  _defaultQueueInputTime: 0.35
+  _queueInputTimer: 0
+  _queueLightAttackInput: 0
+  _queueHeavyAttackInput: 0
+  _queueDodgeInput: 0
+  UIInputDatabase: {fileID: 11400000, guid: c5f78569970251341b8ff5d73a9cb303, type: 2}
+  ControlScheme: 0
+  ControllerType: 0

@@ -51,3 +51,13 @@ public enum SurfaceType {
     Gravel,
     Stone
 }
+
+public enum ControlScheme {
+    Keyboard,
+    Controller
+}
+
+public enum ControllerType {
+    Playstation,
+    Xbox
+}

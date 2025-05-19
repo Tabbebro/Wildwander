@@ -1,5 +1,9 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Utilities;
 using UnityEngine.SceneManagement;
+using UnityEngine.Events;
+using System;
 
 public class PlayerInputManager : MonoBehaviour {
     public static PlayerInputManager Instance;
@@ -7,12 +11,12 @@ public class PlayerInputManager : MonoBehaviour {
 
     Inputs _inputs;
 
+
     [Header("Player Movement Input")]
     [ReadOnly][SerializeField] Vector2 _movementInput;
     [ReadOnly] public float HorizontalInput;
     [ReadOnly] public float VerticalInput;
     [ReadOnly] public float MoveAmount;
-
 
     [Header("Camera Movement Input")]
     [ReadOnly][SerializeField] Vector2 _cameraInput;
@@ -24,7 +28,6 @@ public class PlayerInputManager : MonoBehaviour {
     [SerializeField] bool _lockOnLeftInput = false;
     [SerializeField] bool _lockOnRightInput = false;
     Coroutine _lockOnCoroutine;
-
 
     [Header("Player Action Input")]
     [SerializeField] bool _interactInput = false;
@@ -48,6 +51,12 @@ public class PlayerInputManager : MonoBehaviour {
     [SerializeField] bool _queueLightAttackInput;
     [SerializeField] bool _queueHeavyAttackInput;
     [SerializeField] bool _queueDodgeInput;
+    
+    [Header("Control Scheme Icon Changing")]
+    public InputIconDatabase UIInputDatabase;
+    public ControlScheme ControlScheme;
+    public ControllerType ControllerType = ControllerType.Playstation;
+    public event Action<InputIconDatabase, ControlScheme, ControllerType> ChangeUIControllerIconEvent;
 
     private void Awake() {
         if (Instance == null) {
@@ -115,6 +124,9 @@ public class PlayerInputManager : MonoBehaviour {
             _inputs.PlayerActions.QueueLightAttack.performed += i => QueueInput(ref _queueLightAttackInput);
             _inputs.PlayerActions.QueueHeavyAttack.performed += i => QueueInput(ref _queueHeavyAttackInput);
             _inputs.PlayerActions.QueueDodge.performed += i => QueueInput(ref _queueDodgeInput);
+
+            // Input Shceme Check
+            InputSystem.onAnyButtonPress.Call(ctrl => { ChangeControlScheme(ctrl); });
         }
 
         EnableInputs();
@@ -362,6 +374,7 @@ public class PlayerInputManager : MonoBehaviour {
     }
     #endregion
 
+    #region Input Queue
     // Input Queue
     void QueueInput(ref bool quedInput) {
         ResetQueueInputs();
@@ -408,5 +421,31 @@ public class PlayerInputManager : MonoBehaviour {
         _queueLightAttackInput = false;
         _queueHeavyAttackInput = false;
         _queueDodgeInput = false;
+    }
+    #endregion
+
+    
+
+    void ChangeControlScheme(InputControl ctrl) {
+        
+        ControlScheme newControlScheme;
+
+        switch (ctrl.device.displayName) {
+            case "Keyboard":
+                newControlScheme = ControlScheme.Keyboard;
+                break;
+            case "Mouse":
+                newControlScheme = ControlScheme.Keyboard;
+                break;
+            default:
+                newControlScheme = ControlScheme.Controller;
+                break;
+        }
+
+        if (newControlScheme != ControlScheme) {
+            ControlScheme = newControlScheme;
+            ChangeUIControllerIconEvent?.Invoke(UIInputDatabase, ControlScheme, ControllerType);
+        }
+
     }
 }

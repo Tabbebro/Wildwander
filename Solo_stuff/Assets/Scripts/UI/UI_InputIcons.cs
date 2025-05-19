@@ -6,7 +6,7 @@ public class UI_InputIcons
 {
     public string ActionName;
     public Sprite KeyboardIcon;
-    public Sprite Ps4Icon;
+    public Sprite PlaystationIcon;
     public Sprite XboxIcon;
 }
 
