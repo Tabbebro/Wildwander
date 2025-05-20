@@ -72,7 +72,7 @@ public class DamageCollider : MonoBehaviour
 
     protected virtual void GetBlockedDotValues(CharacterManager damageTarget) {
         _directionFromAttackToDamageTarget = transform.position - damageTarget.transform.position;
-        _dotValueFromAttackToDamageTarget = Vector3.Dot(_directionFromAttackToDamageTarget, damageTarget.transform.position);
+        _dotValueFromAttackToDamageTarget = Vector3.Dot(_directionFromAttackToDamageTarget, damageTarget.transform.forward);
     }
 
     protected virtual void DamageTarget(CharacterManager damageTarget) {

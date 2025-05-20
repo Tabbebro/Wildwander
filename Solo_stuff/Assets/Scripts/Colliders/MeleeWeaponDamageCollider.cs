@@ -49,7 +49,7 @@ public class MeleeWeaponDamageCollider : DamageCollider
 
     protected override void GetBlockedDotValues(CharacterManager damageTarget) {
         _directionFromAttackToDamageTarget = CharacterCausingDamage.transform.position - damageTarget.transform.position;
-        _dotValueFromAttackToDamageTarget = Vector3.Dot(_directionFromAttackToDamageTarget, damageTarget.transform.position);
+        _dotValueFromAttackToDamageTarget = Vector3.Dot(_directionFromAttackToDamageTarget, damageTarget.transform.forward);
     }
 
     protected override void DamageTarget(CharacterManager damageTarget) {
