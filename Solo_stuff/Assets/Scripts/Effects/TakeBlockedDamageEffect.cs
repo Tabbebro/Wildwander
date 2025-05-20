@@ -1,8 +1,7 @@
-using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Character Effects/Instant Effects/Take Damage")]
-public class TakeDamageEffect : InstantCharacterEffect
+[CreateAssetMenu(menuName = "Character Effects/Instant Effects/Take Blocked Damage")]
+public class TakeBlockedDamageEffect : InstantCharacterEffect
 {
     [Header("Character Causing Damage")]
     public CharacterManager CharacterCausingDamage; // Character That Deals Damage
@@ -48,13 +47,15 @@ public class TakeDamageEffect : InstantCharacterEffect
         // If Character Is Dead Return
         if (character.IsDead.Value) { return; }
 
+        Debug.Log("Hit Was Blocked");
+
         // Check For I Frames
 
         // Calculate DMG
         CalculateDamage(character);
 
         // Play Animation Based On Direction
-        PlayDirectionalBadsedDamageAnimation(character);
+        PlayDirectionalBasedBlockingDamageAnimation(character);
 
         // Check For Build Ups
 
@@ -73,13 +74,22 @@ public class TakeDamageEffect : InstantCharacterEffect
             // TODO: Check For Damage Modifiers
         }
 
-        // TODO: Check For Defences / Absorptions
+        Debug.Log("Original Physical Damage: " + PhysicalDamage);
+
+        PhysicalDamage -= (PhysicalDamage * (character.CharacterStatsManager.BlockingPhysicalAbsorption / 100));
+        MagicDamage -= (MagicDamage * (character.CharacterStatsManager.BlockingMagicAbsorption / 100));
+        FireDamage -= (FireDamage * (character.CharacterStatsManager.BlockingFireAbsorption / 100));
+        LightningDamage -= (LightningDamage * (character.CharacterStatsManager.BlockingLightningAbsorption / 100));
+        HolyDamage -= (HolyDamage * (character.CharacterStatsManager.BlockingHolyAbsorption / 100));
+        
 
         _finalDamage = Mathf.RoundToInt(PhysicalDamage + MagicDamage + FireDamage + LightningDamage + HolyDamage);
 
         if (_finalDamage <= 0) {
             _finalDamage = 1;
         }
+
+        Debug.Log("Physical Damage After Absorption: " + PhysicalDamage);
 
         character.CharacterNetworkManager.CurrentHealth.Value -= _finalDamage;
 
@@ -89,49 +99,45 @@ public class TakeDamageEffect : InstantCharacterEffect
     void PlayDamageVFX(CharacterManager character) {
         // TODO: Add Elemental VFX
 
-        character.CharacterEffectsManager.PlayBloodSplatterVFX(ContactPoint);
+        // TODO: Get VFX Based On Blocking Weapon
     }
 
     void PlayDamageSFX(CharacterManager character) {
-        AudioClip physicalDamageSFX = WorldSFXManager.Instance.ChooseRandomSFXFromArray(WorldSFXManager.Instance.PhysicalDamageSFX);
-        character.CharacterSFXManager.PlaySoundFX(physicalDamageSFX);
-        character.CharacterSFXManager.PlayDamageGruntSFX();
         // TODO: Add Elemental SFX
+
+        // TODO: Get SFX Based On Blocking Weapon
     }
 
-    void PlayDirectionalBadsedDamageAnimation(CharacterManager character) {
-        
-        if(!character.IsOwner) { return; }
+    void PlayDirectionalBasedBlockingDamageAnimation(CharacterManager character) {
+
+        if (!character.IsOwner) { return; }
 
         if (character.IsDead.Value) { return; }
 
-        // TODO: Calculate If Poise Breaks
-        PoiseIsBroken = true;
-        
-        // Front
-        if (AngleHitFrom >= 145 && AngleHitFrom <= 180) {
-            DamageAnimation = character.CharacterAnimatorManager.GetRandomAnimationFromList(character.CharacterAnimatorManager.front_Medium_Damage);
-        }
-        // Front
-        else if (AngleHitFrom <= -145 && AngleHitFrom >= -180) {
-            DamageAnimation = character.CharacterAnimatorManager.GetRandomAnimationFromList(character.CharacterAnimatorManager.front_Medium_Damage);
-        }
-        // Back
-        else if (AngleHitFrom >= -45 && AngleHitFrom <= 45) {
-            DamageAnimation = character.CharacterAnimatorManager.GetRandomAnimationFromList(character.CharacterAnimatorManager.back_Medium_Damage);
-        }
-        // Left
-        else if (AngleHitFrom >= -144 && AngleHitFrom <= -45) {
-            DamageAnimation = character.CharacterAnimatorManager.GetRandomAnimationFromList(character.CharacterAnimatorManager.left_Medium_Damage);
-        }
-        // Right
-        else if (AngleHitFrom >= 45 && AngleHitFrom <= 144) {
-            DamageAnimation = character.CharacterAnimatorManager.GetRandomAnimationFromList(character.CharacterAnimatorManager.right_Medium_Damage);
+        DamageIntensity damageIntensity = WorldUtilityManager.Instance.GetDamageIntensityBasedOnPoiseDamage(PoiseDamage);
+
+        // TODO: Check For Two Hand Status
+        switch (damageIntensity) {
+            case DamageIntensity.Ping:
+                DamageAnimation = "Block_Ping_01";
+                break;
+            case DamageIntensity.Light:
+                DamageAnimation = "Block_Light_01";
+                break;
+            case DamageIntensity.Medium:
+                DamageAnimation = "Block_Medium_01";
+                break;
+            case DamageIntensity.Heavy:
+                DamageAnimation = "Block_Heavy_01";
+                break;
+            case DamageIntensity.Colossal:
+                DamageAnimation = "Block_Colossal_01";
+                break;
+            default:
+                break;
         }
 
-        if (PoiseIsBroken) {
-            character.CharacterAnimatorManager.LastDamageAnimationPlayed = DamageAnimation; 
-            character.CharacterAnimatorManager.PlayTargetActionAnimation(DamageAnimation, true);
-        }
+        character.CharacterAnimatorManager.LastDamageAnimationPlayed = DamageAnimation;
+        character.CharacterAnimatorManager.PlayTargetActionAnimation(DamageAnimation, true);
     }
 }

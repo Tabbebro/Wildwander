@@ -10,6 +10,14 @@ public class CharacterStatsManager : MonoBehaviour
     float _staminaTickTimer = 0;
     [SerializeField] float _staminaRegenerationDelay = 2;
 
+    [Header("Blocking Absorptions")]
+    public float BlockingPhysicalAbsorption;
+    public float BlockingMagicAbsorption;
+    public float BlockingFireAbsorption;
+    public float BlockingLightningAbsorption;
+    public float BlockingHolyAbsorption;
+
+
     protected virtual void Awake() {
         _character = GetComponent<CharacterManager>();
     }

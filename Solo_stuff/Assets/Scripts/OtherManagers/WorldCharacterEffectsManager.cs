@@ -10,6 +10,7 @@ public class WorldCharacterEffectsManager : MonoBehaviour
 
     [Header("Damage")]
     public TakeDamageEffect TakeDamageEffect;
+    public TakeBlockedDamageEffect TakeBlockedDamageEffect;
 
     [SerializeField] List<InstantCharacterEffect> _instantEffects;
 

@@ -88,4 +88,33 @@ public class WorldUtilityManager : MonoBehaviour
 
         return viewableAngle;
     }
+
+    public DamageIntensity GetDamageIntensityBasedOnPoiseDamage(float poiseDamage) {
+        
+        // Small Damage (Throwing Daggers & Rocks)
+        DamageIntensity damageIntensity = DamageIntensity.Ping;
+
+        // Light Weapons (Daggers)
+        if (poiseDamage >= 10) {
+            damageIntensity = DamageIntensity.Light;
+        }
+
+        // Standard Weapons (Swords, Maces & Axes)
+        if (poiseDamage >= 30) {
+            damageIntensity = DamageIntensity.Medium;
+        }
+
+        // Big Weapons (Greatswords & such)
+        if (poiseDamage >= 70) {
+            damageIntensity = DamageIntensity.Heavy;
+        }
+
+        // Colossal Weapons (Ultra Greatswords & Some Big Bosses)
+        if (poiseDamage >= 120) {
+            damageIntensity = DamageIntensity.Colossal;
+        }
+
+
+        return damageIntensity;
+    }
 }

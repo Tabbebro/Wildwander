@@ -44,6 +44,14 @@ public enum AttackType {
     BackstepAttack01
 }
 
+public enum DamageIntensity {
+    Ping,
+    Light,
+    Medium,
+    Heavy,
+    Colossal
+}
+
 public enum SurfaceType {
     Untagged,
     Dirt,

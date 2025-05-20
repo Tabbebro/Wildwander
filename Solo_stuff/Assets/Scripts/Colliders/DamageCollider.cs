@@ -21,6 +21,10 @@ public class DamageCollider : MonoBehaviour
     [Header("Characters Damaged")]
     protected List<CharacterManager> _charactersDamaged = new();
 
+    [Header("Block")]
+    protected Vector3 _directionFromAttackToDamageTarget;
+    protected float _dotValueFromAttackToDamageTarget;
+
     protected virtual void Awake() {
         
     }
@@ -35,8 +39,40 @@ public class DamageCollider : MonoBehaviour
         // TODO: Check For Friendly Fire
 
         // TODO: Check If Blocking
+        CheckForBlock(damageTarget);
 
         DamageTarget(damageTarget);
+    }
+
+    protected virtual void CheckForBlock(CharacterManager damageTarget) {
+        if (_charactersDamaged.Contains(damageTarget)) { return; }
+
+        GetBlockedDotValues(damageTarget);
+
+        // TODO: Check If This Dot Product Value Is Good Or Not
+        if (damageTarget.CharacterNetworkManager.IsBlocking.Value && _dotValueFromAttackToDamageTarget > 0.3f) {
+            _charactersDamaged.Add(damageTarget);
+
+            TakeBlockedDamageEffect blockedDamageEffect = Instantiate(WorldCharacterEffectsManager.Instance.TakeBlockedDamageEffect);
+
+            // Give Damages
+            blockedDamageEffect.PhysicalDamage = PhysicalDamage;
+            blockedDamageEffect.MagicDamage = MagicDamage;
+            blockedDamageEffect.FireDamage = FireDamage;
+            blockedDamageEffect.LightningDamage = LightningDamage;
+            blockedDamageEffect.HolyDamage = HolyDamage;
+
+            // Give Contact Point
+            blockedDamageEffect.ContactPoint = _contactPoint;
+
+            // Process The Blocked Damage Effect
+            damageTarget.CharacterEffectsManager.ProcessInstantEffect(blockedDamageEffect);
+        }
+    }
+
+    protected virtual void GetBlockedDotValues(CharacterManager damageTarget) {
+        _directionFromAttackToDamageTarget = transform.position - damageTarget.transform.position;
+        _dotValueFromAttackToDamageTarget = Vector3.Dot(_directionFromAttackToDamageTarget, damageTarget.transform.position);
     }
 
     protected virtual void DamageTarget(CharacterManager damageTarget) {

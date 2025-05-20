@@ -47,6 +47,11 @@ public class MeleeWeaponDamageCollider : DamageCollider
 
     }
 
+    protected override void GetBlockedDotValues(CharacterManager damageTarget) {
+        _directionFromAttackToDamageTarget = CharacterCausingDamage.transform.position - damageTarget.transform.position;
+        _dotValueFromAttackToDamageTarget = Vector3.Dot(_directionFromAttackToDamageTarget, damageTarget.transform.position);
+    }
+
     protected override void DamageTarget(CharacterManager damageTarget) {
 
         // If target already on list return
@@ -112,7 +117,8 @@ public class MeleeWeaponDamageCollider : DamageCollider
                 damageEffect.AngleHitFrom,
                 damageEffect.ContactPoint.x, 
                 damageEffect.ContactPoint.y, 
-                damageEffect.ContactPoint.z);
+                damageEffect.ContactPoint.z
+            );
         }
 
     }

@@ -46,4 +46,9 @@ public class AIMeleeWeaponDamageCollider : DamageCollider
         }
 
     }
+
+    protected override void GetBlockedDotValues(CharacterManager damageTarget) {
+        _directionFromAttackToDamageTarget = AICharacter.transform.position - damageTarget.transform.position;
+        _dotValueFromAttackToDamageTarget = Vector3.Dot(_directionFromAttackToDamageTarget, damageTarget.transform.position);
+    }
 }
