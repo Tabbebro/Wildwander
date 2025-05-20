@@ -4826,7 +4826,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ec4e3847523bb844499342c7de73a9b4, type: 2}
+  - {fileID: 2100000, guid: 8d64297bcaa5c044aa670c3cb7d32830, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4883,8 +4883,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 4068512203
-  InScenePlacedSourceGlobalObjectIdHash: 0
+  GlobalObjectIdHash: 3870221455
+  InScenePlacedSourceGlobalObjectIdHash: 4068512203
   DeferredDespawnTick: 0
   Ownership: 1
   AlwaysReplicateAsRoot: 0
@@ -4918,10 +4918,13 @@ MonoBehaviour:
   _unactivatedInteractionText: Touch The Orb
   _activatedInteractionText: Ponder The Orb
   _restSpotRenderer: {fileID: 5036297708210475245}
-  _activatedRestSpotMaterial: {fileID: 2100000, guid: 42b64fdb315e3054ea757d8d1c4bcfa7, type: 2}
-  _unactivatedRestSpotMaterial: {fileID: 2100000, guid: ec4e3847523bb844499342c7de73a9b4, type: 2}
   _restSpotParticles: {fileID: 2096256806035401834}
   _restSpotLight: {fileID: 5592955511988730919}
+  _lightAnimation: {fileID: 5098351815309275277}
+  _activatedRestSpotMaterial: {fileID: 2100000, guid: 78716944910f9cb4dabe3d7a5b574fac, type: 2}
+  _unactivatedRestSpotMaterial: {fileID: 2100000, guid: 8d64297bcaa5c044aa670c3cb7d32830, type: 2}
+  _unactivatedLightAnimation: {fileID: 7400000, guid: 4489341002bb15b44a3f21555427ea54, type: 2}
+  _activatedLightAnimation: {fileID: 7400000, guid: 39bf7f9c4ae8c4345a3864412df8c677, type: 2}
   _restSpotLightUnactivatedRange: 1
   _restSpotLightActivadeRange: 5
 --- !u!54 &5281737511921925562
@@ -5082,9 +5085,10 @@ Animation:
   m_GameObject: {fileID: 5848861164601320400}
   m_Enabled: 1
   serializedVersion: 4
-  m_Animation: {fileID: 7400000, guid: 39bf7f9c4ae8c4345a3864412df8c677, type: 2}
+  m_Animation: {fileID: 7400000, guid: 4489341002bb15b44a3f21555427ea54, type: 2}
   m_Animations:
   - {fileID: 7400000, guid: 39bf7f9c4ae8c4345a3864412df8c677, type: 2}
+  - {fileID: 7400000, guid: 4489341002bb15b44a3f21555427ea54, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0

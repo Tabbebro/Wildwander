@@ -14,12 +14,17 @@ public class RestSpotInteractable : Interactable
     [SerializeField] string _unactivatedInteractionText = "Touch The Orb";
     [SerializeField] string _activatedInteractionText = "Ponder The Orb";
 
-    [Header("Activated Effects")]
+    [Header("References")]
     [SerializeField] Renderer _restSpotRenderer;
-    [SerializeField] Material _activatedRestSpotMaterial;
-    [SerializeField] Material _unactivatedRestSpotMaterial;
     [SerializeField] GameObject _restSpotParticles;
     [SerializeField] Light _restSpotLight;
+    [SerializeField] Animation _lightAnimation;
+
+    [Header("Activated Variables")]
+    [SerializeField] Material _activatedRestSpotMaterial;
+    [SerializeField] Material _unactivatedRestSpotMaterial;
+    [SerializeField] AnimationClip _unactivatedLightAnimation;
+    [SerializeField] AnimationClip _activatedLightAnimation;
     [SerializeField] float _restSpotLightUnactivatedRange = 1;
     [SerializeField] float _restSpotLightActivadeRange = 5;
 
