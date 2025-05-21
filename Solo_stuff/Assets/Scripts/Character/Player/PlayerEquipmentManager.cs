@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 public class PlayerEquipmentManager : CharacterEquipmentManager
@@ -64,6 +65,7 @@ public class PlayerEquipmentManager : CharacterEquipmentManager
             RightHandSlot.LoadWeaponModel(RightHandWeaponModel);
             _rightWeaponManager = RightHandWeaponModel.GetComponent<WeaponManager>();
             _rightWeaponManager.SetWeaponDamage(_player, _player.PlayerInventoryManager.CurrentRightHandWeapon);
+            _player.PlayerAnimatorManager.UpdateAnimatorController(_player.PlayerInventoryManager.CurrentRightHandWeapon.WeaponAnimator);
 
             // Assign Damage To Collider
         }
@@ -220,12 +222,16 @@ public class PlayerEquipmentManager : CharacterEquipmentManager
         // Right Hand
         if (_player.PlayerNetworkManager.IsUsingRightHand.Value) {
             _rightWeaponManager.MeleeDamageCollider.EnableDamageCollider();
-            _player.CharacterSFXManager.PlaySoundFX(WorldSFXManager.Instance.ChooseRandomSFXFromArray(_player.PlayerInventoryManager.CurrentRightHandWeapon.SwooshSFXs));
+            if (_player.PlayerInventoryManager.CurrentRightHandWeapon.SwooshSFXs.Length > 0) {
+                _player.CharacterSFXManager.PlaySoundFX(WorldSFXManager.Instance.ChooseRandomSFXFromArray(_player.PlayerInventoryManager.CurrentRightHandWeapon.SwooshSFXs));
+            }
         }
         // Left Hand
         else if (_player.PlayerNetworkManager.IsUsingLeftHand.Value) {
             _leftWeaponManager.MeleeDamageCollider.EnableDamageCollider();
-            _player.CharacterSFXManager.PlaySoundFX(WorldSFXManager.Instance.ChooseRandomSFXFromArray(_player.PlayerInventoryManager.CurrentLeftHandWeapon.SwooshSFXs));
+            if (_player.PlayerInventoryManager.CurrentRightHandWeapon.SwooshSFXs.Length > 0) {
+                _player.CharacterSFXManager.PlaySoundFX(WorldSFXManager.Instance.ChooseRandomSFXFromArray(_player.PlayerInventoryManager.CurrentLeftHandWeapon.SwooshSFXs));
+            }
         }
     }
 

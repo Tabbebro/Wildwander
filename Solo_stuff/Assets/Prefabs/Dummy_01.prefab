@@ -152,6 +152,8 @@ MonoBehaviour:
     m_InternalValue: 0
   IsChargingAttack:
     m_InternalValue: 0
+  IsBlocking:
+    m_InternalValue: 0
   Vitality:
     m_InternalValue: 1
   Endurance:
@@ -188,6 +190,7 @@ MonoBehaviour:
   CharacterCombatManager: {fileID: 0}
   CharacterSFXManager: {fileID: 0}
   CharacterUIManager: {fileID: 0}
+  CharacterStatsManager: {fileID: 0}
   CharacterGroup: 3
   IsPerformingAction: 0
   AICharacterNetworkManager: {fileID: 0}
@@ -270,6 +273,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _staminaRegenerationAmount: 10
   _staminaRegenerationDelay: 1
+  BlockingPhysicalAbsorption: 0
+  BlockingMagicAbsorption: 0
+  BlockingFireAbsorption: 0
+  BlockingLightningAbsorption: 0
+  BlockingHolyAbsorption: 0
 --- !u!114 &7980362963877207879
 MonoBehaviour:
   m_ObjectHideFlags: 0

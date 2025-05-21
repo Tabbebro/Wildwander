@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class WeaponItem : Item
 {
+    [Header("Animations")]
+    public AnimatorOverrideController WeaponAnimator;
+
     [Header("Weapon Model")]
     public GameObject weaponModel;
 

@@ -26,15 +26,15 @@ public class HeavyAttackWeaponItemAction : WeaponItemAction
 
             // Perform Attack Based On Previous Attack
             if (playerPerformingAction.CharacterCombatManager.LastAttackAnimationPerformed == heavyAttack01) {
-                playerPerformingAction.PlayerAnimatorManager.PlayTargetAttackActionAnimation(AttackType.HeavyAttack02, heavyAttack02, true);
+                playerPerformingAction.PlayerAnimatorManager.PlayTargetAttackActionAnimation(weaponPerformingAction, AttackType.HeavyAttack02, heavyAttack02, true);
             }
             else {
-                playerPerformingAction.PlayerAnimatorManager.PlayTargetAttackActionAnimation(AttackType.HeavyAttack01, heavyAttack01, true);
+                playerPerformingAction.PlayerAnimatorManager.PlayTargetAttackActionAnimation(weaponPerformingAction, AttackType.HeavyAttack01, heavyAttack01, true);
             }
         }
         // Else If Not Attacking Do Regular Attack
         else if (!playerPerformingAction.IsPerformingAction) {
-            playerPerformingAction.PlayerAnimatorManager.PlayTargetAttackActionAnimation(AttackType.HeavyAttack01, heavyAttack01, true);
+            playerPerformingAction.PlayerAnimatorManager.PlayTargetAttackActionAnimation(weaponPerformingAction, AttackType.HeavyAttack01, heavyAttack01, true);
         }
     }
 }

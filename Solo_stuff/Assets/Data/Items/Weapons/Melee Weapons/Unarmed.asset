@@ -16,6 +16,7 @@ MonoBehaviour:
   ItemIcon: {fileID: 0}
   ItemDescription: 
   ItemID: 0
+  WeaponAnimator: {fileID: 22100000, guid: da5460de8c41bf04baa27ed553f28250, type: 2}
   weaponModel: {fileID: 2856970132399443511, guid: 828ab398c2560ce4e8623f5d7c0fdd00, type: 3}
   StrReq: 0
   DexReq: 0
@@ -27,4 +28,22 @@ MonoBehaviour:
   LightningDamage: 0
   HolyDamage: 0
   PoiseDamage: 10
+  LightAttack01Modifier: 1
+  LightAttack02Modifier: 1.2
+  HeavyAttack01Modifier: 1.5
+  HeavyAttack02Modifier: 1.7
+  HeavyAttackHold01Modifier: 2
+  HeavyAttackHold02Modifier: 2.2
+  RunAttack01Modifier: 1.1
+  RollAttack01Modifier: 1.1
+  BackstepAttack01Modifier: 1.1
   BaseStaminaCost: 10
+  LigthAttackStaminaModifier: 1
+  HeavyAttackStaminaModifier: 1.25
+  HeavyAttackHoldStaminaModifier: 1.5
+  RunAttackStaminaModifier: 1.1
+  RollAttackStaminaModifier: 1.1
+  BackstepAttackStaminaModifier: 1.1
+  OhLightAction: {fileID: 11400000, guid: 3a750157116138347b052d795e00adbe, type: 2}
+  OhHeavyAction: {fileID: 11400000, guid: 105cbbf0a7636624a8c87c9910b3922c, type: 2}
+  SwooshSFXs: []

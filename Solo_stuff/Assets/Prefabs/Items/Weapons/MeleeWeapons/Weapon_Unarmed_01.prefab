@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b328a62f520cc9f4bb0cb86c13bc65b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MeleeDamageCollider: {fileID: 0}
+  MeleeDamageCollider: {fileID: 4094828312407463865}
 --- !u!1 &3719648227501704241
 GameObject:
   m_ObjectHideFlags: 0
@@ -94,7 +94,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 0
   serializedVersion: 3
@@ -112,7 +112,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 951adc8282042db4b99b7e75076fa954, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _debugRearmTrigger: 0
   _damageCollider: {fileID: 6739340406937249952}
   PhysicalDamage: 0
   MagicDamage: 0
@@ -121,3 +120,11 @@ MonoBehaviour:
   HolyDamage: 0
   CharacterCausingDamage: {fileID: 0}
   LightAttack01Modifier: 0
+  LightAttack02Modifier: 0
+  HeavyAttack01Modifier: 0
+  HeavyAttack02Modifier: 0
+  HeavyAttackHold01Modifier: 0
+  HeavyAttackHold02Modifier: 0
+  RunAttack01Modifier: 0
+  RollAttack01Modifier: 0
+  BackstepAttack01Modifier: 0

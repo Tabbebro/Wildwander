@@ -54,16 +54,16 @@ public class LightAttackWeaponItemAction : WeaponItemAction
 
             // Perform Attack Based On Previous Attack
             if (playerPerformingAction.CharacterCombatManager.LastAttackAnimationPerformed == _lightAttack01) {
-                playerPerformingAction.PlayerAnimatorManager.PlayTargetAttackActionAnimation(AttackType.LightAttack02, _lightAttack02, true);
+                playerPerformingAction.PlayerAnimatorManager.PlayTargetAttackActionAnimation(weaponPerformingAction, AttackType.LightAttack02, _lightAttack02, true);
             }
             else {
-                playerPerformingAction.PlayerAnimatorManager.PlayTargetAttackActionAnimation(AttackType.LightAttack01, _lightAttack01, true);
+                playerPerformingAction.PlayerAnimatorManager.PlayTargetAttackActionAnimation(weaponPerformingAction, AttackType.LightAttack01, _lightAttack01, true);
             }
         }
 
         // Else If Not Attacking Do Regular Attack
         else if (!playerPerformingAction.IsPerformingAction) {
-            playerPerformingAction.PlayerAnimatorManager.PlayTargetAttackActionAnimation(AttackType.LightAttack01, _lightAttack01, true);
+            playerPerformingAction.PlayerAnimatorManager.PlayTargetAttackActionAnimation(weaponPerformingAction, AttackType.LightAttack01, _lightAttack01, true);
         }
 
     }
@@ -72,20 +72,20 @@ public class LightAttackWeaponItemAction : WeaponItemAction
 
         // TODO: Check For Two Handing
 
-        playerPerformingAction.PlayerAnimatorManager.PlayTargetAttackActionAnimation(AttackType.RunningAttack01, _runAttack01, true);
+        playerPerformingAction.PlayerAnimatorManager.PlayTargetAttackActionAnimation(weaponPerformingAction, AttackType.RunningAttack01, _runAttack01, true);
     }
 
     void PerformRollingAttack(PlayerManager playerPerformingAction, WeaponItem weaponPerformingAction) {
 
         // TODO: Check For Two Handing
         playerPerformingAction.PlayerCombatManager.CanPerformRollingAttack = false;
-        playerPerformingAction.PlayerAnimatorManager.PlayTargetAttackActionAnimation(AttackType.RollingAttack01, _rollAttack01, true);
+        playerPerformingAction.PlayerAnimatorManager.PlayTargetAttackActionAnimation(weaponPerformingAction, AttackType.RollingAttack01, _rollAttack01, true);
     }
 
     void PerformBackstepAttack(PlayerManager playerPerformingAction, WeaponItem weaponPerformingAction) {
 
         // TODO: Check For Two Handing
         playerPerformingAction.PlayerCombatManager.CanPerformBackstepAttack = false;
-        playerPerformingAction.PlayerAnimatorManager.PlayTargetAttackActionAnimation(AttackType.BackstepAttack01, _backstepAttack01, true);
+        playerPerformingAction.PlayerAnimatorManager.PlayTargetAttackActionAnimation(weaponPerformingAction, AttackType.BackstepAttack01, _backstepAttack01, true);
     }
 }

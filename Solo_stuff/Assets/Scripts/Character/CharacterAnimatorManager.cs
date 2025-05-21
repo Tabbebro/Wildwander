@@ -140,6 +140,7 @@ public class CharacterAnimatorManager : MonoBehaviour
     }
 
     public virtual void PlayTargetAttackActionAnimation(
+        WeaponItem weapon,
         AttackType attackType,
         string targetAnimation,
         bool isPerformingAnimation,
@@ -156,6 +157,8 @@ public class CharacterAnimatorManager : MonoBehaviour
         _character.CharacterCombatManager.CurrentAttackType = attackType;
         _character.CharacterCombatManager.LastAttackAnimationPerformed = targetAnimation;
 
+        UpdateAnimatorController(weapon.WeaponAnimator);
+
         ApplyRootMotion = applyRootMotion;
         _character.Animator.CrossFade(targetAnimation, 0.2f);
 
@@ -164,5 +167,9 @@ public class CharacterAnimatorManager : MonoBehaviour
         _character.CharacterMovementManager.CanMove = canMove;
 
         _character.CharacterNetworkManager.NotifyServerOfAttackActionAnimationServerRpc(NetworkManager.Singleton.LocalClientId, targetAnimation, applyRootMotion);
+    }
+
+    public void UpdateAnimatorController(AnimatorOverrideController weaponController) {
+        _character.Animator.runtimeAnimatorController = weaponController;
     }
 }

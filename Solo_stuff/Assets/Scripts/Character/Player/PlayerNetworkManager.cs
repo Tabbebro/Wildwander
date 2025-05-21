@@ -71,7 +71,14 @@ public class PlayerNetworkManager : CharacterNetworkManager
     public void OnCurrentWeaponBeingUsedIDChange(int oldID, int newID) {
         WeaponItem newWeapon = Instantiate(WorldItemDatabase.Instance.GetWeaponByID(newID));
         _player.PlayerCombatManager.CurrentWeaponBeingUsed = newWeapon;
-        _player.PlayerEquipmentManager.LoadLeftWeapon();
+
+        if (_player.IsOwner) { return; }
+
+        if (_player.PlayerCombatManager.CurrentWeaponBeingUsed != null) {
+            _player.PlayerAnimatorManager.UpdateAnimatorController(_player.PlayerCombatManager.CurrentWeaponBeingUsed.WeaponAnimator);
+        }
+        // Why Is This Here?!? Mistake?? Should It Be Elsewere??
+        //_player.PlayerEquipmentManager.LoadLeftWeapon();
     }
     #endregion
 
