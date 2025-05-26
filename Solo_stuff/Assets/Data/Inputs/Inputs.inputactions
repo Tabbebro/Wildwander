@@ -327,6 +327,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "OffHandAction",
+                    "type": "Button",
+                    "id": "6742f3c1-bb7f-4d9b-be51-5bbf2b54ed14",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Interact",
                     "type": "Button",
                     "id": "e2e5818f-a861-46bd-8e60-23ee4b3a7b86",
@@ -558,6 +567,17 @@
                     "processors": "",
                     "groups": ";Gamepad",
                     "action": "LightAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a386bcaf-f08b-4f4f-a5ed-178b6f1bb39d",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
+                    "action": "OffHandAction",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

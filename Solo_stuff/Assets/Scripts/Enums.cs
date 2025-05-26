@@ -28,8 +28,14 @@ public enum CharacterGroup {
 
 public enum WeaponModelSlot {
     RightHand, 
-    LeftHand,
+    LeftHandWeapon,
+    LeftHandShield,
     Back
+}
+
+public enum WeaponModelType {
+    Weapon,
+    Shield
 }
 
 public enum AttackType {

@@ -33,6 +33,20 @@ public class PlayerNetworkManager : CharacterNetworkManager
             IsUsingRightHand.Value = false;
         }
     }
+
+    public override void OnIsBlockingChanged(bool oldStatus, bool newStatus) {
+        base.OnIsBlockingChanged(oldStatus, newStatus);
+
+        // Give Absorptions
+        if (IsOwner) {
+            _player.PlayerStatsManager.BlockingPhysicalAbsorption = _player.PlayerCombatManager.CurrentWeaponBeingUsed.PhysicalBaseDamageAbsorption;
+            _player.PlayerStatsManager.BlockingMagicAbsorption = _player.PlayerCombatManager.CurrentWeaponBeingUsed.MagicBaseDamageAbsorption;
+            _player.PlayerStatsManager.BlockingFireAbsorption = _player.PlayerCombatManager.CurrentWeaponBeingUsed.FireBaseDamageAbsorption;
+            _player.PlayerStatsManager.BlockingLightningAbsorption = _player.PlayerCombatManager.CurrentWeaponBeingUsed.LightningBaseDamageAbsorption;
+            _player.PlayerStatsManager.BlockingHolyAbsorption = _player.PlayerCombatManager.CurrentWeaponBeingUsed.HolyBaseDamageAbsorption;
+
+        }
+    }
     #region Stats
     public void SetNewMaxHealthValue(int oldVitality, int newVitality) {
         MaxHealth.Value = _player.PlayerStatsManager.CalculateHealthBasedOnLevel(newVitality);

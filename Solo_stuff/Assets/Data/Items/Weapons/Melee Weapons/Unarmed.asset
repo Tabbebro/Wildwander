@@ -17,6 +17,7 @@ MonoBehaviour:
   ItemDescription: 
   ItemID: 0
   WeaponAnimator: {fileID: 22100000, guid: da5460de8c41bf04baa27ed553f28250, type: 2}
+  WeaponModelType: 0
   weaponModel: {fileID: 2856970132399443511, guid: 828ab398c2560ce4e8623f5d7c0fdd00, type: 3}
   StrReq: 0
   DexReq: 0
@@ -46,4 +47,5 @@ MonoBehaviour:
   BackstepAttackStaminaModifier: 1.1
   OhLightAction: {fileID: 11400000, guid: 3a750157116138347b052d795e00adbe, type: 2}
   OhHeavyAction: {fileID: 11400000, guid: 105cbbf0a7636624a8c87c9910b3922c, type: 2}
+  OhOffHandAction: {fileID: 11400000, guid: ba018c8103203b846bc610702d2253f0, type: 2}
   SwooshSFXs: []

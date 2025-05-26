@@ -89,6 +89,7 @@ public class PlayerManager : CharacterManager
         PlayerNetworkManager.CurrentRightHandWeaponID.OnValueChanged += PlayerNetworkManager.OnCurrentRightHandWeaponIDChange;
         PlayerNetworkManager.CurrentLeftHandWeaponID.OnValueChanged += PlayerNetworkManager.OnCurrentLeftHandWeaponIDChange;
         PlayerNetworkManager.CurrentWeaponBeingUsed.OnValueChanged += PlayerNetworkManager.OnCurrentWeaponBeingUsedIDChange;
+        PlayerNetworkManager.IsBlocking.OnValueChanged += PlayerNetworkManager.OnIsBlockingChanged;
 
         // Flags
         PlayerNetworkManager.IsChargingAttack.OnValueChanged += PlayerNetworkManager.OnIsChargingAttackChanged;
@@ -130,6 +131,7 @@ public class PlayerManager : CharacterManager
         PlayerNetworkManager.CurrentRightHandWeaponID.OnValueChanged -= PlayerNetworkManager.OnCurrentRightHandWeaponIDChange;
         PlayerNetworkManager.CurrentLeftHandWeaponID.OnValueChanged -= PlayerNetworkManager.OnCurrentLeftHandWeaponIDChange;
         PlayerNetworkManager.CurrentWeaponBeingUsed.OnValueChanged -= PlayerNetworkManager.OnCurrentWeaponBeingUsedIDChange;
+        PlayerNetworkManager.IsBlocking.OnValueChanged -= PlayerNetworkManager.OnIsBlockingChanged;
 
         // Flags
         PlayerNetworkManager.IsChargingAttack.OnValueChanged -= PlayerNetworkManager.OnIsChargingAttackChanged;
@@ -231,6 +233,9 @@ public class PlayerManager : CharacterManager
         // Sync Weapons
         PlayerNetworkManager.OnCurrentRightHandWeaponIDChange(0, PlayerNetworkManager.CurrentRightHandWeaponID.Value);
         PlayerNetworkManager.OnCurrentLeftHandWeaponIDChange(0, PlayerNetworkManager.CurrentLeftHandWeaponID.Value);
+
+        // Sync Block Status
+        PlayerNetworkManager.OnIsBlockingChanged(false, PlayerNetworkManager.IsBlocking.Value);
 
         // Lock On
         if (PlayerNetworkManager.IsLockedOn.Value) {

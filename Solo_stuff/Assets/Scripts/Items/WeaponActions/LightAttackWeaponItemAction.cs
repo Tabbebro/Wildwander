@@ -26,6 +26,10 @@ public class LightAttackWeaponItemAction : WeaponItemAction
 
         if (!playerPerformingAction.CharacterMovementManager.IsGrounded) { return; }
 
+        if (playerPerformingAction.IsOwner) {
+            playerPerformingAction.PlayerNetworkManager.IsAttacking.Value = true;
+        }
+
         // If Sprinting Do A Sprint Attack
         if (playerPerformingAction.CharacterNetworkManager.IsSprinting.Value) {
             PerformRunningAttack(playerPerformingAction, weaponPerformingAction);

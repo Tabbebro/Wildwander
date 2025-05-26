@@ -413,6 +413,15 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""OffHandAction"",
+                    ""type"": ""Button"",
+                    ""id"": ""6742f3c1-bb7f-4d9b-be51-5bbf2b54ed14"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Interact"",
                     ""type"": ""Button"",
                     ""id"": ""e2e5818f-a861-46bd-8e60-23ee4b3a7b86"",
@@ -644,6 +653,17 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
                     ""action"": ""LightAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a386bcaf-f08b-4f4f-a5ed-178b6f1bb39d"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""OffHandAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1164,6 +1184,7 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
         m_PlayerActions_HeavyAttack = m_PlayerActions.FindAction("HeavyAttack", throwIfNotFound: true);
         m_PlayerActions_QueueHeavyAttack = m_PlayerActions.FindAction("QueueHeavyAttack", throwIfNotFound: true);
         m_PlayerActions_HeavyAttackHold = m_PlayerActions.FindAction("HeavyAttackHold", throwIfNotFound: true);
+        m_PlayerActions_OffHandAction = m_PlayerActions.FindAction("OffHandAction", throwIfNotFound: true);
         m_PlayerActions_Interact = m_PlayerActions.FindAction("Interact", throwIfNotFound: true);
         m_PlayerActions_Jump = m_PlayerActions.FindAction("Jump", throwIfNotFound: true);
         m_PlayerActions_Sprint = m_PlayerActions.FindAction("Sprint", throwIfNotFound: true);
@@ -1461,6 +1482,7 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerActions_HeavyAttack;
     private readonly InputAction m_PlayerActions_QueueHeavyAttack;
     private readonly InputAction m_PlayerActions_HeavyAttackHold;
+    private readonly InputAction m_PlayerActions_OffHandAction;
     private readonly InputAction m_PlayerActions_Interact;
     private readonly InputAction m_PlayerActions_Jump;
     private readonly InputAction m_PlayerActions_Sprint;
@@ -1502,6 +1524,10 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "PlayerActions/HeavyAttackHold".
         /// </summary>
         public InputAction @HeavyAttackHold => m_Wrapper.m_PlayerActions_HeavyAttackHold;
+        /// <summary>
+        /// Provides access to the underlying input action "PlayerActions/OffHandAction".
+        /// </summary>
+        public InputAction @OffHandAction => m_Wrapper.m_PlayerActions_OffHandAction;
         /// <summary>
         /// Provides access to the underlying input action "PlayerActions/Interact".
         /// </summary>
@@ -1583,6 +1609,9 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
             @HeavyAttackHold.started += instance.OnHeavyAttackHold;
             @HeavyAttackHold.performed += instance.OnHeavyAttackHold;
             @HeavyAttackHold.canceled += instance.OnHeavyAttackHold;
+            @OffHandAction.started += instance.OnOffHandAction;
+            @OffHandAction.performed += instance.OnOffHandAction;
+            @OffHandAction.canceled += instance.OnOffHandAction;
             @Interact.started += instance.OnInteract;
             @Interact.performed += instance.OnInteract;
             @Interact.canceled += instance.OnInteract;
@@ -1639,6 +1668,9 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
             @HeavyAttackHold.started -= instance.OnHeavyAttackHold;
             @HeavyAttackHold.performed -= instance.OnHeavyAttackHold;
             @HeavyAttackHold.canceled -= instance.OnHeavyAttackHold;
+            @OffHandAction.started -= instance.OnOffHandAction;
+            @OffHandAction.performed -= instance.OnOffHandAction;
+            @OffHandAction.canceled -= instance.OnOffHandAction;
             @Interact.started -= instance.OnInteract;
             @Interact.performed -= instance.OnInteract;
             @Interact.canceled -= instance.OnInteract;
@@ -1979,6 +2011,13 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnHeavyAttackHold(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "OffHandAction" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnOffHandAction(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "Interact" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>

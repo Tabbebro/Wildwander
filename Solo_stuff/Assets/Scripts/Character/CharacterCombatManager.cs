@@ -20,6 +20,7 @@ public class CharacterCombatManager : NetworkBehaviour
     [Header("Attack Flags")]
     public bool CanPerformRollingAttack = false;
     public bool CanPerformBackstepAttack = false;
+    public bool CanPerformBlock = true;
 
     protected virtual void Awake() {
         _character = GetComponent<CharacterManager>();

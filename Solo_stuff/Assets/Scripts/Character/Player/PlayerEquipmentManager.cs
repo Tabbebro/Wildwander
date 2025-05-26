@@ -6,7 +6,8 @@ public class PlayerEquipmentManager : CharacterEquipmentManager
     PlayerManager _player;
 
     public WeaponModelInstantiationSlot RightHandSlot;
-    public WeaponModelInstantiationSlot LeftHandSlot;
+    public WeaponModelInstantiationSlot LeftHandWeaponSlot;
+    public WeaponModelInstantiationSlot LeftHandShieldSlot;
 
     [SerializeField] WeaponManager _rightWeaponManager;
     [SerializeField] WeaponManager _leftWeaponManager;
@@ -36,8 +37,11 @@ public class PlayerEquipmentManager : CharacterEquipmentManager
                 case WeaponModelSlot.RightHand:
                     RightHandSlot = weaponSlot;
                     break;
-                case WeaponModelSlot.LeftHand:
-                    LeftHandSlot = weaponSlot;
+                case WeaponModelSlot.LeftHandWeapon:
+                    LeftHandWeaponSlot = weaponSlot;
+                    break;
+                case WeaponModelSlot.LeftHandShield:
+                    LeftHandShieldSlot = weaponSlot;
                     break;
                 case WeaponModelSlot.Back:
                     break;
@@ -137,17 +141,29 @@ public class PlayerEquipmentManager : CharacterEquipmentManager
         if (_player.PlayerInventoryManager.CurrentLeftHandWeapon != null) {
 
             // Unload Old Weapon Model
-            LeftHandSlot.UnloadWeaponModel();
+            if (LeftHandWeaponSlot.CurrentWeaponModel != null) {
+                LeftHandWeaponSlot.UnloadWeaponModel();
+            }
 
+            if (LeftHandShieldSlot.CurrentWeaponModel != null) {
+                LeftHandShieldSlot.UnloadWeaponModel();
+            }
 
             // Load Model For Weapon
             LeftHandWeaponModel = Instantiate(_player.PlayerInventoryManager.CurrentLeftHandWeapon.weaponModel);
-            LeftHandSlot.LoadWeaponModel(LeftHandWeaponModel);
+
+            switch (_player.PlayerInventoryManager.CurrentLeftHandWeapon.WeaponModelType) {
+                case WeaponModelType.Weapon:
+                    LeftHandWeaponSlot.LoadWeaponModel(LeftHandWeaponModel);
+                    break;
+                case WeaponModelType.Shield:
+                    LeftHandShieldSlot.LoadWeaponModel(LeftHandWeaponModel);
+                    break;
+                default:
+                    break;
+            }
             _leftWeaponManager = LeftHandWeaponModel.GetComponent<WeaponManager>();
             _leftWeaponManager.SetWeaponDamage(_player, _player.PlayerInventoryManager.CurrentLeftHandWeapon);
-            
-            // Assign Damage To Collider
-
         }
     }
 

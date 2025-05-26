@@ -44,6 +44,9 @@ public class PlayerInputManager : MonoBehaviour {
     [SerializeField] bool _heavyAttackInput = false;
     [SerializeField] bool _heavyAttackHoldInput = false;
 
+    [Header("Off Hand Inputs")]
+    [SerializeField] bool _offHandInput = false;
+
     [Header("Queued Inputs")]
     [SerializeField] float _defaultQueueInputTime = 0.35f;
     [SerializeField] float _queueInputTimer = 0;
@@ -109,12 +112,15 @@ public class PlayerInputManager : MonoBehaviour {
             // Weapon Switching
             _inputs.PlayerActions.SwitchRightWeapon.performed += i => _switchRightWeaponInput = true;
             _inputs.PlayerActions.SwitchLeftWeapon.performed += i => _switchLeftWeaponInput = true;
-            // Light Attack Actions
+            // Light Attack Action
             _inputs.PlayerActions.LightAttack.performed += i => _lightAttackInput = true;
             // Heavy Attack Actions
             _inputs.PlayerActions.HeavyAttack.performed += i => _heavyAttackInput = true;
             _inputs.PlayerActions.HeavyAttackHold.performed += i => _heavyAttackHoldInput = true;
             _inputs.PlayerActions.HeavyAttackHold.canceled += i => _heavyAttackHoldInput = false;
+            // Off Hand Action
+            _inputs.PlayerActions.OffHandAction.performed += i => _offHandInput = true;
+            _inputs.PlayerActions.OffHandAction.canceled += i => Player.PlayerNetworkManager.IsBlocking.Value = false;
             // Lock On
             _inputs.PlayerActions.LockOn.performed += i => _lockOnInput = true;
             _inputs.PlayerActions.ChangeLockOnLeft.performed += i => _lockOnLeftInput = true;
@@ -175,6 +181,7 @@ public class PlayerInputManager : MonoBehaviour {
         HandleLightAttackInput();
         HandleHeavyAttackInput();
         HandleHeavyAttackHoldInput();
+        HandleoffHandInput();
         HandleSwitchRightWeaponInput();
         HandleSwitchLeftWeaponInput();
 
@@ -357,6 +364,17 @@ public class PlayerInputManager : MonoBehaviour {
         Player.PlayerNetworkManager.IsChargingAttack.Value = _heavyAttackHoldInput;
     }
 
+    void HandleoffHandInput() {
+        if (!_offHandInput) { return; }
+        _offHandInput = false;
+
+        // TODO: Check For UI
+
+        Player.PlayerNetworkManager.SetCharacterActionHand(false);
+
+        Player.PlayerCombatManager.PerformWeaponBasedAction(Player.PlayerInventoryManager.CurrentLeftHandWeapon.OhOffHandAction, Player.PlayerInventoryManager.CurrentLeftHandWeapon);
+    }
+
     // Weapon Switch Action
 
     void HandleSwitchRightWeaponInput() {
@@ -423,8 +441,6 @@ public class PlayerInputManager : MonoBehaviour {
         _queueDodgeInput = false;
     }
     #endregion
-
-    
 
     void ChangeControlScheme(InputControl ctrl) {
         

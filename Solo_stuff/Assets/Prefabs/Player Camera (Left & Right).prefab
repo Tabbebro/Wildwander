@@ -56,7 +56,7 @@ MonoBehaviour:
   _cameraCollisionRadius: 0.2
   _collideWithLayers:
     serializedVersion: 2
-    m_Bits: 193
+    m_Bits: 192
   _leftAndRightLookAngle: 0
   _upAndDownLookAngle: 0
   _lockOnRadius: 20

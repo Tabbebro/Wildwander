@@ -5,6 +5,9 @@ public class WeaponItem : Item
     [Header("Animations")]
     public AnimatorOverrideController WeaponAnimator;
 
+    [Header("Model Instantiation")]
+    public WeaponModelType WeaponModelType;
+
     [Header("Weapon Model")]
     public GameObject weaponModel;
 
@@ -46,12 +49,20 @@ public class WeaponItem : Item
     public float RollAttackStaminaModifier = 1.1f;
     public float BackstepAttackStaminaModifier = 1.1f;
 
-
     // TODO: Add Defence
+    [Header("Weapon Blocking Absorption")]
+    public float PhysicalBaseDamageAbsorption = 50f;
+    public float MagicBaseDamageAbsorption = 50f;
+    public float FireBaseDamageAbsorption = 50f;
+    public float LightningBaseDamageAbsorption = 50f;
+    public float HolyBaseDamageAbsorption = 50f;
+    public float Stability = 50f; // Reduce Block Stamina Cost
+
 
     [Header("Actions")]
     public WeaponItemAction OhLightAction; // One Handed Light Action
     public WeaponItemAction OhHeavyAction; // One Handed Heavy Action
+    public WeaponItemAction OhOffHandAction; // One Handed Off Hand Action
 
     [Header("Sound FX")]
     public AudioClip[] SwooshSFXs;

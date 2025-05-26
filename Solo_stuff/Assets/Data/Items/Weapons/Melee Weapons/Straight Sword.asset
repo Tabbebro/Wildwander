@@ -17,6 +17,7 @@ MonoBehaviour:
   ItemDescription: A normal straight sword wielded by the lowest ranking soldiers.
   ItemID: 1
   WeaponAnimator: {fileID: 22100000, guid: 30b8a28fd0f146647bf7d5d3f8dab7bb, type: 2}
+  WeaponModelType: 0
   weaponModel: {fileID: 2856970132399443511, guid: 5b321ef64f82b594d905520d9ec07743, type: 3}
   StrReq: 10
   DexReq: 8
@@ -46,6 +47,7 @@ MonoBehaviour:
   BackstepAttackStaminaModifier: 1.1
   OhLightAction: {fileID: 11400000, guid: 3a750157116138347b052d795e00adbe, type: 2}
   OhHeavyAction: {fileID: 11400000, guid: 105cbbf0a7636624a8c87c9910b3922c, type: 2}
+  OhOffHandAction: {fileID: 11400000, guid: ba018c8103203b846bc610702d2253f0, type: 2}
   SwooshSFXs:
   - {fileID: 8300000, guid: a43c69c716891b64da454c65142ab1cb, type: 3}
   - {fileID: 8300000, guid: cbb962e1d2f37b64ca67729ec058c963, type: 3}
