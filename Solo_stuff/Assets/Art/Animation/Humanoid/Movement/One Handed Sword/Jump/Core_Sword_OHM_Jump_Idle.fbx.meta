@@ -5,7 +5,7 @@ ModelImporter:
   internalIDToNameTable:
   - first:
       74: 5252732915974851826
-    second: Core_Sword_OHM_Jump_Idle
+    second: Core_OH_Jump_Idle
   externalObjects: {}
   materials:
     materialImportMode: 2

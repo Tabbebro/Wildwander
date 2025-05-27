@@ -16,7 +16,7 @@ MonoBehaviour:
   ItemIcon: {fileID: 21300000, guid: c7f381483fb41f14e935b2d6d9fec62f, type: 3}
   ItemDescription: A Basic Kite Shield
   ItemID: 3
-  WeaponAnimator: {fileID: 22100000, guid: 30b8a28fd0f146647bf7d5d3f8dab7bb, type: 2}
+  WeaponAnimator: {fileID: 22100000, guid: 94e2d983ebb6561449431b26fb70b287, type: 2}
   WeaponModelType: 1
   weaponModel: {fileID: 7338052296767090823, guid: 30781d16276be204ab87d30ba49a0dac, type: 3}
   StrReq: 10
