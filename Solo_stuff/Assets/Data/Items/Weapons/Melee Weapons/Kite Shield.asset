@@ -51,8 +51,8 @@ MonoBehaviour:
   LightningBaseDamageAbsorption: 75
   HolyBaseDamageAbsorption: 75
   Stability: 66
-  OhLightAction: {fileID: 11400000, guid: 3a750157116138347b052d795e00adbe, type: 2}
-  OhHeavyAction: {fileID: 11400000, guid: 105cbbf0a7636624a8c87c9910b3922c, type: 2}
+  OhLightAction: {fileID: 11400000, guid: d9f07a0149ad0e14f93b9d377ffbf228, type: 2}
+  OhHeavyAction: {fileID: 11400000, guid: 7119be9ed4d48c4468dca17466a92bb4, type: 2}
   OhOffHandAction: {fileID: 11400000, guid: ba018c8103203b846bc610702d2253f0, type: 2}
   SwooshSFXs:
   - {fileID: 8300000, guid: a43c69c716891b64da454c65142ab1cb, type: 3}

@@ -753,7 +753,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3f3957e75014c84389c8e28de60cbdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _attackType: 5
+  _attackType: 4
 --- !u!1102 &-4909953176577296591
 AnimatorState:
   serializedVersion: 6
@@ -1958,7 +1958,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3f3957e75014c84389c8e28de60cbdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _attackType: 4
+  _attackType: 3
 --- !u!1102 &1640220939493144991
 AnimatorState:
   serializedVersion: 6
