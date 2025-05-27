@@ -6,6 +6,7 @@ public class LightAttackWeaponItemAction : WeaponItemAction
     [Header("Light Attack")]
     [SerializeField] string _lightAttack01 = "Main_Light_Attack_01"; // Main Hand Attack Animation
     [SerializeField] string _lightAttack02 = "Main_Light_Attack_02"; // Main Hand Attack Combo Animation
+    [SerializeField] string _lightAttack03 = "Main_Light_Attack_03"; // Main Hand Attack Combo Animation
 
     [Header("Running Attacks")]
     [SerializeField] string _runAttack01 = "Main_Run_Attack_01"; // Main Hand Run Attack Animation
@@ -57,8 +58,11 @@ public class LightAttackWeaponItemAction : WeaponItemAction
             playerPerformingAction.PlayerCombatManager.CanComboWithMainHandWeapon = false;
 
             // Perform Attack Based On Previous Attack
-            if (playerPerformingAction.CharacterCombatManager.LastAttackAnimationPerformed == _lightAttack01) {
+            if (playerPerformingAction.CharacterCombatManager.LastAttackAnimationPerformed == _lightAttack01 && _lightAttack02 != "") {
                 playerPerformingAction.PlayerAnimatorManager.PlayTargetAttackActionAnimation(weaponPerformingAction, AttackType.LightAttack02, _lightAttack02, true);
+            }
+            else if (playerPerformingAction.CharacterCombatManager.LastAttackAnimationPerformed == _lightAttack02 && _lightAttack03 != "") {
+                playerPerformingAction.PlayerAnimatorManager.PlayTargetAttackActionAnimation(weaponPerformingAction, AttackType.LightAttack03, _lightAttack03, true);
             }
             else {
                 playerPerformingAction.PlayerAnimatorManager.PlayTargetAttackActionAnimation(weaponPerformingAction, AttackType.LightAttack01, _lightAttack01, true);

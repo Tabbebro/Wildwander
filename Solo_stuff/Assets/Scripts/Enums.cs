@@ -41,10 +41,13 @@ public enum WeaponModelType {
 public enum AttackType {
     LightAttack01,
     LightAttack02,
+    LightAttack03,
     HeavyAttack01,
     HeavyAttack02,
+    HeavyAttack03,
     HeavyAttackHold01,
     HeavyAttackHold02,
+    HeavyAttackHold03,
     RunningAttack01,
     RollingAttack01,
     BackstepAttack01

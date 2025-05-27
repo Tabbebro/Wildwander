@@ -5,6 +5,7 @@ public class HeavyAttackWeaponItemAction : WeaponItemAction
 {
     [SerializeField] string heavyAttack01 = "Main_Heavy_Attack_01"; // Main Hand Attack Animation
     [SerializeField] string heavyAttack02 = "Main_Heavy_Attack_02"; // Main Hand Attack Animation
+    [SerializeField] string heavyAttack03 = "Main_Heavy_Attack_03"; // Main Hand Attack Animation
 
     public override void AttemptToPerformAction(PlayerManager playerPerformingAction, WeaponItem weaponPerformingAction) {
         base.AttemptToPerformAction(playerPerformingAction, weaponPerformingAction);
@@ -29,8 +30,11 @@ public class HeavyAttackWeaponItemAction : WeaponItemAction
             playerPerformingAction.PlayerCombatManager.CanComboWithMainHandWeapon = false;
 
             // Perform Attack Based On Previous Attack
-            if (playerPerformingAction.CharacterCombatManager.LastAttackAnimationPerformed == heavyAttack01) {
+            if (playerPerformingAction.CharacterCombatManager.LastAttackAnimationPerformed == heavyAttack01 && heavyAttack02 != "") {
                 playerPerformingAction.PlayerAnimatorManager.PlayTargetAttackActionAnimation(weaponPerformingAction, AttackType.HeavyAttack02, heavyAttack02, true);
+            }
+            else if (playerPerformingAction.CharacterCombatManager.LastAttackAnimationPerformed == heavyAttack02 && heavyAttack01 != "") {
+                playerPerformingAction.PlayerAnimatorManager.PlayTargetAttackActionAnimation(weaponPerformingAction, AttackType.HeavyAttack03, heavyAttack03, true);
             }
             else {
                 playerPerformingAction.PlayerAnimatorManager.PlayTargetAttackActionAnimation(weaponPerformingAction, AttackType.HeavyAttack01, heavyAttack01, true);
