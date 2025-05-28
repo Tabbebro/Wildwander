@@ -15,10 +15,10 @@ MonoBehaviour:
   ItemName: Broad Sword
   ItemIcon: {fileID: 21300000, guid: b31f2ff6350d46e4ba43d059d8e76ae1, type: 3}
   ItemDescription: A slightly larger sword.
-  ItemID: 2
-  WeaponAnimator: {fileID: 22100000, guid: 30b8a28fd0f146647bf7d5d3f8dab7bb, type: 2}
+  ItemID: 4
+  WeaponAnimator: {fileID: 22100000, guid: d01121f40d11c3b429bcdffc4b85f9cd, type: 2}
   WeaponModelType: 0
-  weaponModel: {fileID: 7338052296767090823, guid: 958bd224d51b70041b8a15beb741a55e, type: 3}
+  weaponModel: {fileID: 7338052296767090823, guid: 76de2b03fdb3b5d4d892194987ef0ecf, type: 3}
   StrReq: 15
   DexReq: 8
   IntReq: 0
@@ -45,6 +45,12 @@ MonoBehaviour:
   RunAttackStaminaModifier: 1.1
   RollAttackStaminaModifier: 1.1
   BackstepAttackStaminaModifier: 1.1
+  PhysicalBaseDamageAbsorption: 50
+  MagicBaseDamageAbsorption: 50
+  FireBaseDamageAbsorption: 50
+  LightningBaseDamageAbsorption: 50
+  HolyBaseDamageAbsorption: 50
+  Stability: 50
   OhLightAction: {fileID: 11400000, guid: 3a750157116138347b052d795e00adbe, type: 2}
   OhHeavyAction: {fileID: 11400000, guid: 105cbbf0a7636624a8c87c9910b3922c, type: 2}
   OhOffHandAction: {fileID: 11400000, guid: ba018c8103203b846bc610702d2253f0, type: 2}
